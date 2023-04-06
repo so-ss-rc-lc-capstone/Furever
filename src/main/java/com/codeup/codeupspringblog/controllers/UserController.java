@@ -6,6 +6,7 @@ import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,14 @@ public class UserController {
     }
 
 
+    @GetMapping("/profile")
+    public String showProfile(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", user);
+        return "users/profile";
+    }
+
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
         model.addAttribute("user", new User());
@@ -36,7 +45,7 @@ public class UserController {
         String hashedPw = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashedPw);
         userDao.save(user);
-        return "redirect:/posts";
+        return "users/login";
     }
 
 //    @PostMapping("/register")
@@ -60,5 +69,44 @@ public class UserController {
         List<Post> userPosts = user.getPosts();
         model.addAttribute("userAds",userPosts);
         return "posts/show";
+    }
+
+
+
+    @GetMapping("/profile/edit")
+    public String showEditProfile( Model model){
+//        Post post = postDao.findById(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(user.getId()); // Getting data from the database first
+
+//        System.out.println(user.getId());
+//        System.out.println(post.getUser().getId());
+        model.addAttribute("user", userData);
+        return "users/edit-profile";
+    }
+
+
+
+
+    @PostMapping("/profile/edit")
+    public String editUser(@ModelAttribute User user, Model model){
+
+        User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(loggedUser.getId());
+
+        userData.setFirst_name(user.getFirst_name());
+        userData.setLast_name(user.getLast_name());
+        userData.setPhone_number(user.getPhone_number());
+        userData.setBio(user.getBio());
+        userData.setAddress(user.getAddress());
+        userData.setZip_code(user.getZip_code());
+
+
+
+//        System.out.println(user.getId());
+//        System.out.println(post.getUser().getId());
+        model.addAttribute("user", userData);
+        return "users/profile";
+
     }
 }

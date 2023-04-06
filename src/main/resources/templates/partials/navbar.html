@@ -28,16 +28,17 @@
 
 
 
-<!--                    <ul class="navbar-nav" sec:authentication="!isAuthenticated()">-->
+                <ul>
+<!--                    <ul class="navbar-nav" sec:authentication="!isAuthenticated()">&ndash;&gt;-->
                         <li  class="nav-item">
                             <a class="nav-link" href="/register">Register</a>
                         </li>
                         <li  class="nav-item">
                             <a class="nav-link" href="/login">Login</a>
                         </li>
-<!--                    </ul>-->
+                        <!--                    </ul>-->
 
-<!--                    <ul class="navbar-nav" sec:authentication="isAuthenticated()">-->
+                        <!--                    <ul class="navbar-nav" sec:authentication="isAuthenticated()">-->
                         <li class="nav-item">
                             <a class="nav-link" href="/profile">Profile</a>
                         </li>
@@ -47,11 +48,9 @@
                                 <button class="btn-link btn" >Logout</button>
                             </form>
                         </li>
-<!--                    </ul>-->
-
-
-
-<!--                    <c:choose>-->
+                        <!--                    </ul>-->
+                </ul>
+<!--                                       <c:choose>-->
 <!--                        <c:when test="${sessionScope.user == null}">-->
 <!--                            <li><a class="nav-link" href="/register">Register</a></li>-->
 <!--                            <li><a class="nav-link" href="login">Login</a></li>-->
@@ -64,6 +63,7 @@
 <!--                        </c:otherwise>-->
 <!--                    </c:choose>-->
 
-                </ul>
+
+            </ul>
         </ul>
     </nav>
