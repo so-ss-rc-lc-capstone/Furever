@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<nav th:replace="partials :: navbar" />-->
+
+
+<h3>Guess a number!</h3>
+
+<form th:action="@{/roll-dice}" th:method="POST">
+  <div class="form-group">
+    <label for="guess">Guess number</label>
+    <input id="guess" name="guess" class="form-control" type="text">
+    </div>
+  <input type="submit" class="btn btn-primary btn-block" value="Submit">
+</form>
+
+</body>
+</html>

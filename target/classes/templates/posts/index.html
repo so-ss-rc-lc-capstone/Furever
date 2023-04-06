@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head"></head>
+
+<body>
+    <nav th:replace="partials/navbar :: navbar"></nav>
+
+    <h1>Product List</h1>
+    <div th:replace="partials/post-card :: print-post"></div>
+<!--    <div th:each="post : ${posts}">-->
+<!--        <h1 th:text="${post.title}"></h1>-->
+<!--        <h3>Contents: <span th:text="${post.body}"></span></h3>-->
+<!--        <br>-->
+<!--    </div>-->
+
+</body>
+</html>
