@@ -114,12 +114,12 @@ public class PostController {
 
     @PostMapping("/posts/{id}/edit")
     public String editPost( @ModelAttribute Post post, @PathVariable Long id , Model model){
-        Post editedPost = postDao.findById(id).get(); // Getting data from the database first
+        Post postData = postDao.findById(id).get(); // Getting data from the database first
 
-        editedPost.setTitle(post.getTitle());
-        editedPost.setBody(post.getBody());
-        postDao.save(editedPost);
-        model.addAttribute("posts", editedPost);
+        postData.setTitle(post.getTitle());
+        postData.setBody(post.getBody());
+        postDao.save(postData);
+        model.addAttribute("posts", postData);
         return "redirect:/posts/{id}"; // go to controller
     }
 
@@ -191,13 +191,6 @@ public class PostController {
         }
         return "redirect:/posts";
     }
-
-//    @PostMapping("/posts/{id}/unlike")
-//    public String unlikePost(@PathVariable Long id, Principal principal) {
-//        User user = userDao.findByUsername(principal.getName());
-//        postService.decrementLikes(id, user);
-//        return "redirect:/posts";
-//    }
 
 
 
