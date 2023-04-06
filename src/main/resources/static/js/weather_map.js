@@ -6,3 +6,5 @@ const map = new mapboxgl.Map({
     center: [-98.4916, 29.4252], // Starting position [lng, lat]
     zoom: 12, // Starting zoom level
 });
+
+let marker;
