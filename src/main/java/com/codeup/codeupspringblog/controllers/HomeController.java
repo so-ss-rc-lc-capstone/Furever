@@ -42,4 +42,15 @@ public class HomeController {
 //        System.out.println("Email sent!");
         return "This is the landing page!";
     }
+
+    @GetMapping("/matrix")
+    public String returnMatrixPage(){
+        return "matrix";
+    }
+
+
+    @GetMapping("/about")
+    public String returnAboutPage(){
+        return "about";
+    }
 }
