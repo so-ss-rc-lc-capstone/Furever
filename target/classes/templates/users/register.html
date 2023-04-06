@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head"></head>
+
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+
+<div class="flex-container d-flex justify-content-center">
+    <div class="row d-flex justify-content-center">
+
+        <h1>Register</h1>
+        <a th:href="@{/about?num=7}">About Page</a>
+        <form th:action="@{/register}" th:method="POST" th:object="${user}" class="d-flex justify-content-center">
+            <div class="card " style="width: 18rem;">
+                <div class="card-header">
+                    Register
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="username">Username:</label>
+                        <input th:field="*{username}" type="text" name="username" id="username" placeholder="Enter username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Email:</label><br>
+                        <input th:field="*{email}" type="email" name="email" id="email" placeholder="Enter email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password">Password:</label>
+                        <input th:field="*{password}" type="password" name="password" id="password" placeholder="Enter password">
+                    </div>
+                </div>
+                <button class="btn btn-primary">Sign up</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>

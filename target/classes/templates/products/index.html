@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head"></head>
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<h1>Product List</h1>
+<div th:each="product : ${products}">
+    <h1 th:text="${product.name}"></h1>
+    <h3>Cost in cents: <span th:text="${product.costInCents}"></span></h3>
+
+</div>
+
+</body>
+</html>

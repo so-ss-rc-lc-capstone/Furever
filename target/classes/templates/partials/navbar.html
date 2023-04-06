@@ -1,0 +1,69 @@
+
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<nav class="navbar navbar-expand bg-dark" th:data-bs-theme="dark" th:fragment="navbar">
+        <ul class="container-fluid">
+            <a class="navbar-brand" href="/matrix">Spring</a>
+            <ul class="collapse navbar-collapse d-flexs justify-content-between" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/posts">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/posts">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/posts/create">Create AD</a>
+                    </li>
+
+                </ul>
+
+
+<!--                    th:if="${post.user.id} == ${#authentication.principal.id}"-->
+
+
+
+<!--                    <ul class="navbar-nav" sec:authentication="!isAuthenticated()">-->
+                        <li  class="nav-item">
+                            <a class="nav-link" href="/register">Register</a>
+                        </li>
+                        <li  class="nav-item">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+<!--                    </ul>-->
+
+<!--                    <ul class="navbar-nav" sec:authentication="isAuthenticated()">-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                        <li  class="nav-item">
+                            <!--                        <a  class="nav-link" href="/logout">Logout</a>-->
+                            <form th:action="@{/logout}" th:method="post">
+                                <button class="btn-link btn" >Logout</button>
+                            </form>
+                        </li>
+<!--                    </ul>-->
+
+
+
+<!--                    <c:choose>-->
+<!--                        <c:when test="${sessionScope.user == null}">-->
+<!--                            <li><a class="nav-link" href="/register">Register</a></li>-->
+<!--                            <li><a class="nav-link" href="login">Login</a></li>-->
+<!--                            <br />-->
+<!--                        </c:when>-->
+<!--                        <c:otherwise>-->
+<!--                            <li><a class="nav-link" href="/profile">Profile</a></li>-->
+<!--                            <li><a class="nav-link" href="/logout">Logout</a></li>-->
+<!--                            <br />-->
+<!--                        </c:otherwise>-->
+<!--                    </c:choose>-->
+
+                </ul>
+        </ul>
+    </nav>
