@@ -192,13 +192,6 @@ public class PostController {
         return "redirect:/posts";
     }
 
-//    @PostMapping("/posts/{id}/unlike")
-//    public String unlikePost(@PathVariable Long id, Principal principal) {
-//        User user = userDao.findByUsername(principal.getName());
-//        postService.decrementLikes(id, user);
-//        return "redirect:/posts";
-//    }
-
 
 
 

@@ -100,6 +100,8 @@ public class UserController {
         userData.setBio(user.getBio());
         userData.setAddress(user.getAddress());
         userData.setZip_code(user.getZip_code());
+        userData.setGender(user.getGender());
+        userDao.save(userData);
 
 
 
