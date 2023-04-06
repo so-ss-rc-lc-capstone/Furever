@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head"></head>
+
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<h1>Profile Page</h1>
+
+<form th:action="@{/profile/edit}" method="get">
+  <input type="hidden" name="edit_id" />
+  <button type="submit" class="btn btn-light">Add/Correct Detail</button>
+</form>
+
+
+</body>
+</html>
