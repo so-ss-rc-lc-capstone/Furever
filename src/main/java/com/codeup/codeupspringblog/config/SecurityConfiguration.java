@@ -53,6 +53,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers(
 
+                        "/pets",
+                        "/pets/register",
                         "/profile/edit",
                         "/profile",
                         "/register",

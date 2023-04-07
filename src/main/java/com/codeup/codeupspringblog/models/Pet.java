@@ -11,8 +11,8 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false, length=50)
-    private String name;
-    @Column(nullable = false)
+    private String petname;
+    @Column(nullable = true)
     private Date dateOfBirth;
     @Column(nullable = true)
     private String image;
@@ -31,12 +31,12 @@ public class Pet {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPetname() {
+        return petname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPetname(String petname) {
+        this.petname = petname;
     }
 
     public Date getDateOfBirth() {
