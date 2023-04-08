@@ -49,7 +49,8 @@ public class User {
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Post> posts;
 
-
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
+    private List<Event> events;
 
     public long getId() {
         return id;
@@ -149,6 +150,14 @@ public class User {
         this.zip_code = zip_code;
     }
 
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+
     public User() {
     }
 
@@ -158,7 +167,21 @@ public class User {
         this.password = password;
     }
 
-    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String bio, String address, int zip_code, List<Post> posts) {
+//    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String bio, String address, int zip_code, List<Post> posts) {
+//        this.username = username;
+//        this.email = email;
+//        this.password = password;
+//        this.first_name = first_name;
+//        this.last_name = last_name;
+//        this.phone_number = phone_number;
+//        this.gender = gender;
+//        this.bio = bio;
+//        this.address = address;
+//        this.zip_code = zip_code;
+//        this.posts = posts;
+//    }
+
+    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, int zip_code, String bio, List<Post> posts, List<Event> events) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -166,12 +189,12 @@ public class User {
         this.last_name = last_name;
         this.phone_number = phone_number;
         this.gender = gender;
-        this.bio = bio;
         this.address = address;
         this.zip_code = zip_code;
+        this.bio = bio;
         this.posts = posts;
+        this.events = events;
     }
-
 
     //    @Override
 //    public String toString() {
@@ -187,5 +210,25 @@ public class User {
         User user2 = new User(user);
         System.out.println(user);
         System.out.println(user2); // has the same value, but different tag number
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                ", zip_code=" + zip_code +
+                ", bio='" + bio + '\'' +
+                ", posts=" + posts +
+                ", events=" + events +
+                '}';
     }
 }

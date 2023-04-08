@@ -1,10 +1,10 @@
 package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -24,6 +24,14 @@ public class Event {
     @Column(nullable = false)
     private String location_address;
     private LocalDateTime created_at;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id") //
+    private User user;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EventParticipation> participations = new ArrayList<>();
+
 
     public Event() {
     }
@@ -84,6 +92,22 @@ public class Event {
         this.created_at = created_at;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<EventParticipation> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(List<EventParticipation> participations) {
+        this.participations = participations;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -96,4 +120,23 @@ public class Event {
                 ", created_at=" + created_at +
                 '}';
     }
+
+    public void addParticipation(User user) {
+        EventParticipation participation = new EventParticipation();
+        participation.setEvent(this);
+        participation.setUser(user);
+        this.participations.add(participation);
+    }
+    public void removeParticipation(User user) {
+        participations.removeIf(participation -> participation.getUser().equals(user));
+    }
+
+    public boolean hasParticipated(User user) {
+        return participations.stream().anyMatch(participation -> participation.getUser().equals(user));
+    }
+
+    public int getCount() {
+        return participations.size();
+    }
+
 }

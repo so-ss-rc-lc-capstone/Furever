@@ -4,6 +4,7 @@ import com.codeup.codeupspringblog.models.Event;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.EventRepository;
+import com.codeup.codeupspringblog.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
+import java.sql.SQLOutput;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,9 +23,13 @@ import java.util.List;
 
 public class EventController {
     private final EventRepository eventsDao;
+    private final UserRepository usersDao;
+    private final EventService eventService;
 
-    public EventController(EventRepository eventsDao) {
+    public EventController(EventRepository eventsDao, UserRepository usersDao, EventService eventService) {
         this.eventsDao = eventsDao;
+        this.usersDao = usersDao;
+        this.eventService = eventService;
     }
 
     @GetMapping("/events/create")
@@ -33,6 +40,9 @@ public class EventController {
 
     @PostMapping("/events/create")
     public String createEvent(@ModelAttribute Event event) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = usersDao.findById(currentUser.getId());
+        event.setUser(userData);
         event.setCreated_at(LocalDateTime.now());
         eventsDao.save(event);
         return "redirect:/events";
@@ -48,17 +58,20 @@ public class EventController {
     //Edit the event
     @GetMapping("/events/{id}/edit")
     public String showEdit(@PathVariable Long id, Model model) {
-        Event event = eventsDao.findById(id).get();
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        Post post = postDao.findById(id).get(); // Getting data from the database first
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long currentUserId = currentUser.getId();
 
-//        System.out.println(user.getId());
-//        System.out.println(post.getUser().getId());
-//        if(user.getId() == post.getUser().getId()){
+        Event event = eventsDao.findById(id).get(); // Getting data from the database first
+        Long eventId = event.getUser().getId();
+
+        System.out.println(currentUserId);
+        System.out.println(eventId);
+        if(currentUserId == eventId){
         model.addAttribute("event", event);
-        return "event/edit";
-//        }else {
-//            return "redirect:/posts";
+            return "event/edit";
+        }else {
+            return "redirect:/events";
+        }
     }
 
     //Edit event post method
@@ -85,15 +98,46 @@ public class EventController {
 
     @GetMapping("events/{id}/delete")
     public String deleteEvent(@PathVariable long id) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        Event event = eventsDao.findById(id).get();
-//        Long userId = user.getId();
-//        System.out.println("User Id: "+ userId);
-//        System.out.println("Posts user id: "+ post.getUser().getId());
-//        if(userId == post.getUser().getId()){
-        eventsDao.deleteById(id);
-//        }
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long currentUserId = currentUser.getId();
+
+        Event event = eventsDao.findById(id).get(); // Getting data from the database first
+        long eventId = event.getUser().getId();
+
+        if(currentUserId == eventId){
+            eventsDao.deleteById(id);
+        }else{
+            System.out.println("IDs do not match.");
+        }
         return "redirect:/events";
     }
+
+//    Event participation Mapping method
+@PostMapping("/events/{id}/participate")
+public String participateEvent(@PathVariable Long id, Principal principal) {
+    User user = usersDao.findByUsername(principal.getName());
+    Event event = eventsDao.findById(id).get();
+    System.out.println("User participation: " + event.hasParticipated(user));
+
+//
+//    Event event = eventsDao.findById(id).get();
+    System.out.println("Event participations: " + event.getParticipations());
+//    User user = usersDao.findByUsername(principal.getName());
+    System.out.println("Current user: " + user);
+    System.out.println("User participation: " + event.hasParticipated(user));
+
+
+//
+
+    if(event.hasParticipated(user)){
+        System.out.println("participated.");
+        eventService.decrementParticipations(id, user);
+    }else{
+        System.out.println("Not participated.");
+        eventService.incrementParticipations(id, user);
+    }
+    return "redirect:/events";
+}
+
 }
 
