@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head"></head>
+
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<!--
+  public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", location_name='" + location_name + '\'' +
+                ", description='" + description + '\'' +
+                ", event_DateAndTime=" + event_DateAndTime +
+                ", location_address='" + location_address + '\'' +
+                ", created_at=" + created_at +
+                '}';
+    }
+-->
+
+<div class="flex-container d-flex justify-content-center">
+    <div class="row d-flex justify-content-center">
+        <h1>Create Event</h1>
+        <form th:object="${event}" th:method="post" th:action="@{/events/create}">
+            <label for="title">Title:</label>
+            <input type="text" id="title" th:field="*{title}" />
+
+            <label for="location_name">Location Name:</label>
+            <input type="text" id="location_name" th:field="*{location_name}" />
+
+            <label for="description">Description:</label>
+            <textarea id="description" th:field="*{description}"></textarea>
+
+            <label for="event_DateAndTime">Event Time and Date:</label>
+            <input type="datetime-local" id="event_DateAndTime" th:field="*{event_DateAndTime}" />
+
+            <label for="location_address">Location Address:</label>
+            <input type="text" id="location_address" th:field="*{location_address}" />
+
+<!--            <label for="created_at">Created At:</label>-->
+<!--            <input type="datetime-local" id="created_at" th:field="*{created_at}">-->
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:replace="partials/header :: head">-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Create Event</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+
+<!--<h1>Create Event</h1>-->
+<!--<form th:object="${events}" th:method="POST" th:action="@{/event/create-event}">-->
+
+<!--    <label for="title">Title:</label>-->
+<!--    <input type="text" id="title" th:field="*{title}" />-->
+
+<!--    <label for="location_name">Location Name:</label>-->
+<!--    <input type="text" id="location_name" th:field="*{location_name}" />-->
+
+<!--    <label for="description">Description:</label>-->
+<!--    <textarea id="description" th:field="*{description}"></textarea>-->
+
+<!--    <label for="event_timeAndDate">Event Time and Date:</label>-->
+<!--    <input type="datetime-local" id="event_timeAndDate" th:field="*{event_TimeAndDate}" />-->
+
+<!--    <label for="location_address">Location Address:</label>-->
+<!--    <input type="text" id="location_address" th:field="*{locationAddress}" />-->
+
+<!--    <button type="submit">Submit</button>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
