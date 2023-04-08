@@ -1,8 +1,11 @@
 package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name="events")
@@ -16,8 +19,8 @@ public class Event {
     private String location_name;
     @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
-    private Timestamp event_DateAndTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime event_DateAndTime;
     @Column(nullable = false)
     private String location_address;
     private LocalDateTime created_at;
@@ -57,11 +60,11 @@ public class Event {
         this.description = description;
     }
 
-    public Timestamp getEvent_DateAndTime() {
+    public LocalDateTime getEvent_DateAndTime() {
         return event_DateAndTime;
     }
 
-    public void setEvent_DateAndTime(Timestamp event_DateAndTime) {
+    public void setEvent_DateAndTime(LocalDateTime event_DateAndTime) {
         this.event_DateAndTime = event_DateAndTime;
     }
 
@@ -79,5 +82,18 @@ public class Event {
 
     public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", location_name='" + location_name + '\'' +
+                ", description='" + description + '\'' +
+                ", event_DateAndTime=" + event_DateAndTime +
+                ", location_address='" + location_address + '\'' +
+                ", created_at=" + created_at +
+                '}';
     }
 }

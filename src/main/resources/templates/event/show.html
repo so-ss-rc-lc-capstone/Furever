@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head"></head>
+
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<h1>Event found by id</h1>
+<div>
+    <h1>Title: <span th:text="${event.title}"></span></h1>
+    <h3>Event location: <span th:text="${event.location_name}"></span></h3>
+    <h3>Description: <span th:text="${event.description}"></span></h3>
+    <h3>Event time: <span th:text="${event.event_DateAndTime}"></span></h3>
+    <h3>Event address: <span th:text="${event.location_address}"></span></h3>
+    <h3>Created at: <span th:text="${event.created_at}"></span></h3>
+</div>
+</body>
+</html>
