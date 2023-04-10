@@ -1,4 +1,3 @@
-//mapbox
 mapboxgl.accessToken = keys.mapbox;
 var map = new mapboxgl.Map({
     container: 'map',
@@ -7,7 +6,15 @@ var map = new mapboxgl.Map({
     zoom: 10
 });
 
+var distance;
 
+function formatDistance(distance) {
+    if (distance > 1000) {
+        return (distance / 1000).toFixed(1) + ' km';
+    } else {
+        return distance.toFixed(0) + ' m';
+    }
+}
 
 document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -15,11 +22,20 @@ document.querySelector('form').addEventListener('submit', function(e) {
     var end = document.getElementById('end').value;
     var url = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + start + ';' + end + '?access_token=' + mapboxgl.accessToken;
     console.log(start);
-    console.log(stop);
+    console.log(end);
     fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
+            if (!data.routes || !data.routes[0]) {
+                throw new Error('No routes found');
+            }
             var route = data.routes[0].geometry;
+            distance = data.routes[0].distance;
             map.addLayer({
                 'id': 'route',
                 'type': 'line',
@@ -45,5 +61,17 @@ document.querySelector('form').addEventListener('submit', function(e) {
                 return bounds.extend(coord);
             }, new mapboxgl.LngLatBounds(route.coordinates[0], route.coordinates[0]));
             map.fitBounds(bounds, { padding: 20 });
+
+            var popup = new mapboxgl.Popup({ closeOnClick: false })
+                .setLngLat(end)
+                .setHTML('<p>' + formatDistance(distance) + '</p>')
+                .addTo(map);
+
+            map.on('click', 'route', function(e) {
+                popup.setLngLat(e.lngLat).addTo(map);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
         });
 });
