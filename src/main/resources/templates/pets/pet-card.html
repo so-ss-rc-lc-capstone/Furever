@@ -1,0 +1,103 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="partials/header :: head"></head>-->
+
+<!--<body>-->
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+
+
+
+
+
+
+
+
+
+<div th:fragment="petList">
+  <h3>Pets</h3>
+
+  <div th:each="pet : ${pets}" >
+
+    <div th:if="${pet.user.id} == ${#authentication.principal.id}" class="d-flex justify-content-between">
+
+
+
+
+      <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex justify-end px-4 pt-4">
+          <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+            <span class="sr-only">Open dropdown</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+          </button>
+          <!-- Dropdown menu -->
+          <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            <ul class="py-2" aria-labelledby="dropdownButton">
+              <li>
+                <a th:href="@{|/pets/${pet.id}|}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Detail</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex flex-col items-center pb-10">
+          <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"/>
+          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
+          <span class="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
+          <div class="flex mt-4 space-x-3 md:mt-6">
+            <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
+            <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Message</a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="card border-light mb-3 p-0 bg-dark text-light" style="width: 18rem;" >
+      <div class="card-body" >
+        <div class="card-header text-bg-secondary p-0"><a th:text="@{|pet# ${pet.id}|}" th:href="@{|/pets/${pet.id}|}" style="text-decoration:none; color: white"></a></div>
+        <div class=" card-title text-center p-2">
+          <h3 th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"> petname</h3>
+        </div>
+        <div class="card-text ">
+          <h5>Name: <span th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"></span> </h5>
+          <h5>Own by: <span th:text="${pet.user.first_name}"></span></h5>
+          <h5>Date of Birth: <span th:text="${pet.dateOfBirth}"></span></h5>
+
+
+
+          <div th:if="${pet.user.id} == ${#authentication.principal.id}" class="d-flex justify-content-between">
+            <form th:action="@{/pets/{id}/edit(id=${pet.id})}" th:method="get">
+              <input type="hidden" name="edit_id" th:value="${pet.id}" />
+              <button type="submit" class="btn btn-light">Edit</button>
+            </form>
+
+            <form th:action="@{/pets/{id}/delete(id=${pet.id})}" th:method="get">
+              <input type="hidden" name="delete_id" th:value="${pet.id}" />
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+<!--</body>-->
+<!--</html>-->

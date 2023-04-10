@@ -1,7 +1,10 @@
 package com.codeup.codeupspringblog.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -11,16 +14,30 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false, length=50)
-    private String name;
-    @Column(nullable = false)
-    private Date dateOfBirth;
+    private String petname;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @Column(nullable = true)
+    private LocalDate dateOfBirth;
+
     @Column(nullable = true)
     private String image;
     @Column(nullable = true, columnDefinition = "Enum('F', 'M')")
     private String gender;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id") //
+    private User user;
+
 
     public Pet() {
+    }
+
+    public Pet(String petname, LocalDate dateOfBirth, String image, String gender, User user) {
+        this.petname = petname;
+        this.dateOfBirth = dateOfBirth;
+        this.image = image;
+        this.gender = gender;
+        this.user = user;
     }
 
     public long getId() {
@@ -31,19 +48,19 @@ public class Pet {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getPetname() {
+        return petname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPetname(String petname) {
+        this.petname = petname;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -61,5 +78,13 @@ public class Pet {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

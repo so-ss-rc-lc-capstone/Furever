@@ -46,6 +46,7 @@ public class SecurityConfiguration {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
+
                 .requestMatchers("/", "/posts", "/posts/{id}", "/sign-up", "/about", "/register", "/logout", "/posts/find/{id}", "/posts/index","/matrix", "/posts/{id}/like", "/events", "/events/create",
                         "/events/{id}",
                         "/events/{id}/edit",
@@ -58,14 +59,32 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(
+
+                        "/pets/card",
+                        "/pets/{id}",
+                        "/pets/profile",
+                        "/pets",
+                        "/pets/delete",
+                        "/pets/{id}/delete",
+                        "/pets/edit",
+                        "/pets/{id}/edit",
+                        "/pets/register",
+
+
                         "/profile/edit",
                         "/profile",
                         "/register",
+
+
+                        "/posts/{id}/edit",
                         "/posts/create", // only authenticated users can create posts
                         "/posts/{id}/edit", // only authenticated users can edit ads
                         "/posts/edit",
+                        "/posts/{n}/delete",
                         "/posts/delete/{n}",
                         "/posts/{id}/like",
+
+
                         "/events",
                         "/events/{id}",
                         "/events/create",
