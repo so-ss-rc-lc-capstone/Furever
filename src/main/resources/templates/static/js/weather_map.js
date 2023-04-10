@@ -1,11 +1,12 @@
 //mapbox
-mapboxgl.accesToken = keys.mapbox;
-const map = new mapboxgl.Map({
-    container: 'map', // Container ID
-    style: 'mapbox://styles/lukecal24/clg5hkzhf009x01mnuqxbp3y6', // Map style to use
-    center: [-98.4916, 29.4252], // Starting position [lng, lat]
-    zoom: 12, // Starting zoom level
+mapboxgl.accessToken = keys.mapbox;
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-98.4916, 29.4252],
+    zoom: 10
 });
+
 
 
 document.querySelector('form').addEventListener('submit', function(e) {
@@ -13,7 +14,8 @@ document.querySelector('form').addEventListener('submit', function(e) {
     var start = document.getElementById('start').value;
     var end = document.getElementById('end').value;
     var url = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + start + ';' + end + '?access_token=' + mapboxgl.accessToken;
-
+    console.log(start);
+    console.log(stop);
     fetch(url)
         .then(response => response.json())
         .then(data => {
