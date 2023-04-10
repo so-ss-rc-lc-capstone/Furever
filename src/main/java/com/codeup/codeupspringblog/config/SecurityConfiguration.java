@@ -76,6 +76,7 @@ public class SecurityConfiguration {
                         "/register",
 
 
+
                         "/posts/{id}/edit",
                         "/posts/create", // only authenticated users can create posts
                         "/posts/{id}/edit", // only authenticated users can edit ads
