@@ -1,10 +1,27 @@
 mapboxgl.accessToken = keys.mapbox;
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-98.4916, 29.4252],
-    zoom: 10
-});
+//ask for user location
+navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {enableHighAccuracy: true})
+function successLocation(position){
+    console.log(position);
+    setupMap([position.coords.longitude, position.coords.latitude])
+}
+function errorLocation(){
+    setupMap([-98.4916, 29.4252])
+}
+function setupMap(center){
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: center, //[-98.4916, 29.4252],
+        zoom: 10
+    })
+    //navigation control
+    const nav = new mapboxgl.NavigationControl()
+    map.addControl(nav);
+}
+
+
+
 
 var distance;
 
