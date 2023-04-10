@@ -1,7 +1,9 @@
 package com.codeup.codeupspringblog.controllers;
 
+import com.codeup.codeupspringblog.models.Event;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
+import com.codeup.codeupspringblog.repositories.EventRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +24,6 @@ public class PostService {
         post.removeLike(user);
         postRepository.save(post);
     }
+
 }
 

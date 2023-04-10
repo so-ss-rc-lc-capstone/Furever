@@ -50,7 +50,8 @@ public class SecurityConfiguration {
                         "/events/{id}",
                         "/events/{id}/edit",
                         "/events/{id}/find",
-                        "events/{id}/delete"
+                        "events/{id}/delete",
+                        "events/{id}/participate"
                         ) // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */
@@ -71,7 +72,8 @@ public class SecurityConfiguration {
                         "/events/{id}/edit",
                         "/events/{id}/edit",
                         "/events/{id}/find",
-                        "events/{id}/delete"
+                        "events/{id}/delete",
+                        "events/{id}/participate"
                 )
                 .authenticated();
         return http.build();

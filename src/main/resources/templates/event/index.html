@@ -14,13 +14,13 @@
       <h3>Event Address: <span th:text="${event.location_address}"></span></h3>
       <h3>Created at: <span th:text="${event.created_at}"></span></h3>
 
-<!--    &lt;!&ndash;    Event participation button &ndash;&gt;-->
-<!--    <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">-->
-<!--      <button type="submit" class="btn btn-outline-primary"-->
-<!--              th:classappend="${event.hasLiked(#authentication.principal.id) ? 'active' : ''}">-->
-<!--        <i class="fa fa-thumbs-up"></i><i class="bi bi-hand-thumbs-up"></i> <span th:text="${event.likes.size}"></span>-->
-<!--      </button>-->
-<!--    </form>-->
+    <!--    Event participation button -->
+    <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">
+      <button type="submit" class="btn btn-outline-primary"
+              th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'active' : ''}">Attending
+        <i class="fa fa-thumbs-up"></i><i class="bi bi-hand-thumbs-up"></i> <span th:text="${event.participations.size}"></span>
+      </button>
+    </form>
 
     <!--  Event edit button  -->
     <form th:action="@{/events/{id}/edit(id=${event.id})}" method="get">
