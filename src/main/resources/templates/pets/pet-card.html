@@ -1,0 +1,66 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="partials/header :: head"></head>-->
+
+<!--<body>-->
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+
+
+
+
+<div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <a href="#">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+  </a>
+  <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+  <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    Read more
+    <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+  </a>
+</div>
+
+
+
+
+<div th:fragment="petList">
+  <h3>Pets</h3>
+
+  <div th:each="pet : ${pets}" >
+
+    <div th:if="${pet.user.id} == ${#authentication.principal.id}" class="d-flex justify-content-between">
+
+    <div class="card border-light mb-3 p-0 bg-dark text-light" style="width: 18rem;" >
+      <div class="card-body" >
+        <div class="card-header text-bg-secondary p-0"><a th:text="@{|pet# ${pet.id}|}" th:href="@{|/pets/${pet.id}|}" style="text-decoration:none; color: white"></a></div>
+        <div class=" card-title text-center p-2">
+          <h3 th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"> petname</h3>
+        </div>
+        <div class="card-text ">
+          <h5>Name: <span th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"></span> </h5>
+          <h5>Own by: <span th:text="${pet.user.first_name}"></span></h5>
+          <h5>Date of Birth: <span th:text="${pet.dateOfBirth}"></span></h5>
+
+
+
+          <div th:if="${pet.user.id} == ${#authentication.principal.id}" class="d-flex justify-content-between">
+            <form th:action="@{/pets/{id}/edit(id=${pet.id})}" th:method="get">
+              <input type="hidden" name="edit_id" th:value="${pet.id}" />
+              <button type="submit" class="btn btn-light">Edit</button>
+            </form>
+
+            <form th:action="@{/pets/{id}/delete(id=${pet.id})}" th:method="get">
+              <input type="hidden" name="delete_id" th:value="${pet.id}" />
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+<!--</body>-->
+<!--</html>-->

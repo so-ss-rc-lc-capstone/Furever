@@ -134,6 +134,23 @@ public class PostController {
 //    }
 
 
+
+    @GetMapping("/posts/card")
+    public String getPostCard(Model model){
+
+        List<Post> posts = postDao.findAll();
+        model.addAttribute("posts", posts);
+//        List<Post> filteredPostsList = posts
+//                .stream()
+//                .filter(product -> product.getPriceInCents()<1000)
+//                .collect(Collectors.toList());
+//        model.addAttribute("posts", filteredPostsList);
+
+        return "posts/post-card";
+    }
+
+
+
     @GetMapping("/posts")
     public String getPostIndexPage(Model model){
 
@@ -148,7 +165,7 @@ public class PostController {
         return "posts/index";
     }
 
-    @GetMapping("/posts/delete/{n}")
+    @GetMapping("/posts/{n}/delete")
     public String deletePost(@PathVariable long n){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

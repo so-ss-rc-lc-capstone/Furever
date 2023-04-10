@@ -30,7 +30,7 @@
                 <button type="submit" class="btn btn-light">Edit</button>
             </form>
 
-            <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="get">
+            <form th:action="@{/posts/{id}/delete(id=${post.id})}" method="get">
                 <input type="hidden" name="delete_id" th:value="${post.id}" />
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
