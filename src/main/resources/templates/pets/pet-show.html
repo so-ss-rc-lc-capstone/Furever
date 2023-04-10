@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head"></head>
+
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<h1>Product List</h1>
+<!--<span th:text="${index}"></span>-->
+
+
+
+<div class="card border-light mb-3 p-0 bg-dark text-light" style="width: 18rem;" >
+  <div class="card-body">
+    <div class="card-header text-bg-secondary p-0"><a th:text="@{|pet number# ${pet.id}|}" th:href="@{|/pets/find/${pet.id}|}" style="text-decoration:none; color: white"></a></div>
+    <div class=" card-title text-center p-2">
+      <h3 th:text="${pet.petname}"></h3>
+    </div>
+    <div class="card-text ">
+      <h5>Gender: <span th:text="${pet.gender}"></span></h5>
+      <h5>Date of Birth: <span th:text="${pet.dateOfBirth}"></span></h5>
+      <h5>Owner: <span th:text="${pet.user.first_name}"></span> <span th:text="${pet.user.last_name}"></span></h5>
+    </div>
+
+    <div class="d-flex justify-content-between">
+
+      <form th:action="@{/pets/{id}/edit(id=${pet.id})}" method="get">
+        <input type="hidden" name="edit_id" th:value="${pet.id}" />
+        <button type="submit" class="btn btn-light">Edit</button>
+      </form>
+
+      <form th:action="@{/pets/{id}/delete(id=${pet.id})}" method="get">
+        <input type="hidden" name="delete_id" th:value="${pet.id}" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

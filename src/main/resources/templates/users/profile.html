@@ -3,14 +3,36 @@
 <head th:replace="partials/header :: head"></head>
 
 <body>
+<div class="flex-column items-center justify-center h-screen w-full p-4 mt-5 ">
+
+
 <nav th:replace="partials/navbar :: navbar"></nav>
 <h1>Profile Page</h1>
 
+<div th:if="${user.first_name}==null">
+  <h1>Welcome,
+    <span th:text="${user.username}"></span>!</h1>
+</div>
+<div th:unless="${user.first_name}==null">
+  <h1>Welcome,
+    <span th:text="${user.first_name}"></span> <span th:text="${user.last_name}"></span>!</h1>
+</div>
+
+
 <form th:action="@{/profile/edit}" method="get">
   <input type="hidden" name="edit_id" />
-  <button type="submit" class="btn btn-light">Add/Correct Detail</button>
+  <button type="submit" class="btn btn-primary">Add/Correct Detail</button>
+
 </form>
 
+<form th:action="@{/pets/register}" method="get">
+  <input type="hidden" name="edit_id" />
+  <button type="submit" class="btn btn-light">Add Pet</button>
+</form>
 
+<div th:include="pets/pet-card :: petList"></div>
+
+
+</div>
 </body>
 </html>

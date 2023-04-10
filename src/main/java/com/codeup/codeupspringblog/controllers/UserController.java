@@ -1,7 +1,9 @@
 package com.codeup.codeupspringblog.controllers;
 
+import com.codeup.codeupspringblog.models.Pet;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
+import com.codeup.codeupspringblog.repositories.PetRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 
@@ -19,17 +21,26 @@ public class UserController {
     private final UserRepository userDao;
     private final PostRepository postDao;
 
+    private final PetRepository petsDao;
 
-    public UserController(UserRepository userDao, PostRepository postDao){
+
+
+    public UserController(UserRepository userDao, PostRepository postDao, PetRepository petsDao){
         this.userDao = userDao;
         this.postDao = postDao;
+        this.petsDao = petsDao;
     }
 
 
     @GetMapping("/profile")
     public String showProfile(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Pet> pets = petsDao.findAll();
+        List<Post> posts = postDao.findAll();
+
         model.addAttribute("user", user);
+        model.addAttribute("pets",pets);
+        model.addAttribute("posts", posts);
         return "users/profile";
     }
 
