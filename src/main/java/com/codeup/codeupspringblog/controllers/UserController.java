@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class UserController {
-    @Autowired
+
     private final UserRepository userDao;
     private final PostRepository postDao;
 
@@ -126,11 +126,4 @@ public class UserController {
 
     }
 
-    @GetMapping("/api/users")
-    public String getUsers(@RequestParam String query) throws JsonProcessingException {
-        List<User> users = userDao.findByUsernameContainingIgnoreCaseOrEmailContainingIgnoreCase(query, query);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(users);
-        return json;
-    }
 }

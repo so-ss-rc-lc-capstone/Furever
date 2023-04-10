@@ -52,7 +52,8 @@ public class SecurityConfiguration {
                         "/events/{id}/edit",
                         "/events/{id}/find",
                         "events/{id}/delete",
-                        "events/{id}/participate"
+                        "events/{id}/participate",
+                        "/api/users"
                         ) // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */
