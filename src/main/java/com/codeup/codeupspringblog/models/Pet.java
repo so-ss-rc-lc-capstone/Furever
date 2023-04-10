@@ -28,16 +28,21 @@ public class Pet {
     @JoinColumn(name = "user_id") //
     private User user;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "breed_id") //
+    private Breed breed;
+
 
     public Pet() {
     }
 
-    public Pet(String petname, LocalDate dateOfBirth, String image, String gender, User user) {
+    public Pet(String petname, LocalDate dateOfBirth, String image, String gender, User user, Breed breed) {
         this.petname = petname;
         this.dateOfBirth = dateOfBirth;
         this.image = image;
         this.gender = gender;
         this.user = user;
+        this.breed = breed;
     }
 
     public long getId() {
@@ -87,4 +92,13 @@ public class Pet {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Breed getBreed() {
+        return breed;
+    }
+
+    public void setBreed(Breed breed) {
+        this.breed = breed;
+    }
 }
+
