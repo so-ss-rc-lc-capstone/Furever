@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -30,6 +32,16 @@ public class SecurityConfiguration {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedMethods("*").allowedOrigins("*");
+            }
+        };
+    }
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -37,7 +49,7 @@ public class SecurityConfiguration {
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/posts") // user's home page, it can be any URL
+                .defaultSuccessUrl("/feed") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -46,7 +58,7 @@ public class SecurityConfiguration {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/posts", "/posts/{id}", "/sign-up", "/about", "/register", "/logout", "/posts/find/{id}", "/posts/index","/matrix", "/posts/{id}/like") // anyone can see home, the posts pages, and sign up
+                .requestMatchers("/", "/posts", "/posts/{id}", "/sign-up", "/about", "/register", "/logout", "/posts/find/{id}", "/posts/index","/matrix", "/posts/{id}/like", "/api/users", "/api", "/feed","/event-details") // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
@@ -56,7 +68,8 @@ public class SecurityConfiguration {
                         "/posts/{id}/edit", // only authenticated users can edit ads
                         "/posts/edit",
                         "posts/delete/{n}",
-                        "/posts/{id}/like"
+                        "/posts/{id}/like",
+                        "/feed"
                 )
                 .authenticated();
         return http.build();

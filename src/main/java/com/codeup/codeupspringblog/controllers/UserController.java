@@ -48,6 +48,23 @@ public class UserController {
 //        return "redirect:/posts/index";
 //    }
 
+    @GetMapping("/feed")
+        public String feed(){
+            return "posts/feed";
+        }
+
+        @GetMapping("/event-details")
+        public String eventDetails(){
+        return "posts/eventDetails";
+        }
+
+
+    @GetMapping("/api")
+    public String api(){
+        return "/users/listUsers";
+    }
+
+
     @GetMapping("/user/{id}/posts")
     public String userAds(@PathVariable long id, Model model){
         Post post = postDao.findById(id).get();

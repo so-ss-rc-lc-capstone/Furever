@@ -1,0 +1,61 @@
+<!--<html lang="">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Users</title>-->
+<!--  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="users"></div>-->
+
+<!--<script>-->
+<!--  fetch('http://localhost:8080/users')-->
+<!--          .then(response => response.json())-->
+<!--          .then(data => {-->
+<!--            console.log(data)-->
+<!--            // Loop through the user data and create HTML elements to display it-->
+<!--            let usersDiv = document.getElementById('users');-->
+<!--            console.log(data)-->
+<!--            data.forEach(user => {-->
+<!--              let userDiv = document.createElement('div');-->
+<!--              userDiv.innerHTML = `<h2>${user.username}</h2>-->
+<!--                               <p>Email: ${user.email}</p>-->
+<!--                               <p>Password: ${user.password}</p>`;-->
+<!--              usersDiv.appendChild(userDiv);-->
+<!--            });-->
+<!--          })-->
+<!--          .catch(error => console.error(error));-->
+<!--  -->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>List of Users</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h1>List of Users</h1>
+<ul id="user-list"></ul>
+
+<script>
+  $(document).ready(function() {
+    $.getJSON("/users", function(users) {
+      console.log(users);
+      $.each(users, function(i, user) {
+        $("#user-list").append("<li>" + user.username + "</li>");
+      });
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+      console.log("Error: " + textStatus + " " + errorThrown);
+    });
+  });
+
+</script>
+
+
+</body>
+</html>
