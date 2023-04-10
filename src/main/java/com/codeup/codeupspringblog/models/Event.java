@@ -1,8 +1,11 @@
 package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
-import java.sql.Timestamp;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name="events")
@@ -16,11 +19,19 @@ public class Event {
     private String location_name;
     @Column(nullable = false)
     private String description;
-    @Column(nullable = false)
-    private Timestamp event_DateAndTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime event_DateAndTime;
     @Column(nullable = false)
     private String location_address;
     private LocalDateTime created_at;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id") //
+    private User user;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EventParticipation> participations = new ArrayList<>();
+
 
     public Event() {
     }
@@ -57,11 +68,11 @@ public class Event {
         this.description = description;
     }
 
-    public Timestamp getEvent_DateAndTime() {
+    public LocalDateTime getEvent_DateAndTime() {
         return event_DateAndTime;
     }
 
-    public void setEvent_DateAndTime(Timestamp event_DateAndTime) {
+    public void setEvent_DateAndTime(LocalDateTime event_DateAndTime) {
         this.event_DateAndTime = event_DateAndTime;
     }
 
@@ -80,4 +91,52 @@ public class Event {
     public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<EventParticipation> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(List<EventParticipation> participations) {
+        this.participations = participations;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", location_name='" + location_name + '\'' +
+                ", description='" + description + '\'' +
+                ", event_DateAndTime=" + event_DateAndTime +
+                ", location_address='" + location_address + '\'' +
+                ", created_at=" + created_at +
+                '}';
+    }
+
+    public void addParticipation(User user) {
+        EventParticipation participation = new EventParticipation();
+        participation.setEvent(this);
+        participation.setUser(user);
+        this.participations.add(participation);
+    }
+    public void removeParticipation(User user) {
+        participations.removeIf(participation -> participation.getUser().equals(user));
+    }
+
+    public boolean hasParticipated(User user) {
+        return participations.stream().anyMatch(participation -> participation.getUser().equals(user));
+    }
+
+    public int getCount() {
+        return participations.size();
+    }
+
 }

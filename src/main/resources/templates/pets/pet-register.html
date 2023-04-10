@@ -12,6 +12,7 @@
 
 
     <form th:action="@{/pets/register}" th:method="POST" th:object="${pet}" class="flex-column justify-content-center">
+
       <div class="mb-3">
         <label for="petname">Petname:</label>
         <input th:field="*{petname}" type="text" name="petname" id="petname" placeholder="Enter name of your pet">

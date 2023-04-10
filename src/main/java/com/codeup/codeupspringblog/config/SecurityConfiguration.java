@@ -46,8 +46,14 @@ public class SecurityConfiguration {
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/posts", "/posts/{id}", "/sign-up", "/about", "/register", "/logout", "/posts/find/{id}", "/posts/index","/matrix", "/posts/{id}/like",
-                        "/pets/register") // anyone can see home, the posts pages, and sign up
+
+                .requestMatchers("/", "/posts", "/posts/{id}", "/sign-up", "/about", "/register", "/logout", "/posts/find/{id}", "/posts/index","/matrix", "/posts/{id}/like", "/events", "/events/create",
+                        "/events/{id}",
+                        "/events/{id}/edit",
+                        "/events/{id}/find",
+                        "events/{id}/delete",
+                        "events/{id}/participate"
+                        ) // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
@@ -62,17 +68,31 @@ public class SecurityConfiguration {
                         "/pets/{id}/delete",
                         "/pets/edit",
                         "/pets/{id}/edit",
-                        "/posts/{id}/edit",
-                        "/pets",
                         "/pets/register",
+
+
                         "/profile/edit",
                         "/profile",
                         "/register",
+
+
+                        "/posts/{id}/edit",
                         "/posts/create", // only authenticated users can create posts
                         "/posts/{id}/edit", // only authenticated users can edit ads
                         "/posts/edit",
                         "/posts/{n}/delete",
-                        "/posts/{id}/like"
+                        "/posts/delete/{n}",
+                        "/posts/{id}/like",
+
+
+                        "/events",
+                        "/events/{id}",
+                        "/events/create",
+                        "/events/{id}/edit",
+                        "/events/{id}/edit",
+                        "/events/{id}/find",
+                        "events/{id}/delete",
+                        "events/{id}/participate"
                 )
                 .authenticated();
         return http.build();

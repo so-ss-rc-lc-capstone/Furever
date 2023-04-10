@@ -18,6 +18,7 @@ public class Pet {
     @JsonFormat(pattern="yyyy-MM-dd")
     @Column(nullable = true)
     private LocalDate dateOfBirth;
+
     @Column(nullable = true)
     private String image;
     @Column(nullable = true, columnDefinition = "Enum('F', 'M')")

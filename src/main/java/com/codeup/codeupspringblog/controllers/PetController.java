@@ -5,7 +5,6 @@ import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.PetRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +37,7 @@ public class PetController {
 
     @GetMapping("/pets/register")
     public String showPetRegistrationForm(Model model){
+
         model.addAttribute("pet", new Pet());
         System.out.println("pet model created");
         return "pets/pet-register";
