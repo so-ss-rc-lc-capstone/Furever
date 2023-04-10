@@ -7,7 +7,10 @@ import com.codeup.codeupspringblog.repositories.PetRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +18,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class UserController {
-
+    @Autowired
     private final UserRepository userDao;
     private final PostRepository postDao;
 
@@ -121,5 +124,13 @@ public class UserController {
         model.addAttribute("user", userData);
         return "users/profile";
 
+    }
+
+    @GetMapping("/api/users")
+    public String getUsers(@RequestParam String query) throws JsonProcessingException {
+        List<User> users = userDao.findByUsernameContainingIgnoreCaseOrEmailContainingIgnoreCase(query, query);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(users);
+        return json;
     }
 }
