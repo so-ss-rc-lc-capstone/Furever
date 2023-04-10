@@ -6,32 +6,37 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 
-<div class="flex-container d-flex justify-content-center">
-  <div class="row d-flex justify-content-center">
-    <h1>Register Your Pet</h1>
+<div class="flex-container">
+  <div class="flex flex-col justify-content-center">
+    <h1 class="text-2xl text-gray-900 mb-6">Register Your Pet</h1>
 
 
     <form th:action="@{/pets/register}" th:method="POST" th:object="${pet}" class="flex-column justify-content-center">
 
-      <div class="mb-3">
-        <label for="petname">Petname:</label>
-        <input th:field="*{petname}" type="text" name="petname" id="petname" placeholder="Enter name of your pet">
+
+
+      <div class="mb-6">
+        <label for="petname" class="block mb-2 text-sm font-medium text-gray-900">Petname:</label>
+        <input th:field="*{petname}" type="text" name="petname" id="petname" placeholder="Enter name of your pet" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       </div>
-      <div class="mb-3">
-        <label for="dateOfBirth">Date of Birth:</label><br>
-        <input th:field="*{dateOfBirth}" type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Enter Date of Birth">
+      <div class="mb-6">
+        <label for="dateOfBirth" class="block text-sm font-medium text-gray-900">Date of Birth:</label><br>
+        <input th:field="*{dateOfBirth}" type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Enter Date of Birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       </div>
-      <div class="form-check">
-        <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="male" value="M" >
-        <label class="form-check-label" for="male">
-          M
-        </label>
-      </div>
-      <div class="form-check">
-        <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="female" value="F">
-        <label class="form-check-label" for="female">
-          F
-        </label>
+      <div class="grid gap-6 mb-6 md:grid-cols-2">
+
+        <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+          <input th:field="*{gender}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" name="gender" id="male" value="M" >
+          <label class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="male">
+            M
+          </label>
+        </div>
+        <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+          <input th:field="*{gender}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" name="gender" id="female" value="F">
+          <label class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="female">
+            F
+          </label>
+        </div>
       </div>
       <!--                    <div class="mb-3">-->
       <!--                        <label for="confirmPassword">Confirm Password:</label>-->
@@ -39,8 +44,9 @@
       <!--                    </div>-->
 
 
-      <button class="btn btn-primary">Submit</button>
-    </form>
+      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 
+    </form>
   </div>
 </div>
+</body>
