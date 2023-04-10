@@ -177,12 +177,6 @@ public class PostController {
         return "redirect:/posts";
     }
 
-
-
-
-
-
-
     @GetMapping("/posts/{id}")
     public String findPostById(@PathVariable long id , Model model) {
         Post post = postDao.findById(id).get();
