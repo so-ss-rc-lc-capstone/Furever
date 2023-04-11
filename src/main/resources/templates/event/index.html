@@ -3,11 +3,14 @@
 
 <head>
 
+    <meta charset="UTF-8">
+    <title>All Events</title>
+<!--  Jquery-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
 </head>
+
 
 <body class="flex justify-center bg-gray-100">
 
@@ -80,8 +83,6 @@
   </div>
 </nav>
 
-
-</nav>
 
 
 <div class="flex items-center justify-center w-[38em]">
@@ -198,6 +199,7 @@
       </section>
     </div>
     <!--End of Filter bar-->
+
 <!--Event Feed Section-->
     <div class="w-full h-full">
       <div th:include="event/event-card.html"></div>
@@ -286,49 +288,9 @@
   // });
 </script>
 
+
 <script src="../../static/js/event-feed.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 </body>
 </html>
 
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>All Events</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--  <h1>All Events</h1>-->
-<!--  <div th:each="event : ${events}" >-->
-<!--    <h1>Title: <span th:text="${event.title}"></span></h1>-->
-<!--    <h3>Event location: <span th:text="${event.location_name}"></span></h3>-->
-<!--      <h3>Description: <span th:text="${event.description}"></span></h3>-->
-<!--      <h3>Event time: <span th:text="${event.event_DateAndTime}"></span></h3>-->
-<!--      <h3>Event Address: <span th:text="${event.location_address}"></span></h3>-->
-<!--      <h3>Created at: <span th:text="${event.created_at}"></span></h3>-->
-
-<!--    &lt;!&ndash;    Event participation button &ndash;&gt;-->
-<!--    <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">-->
-<!--      <button type="submit" class="btn btn-outline-primary"-->
-<!--              th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'active' : ''}">Attending-->
-<!--        <i class="fa fa-thumbs-up"></i><i class="bi bi-hand-thumbs-up"></i> <span th:text="${event.participations.size}"></span>-->
-<!--      </button>-->
-<!--    </form>-->
-
-<!--    &lt;!&ndash;  Event edit button  &ndash;&gt;-->
-<!--    <form th:action="@{/events/{id}/edit(id=${event.id})}" method="get">-->
-<!--      <input type="hidden" name="edit_id" th:value="${event.id}" />-->
-<!--      <button type="submit" class="btn btn-light">Edit</button>-->
-<!--    </form>-->
-
-<!--    &lt;!&ndash; Event delete button&ndash;&gt;-->
-<!--    <form th:action="@{/events/{id}/delete(id=${event.id})}" method="get">-->
-<!--      <input type="hidden" name="delete_id" th:value="${event.id}" />-->
-<!--      <button type="submit" class="btn btn-danger">Delete</button>-->
-<!--    </form>-->
-<!--    <hr>-->
-<!--  </div>-->
-
-<!--</body>-->
-<!--</html>-->

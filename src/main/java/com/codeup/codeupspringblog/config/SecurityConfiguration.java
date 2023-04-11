@@ -37,12 +37,12 @@ public class SecurityConfiguration {
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/events") // user's home page, it can be any URL
+                .defaultSuccessUrl("/profile") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login") // append a query string value
+                .logoutSuccessUrl("/events") // append a query string value
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeHttpRequests()
@@ -92,8 +92,9 @@ public class SecurityConfiguration {
                         "/events/{id}/edit",
                         "/events/{id}/edit",
                         "/events/{id}/find",
-                        "events/{id}/delete",
-                        "events/{id}/participate"
+                        "/events/{id}/delete",
+                        "/events/{id}/participate",
+                        "/js/**"
                 )
                 .authenticated();
         return http.build();

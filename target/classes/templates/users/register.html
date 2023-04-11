@@ -6,66 +6,67 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 
-<h1>Register</h1>
+<h1 class="text-3xl text-gray-900 mb-6">Register</h1>
+<div class="flex-col justify-content-center">
 
-<div class="flex-column justify-content-center">
-            <a th:href="@{/about?num=7}">About Page</a>
-            <form th:action="@{/register}" th:method="POST" th:object="${user}" class="d-flex flex-column justify-content-center align-items align-self-center">
-                Register
-                <div class="mb-3">
-                    <label for="username">Username:</label>
-                    <input th:field="*{username}" type="text" name="username" id="username" placeholder="Enter username">
+    <form th:action="@{/register}" th:method="POST" th:object="${user}" class="d-flex flex-column justify-content-center align-items align-self-center">
+
+
+            <label for="input-group-1" class="block mb-2 text-sm font-medium text-gray-900 ">Your Email</label>
+            <div class="relative mb-6">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
                 </div>
-                <div class="mb-3">
-                    <label for="email">Email:</label><br>
-                    <input th:field="*{email}" type="email" name="email" id="email" placeholder="Enter email">
-                </div>
-                <div class="mb-3">
-                    <label for="initialPassword">Password:</label>
-                    <input th:field="*{password}" type="password" name="initialPassword" id="initialPassword" placeholder="Enter password">
-                </div>
-                <!--                    <div class="mb-3">-->
-                <!--                        <label for="confirmPassword">Confirm Password:</label>-->
-                <!--                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password">-->
-                <!--                    </div>-->
+                <input  th:field="*{email}" type="text" id="input-group-1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email@example.com">
+            </div>
+            <label for="website-admin" class="block mb-2 text-sm font-medium text-gray-900 ">Username</label>
+            <div class="flex mb-6">
 
-<!--                <div class="mb-3">-->
-<!--                    <label for="first_name">First Name:</label>-->
-<!--                    <input th:field="*{first_name}" type="text" name="first_name" id="first_name" placeholder="Enter first Name">-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                    <label for="last_name">Last Name:</label>-->
-<!--                    <input th:field="*{last_name}" type="text" name="last_name" id="last_name" placeholder="Enter last Name">-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                    <label for="phone_number">Phone Number:</label>-->
-<!--                    <input th:field="*{phone_number}" type="tel" name="phone_number" id="phone_number" placeholder="555-444-1234" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                    <label for="zip_code">Zip Code:</label>-->
-<!--                    <input th:field="*{zip_code}" type="text" name="zip_code" id="zip_code" placeholder="Enter Zip Code" pattern="[0-9]{5}" required>-->
-<!--                </div>-->
-<!--                <div class="mb-3">-->
-<!--                    <label for="bio">Bio:</label>-->
-<!--                    <textarea th:field="*{bio}" type="text" name="bio" id="bio" placeholder="Enter Your bio"></textarea>-->
-<!--                </div>-->
-<!--                <div class="d-flex justify-content-center"></div>-->
-<!--                <div class="form-check">-->
-<!--                    <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="male" value="M" >-->
-<!--                    <label class="form-check-label" for="male">-->
-<!--                        M-->
-<!--                    </label>-->
-<!--                </div>-->
-<!--                <div class="form-check">-->
-<!--                    <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="female" value="F">-->
-<!--                    <label class="form-check-label" for="female">-->
-<!--                        F-->
-<!--                    </label>-->
-<!--                </div>-->
+                <input th:field="*{username}" type="text" id="website-admin" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="username">
+            </div>
+
+        <div class="mb-6">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+            <input th:field="*{password}" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+        </div>
+        <div class="mb-6">
+            <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 ">Confirm password</label>
+            <input th:field="*{password}" type="password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+        </div>
+
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>
 
 
-                <button class="btn btn-primary">Sign up</button>
-            </form>
+
+    </form>
+
+
+
+
+
+
+
+
+
+<!--    <form th:action="@{/register}" th:method="POST" th:object="${user}" class="d-flex flex-column justify-content-center align-items align-self-center">-->
+<!--                Register-->
+<!--                <div class="mb-3">-->
+<!--                    <label for="username">Username:</label>-->
+<!--                    <input th:field="*{username}" type="text" name="username" id="username" placeholder="Enter username">-->
+<!--                </div>-->
+<!--                <div class="mb-3">-->
+<!--                    <label for="email">Email:</label><br>-->
+<!--                    <input th:field="*{email}" type="email" name="email" id="email" placeholder="Enter email">-->
+<!--                </div>-->
+<!--                <div class="mb-3">-->
+<!--                    <label for="initialPassword">Password:</label>-->
+<!--                    <input th:field="*{password}" type="password" name="initialPassword" id="initialPassword" placeholder="Enter password">-->
+<!--                </div>-->
+
+
+
+<!--        -->
+<!--            </form>-->
 
 
 
