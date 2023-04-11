@@ -3,9 +3,13 @@ package com.codeup.codeupspringblog.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import com.codeup.codeupspringblog.models.Breed;
+
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="pets")
@@ -29,8 +33,11 @@ public class Pet {
     private User user;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "breed_id") //
+    @JoinColumn(name = "breed_id", nullable = true) //
     private Breed breed;
+
+//    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pet")
+//    private List<Breed> breeds = new ArrayList<>();
 
 
     public Pet() {
@@ -100,5 +107,13 @@ public class Pet {
     public void setBreed(Breed breed) {
         this.breed = breed;
     }
+
+//    public List<Breed> getBreeds() {
+//        return breeds;
+//    }
+//
+//    public void setBreeds(List<Breed> breeds) {
+//        this.breeds = breeds;
+//    }
 }
 

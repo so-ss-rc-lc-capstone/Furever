@@ -1,6 +1,7 @@
 package com.codeup.codeupspringblog.models;
 
 import com.codeup.codeupspringblog.models.Post;
+import com.codeup.codeupspringblog.models.Breed;
 import jakarta.persistence.*;
 
 import java.util.List;

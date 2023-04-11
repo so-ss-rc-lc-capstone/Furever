@@ -11,16 +11,12 @@
 
 
 
-
-
 <div th:fragment="petList" >
   <h3 class="mb-1 text-xl font-medium text-gray-900">Pets</h3>
 
   <div th:each="pet : ${pets}" class="flex flex-row justify-start flex-nowrap">
 
     <div th:if="${pet.user.id} == ${#authentication.principal.id}">
-
-
 
 
       <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -44,10 +40,10 @@
             </ul>
           </div>
         </div>
-        <div class="flex flex-col items-center pb-10">
-          <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://nationaltoday.com/wp-content/uploads/2021/06/International-Corgi-Day-1.jpg" alt="Pet image"/>
+        <a th:href="@{|/pets/${pet.id}|}" class="flex flex-col items-center pb-10">
+          <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://nationaltoday.com/wp-content/uploads/2021/06/International-Corgi-Day-1.jpg" alt="Pet image"/>
           <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><span th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"></span></h5>
-          <span class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${pet.dateOfBirth}"></span></span>
+          <span class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${pet.breed.breed_name}"></span></span>
           <span class="text-sm text-gray-500 dark:text-gray-400">Own by: <span th:text="${pet.user.first_name}"></span></span>
 
           <div th:if="${pet.user.id} == ${#authentication.principal.id}" class="flex mt-4 space-x-3 md:mt-6">
@@ -61,11 +57,8 @@
               <button type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Delete</button>
             </form>
           </div>
-<!--          <div class="flex mt-4 space-x-3 md:mt-6">-->
-<!--            <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>-->
-<!--            <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Message</a>-->
-<!--          </div>-->
-        </div>
+
+        </a>
       </div>
 
 

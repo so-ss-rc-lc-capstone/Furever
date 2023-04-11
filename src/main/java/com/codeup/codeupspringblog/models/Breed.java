@@ -3,6 +3,9 @@ package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name= "breeds")
 public class Breed {
@@ -11,8 +14,11 @@ public class Breed {
     private Long id;
 
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String breed_name;
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "breed")
+    private List<Pet> pets = new ArrayList<>();
 
 
     public Long getId() {
@@ -29,5 +35,13 @@ public class Breed {
 
     public void setBreed_name(String breed_name) {
         this.breed_name = breed_name;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
 }
