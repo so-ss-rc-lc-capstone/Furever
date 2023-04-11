@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/header :: head"></head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+
 
 <div class="w-full h-screen bg-blue-400">
     <div class="w-full relative flex items-start justify-center h-1/2" style="background-image: url('/static/images/dogcover1.jpeg')">
@@ -53,7 +55,7 @@
 
                 <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
 
-               <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+                <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
 
                 <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
 
@@ -76,27 +78,8 @@
             </div>
         </div>
     </div>
+
 </div>
 
-
-
-<!--<div class = "w-full h-screen flex">-->
-<!--    <div class="w-full bg-green">-->
-<!--        <div class="w-full h-1/2 bg-blue"></div>-->
-<!--        <div class="w-full h-1/2 bg-yellow"></div>-->
-
-<!--    </div>-->
-<!--    <div class="w-full bg-red"></div>-->
-
-
-<!--</div>-->
-<!--<div>-->
-<!--    <h1>Title: <span th:text="${event.title}"></span></h1>-->
-<!--    <h3>Event location: <span th:text="${event.location_name}"></span></h3>-->
-<!--    <h3>Description: <span th:text="${event.description}"></span></h3>-->
-<!--    <h3>Event time: <span th:text="${event.event_DateAndTime}"></span></h3>-->
-<!--    <h3>Event address: <span th:text="${event.location_address}"></span></h3>-->
-<!--    <h3>Created at: <span th:text="${event.created_at}"></span></h3>-->
-<!--</div>-->
 </body>
 </html>

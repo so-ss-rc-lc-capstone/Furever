@@ -34,11 +34,13 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showProfile(Model model){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(currentUser.getId());
+
         List<Pet> pets = petsDao.findAll();
         List<Post> posts = postDao.findAll();
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", userData);
         model.addAttribute("pets",pets);
         model.addAttribute("posts", posts);
         return "users/profile";

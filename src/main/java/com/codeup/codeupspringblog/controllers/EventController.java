@@ -86,6 +86,7 @@ public class EventController {
         eventEdited.setEvent_DateAndTime(event.getEvent_DateAndTime());
         eventEdited.setLocation_address(event.getLocation_address());
         eventEdited.setCreated_at(LocalDateTime.now());
+        eventEdited.setEventPhoto(event.getEventPhoto());
         eventsDao.save(eventEdited);
         return "redirect:/events/" + id + "/find";
     }

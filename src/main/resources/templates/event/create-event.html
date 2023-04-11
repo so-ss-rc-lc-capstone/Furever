@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/header :: head"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/header :: head">
+    <title>Creating event</title>
+</head>
 
 <body class="w-full h-screen flex relative justify-center items-center">
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -34,6 +36,7 @@
                 </div>
                 <div class="flex items-center space-x-4">
 
+
                     <button type="submit" class="text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                         Generate Description
                     </button>
@@ -43,6 +46,7 @@
         </div>
     </div>
 </div>
+
 
 
 <div class="w-full h-screen flex justify-center items-center">
@@ -91,9 +95,55 @@
 
     </form>
 
+<!--<script>-->
+<!--    $(document).ready(function() {-->
+<!--        const uploadBtn = $('#upload-btn');-->
+<!--        const input = $('#photo-input');-->
+<!--        const client = filestack.init('AMeRqBg1kT66snKgnNX7Iz');-->
+<!--        uploadBtn.on('click', function () {-->
+<!--            client.picker({-->
+<!--                accept: ['image/*', 'video/*'], // Allow only photos and videos to be uploaded-->
+<!--                fromSources: ['local_file_system', 'url'], // Limit the upload sources-->
+<!--                onUploadDone: function(res) {-->
+<!--                    const url = res.filesUploaded[0].url;-->
+<!--                    input.attr('value', url);-->
+<!--                }-->
+<!--            }).open();-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+
+
 
 </div>
 
+
+
+<!--<div class="flex-container d-flex justify-content-center">-->
+<!--    <div class="row d-flex justify-content-center">-->
+<!--        <h1>Create Event</h1>-->
+<!--        <form th:object="${event}" th:method="post" th:action="@{/events/create}">-->
+<!--            <label for="title">Title:</label>-->
+<!--            <input type="text" id="title" th:field="*{title}" />-->
+
+<!--            <label for="location_name">Location Name:</label>-->
+<!--            <input type="text" id="location_name" th:field="*{location_name}" />-->
+
+<!--            <label for="description">Description:</label>-->
+<!--            <textarea id="description" th:field="*{description}"></textarea>-->
+
+<!--            <label for="event_DateAndTime">Event Time and Date:</label>-->
+<!--            <input type="datetime-local" id="event_DateAndTime" th:field="*{event_DateAndTime}" />-->
+
+<!--            <label for="location_address">Location Address:</label>-->
+<!--            <input type="text" id="location_address" th:field="*{location_address}" />-->
+
+<!--&lt;!&ndash;            <label for="created_at">Created At:</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="datetime-local" id="created_at" th:field="*{created_at}">&ndash;&gt;-->
+
+<!--            <button type="submit">Submit</button>-->
+<!--        </form>-->
+<script th:src="@{/js/fileStack-api.js}" type="module"></script>
 
 <script>
     const closeButton = document.getElementById('close');
@@ -113,7 +163,6 @@ closeButton.addEventListener('click', () => {
 
 </script>
 
-
 </body>
 </html>
 
@@ -122,40 +171,3 @@ closeButton.addEventListener('click', () => {
 
 
 
-
-
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head th:replace="partials/header :: head">-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Create Event</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
-
-
-<!--<h1>Create Event</h1>-->
-<!--<form th:object="${events}" th:method="POST" th:action="@{/event/create-event}">-->
-
-<!--    <label for="title">Title:</label>-->
-<!--    <input type="text" id="title" th:field="*{title}" />-->
-
-<!--    <label for="location_name">Location Name:</label>-->
-<!--    <input type="text" id="location_name" th:field="*{location_name}" />-->
-
-<!--    <label for="description">Description:</label>-->
-<!--    <textarea id="description" th:field="*{description}"></textarea>-->
-
-<!--    <label for="event_timeAndDate">Event Time and Date:</label>-->
-<!--    <input type="datetime-local" id="event_timeAndDate" th:field="*{event_TimeAndDate}" />-->
-
-<!--    <label for="location_address">Location Address:</label>-->
-<!--    <input type="text" id="location_address" th:field="*{locationAddress}" />-->
-
-<!--    <button type="submit">Submit</button>-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->

@@ -34,6 +34,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
@@ -92,8 +93,9 @@ public class SecurityConfiguration {
                         "/events/{id}/edit",
                         "/events/{id}/edit",
                         "/events/{id}/find",
-                        "events/{id}/delete",
-                        "events/{id}/participate"
+                        "/events/{id}/delete",
+                        "/events/{id}/participate",
+                        "/js/**"
                 )
                 .authenticated();
         return http.build();
