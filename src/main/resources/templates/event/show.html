@@ -5,14 +5,98 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1>Event found by id</h1>
-<div>
-    <h1>Title: <span th:text="${event.title}"></span></h1>
-    <h3>Event location: <span th:text="${event.location_name}"></span></h3>
-    <h3>Description: <span th:text="${event.description}"></span></h3>
-    <h3>Event time: <span th:text="${event.event_DateAndTime}"></span></h3>
-    <h3>Event address: <span th:text="${event.location_address}"></span></h3>
-    <h3>Created at: <span th:text="${event.created_at}"></span></h3>
+<div class="w-full h-screen bg-blue-400">
+    <div class="w-full relative flex items-start justify-center h-1/2" style="background-image: url('/static/images/dogcover1.jpeg')">
+
+        <div class="flex w-[50em] h-[20em] rounded-xl bg-white"  style="transform: translateY(70%);">
+
+            <div class="w-3/5 p-4">
+                <h1 class = "text-2xl font-bold"><span th:text="${event.title}"></span></h1>
+                <h3>Starts at <span th:text="${event.event_DateAndTime}"></span></h3>
+                <h3>Event Created at <span th:text="${event.created_at}"></span></h3>
+                <h3 class="mt-5 font-bold">Location</h3>
+                <h3><span th:text="${event.location_name}"></span></h3>
+                <h3><span th:text="${event.location_address}"></span></h3>
+            </div>
+
+            <div class="w-2/5 p-4 border-l-2">
+
+                <div class="flex flex-row">
+                    <img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="">
+                    <div class="flex ml-2 flex-col">
+                        <h3 class="text-[15px] text-gray-400"> Event Hosted by</h3>
+                        <h3><span th:text="${event.user.first_name}"></span> <span th:text="${event.user.last_name}"></span></h3>
+                        <h4><span class="text-blue-600 mr-1">@</span><span th:text="${event.user.username}"></span></h4>
+                    </div>
+                </div>
+                <div class ="mt-5">
+                    <h4 class="text-[15px]">Phone Number</h4>
+                    <h4 class="text-[10px] text-blue-500"><span th:text="${event.user.phone_number}"></span></h4>
+
+                    <h4 class="mt-5 text-[15px]">Email Address</h4>
+                    <h4 class="text-[10px]"><span th:text="${event.user.getEmail()}"></span></h4>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!--More Details/Mapbox-->
+    <div class="w-full h-full bg-green flex justify-center">
+        <div class = "w-[50em] mt-[8em] h-full bg-red-400">
+            <h2 class="text-2xl p-4 font-bold">Participants <span class="text-gray-400 text-[17px]" th:text="${event.participations.size}"></span></h2>
+            <!--Avatars-->
+            <div class=" w-full flex justify-evenly h-[60px] bg-green-400">
+                <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+
+                <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+
+                <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+
+               <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+
+                <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+
+                <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+
+                <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+
+                <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+
+                <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+
+                <a th:each="participant : ${participants}"><img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+
+            </div>
+            <!--Map box-->
+            <div>
+
+
+
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+<!--<div class = "w-full h-screen flex">-->
+<!--    <div class="w-full bg-green">-->
+<!--        <div class="w-full h-1/2 bg-blue"></div>-->
+<!--        <div class="w-full h-1/2 bg-yellow"></div>-->
+
+<!--    </div>-->
+<!--    <div class="w-full bg-red"></div>-->
+
+
+<!--</div>-->
+<!--<div>-->
+<!--    <h1>Title: <span th:text="${event.title}"></span></h1>-->
+<!--    <h3>Event location: <span th:text="${event.location_name}"></span></h3>-->
+<!--    <h3>Description: <span th:text="${event.description}"></span></h3>-->
+<!--    <h3>Event time: <span th:text="${event.event_DateAndTime}"></span></h3>-->
+<!--    <h3>Event address: <span th:text="${event.location_address}"></span></h3>-->
+<!--    <h3>Created at: <span th:text="${event.created_at}"></span></h3>-->
+<!--</div>-->
 </body>
 </html>
