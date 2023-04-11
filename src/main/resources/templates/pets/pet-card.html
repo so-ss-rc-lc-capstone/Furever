@@ -5,16 +5,9 @@
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
 
-
-
-
-
-
-
-
-
 <div th:fragment="petList" >
   <h3 class="mb-1 text-xl font-medium text-gray-900">Pets</h3>
+
 
   <div th:each="pet : ${pets}" class="flex flex-row justify-start flex-nowrap">
 
@@ -106,6 +99,3 @@
     </div>
   </div>
 </div>
-
-<!--</body>-->
-<!--</html>-->
