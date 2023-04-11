@@ -1,25 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/header :: head"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/header :: head">
+    <title>Creating event</title>
+</head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<!--
-  public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", location_name='" + location_name + '\'' +
-                ", description='" + description + '\'' +
-                ", event_DateAndTime=" + event_DateAndTime +
-                ", location_address='" + location_address + '\'' +
-                ", created_at=" + created_at +
-                '}';
-    }
--->
 
 <div class="flex-container d-flex justify-content-center">
-    <div class="row d-flex justify-content-center">
+    <div class=" d-flex justify-content-center">
         <h1>Create Event</h1>
         <form th:object="${event}" th:method="post" th:action="@{/events/create}">
             <label for="title">Title:</label>
@@ -37,13 +26,33 @@
             <label for="location_address">Location Address:</label>
             <input type="text" id="location_address" th:field="*{location_address}" />
 
-            <label for="photo">Photo:</label>
-            <input type="text" id="photo" th:field="*{eventPhoto}">
+            <label for="photo-input">Photo:</label>
+            <button id="upload-btn" type="button">Upload Photo or Video</button>
+            <input type="text" id="photo-input" name="eventPhoto" />
 
             <button type="submit">Submit</button>
         </form>
     </div>
 </div>
+<script th:src="@{/js/fileStack-api.js}" type="module"></script>
+
+<!--<script>-->
+<!--    $(document).ready(function() {-->
+<!--        const uploadBtn = $('#upload-btn');-->
+<!--        const input = $('#photo-input');-->
+<!--        const client = filestack.init('AMeRqBg1kT66snKgnNX7Iz');-->
+<!--        uploadBtn.on('click', function () {-->
+<!--            client.picker({-->
+<!--                accept: ['image/*', 'video/*'], // Allow only photos and videos to be uploaded-->
+<!--                fromSources: ['local_file_system', 'url'], // Limit the upload sources-->
+<!--                onUploadDone: function(res) {-->
+<!--                    const url = res.filesUploaded[0].url;-->
+<!--                    input.attr('value', url);-->
+<!--                }-->
+<!--            }).open();-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 </body>
 </html>
 
@@ -52,40 +61,3 @@
 
 
 
-
-
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--<head th:replace="partials/header :: head">-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Create Event</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
-
-
-<!--<h1>Create Event</h1>-->
-<!--<form th:object="${events}" th:method="POST" th:action="@{/event/create-event}">-->
-
-<!--    <label for="title">Title:</label>-->
-<!--    <input type="text" id="title" th:field="*{title}" />-->
-
-<!--    <label for="location_name">Location Name:</label>-->
-<!--    <input type="text" id="location_name" th:field="*{location_name}" />-->
-
-<!--    <label for="description">Description:</label>-->
-<!--    <textarea id="description" th:field="*{description}"></textarea>-->
-
-<!--    <label for="event_timeAndDate">Event Time and Date:</label>-->
-<!--    <input type="datetime-local" id="event_timeAndDate" th:field="*{event_TimeAndDate}" />-->
-
-<!--    <label for="location_address">Location Address:</label>-->
-<!--    <input type="text" id="location_address" th:field="*{locationAddress}" />-->
-
-<!--    <button type="submit">Submit</button>-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
