@@ -11,7 +11,8 @@ function errorLocation(){
 function setupMap(center){
     const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
+        style: 'mapbox://styles/lukecal24/clg5hkzhf009x01mnuqxbp3y6',
+        // style: 'mapbox://styles/mapbox/streets-v11',
         center: center, //[-98.4916, 29.4252],
         zoom: 10
     })
