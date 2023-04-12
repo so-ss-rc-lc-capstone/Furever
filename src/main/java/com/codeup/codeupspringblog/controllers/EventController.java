@@ -70,7 +70,7 @@ public class EventController {
         System.out.println(eventId);
         if(currentUserId == eventId){
         model.addAttribute("event", event);
-            return "event/edit-event";
+            return "event/edit";
         }else {
             return "redirect:/events";
         }
