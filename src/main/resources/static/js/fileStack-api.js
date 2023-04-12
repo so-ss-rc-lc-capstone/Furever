@@ -14,6 +14,7 @@ $(document).ready(function() {
                 const url = res.filesUploaded[0].url;
                 input.attr('value', url);
                 inputEdit.attr('value', url);
+                petInput.attr('value', url);
             }
         }).open();
     });
@@ -29,9 +30,21 @@ $(document).ready(function() {
             fromSources: ['local_file_system', 'url'], // Limit the upload sources
             onUploadDone: function(res) {
                 const url = res.filesUploaded[0].url;
-                console.log(url);
                 userInput.attr('value', url);
-                console.log(url);
+            }
+        }).open();
+    });
+
+    const petInput = $('#pet-image-input');
+    const petUpload = $('#upload-pet');
+    const petClient = filestack.init(keys.filestack);
+    petUpload.on('click', function () {
+        petClient.picker({
+            accept: ['image/*', 'video/*'], // Allow only photos and videos to be uploaded
+            fromSources: ['local_file_system', 'url'], // Limit the upload sources
+            onUploadDone: function(res) {
+                const url = res.filesUploaded[0].url;
+                petInput.attr('value', url);
             }
         }).open();
     });
