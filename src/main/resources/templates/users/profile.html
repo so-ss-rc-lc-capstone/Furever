@@ -33,10 +33,11 @@
         <div class="mb-4" th:unless="${user.first_name}==null">
           <h3 class="mb-1 text-lg font-medium text-gray-600">Welcome,</h3>
           <h1><span th:text="${user.first_name}"></span> <span th:text="${user.last_name}"></span></h1>
+          <div>
+            <p class="mb-3 text-gray-500 dark:text-gray-400" th:text="${user.bio}"></p>
+          </div>
         </div>
-        <div>
-          <p class="mb-3 text-gray-500 dark:text-gray-400" th:text="${user.bio}"></p>
-        </div>
+
 
         <div class="flex flex-row">
           <form class="mb-4" th:action="@{/profile/edit}" method="get">
