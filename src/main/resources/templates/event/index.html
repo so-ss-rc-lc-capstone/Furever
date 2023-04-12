@@ -96,7 +96,7 @@
         <li>
           <div class="w-full max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
             <div class="flex flex-col items-center justify-center mt-1">
-              <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg"
+              <img class="w-24 h-24 mb-3 rounded-full shadow-lg" th:src="${user.profilePhoto}"
                    alt="Profile image"/>
               <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">Welcome,
                 <span th:text="${#authentication.principal.username}"/>!</h5>
