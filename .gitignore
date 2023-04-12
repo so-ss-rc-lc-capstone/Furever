@@ -33,4 +33,5 @@ build/
 ### VS Code ###
 .vscode/
 
-
+keys.js
+/static/js/keys.js

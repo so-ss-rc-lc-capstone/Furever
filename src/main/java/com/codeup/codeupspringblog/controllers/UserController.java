@@ -37,10 +37,15 @@ public class UserController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
 
+        List<User> users = userDao.findAll();
+
         List<Pet> pets = petsDao.findAll();
         List<Post> posts = postDao.findAll();
 
+
         model.addAttribute("user", userData);
+
+        model.addAttribute("users", users);
         model.addAttribute("pets",pets);
         model.addAttribute("posts", posts);
         return "users/profile";
@@ -122,5 +127,30 @@ public class UserController {
         model.addAttribute("user", userData);
         return "users/profile";
 
+    }
+
+
+    @GetMapping("/user/card")
+    public String getPetIndexPage(Model model){
+
+        List<User> users = userDao.findAll();
+        System.out.println(users.get(0).getUsername());
+        model.addAttribute("users", users);
+//        List<Post> filteredPostsList = posts
+//                .stream()
+//                .filter(product -> product.getPriceInCents()<1000)
+//                .collect(Collectors.toList());
+//        model.addAttribute("posts", filteredPostsList);
+
+        return "users/user-card";
+    }
+
+    @GetMapping("/user/{id}")
+    public String findPetById(@PathVariable long id , Model model) {
+        List<Pet> petData = petsDao.findAll();
+        User userData = userDao.findById(id);
+        model.addAttribute("user",userData);
+        model.addAttribute("pets", petData);
+        return "users/user-show";
     }
 }
