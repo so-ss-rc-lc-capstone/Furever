@@ -205,30 +205,25 @@ public class User {
 //                '}';
 //    }
 
-    public static void main(String[] args) {
-        User user = new User("osj3693","osj3693@gmail.com","1234");
-        User user2 = new User(user);
-        System.out.println(user);
-        System.out.println(user2); // has the same value, but different tag number
-    }
 
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", phone_number='" + phone_number + '\'' +
-                ", gender='" + gender + '\'' +
-                ", address='" + address + '\'' +
-                ", zip_code=" + zip_code +
-                ", bio='" + bio + '\'' +
-                ", posts=" + posts +
-                ", events=" + events +
-                '}';
-    }
+
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", username='" + username + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", first_name='" + first_name + '\'' +
+//                ", last_name='" + last_name + '\'' +
+//                ", phone_number='" + phone_number + '\'' +
+//                ", gender='" + gender + '\'' +
+//                ", address='" + address + '\'' +
+//                ", zip_code=" + zip_code +
+//                ", bio='" + bio + '\'' +
+//                ", posts=" + posts +
+//                ", events=" + events +
+//                '}';
+//    }
 }
