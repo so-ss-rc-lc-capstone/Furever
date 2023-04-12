@@ -4,6 +4,7 @@ $(document).ready(function() {
     const uploadBtn = $('#upload-btn');
     const input = $('#photo-input');
     const inputEdit = $('#photo-edit');
+
     const client = filestack.init(keys.filestack);
     uploadBtn.on('click', function () {
         client.picker({
