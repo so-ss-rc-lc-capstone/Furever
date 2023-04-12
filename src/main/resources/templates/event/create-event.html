@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/header :: head">
@@ -18,7 +19,7 @@
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-lg mr-5 font-semibold text-gray-900 dark:text-white">
-                   Ai Assistant
+                    Ai Assistant
                 </h3>
 
                 <button type="button" id = "close" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
@@ -36,7 +37,6 @@
                 </div>
                 <div class="flex items-center space-x-4">
 
-
                     <button type="submit" class="text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                         Generate Description
                     </button>
@@ -48,92 +48,69 @@
 </div>
 
 
-<!--<script>-->
-<!--    $(document).ready(function() {-->
-<!--        const uploadBtn = $('#upload-btn');-->
-<!--        const input = $('#photo-input');-->
-<!--        const client = filestack.init('AMeRqBg1kT66snKgnNX7Iz');-->
-<!--        uploadBtn.on('click', function () {-->
-<!--            client.picker({-->
-<!--                accept: ['image/*', 'video/*'], // Allow only photos and videos to be uploaded-->
-<!--                fromSources: ['local_file_system', 'url'], // Limit the upload sources-->
-<!--                onUploadDone: function(res) {-->
-<!--                    const url = res.filesUploaded[0].url;-->
-<!--                    input.attr('value', url);-->
-<!--                }-->
-<!--            }).open();-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
-
-
 <div class="w-full h-screen flex justify-center items-center">
 
-<form th:object="${event}" th:method="post" th:action="@{/events/create}">
-    <h1 class="text-3xl mb-10">Create an Event</h1>
-    <div class="grid gap-4 mb-4 sm:grid-cols-2">
+    <form th:object="${event}" th:method="post" th:action="@{/events/create}">
+        <h1 class="text-3xl mb-10">Create an Event</h1>
+        <div class="grid gap-4 mb-4 sm:grid-cols-2">
 
-        <div>
-            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Name</label>
-            <input type="text" th:field="*{title}" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Event Name..." required="">
-        </div>
-        <div>
-            <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
-            <input type="text" th:field="*{location_name}" name="location" id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter the location" required="">
-        </div>
-        <div>
-            <label for="event_DateAndTime" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date and Time</label>
-            <input name="event_DateAndTime" type="datetime-local" id="event_DateAndTime" th:field="*{event_DateAndTime}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required="">
-        </div>
-
-        <div class="sm:col-span-2">
-            <div class = "flex items-center mb-2">
-                <label for="description" th:field="*{description}" class="block mr-3 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                <div id="ai" class="text-blue-600 hover:cursor-pointer">Use Ai Assistant</div>
+            <div>
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Name</label>
+                <input type="text" th:field="*{title}" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter Event Name..." required="">
             </div>
-            <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a description of the event here..."></textarea>
+            <div>
+                <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                <input type="text" th:field="*{location_name}" name="location" id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter the location" required="">
+            </div>
+            <div>
+                <label for="event_DateAndTime" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date and Time</label>
+                <input name="event_DateAndTime" type="datetime-local" id="event_DateAndTime" th:field="*{event_DateAndTime}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required="">
+            </div>
+            <div>
+                <label for="location_address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                <input type="text" th:field="*{location_address}" name="location_address" id="location_address" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Enter the location" required="">
+            </div>
+
+            <div class="sm:col-span-2">
+                <div class = "flex items-center mb-2">
+                    <label for="description" class="block mr-3 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <div id="ai" class="text-blue-600 hover:cursor-pointer">Use Ai Assistant</div>
+                </div>
+                <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write a description of the event here..."></textarea>
+            </div>
         </div>
-    </div>
 
-    <label for="photo-input">Photo:</label>
-    <button id="upload-btn" type="button">Upload Photo or Video</button>
-    <input type="text" id="photo-input" name="eventPhoto" />
+        <!--    <label for="photo-input">Photo:</label>-->
+        <!--    <button id="upload-btn" type="button">Upload Photo or Video</button>-->
+        <!--    <input type="text" id="photo-input" name="eventPhoto" />-->
+        <label for="description" class="block text-sm font-medium text-gray-900 dark:text-white mb-3">Upload a photo for your event</label>
 
-    <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-        <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-        Create Event
-    </button>
-</form>
+        <div class="flex mb-5">
+            <button id="upload-btn" type="button" class=" border-l border-t border-b border-gray-300 rounded-l-lg hover:bg-gray-100 bg-gray-200 p-2 text-blue-600 font-bold text-[10px]">Click to upload photo</button><input class="block w-1/2 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="photo-input" name="eventPhoto" type="text">
+        </div>
+
+<!--        <div class="flex">-->
+<!--            <button id="upload-btn" type="button" class="text-blue-600 mb-5">Upload Photo or Video for Event</button>-->
+<!--            <input type="text" id="photo-input" name="eventPhoto" />-->
+<!--        </div>-->
+
+
+        <div class="flex items-center justify-between mt-5">
+            <h3 class="text-blue-600"><a href="/events">Go Back</a></h3>
+            <div>
+                <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                    <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                    Create Event
+                </button>
+
+            </div>
+        </div>
+    </form>
 
 
 </div>
 
 
-
-<!--<div class="flex-container d-flex justify-content-center">-->
-<!--    <div class="row d-flex justify-content-center">-->
-<!--        <h1>Create Event</h1>-->
-<!--        <form th:object="${event}" th:method="post" th:action="@{/events/create}">-->
-<!--            <label for="title">Title:</label>-->
-<!--            <input type="text" id="title" th:field="*{title}" />-->
-
-<!--            <label for="location_name">Location Name:</label>-->
-<!--            <input type="text" id="location_name" th:field="*{location_name}" />-->
-
-<!--            <label for="description">Description:</label>-->
-<!--            <textarea id="description" th:field="*{description}"></textarea>-->
-
-<!--            <label for="event_DateAndTime">Event Time and Date:</label>-->
-<!--            <input type="datetime-local" id="event_DateAndTime" th:field="*{event_DateAndTime}" />-->
-
-<!--            <label for="location_address">Location Address:</label>-->
-<!--            <input type="text" id="location_address" th:field="*{location_address}" />-->
-
-<!--&lt;!&ndash;            <label for="created_at">Created At:</label>&ndash;&gt;-->
-<!--&lt;!&ndash;            <input type="datetime-local" id="created_at" th:field="*{created_at}">&ndash;&gt;-->
-
-<!--            <button type="submit">Submit</button>-->
-<!--        </form>-->
 <script th:src="@{/js/fileStack-api.js}" type="module"></script>
 
 <script>
@@ -141,9 +118,9 @@
     const modal = document.getElementById('ai-assistant');
     const ai = document.getElementById('ai');
 
-closeButton.addEventListener('click', () => {
-    modal.style.display = 'none';
-});
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
 
     const aiLink = document.getElementById('ai');
     const modal1 = document.getElementById('ai-assistant');
@@ -156,9 +133,3 @@ closeButton.addEventListener('click', () => {
 
 </body>
 </html>
-
-
-
-
-
-

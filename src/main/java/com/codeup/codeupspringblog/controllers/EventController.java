@@ -1,6 +1,7 @@
 package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.Event;
+import com.codeup.codeupspringblog.models.EventParticipation;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.EventRepository;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.security.Principal;
 import java.sql.SQLOutput;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -93,6 +95,12 @@ public class EventController {
     @GetMapping("/events/{id}/find")
     public String findEvent(@PathVariable long id, Model model) {
         Event event = eventsDao.findById(id).get();
+        List<EventParticipation> participations = event.getParticipations();
+        List<User> participants = new ArrayList<>();
+        for (EventParticipation participation : participations) {
+            participants.add(participation.getUser());
+        }
+        model.addAttribute("participants", participants);
         model.addAttribute("event", event);
         return "event/show";
     }
