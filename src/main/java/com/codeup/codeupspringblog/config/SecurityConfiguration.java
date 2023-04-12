@@ -49,7 +49,7 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
 
-                .requestMatchers("/", "/posts", "/posts/{id}", "/sign-up", "/about", "/register", "/logout", "/posts/find/{id}", "/posts/index","/matrix", "/posts/{id}/like", "/events", "/events/create",
+                .requestMatchers("/", "/posts", "/posts/{id}", "/login", "/logout", "/sign-up", "/about", "/register", "/posts/find/{id}", "/posts/index","/matrix", "/posts/{id}/like", "/events", "/events/create",
                         "/events/{id}",
                         "/events/{id}/edit",
                         "/events/{id}/find",
