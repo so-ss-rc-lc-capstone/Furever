@@ -1,8 +1,10 @@
 package com.codeup.codeupspringblog.controllers;
 
+import com.codeup.codeupspringblog.models.Event;
 import com.codeup.codeupspringblog.models.Pet;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
+import com.codeup.codeupspringblog.repositories.EventRepository;
 import com.codeup.codeupspringblog.repositories.PetRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
@@ -23,9 +25,12 @@ public class UserController {
 
     private final PetRepository petsDao;
 
+    private final EventRepository eventDao;
 
 
-    public UserController(UserRepository userDao, PostRepository postDao, PetRepository petsDao){
+
+    public UserController(UserRepository userDao, PostRepository postDao, PetRepository petsDao, EventRepository eventDao){
+        this.eventDao = eventDao;
         this.userDao = userDao;
         this.postDao = postDao;
         this.petsDao = petsDao;
@@ -38,18 +43,19 @@ public class UserController {
         User userData = userDao.findById(currentUser.getId());
 
         List<User> users = userDao.findAll();
-
         List<Pet> pets = petsDao.findAll();
         List<Post> posts = postDao.findAll();
+        List<Event> events = eventDao.findAll(); // or however you fetch the events
 
-
+        model.addAttribute("events", events);
         model.addAttribute("user", userData);
-
         model.addAttribute("users", users);
         model.addAttribute("pets",pets);
         model.addAttribute("posts", posts);
         return "users/profile";
     }
+
+
 
 
     @GetMapping("/register")
@@ -81,9 +87,7 @@ public class UserController {
         if (post.getId()==null) {
             return "posts/index";
         }
-
         User user = userDao.findById(id);
-
         List<Post> userPosts = user.getPosts();
         model.addAttribute("userAds",userPosts);
         return "posts/show";

@@ -6,11 +6,11 @@
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
 
-<div class="w-full h-screen bg-blue-400">
+<div class="w-full h-screen">
 
     <div class="w-full relative flex items-start justify-center h-1/2" th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
 
-        <div class="flex w-[50em] h-[20em] rounded-xl bg-white"  style="transform: translateY(95%);">
+        <div class="flex w-[50em] h-[20em] rounded-xl bg-white border-2"  style="transform: translateY(95%);">
 
             <div class="w-3/5 p-4">
                 <h1 class = "text-2xl font-bold"><span th:text="${event.title}"></span></h1>
@@ -19,6 +19,8 @@
                 <h3 class="mt-5 font-bold">Location</h3>
                 <h3><span th:text="${event.location_name}"></span></h3>
                 <h3><span th:text="${event.location_address}"></span></h3>
+                <h3 class="text mt-5 font-bold">Description</h3>
+                <p th:text="${event.description}"></p>
             </div>
 
             <div class="w-2/5 p-4 border-l-2">
@@ -44,12 +46,12 @@
         </div>
     </div>
     <!--More Details/Mapbox-->
-    <div class="w-full h-full bg-green flex justify-center">
-        <div class = "w-[50em] mt-[8em] h-full bg-red-400">
+    <div class="w-full h-full flex justify-center">
+        <div class = "w-[50em] mt-[8em] h-full ">
             <h2 class="text-2xl p-4 font-bold">Participants <span class="text-gray-400 text-[17px]" th:text="${event.participations.size}"></span></h2>
             <!--Avatars-->
-            <div class=" w-full flex h-[60px] bg-green-400">
-                <a th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 7}"><img class="w-[70px] h-[70px] border-2 mr-2 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
+            <div class=" w-full flex h-[60px]">
+                <a href="/" th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 7}"><img class="w-[70px] h-[70px] border-2 mr-2 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
             </div>
             <!--Map box-->
             <div>
