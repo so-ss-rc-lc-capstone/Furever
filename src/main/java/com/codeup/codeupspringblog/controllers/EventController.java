@@ -53,10 +53,6 @@ public class EventController {
     @GetMapping("/events")
     public String allEvents(Model model) {
         List<Event> events = eventsDao.findAll();
-        for (Event event : events) {
-            String photo = event.getEventPhoto();
-            model.addAttribute("photoURL" + event.getId(), photo);
-        }
         model.addAttribute("events", events);
         return "event/index";
     }
