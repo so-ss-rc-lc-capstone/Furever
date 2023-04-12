@@ -107,8 +107,9 @@
 
 
         <li class="flex items-center p-3 border-b-2 pb-5 text-gray-900 dark:text-white ">
-          <button type="button" class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 "><a href="/logout">Logout</a></button>
-
+          <form th:action="${'/logout'}" th:method="post">
+            <button type="submit" class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 ">Logout</button>
+          </form>
         </li>
 
 
