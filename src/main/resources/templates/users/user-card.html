@@ -40,7 +40,7 @@
             </div>
           </div>
           <a th:href="@{|/user/${user.id}|}" class="flex flex-col items-center pb-10">
-            <img th:href="@{|/user/${user.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250" alt="user image"/>
+            <img th:href="@{|/user/${user.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg" th:src="${user.profilePhoto}" alt="user-image"/>
 
 <!--            <img class="block mx-auto h-24 rounded-full sm:mx-0 sm:shrink-0" src="/img/profile.jpeg" alt="Woman's Face">-->
 
