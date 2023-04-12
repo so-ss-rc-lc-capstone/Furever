@@ -34,7 +34,6 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
