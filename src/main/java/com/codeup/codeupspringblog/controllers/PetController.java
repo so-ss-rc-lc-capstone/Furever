@@ -123,7 +123,7 @@ public class PetController {
         petsData.setPetname(pet.getPetname());
         petsData.setDateOfBirth(pet.getDateOfBirth());
         petsData.setGender(pet.getGender());
-//        petsData.setImage(pet.getImage());
+        petsData.setImage(pet.getImage());
         petsDao.save(petsData);
         model.addAttribute("pets", petsData);
         return "redirect:/profile"; // go to controller
