@@ -49,12 +49,15 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
 
-                .requestMatchers("/", "/posts", "/posts/{id}", "/login", "/logout", "/sign-up", "/about", "/register", "/posts/find/{id}", "/posts/index","/matrix", "/posts/{id}/like", "/events", "/events/create",
-                        "/events/{id}",
-                        "/events/{id}/edit",
-                        "/events/{id}/find",
-                        "events/{id}/delete",
-                        "events/{id}/participate"
+                .requestMatchers(
+                        "/",
+                        "/posts", "/posts/{id}", "/posts/index","/matrix", "/posts/{id}/like",
+
+                        "/login", "/logout", "/sign-up", "/register",
+
+                        "/about",
+
+                        "/events", "/events/create", "/events/{id}", "/events/{id}/edit", "/events/{id}/find", "events/{id}/delete", "events/{id}/participate"
                         ) // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */
@@ -76,6 +79,8 @@ public class SecurityConfiguration {
                         "/profile/edit",
                         "/profile",
                         "/register",
+                        "/user/{id}",
+                        "/user/card",
 
 
                         "/posts/{id}/edit",
