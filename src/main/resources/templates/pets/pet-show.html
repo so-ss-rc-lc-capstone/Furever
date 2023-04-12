@@ -12,22 +12,14 @@
 
 
 
-<div class="flex justify-center" th:fragment="petList" >
-  <div class="flex flex-row justify-start items-center">
-    <h3 class="mb-1 text-xl font-medium text-gray-900">Your Pets</h3>
-    <form class="mb-4" th:action="@{/pets/register}" method="get">
-      <input type="hidden" name="edit_id" />
-      <button type="submit" class="ml-5 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
-        + Add</button>
-    </form>
-  </div>
+<div class="flex justify-center w-full" th:fragment="petCard" >
 
 
-  <div class="flex flex-row align-middle w-48">
+  <div class="flex flex-row align-middle w-1/2">
 
 
 
-        <div class=" max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-full">
           <div class="flex justify-end px-4 pt-4">
             <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
               <span class="sr-only">Open dropdown</span>
@@ -50,9 +42,11 @@
           </div>
           <a th:href="@{|/pets/${pet.id}|}" class="flex flex-col items-center pb-10">
             <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://nationaltoday.com/wp-content/uploads/2021/06/International-Corgi-Day-1.jpg" alt="Pet image"/>
-            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><span th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"></span></h5>
-            <span class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${pet.breed.breed_name}"></span></span>
-            <span class="text-sm text-gray-500 dark:text-gray-400">Own by: <span th:text="${pet.user.first_name}"></span></span>
+            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Name: <span th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"></span></h5>
+            <span class="text-sm text-gray-500 dark:text-gray-400">Breed: <span th:text="${pet.breed.breed_name}"></span></span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">Owner: <span th:text="${pet.dateOfBirth}"></span></span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">Owner: <span th:text="${pet.gender}"></span></span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">Owner: <span th:text="${pet.user.first_name}"></span></span>
 
             <div th:if="${pet.user.id} == ${#authentication.principal.id}" class="flex mt-4 space-x-3 md:mt-6">
               <form th:action="@{/pets/{id}/edit(id=${pet.id})}" th:method="get">
@@ -67,40 +61,12 @@
             </div>
           </a>
         </div>
-      </div>
-    </div>
 
-
-
-
-
-
-<div class="card border-light mb-3 p-0 bg-dark text-light" style="width: 18rem;" >
-  <div class="card-body">
-    <div class="card-header text-bg-secondary p-0"><a th:text="@{|pet number# ${pet.id}|}" th:href="@{|/pets/find/${pet.id}|}" style="text-decoration:none; color: white"></a></div>
-    <div class=" card-title text-center p-2">
-      <h3 th:text="${pet.petname}"></h3>
-    </div>
-    <div class="card-text ">
-      <h5>Gender: <span th:text="${pet.gender}"></span></h5>
-      <h5>Date of Birth: <span th:text="${pet.dateOfBirth}"></span></h5>
-      <h5>Owner: <span th:text="${pet.user.first_name}"></span> <span th:text="${pet.user.last_name}"></span></h5>
-    </div>
-
-    <div class="d-flex justify-content-between">
-
-      <form th:action="@{/pets/{id}/edit(id=${pet.id})}" method="get">
-        <input type="hidden" name="edit_id" th:value="${pet.id}" />
-        <button type="submit" class="btn btn-light">Edit</button>
-      </form>
-
-      <form th:action="@{/pets/{id}/delete(id=${pet.id})}" method="get">
-        <input type="hidden" name="delete_id" th:value="${pet.id}" />
-        <button type="submit" class="btn btn-danger">Delete</button>
-      </form>
-    </div>
   </div>
+
 </div>
+
+
 
 </body>
 </html>
