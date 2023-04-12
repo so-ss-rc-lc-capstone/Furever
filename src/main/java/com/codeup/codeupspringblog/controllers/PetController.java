@@ -73,6 +73,10 @@ public class PetController {
     @GetMapping("/pets/card")
     public String getPetIndexPage(Model model){
 
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(currentUser.getId());
+        model.addAttribute("user",userData);
+
         List<Pet> pets = petsDao.findAll();
         System.out.println(pets.get(0).getUser().getUsername());
         model.addAttribute("pets", pets);
@@ -119,7 +123,7 @@ public class PetController {
         petsData.setPetname(pet.getPetname());
         petsData.setDateOfBirth(pet.getDateOfBirth());
         petsData.setGender(pet.getGender());
-//        petsData.setImage(pet.getImage());
+        petsData.setImage(pet.getImage());
         petsDao.save(petsData);
         model.addAttribute("pets", petsData);
         return "redirect:/profile"; // go to controller

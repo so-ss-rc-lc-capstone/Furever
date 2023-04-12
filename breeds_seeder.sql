@@ -1,3 +1,4 @@
+USE pet_db;
 INSERT INTO breeds (id, breed_name) VALUES
     (1, 'Labrador Retriever'),
     (2, 'German Shepherd'),

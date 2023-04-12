@@ -7,14 +7,14 @@
 
 
 <div class="flex justify-center" th:fragment="petList" >
-  <div class="flex flex-row justify-start items-center">
 
+  <div class="flex flex-row justify-start items-center">
 
 
   <div class="flex">
     <div th:each="pet : ${pets}" class="w-48" >
 
-      <div th:if="${pet.user.id} == ${#authentication.principal.id}">
+      <div th:if="${pet.user.id} == ${user.id}">
 
 
         <div class=" max-w-sm mr-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -35,7 +35,7 @@
             </div>
           </div>
           <a th:href="@{|/pets/${pet.id}|}" class="flex flex-col items-center pb-10">
-            <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://nationaltoday.com/wp-content/uploads/2021/06/International-Corgi-Day-1.jpg" alt="Pet image"/>
+            <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg" th:src="${pet.image}" alt="Pet image"/>
             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><span th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"></span></h5>
             <span class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${pet.breed.breed_name}"></span></span>
             <span class="text-sm text-gray-500 dark:text-gray-400">Own by: <span th:text="${pet.user.first_name}"></span></span>

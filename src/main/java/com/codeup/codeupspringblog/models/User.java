@@ -43,6 +43,10 @@ public class User {
     @Column(length = 5)
     private int zip_code;
 
+    //Profile picture
+
+    private String profilePhoto;
+
     @Column(columnDefinition = "LONGTEXT")
     private String bio;
 
@@ -125,6 +129,14 @@ public class User {
         this.gender = gender;
     }
 
+    public String getProfilePhoto() {
+        return profilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        this.profilePhoto = profilePhoto;
+    }
+
     public String getBio() {
         return bio;
     }
@@ -167,7 +179,8 @@ public class User {
         this.password = password;
     }
 
-//    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String bio, String address, int zip_code, List<Post> posts) {
+
+//    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, int zip_code, String bio, List<Post> posts, List<Event> events) {
 //        this.username = username;
 //        this.email = email;
 //        this.password = password;
@@ -175,13 +188,14 @@ public class User {
 //        this.last_name = last_name;
 //        this.phone_number = phone_number;
 //        this.gender = gender;
-//        this.bio = bio;
 //        this.address = address;
 //        this.zip_code = zip_code;
+//        this.bio = bio;
 //        this.posts = posts;
+//        this.events = events;
 //    }
 
-    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, int zip_code, String bio, List<Post> posts, List<Event> events) {
+    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, int zip_code, String profilePhoto, String bio, List<Post> posts, List<Event> events) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -191,6 +205,7 @@ public class User {
         this.gender = gender;
         this.address = address;
         this.zip_code = zip_code;
+        this.profilePhoto = profilePhoto;
         this.bio = bio;
         this.posts = posts;
         this.events = events;
@@ -205,30 +220,25 @@ public class User {
 //                '}';
 //    }
 
-    public static void main(String[] args) {
-        User user = new User("osj3693","osj3693@gmail.com","1234");
-        User user2 = new User(user);
-        System.out.println(user);
-        System.out.println(user2); // has the same value, but different tag number
-    }
 
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", phone_number='" + phone_number + '\'' +
-                ", gender='" + gender + '\'' +
-                ", address='" + address + '\'' +
-                ", zip_code=" + zip_code +
-                ", bio='" + bio + '\'' +
-                ", posts=" + posts +
-                ", events=" + events +
-                '}';
-    }
+
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", username='" + username + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", first_name='" + first_name + '\'' +
+//                ", last_name='" + last_name + '\'' +
+//                ", phone_number='" + phone_number + '\'' +
+//                ", gender='" + gender + '\'' +
+//                ", address='" + address + '\'' +
+//                ", zip_code=" + zip_code +
+//                ", bio='" + bio + '\'' +
+//                ", posts=" + posts +
+//                ", events=" + events +
+//                '}';
+//    }
 }
