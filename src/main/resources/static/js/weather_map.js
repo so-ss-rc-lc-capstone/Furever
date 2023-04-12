@@ -12,7 +12,7 @@ function successLocation(position) {
     userLocation.latitude = position.coords.latitude;
     setupMap([userLocation.longitude, userLocation.latitude]);
     // store user location in an array
-    destinations.push([userLocation.longitude, userLocation.latitude]);
+    // destinations.push([userLocation.longitude, userLocation.latitude]);
 }
 
 
@@ -39,17 +39,12 @@ function setupMap(center) {
 
     map.addControl(directions, "top-left");
 
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const origin = document.querySelector('#mapbox-directions-origin-input input').value;
-        const destination = document.querySelector('#mapbox-directions-destination-input input').value;
-        destinations.push(origin, destination);
-    });
+
+
 
 }
 console.log(userLocation);
-console.log(destinations);
+
 
 
 

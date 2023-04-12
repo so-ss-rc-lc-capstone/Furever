@@ -23,10 +23,10 @@ public class APIController {
     }
 
     @GetMapping("/users")
-    public String getUsers(@RequestParam String query) throws JsonProcessingException {
+    public List<User> getUsers(@RequestParam String query) throws JsonProcessingException {
         List<User> users = userDao.findByUsernameContainingIgnoreCaseOrEmailContainingIgnoreCase(query, query);
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(users);
-        return json;
+        return users;
     }
 }
