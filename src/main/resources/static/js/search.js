@@ -14,19 +14,36 @@ searchInput.addEventListener("input", e => {
     })
 })
 
-fetch("https://jsonplaceholder.typicode.com/users")
-// fetch("https://localhost:8080/api/users")
+// fetch("https://jsonplaceholder.typicode.com/users")
+// // fetch("https://localhost:8080/api/users")
+//     .then(res => res.json())
+//     .then(data => {
+//         users = data.map(user => {
+//             console.log(data);
+//             const card = userCardTemplate.content.cloneNode(true).children[0]
+//             const header = card.querySelector("[data-header]")
+//             const body = card.querySelector("[data-body]")
+//             header.textContent = user.name
+//             body.textContent = user.email
+//             userCardContainer.append(card)
+//             console.log(user);
+//             return { name: user.name, email: user.email, element: card }
+//         })
+//     })
+
+fetch("http://localhost:8080/api/alluser")
     .then(res => res.json())
     .then(data => {
         users = data.map(user => {
-            console.log(data);
             const card = userCardTemplate.content.cloneNode(true).children[0]
             const header = card.querySelector("[data-header]")
             const body = card.querySelector("[data-body]")
-            header.textContent = user.name
-            body.textContent = user.email
+            header.textContent = user.username
+            body.innerHTML = `
+                <p>First Name: ${user.first_name}</p>
+                <p>Last Name: ${user.last_name}</p>
+            `
             userCardContainer.append(card)
-            console.log(user);
-            return { name: user.name, email: user.email, element: card }
+            return { username: user.username, first_name: user.first_name, last_name: user.last_name, element: card }
         })
     })

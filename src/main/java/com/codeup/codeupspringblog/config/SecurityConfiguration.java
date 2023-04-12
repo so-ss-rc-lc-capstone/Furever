@@ -34,6 +34,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
@@ -52,7 +53,10 @@ public class SecurityConfiguration {
                         "/events/{id}/edit",
                         "/events/{id}/find",
                         "events/{id}/delete",
-                        "events/{id}/participate"
+                        "events/{id}/participate",
+                        "/api/**",
+                        "/users",
+                        "/test"
                         ) // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */

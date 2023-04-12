@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/header :: head"></head>
+<head th:replace="partials/header :: head">
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <h2>This is about page</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate deleniti dolor doloribus eligendi ex iste, itaque laborum laudantium repellendus voluptas! Fugiat nisi, optio quibusdam quo reiciendis suscipit. Neque, nobis, tenetur.</p>
-
+<div class="search-wrapper">
+    <label for="search">Search Users</label>
+    <input type="search" id="search" data-search>
+</div>
+<div class="user-cards" data-user-cards-container></div>
+<template data-user-template>
+    <div class="card">
+        <div class="header" data-header></div>
+        <div class="body" data-body></div>
+    </div>
+</template>
+<script src="/static/js/search.js"></script>
 </body>
 </html>
