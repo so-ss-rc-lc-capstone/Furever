@@ -25,8 +25,8 @@ public class APIController {
     @GetMapping("/users")
     public List<User> getUsers(@RequestParam String query) throws JsonProcessingException {
         List<User> users = userDao.findByUsernameContainingIgnoreCaseOrEmailContainingIgnoreCase(query, query);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(users);
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String json = objectMapper.writeValueAsString(users);
         return users;
     }
 }
