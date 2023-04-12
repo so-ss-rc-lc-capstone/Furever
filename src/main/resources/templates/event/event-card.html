@@ -1,23 +1,14 @@
 
 <!-- User POSTS -->
-<div class="flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700" style="background-image: url('https://emwng.com/wp-content/uploads/2017/07/0X0A1662.jpg'); background-size: cover; background-position: center;" th:each="event : ${events}">
+<!--<div class="flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700" style="background-image: url('./templates/img/corgi.jpg'); background-size: cover; background-position: center;" th:each="event : ${events}">-->
 
-<!--    <form th:action="@{'/posts/' + ${post.id} + '/like'}" method="post">-->
-<!--        <button type="submit" class="btn btn-outline-primary"-->
-<!--                th:classappend="${post.hasLiked(#authentication.principal.id) ? 'active' : ''}">-->
-<!--            <i class="fa fa-thumbs-up"></i><i class="bi bi-hand-thumbs-up"></i> <span th:text="${post.likes.size}"></span>-->
-<!--        </button>-->
-<!--    </form>-->
+<div class="flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700" th:each="event : ${events}" th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
 
-<!--  -->
+
 
     <div class=" w-full mt-[10px] h-[3em]">
         <div class ="w-full flex items-center justify-between">
-<!--            <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">-->
-<!--                <button id="color-toggle" type="submit" class="bg-white w-[150px] duration-75 h-[45px] ml-[4em] text-black font-medium rounded-lg text-sm px-5 py-2.5 text-center" th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'bg-blue-600 text-black' : ''}">-->
-<!--                    <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Participate' : 'Attending'}"></span>-->
-<!--                </button>-->
-<!--            </form>-->
+
 
             <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">
                 <button id="color-toggle" type="submit" class="bg-white w-[150px] duration-75 h-[45px] ml-[4em] text-black font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -25,8 +16,6 @@
                     <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Attending' : 'Participate'}"></span>
                 </button>
             </form>
-
-
 
 
             <!--Delete btn-->
