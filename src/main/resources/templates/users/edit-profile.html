@@ -52,6 +52,13 @@
         <label for="zip_code">Zip Code:</label>
         <input th:field="*{zip_code}" type="text" name="zip_code" id="zip_code" placeholder="79332" pattern="[0-9]{5}" required>
       </div>
+<!--      Profile picture-->
+      <div class="mb-3">
+        <label for="user-input">User photo:</label>
+        <button type="button" id="uploadUser">upload photo</button>
+        <input type="text" name="profilePhoto" id="user-input">
+      </div>
+
       <div class="mb-3">
         <label for="bio">Bio:</label>
         <textarea th:field="*{bio}" type="text" name="bio" id="bio" placeholder="Enter Your bio"></textarea>
@@ -70,7 +77,6 @@
         </label>
       </div>
 
-
       <button class="btn btn-primary">Submit</button>
     </form>
 
@@ -79,7 +85,7 @@
 
 
 
-
+<script th:src="@{/js/fileStack-api.js}" type="module"></script>
 
 <script>
   const addressInput = document.getElementById("address");

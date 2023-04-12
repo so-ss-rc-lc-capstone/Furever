@@ -17,4 +17,22 @@ $(document).ready(function() {
             }
         }).open();
     });
+
+    //User photo
+    const uploadButton = $('#uploadUser');
+    const userInput = $('#user-input');
+
+    const userClient = filestack.init(keys.filestack);
+    uploadButton.on('click', function () {
+        userClient.picker({
+            accept: ['image/*', 'video/*'], // Allow only photos and videos to be uploaded
+            fromSources: ['local_file_system', 'url'], // Limit the upload sources
+            onUploadDone: function(res) {
+                const url = res.filesUploaded[0].url;
+                console.log(url);
+                userInput.attr('value', url);
+                console.log(url);
+            }
+        }).open();
+    });
 });
