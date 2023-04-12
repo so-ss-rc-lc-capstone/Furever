@@ -99,8 +99,6 @@ public class UserController {
     }
 
 
-
-
     @PostMapping("/profile/edit")
     public String editUser(@ModelAttribute User user, Model model){
 
@@ -114,6 +112,7 @@ public class UserController {
         userData.setAddress(user.getAddress());
         userData.setZip_code(user.getZip_code());
         userData.setGender(user.getGender());
+        userData.setProfilePhoto(user.getProfilePhoto());
         userDao.save(userData);
 
 
