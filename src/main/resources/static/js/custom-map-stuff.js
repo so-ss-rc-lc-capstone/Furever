@@ -22,7 +22,6 @@ let map = new mapboxgl.Map({
 });
 
 
-
 eventLoc.forEach(function(eventLoc) {
     geocode(eventLoc.address, keys.mapbox).then(function (result) {
         console.log(result[0]);
