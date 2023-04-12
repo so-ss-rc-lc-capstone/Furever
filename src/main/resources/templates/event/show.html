@@ -7,9 +7,10 @@
 
 
 <div class="w-full h-screen bg-blue-400">
-    <div class="w-full relative flex items-start justify-center h-1/2" style="background-image: url('/static/images/dogcover1.jpeg')">
 
-        <div class="flex w-[50em] h-[20em] rounded-xl bg-white"  style="transform: translateY(70%);">
+    <div class="w-full relative flex items-start justify-center h-1/2" th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
+
+        <div class="flex w-[50em] h-[20em] rounded-xl bg-white"  style="transform: translateY(95%);">
 
             <div class="w-3/5 p-4">
                 <h1 class = "text-2xl font-bold"><span th:text="${event.title}"></span></h1>
@@ -35,7 +36,7 @@
                     <h4 class="text-[10px] text-blue-500"><span th:text="${event.user.phone_number}"></span></h4>
 
                     <h4 class="mt-5 text-[15px]">Email Address</h4>
-                    <h4 class="text-[10px]"><span th:text="${event.user.getEmail()}"></span></h4>
+                    <h4 class="text-[10px] text-blue-500"><span th:text="${event.user.getEmail()}"></span></h4>
                 </div>
 
 
