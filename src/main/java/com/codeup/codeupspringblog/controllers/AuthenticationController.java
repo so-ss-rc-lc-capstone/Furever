@@ -22,23 +22,24 @@ public class AuthenticationController {
     }
 
     @GetMapping("/login")
-    public String showLoginForm(Model model) {
+    public String showLoginForm() {
 
         return "users/login";
     }
 
-    @PostMapping("/login")
-    public String loadFromLoginForm(Model model) {
-
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if(currentUser.getId() != 0){
-            User userData = userDao.findById(currentUser.getId());
-            model.addAttribute("user", userData);
-            return "redirect:/profile";
-        }else{
-            return "users/login";
-        }
-    }
+//    @PostMapping("/login")
+//    public String loadFromLoginForm(Model model) {
+//
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//
+//        System.out.println(currentUser.getId());
+//        if(currentUser.getId() != 0){
+//            User userData = userDao.findById(currentUser.getId());
+//            model.addAttribute("user", userData);
+//            return "redirect:/profile";
+//        }else{
+//            return "users/login";
+//        }
+//    }
 }
 
