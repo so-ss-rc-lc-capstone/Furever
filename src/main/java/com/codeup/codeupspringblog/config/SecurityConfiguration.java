@@ -52,11 +52,7 @@ public class SecurityConfiguration {
                         "/events/{id}/edit",
                         "/events/{id}/find",
                         "events/{id}/delete",
-                        "events/{id}/participate",
-                        "/api/**",
-                        "/users",
-                        "/test",
-                        "/js/**"
+                        "events/{id}/participate"
                         ) // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */
@@ -96,7 +92,12 @@ public class SecurityConfiguration {
                         "/events/{id}/edit",
                         "/events/{id}/find",
                         "events/{id}/delete",
-                        "events/{id}/participate"
+                        "events/{id}/participate",
+                        //added for search functionality
+                        "/api/**",
+                        "/users",
+                        "/test",
+                        "/js/**"
                 )
                 .authenticated();
         return http.build();
