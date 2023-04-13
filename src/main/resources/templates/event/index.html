@@ -8,81 +8,57 @@
 <!--  Jquery-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+  <link href="/Users/randychu/Desktop/Software Dev Projects/project-pet/src/main/resources/static/css/searchbar.css" rel="stylesheet" />
 </head>
+<style>
+  #nav-mobile {
+    position: fixed;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    width: 328px;
+    height: 72px;
+    box-shadow: 0 8px 32px hsla(231, 44%, 45%, .2);
+    margin: 0 auto;
+    padding: 1.5rem .5rem;
+    border-radius: .65rem;
+    overflow: hidden;
+  }
 
+  .nav__list {
+    display: flex;
+    justify-content: center;
+    column-gap: 2rem;
+  }
+
+  .nav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav__link i {
+    font-size: 1.5rem;
+    color: var(--title-color);
+    z-index: 20;
+    transition: .3s;
+  }
+
+
+
+  /* Active link */
+  .active-link i {
+    color: var(--body-color);
+  }
+
+
+</style>
 
 <body class="flex justify-center bg-gray-100">
 
-<nav class="bg-white w-full border-b-2 border-gray-200 dark:bg-gray-900 fixed top-0 left-0" style="z-index: 9999;">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="https://flowbite.com/" class="flex items-center">
-      <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt=" Logo" />
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Furever</span>
-    </a>
-    <div class="flex md:order-2">
-      <div class="relative hidden md:block">
-
-        <!--Hamburger-->
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
-          <span class="sr-only">Search icon</span>
-        </div>
-        <input type="text" id="search" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
-      </div>
-
-      <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
-        <span class="sr-only">Open menu</span>
-        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-      </button>
-    </div>
-
-    <!--    Hamburger dropdown-->
-    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
-      <div class="relative mt-3 md:hidden">
-        <!--        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">-->
-        <!--          <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>-->
-        <!--        </div>-->
-        <!--        <input type="text" id="search-navbar" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">-->
-
-        <ul class=" divide-y divide-gray-200 dark:divide-gray-700" >
-          <li>
-            <a href="/profile" class="flex items-center justify-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-              <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-              <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
-            </a>
-          </li>
-          <li>
-            <a href="/events" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-              <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
-            </a>
-          </li>
-          <li>
-            <a href="/logout" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-              <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">Logout</span>
-            </a>
-          </li>
-        </ul>
-
-
-      </div>
-
-    </div>
-  </div>
-</nav>
-
-<nav class="bg-white w-1/2 border-b-2 border-gray-200 dark:bg-gray-900 fixed bottom-10" style="z-index: 9999;">
-
-
-</nav>
+<nav th:replace="partials/navbar :: navbar-search"></nav>
 
 
 <div class="flex items-center justify-center w-[38em]">
@@ -139,7 +115,7 @@
   <!--- Feed -->
   <div class="w-full ">
     <!--Filter bar-->
-    <div class="mt-[8em]">
+    <div class=" mt-[3em] md:mt-[8em]">
       <section class="dark:bg-gray-900 w-full h-[5em] flex items-center">
 
         <div class="w-full">
@@ -180,6 +156,7 @@
               </div>
             </div>
           </div>
+          <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 
         </div>
       </section>
@@ -244,6 +221,49 @@
 <script>
   const checkbox = document.getElementById('toggle-checkbox');
   const text = document.getElementById('toggle-text');
+  const toggleSearch = (search, button) =>{
+    const searchBar = document.getElementById(search),
+      searchButton = document.getElementById(button),
+      close = document.getElementById('close'),
+            searchInput= document.getElementById('search-input');
+
+    searchButton.addEventListener('click', () => {
+      searchBar.classList.toggle('w-[250px]');
+      close.classList.toggle("opacity-1");
+      if (searchBar.classList.contains('w-[250px]')) {
+        searchInput.style.pointerEvents = "initial";
+        searchInput.style.opacity = "1";
+      } else {
+        searchInput.style.pointerEvents = "none";
+        searchInput.style.opacity = "0";
+      }
+  });
+  };
+
+  toggleSearch('search', 'search-button');
+
+
+  // const toggleSearch = (search, button) => {
+  //   const searchBar = document.getElementById(search),
+  //           searchButton = document.getElementById(button),
+  //           close = document.getElementById('close'),
+  //           input = searchBar.querySelector('input'),
+  //           icon = searchButton.querySelector('.search__icon'),
+  //           closeIcon = searchButton.querySelector('.search__close');
+  //
+  //   searchButton.addEventListener('click', () => {
+  //     searchBar.classList.toggle('w-[250px]');
+  //     icon.classList.toggle('opacity-0');
+  //     closeIcon.classList.toggle('opacity-100');
+  //     searchButton.style.pointerEvents = "none";
+  //     searchButton.style.opacity = "0";
+  //
+  //     input.style.pointerEvents = "initial";
+  //     input.style.opacity = "1";
+  //   });
+  // };
+  //
+  // toggleSearch('search', 'search-button');
 
 
   checkbox.addEventListener('change', () => {
@@ -253,6 +273,8 @@
       text.textContent = 'Map';
     }
   });
+
+
 
 
   //
