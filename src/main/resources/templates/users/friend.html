@@ -157,7 +157,7 @@
                       </div>
                     </div>
 
-                    <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible " th:href="@{'/user/'+${user.id}}" onclick="getUserInfo(${user.id}); return false;">
+                    <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible " th:onclick="'getUserInfo(' + ${user.id} + ')'">
                       <ion-icon class="group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 self-end" name="chevron-forward-outline"></ion-icon>
                     </a>
                   </div>
@@ -191,7 +191,14 @@
       </div>
       <div class="w-2/4 px-3">
         <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
-          <div id="user-info"></div>
+
+
+          <div>
+            <h2>User Info</h2>
+            <p>Name: <span id="user-name"></span></p>
+            <p>Email: <span id="user-email"></span></p>
+            <!-- etc. -->
+          </div>
         </section>
       </div>
 
@@ -216,10 +223,12 @@
   function getUserInfo(userId) {
     $.ajax({
       url: "/user/" + userId +"/show",
-      success: function(data) {
-        let user = JSON.parse(data);
-        $("#user-info").html("<h2>" + user.name + "</h2><p>" + user.email + "</p>");
-
+      type: "GET",
+      success: function(user) {
+        // populate user info into HTML elements on the page
+        $("#user-name").text(user.username);
+        $("#user-email").text(user.email);
+        // etc.
       }
     });
   }

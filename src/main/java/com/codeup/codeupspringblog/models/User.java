@@ -2,6 +2,7 @@ package com.codeup.codeupspringblog.models;
 
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.Breed;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -52,6 +53,7 @@ public class User {
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Post> posts;
+
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Event> events;

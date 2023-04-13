@@ -1,5 +1,7 @@
 package com.codeup.codeupspringblog.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -28,10 +30,12 @@ public class Event {
     private String eventPhoto;
 
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id") //
     private User user;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EventParticipation> participations = new ArrayList<>();
 
