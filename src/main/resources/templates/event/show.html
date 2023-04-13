@@ -3,7 +3,8 @@
 <head th:replace="partials/header :: head"></head>
 
 <body>
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 
 <div class="w-full h-screen">
@@ -26,7 +27,7 @@
             <div class="w-2/5 p-4 border-l-2">
 
                 <div class="flex flex-row">
-                    <img class="w-[70px] h-[70px] border-2 mr-1 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="">
+                    <img class="w-[70px] h-[70px] rounded-full mr-3" th:src="${event.user.profilePhoto}">
                     <div class="flex ml-2 flex-col">
                         <h3 class="text-[15px] text-gray-400"> Event Hosted by</h3>
                         <h3><span class="font-bold" th:text="${event.user.first_name}"></span> <span class="font-bold" th:text="${event.user.last_name}"></span></h3>
@@ -51,8 +52,9 @@
             <h2 class="text-2xl p-4 font-bold">Participants <span class="text-gray-400 text-[17px]" th:text="${event.participations.size}"></span></h2>
             <!--Avatars-->
             <div class=" w-full flex h-[60px]">
-                <a href="/" th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 7}"><img class="w-[70px] h-[70px] border-2 mr-2 border-white rounded-full dark:border-gray-800" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt=""></a>
-            </div>
+                <a th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 10}"><img
+                        class="w-[60px] h-[60px] border-2 border-white rounded-full dark:border-gray-800"
+                        th:src="${participation.user.profilePhoto}" alt=""></a> </div>
             <!--Map box-->
             <div>
 
