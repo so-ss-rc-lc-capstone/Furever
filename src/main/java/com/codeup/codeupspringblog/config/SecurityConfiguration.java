@@ -55,7 +55,8 @@ public class SecurityConfiguration {
                         "events/{id}/participate",
                         "/api/**",
                         "/users",
-                        "/test"
+                        "/test",
+                        "/js/**"
                         ) // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */

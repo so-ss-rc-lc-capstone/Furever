@@ -8,9 +8,11 @@ searchInput.addEventListener("input", e => {
     const value = e.target.value.toLowerCase()
     users.forEach(user => {
         const isVisible =
-            user.name.toLowerCase().includes(value) ||
-            user.email.toLowerCase().includes(value)
-        user.element.classList.toggle("hide", !isVisible)
+            user.username.toLowerCase().includes(value) ||
+            user.first_name.toLowerCase().includes(value)||
+            user.last_name.toLowerCase().includes(value)
+        user.element.classList.toggle("hidden", !isVisible);
+        user.element.classList.toggle("visible", isVisible);
     })
 })
 
@@ -31,7 +33,13 @@ searchInput.addEventListener("input", e => {
 //         })
 //     })
 
-fetch("http://localhost:8080/api/alluser")
+fetch("http://localhost:8080/api/alluser", {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+        // "Access-Control-Allow-Origin": "http://localhost:63342",
+    }
+})
     .then(res => res.json())
     .then(data => {
         users = data.map(user => {

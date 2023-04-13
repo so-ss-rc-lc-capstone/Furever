@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/header :: head">
-    <style>
-        .hide{
-            display: none;
-        }
-    </style>
+<!--    <style>-->
+<!--        .hide {-->
+<!--            display: none !important;-->
+<!--        }-->
+<!--    </style>-->
+
 </head>
 
 <body>
@@ -18,11 +19,11 @@
 </div>
 <div class="user-cards" data-user-cards-container></div>
 <template data-user-template>
-    <div class="card">
+    <div class="card hidden">
         <div class="header" data-header></div>
         <div class="body" data-body></div>
     </div>
 </template>
-<script src="/static/js/search.js"></script>
+<script src="/js/search.js" defer></script>
 </body>
 </html>
