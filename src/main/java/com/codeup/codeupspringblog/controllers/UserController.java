@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -41,6 +43,7 @@ public class UserController {
     public String showProfile(Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
+
 
         List<User> users = userDao.findAll();
         List<Pet> pets = petsDao.findAll();

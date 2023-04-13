@@ -5,83 +5,86 @@
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
+<div class="w-full h-screen">
 
-<div class="flex-container d-flex justify-content-center">
-  <div class="row d-flex justify-content-center">
-    <h1>Edit Profile</h1>
+  <div class="h-[30em] mt-[1em] flex justify-center">
+    <div class="w-4/5 flex flex-col p-7 bg-white">
+
+      <form th:method="POST" th:action="@{/profile/edit}" th:object="${user}" class="flex-column justify-content-center">
+          <div class="mb-5 mt-[100px] h-[20em] flex md:flex-start md:flex-row w-full">
+              <div class="w-2/3 flex h-[10em] justify-start">
+                  <div class="w-full flex flex-col items-start">
+                      <h1 class="text-2xl font-bold mb-5">Edit Profile</h1>
+
+                      <label for="user-input" class="block text-md font-bold text-gray-900 dark:text-white mb-3">Upload a photo for your Avatar</label>
+
+                      <div class="flex mb-5">
+                          <button id="uploadUser" type="button" class=" border-l border-t border-b border-gray-300 rounded-l-lg hover:bg-gray-100 bg-gray-200 p-2 text-blue-600 font-bold text-[10px]">Click to upload photo</button><input class="block w-1/2 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="user-input" name="profilePhoto" type="text">
+                      </div>
 
 
-    <form th:method="POST" th:action="@{/profile/edit}" th:object="${user}" class="flex-column justify-content-center">
-      <div class="mb-3">
-        <label for="username">Username:</label>
-        <input th:field="*{username}" type="text" name="username" id="username" placeholder="Enter username">
-      </div>
-      <div class="mb-3">
-        <label for="email">Email:</label><br>
-        <input th:field="*{email}" type="email" name="email" id="email" placeholder="Enter email">
-      </div>
-      <div class="mb-3">
-        <label for="initialPassword">Password:</label>
-        <input th:field="*{password}" type="password" name="initialPassword" id="initialPassword" placeholder="Enter password">
-      </div>
-      <!--                    <div class="mb-3">-->
-      <!--                        <label for="confirmPassword">Confirm Password:</label>-->
-      <!--                        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password">-->
-      <!--                    </div>-->
+                      <div class="input-group mb-3">
+                          <label for="first_name" class="font-bold mb-2">First Name:</label>
+                          <input th:field="*{first_name}" class="form-control border rounded-lg" type="text" name="first_name" id="first_name" placeholder="Enter first Name">
+                      </div>
 
-      <div class="mb-3">
-        <label for="first_name">First Name:</label>
-        <input th:field="*{first_name}" type="text" name="first_name" id="first_name" placeholder="Enter first Name">
-      </div>
-      <div class="mb-3">
-        <label for="last_name">Last Name:</label>
-        <input th:field="*{last_name}" type="text" name="last_name" id="last_name" placeholder="Enter last Name">
-      </div>
-      <div class="mb-3">
-        <label for="phone_number">Phone Number:</label>
-        <input th:field="*{phone_number}" type="tel" name="phone_number" id="phone_number" placeholder="555-444-1234" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-      </div>
+                      <div class="input-group mb-3">
+                          <label for="last_name" class="font-bold mb-2">Last Name:</label>
+                          <input th:field="*{last_name}" class="form-control border rounded-lg" type="text" name="last_name" id="last_name" placeholder="Enter last Name">
+                      </div>
 
-      <div class="mb-3">
-        <label for="address">Address:</label>
-        <input th:field="*{address}" type="text" name="address" id="address" placeholder="Enter Your Address">
-        <div id="suggestions"></div>
-      </div>
+                      <div class="form-check mb-3">
+                          <label class="font-bold mb-2">Gender:</label>
+                          <div class="form-check-inline">
+                              <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="male" value="M">
+                              <label class="form-check-label" for="male">M</label>
+                          </div>
+                          <div class="form-check-inline">
+                              <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="female" value="F">
+                              <label class="form-check-label" for="female">F</label>
+                          </div>
+                      </div>
 
-      <div class="mb-3">
-        <label for="zip_code">Zip Code:</label>
-        <input th:field="*{zip_code}" type="text" name="zip_code" id="zip_code" placeholder="79332" pattern="[0-9]{5}" required>
-      </div>
-<!--      Profile picture-->
-      <div class="mb-3">
-        <label for="user-input">User photo:</label>
-        <button type="button" id="uploadUser">upload photo</button>
-        <input type="text" name="profilePhoto" id="user-input">
-      </div>
+                      <div class="input-group mb-3">
+                          <label for="phone_number" class="font-bold mb-2">Phone Number:</label>
+                          <input th:field="*{phone_number}" class="form-control border rounded-lg" type="tel" name="phone_number" id="phone_number" placeholder="555-444-1234" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                      </div>
 
-      <div class="mb-3">
-        <label for="bio">Bio:</label>
-        <textarea th:field="*{bio}" type="text" name="bio" id="bio" placeholder="Enter Your bio"></textarea>
-      </div>
-      <div class="d-flex justify-content-center"></div>
-      <div class="form-check">
-        <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="male" value="M" >
-        <label class="form-check-label" for="male">
-          M
-        </label>
-      </div>
-      <div class="form-check">
-        <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="female" value="F">
-        <label class="form-check-label" for="female">
-          F
-        </label>
+                      <div class="input-group mb-3">
+                          <label for="username" class="font-bold mb-2">Username:</label>
+                          <input th:field="*{username}" class="form-control border rounded-lg" type="text" name="username" id="username" placeholder="Enter username">
+                      </div>
+
+                      <div class="input-group mb-3">
+                          <label for="email" class="font-bold mb-2">Email:</label>
+                          <input th:field="*{email}" class="form-control border rounded-lg" type="email" name="email" id="email" placeholder="Enter email">
+                      </div>
+
+                      <div class="input-group mb-3">
+                          <label for="initialPassword" class="font-bold mb-2">Password:</label>
+                          <input th:field="*{password}" class="form-control border rounded-lg" type="password" name="initialPassword" id="initialPassword" placeholder="Enter password">
+                      </div>
+                        <div class="w-full flex flex-col">
+                      <label for="bio" class="font-bold mb-2">Enter your Bio</label>
+                      <textarea th:field="*{bio}" type="text" name="bio" id="bio" class = "border-2 w-2/3" placeholder="Write a short biography about yourself"></textarea>
+                        </div>
+
+                      <div class="mt-5">
+                      <button type="submit" class="py-2.5 mb-[10em] px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Submit Changes</button>
+                       <a href="/profile" class="text-blue-600 ml-5">Go back</a>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
       </div>
 
-      <button class="btn btn-primary">Submit</button>
-    </form>
+      <!--        <div class="flex-row p-3" th:include="users/user-card :: userList"></div>-->
+  </div>
 
   </div>
-</div>
+
 
 
 
