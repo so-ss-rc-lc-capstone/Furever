@@ -98,8 +98,13 @@ public class SecurityConfiguration {
                         "/events/{id}/edit",
                         "/events/{id}/edit",
                         "/events/{id}/find",
-                        "/events/{id}/delete",
-                        "/events/{id}/participate",
+                        "events/{id}/delete",
+                        "events/{id}/participate",
+
+                        //added for search functionality
+                        "/api/**",
+                        "/users",
+                        "/test",
                         "/js/**"
                 )
                 .authenticated();
