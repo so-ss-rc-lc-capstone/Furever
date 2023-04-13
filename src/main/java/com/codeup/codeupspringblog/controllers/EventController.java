@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.security.Principal;
 import java.sql.SQLOutput;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,14 +50,33 @@ public class EventController {
         eventsDao.save(event);
         return "redirect:/events";
     }
+//Original code for /events
+//    @GetMapping("/events")
+//    public String allEvents(Model model) {
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User userData = usersDao.findById(currentUser.getId());
+//        model.addAttribute("user", userData);
+//        List<Event> events = eventsDao.findAll();
+//        model.addAttribute("events", events);
+//        return "event/index";
+//    }
 
+    //New Code for the formatted date
     @GetMapping("/events")
     public String allEvents(Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = usersDao.findById(currentUser.getId());
         model.addAttribute("user", userData);
-
         List<Event> events = eventsDao.findAll();
+
+        // loop through the events list and format the date string for each Event object
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd h:mm a");
+        for (Event event : events) {
+            LocalDateTime created_at = LocalDateTime.parse(event.getCreated_at().toString().substring(0,19), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
+            String formattedDate = created_at.format(formatter);
+            LocalDateTime dateTime = LocalDateTime.parse(formattedDate, formatter);
+            event.setCreated_at(dateTime);
+        }
         model.addAttribute("events", events);
         return "event/index";
     }

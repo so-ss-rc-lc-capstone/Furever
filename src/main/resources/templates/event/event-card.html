@@ -107,8 +107,11 @@
                         <div class="font-medium dark:text-white">
                             <div><span th:text="${event.user.getUsername()}"></span></div>
                             <div class="text-[10px] text-gray-500 dark:text-gray-400"
-                                 th:text="${event.created_at}"></div>
+                            ><h4>Created <span class="text-[10px] text-gray-500 dark:text-gray-400"
+                                               th:text="${#temporals.format(event.created_at, 'yyyy-MM-dd h:mm a')}"></span></h4></div>
                         </div>
+
+
 
                     </div>
                     <form th:action="@{/events/{id}/edit(id=${event.id})}" method="get">

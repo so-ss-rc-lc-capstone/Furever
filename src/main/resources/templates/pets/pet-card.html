@@ -8,16 +8,16 @@
 
 <div class="flex justify-center" th:fragment="petList" >
 
-  <div class="flex flex-row justify-start items-center">
+  <div class="flex flex-row justify-center">
 
 
   <div class="flex">
-    <div th:each="pet : ${pets}" class="w-48" >
+    <div th:each="pet : ${pets}">
 
       <div th:if="${pet.user.id} == ${user.id}">
 
 
-        <div class=" max-w-sm mr-3 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class=" max-w-sm mr-3 w-48 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div class="flex justify-end px-4 pt-4">
             <!-- Dropdown menu -->
             <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
