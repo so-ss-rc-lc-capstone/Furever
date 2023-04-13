@@ -79,10 +79,11 @@
             </div>
         </div>
 
-        <label for="description" class="block text-sm font-medium text-gray-900 dark:text-white mb-3">Upload a photo for your event</label>
+<!--        <label for="description" class="block text-sm font-medium text-gray-900 dark:text-white mb-3">Upload a photo for your event</label>-->
 
         <div class="flex mb-5">
-            <button id="upload-btn" type="button" class=" border-l border-t border-b border-gray-300 rounded-l-lg hover:bg-gray-100 bg-gray-200 p-2 text-blue-600 font-bold text-[10px]">Click to upload photo</button><input class="block w-2/3 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="photo-input" name="eventPhoto" type="text">
+            <button id="upload-btn" type="button" class=" border-l border-t border-b border-gray-300 rounded-l-lg hover:bg-gray-100 bg-gray-200 p-2 text-blue-600 font-bold text-[10px]">Click to upload photo</button>
+            <input class="block w-2/3 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="photo-edit" name="eventPhoto" type="text">
         </div>
 
 
@@ -96,14 +97,11 @@
             </div>
         </div>
 
-
-
-
     </form>
 
 
 </div>
-
+<script th:src="@{/js/fileStack-api.js}" type="module"></script>
 
 <script>
     const closeButton = document.getElementById('close');
