@@ -164,4 +164,42 @@ public class UserController {
         return "users/user-show";
     }
 
+
+
+    @GetMapping("/users.json")
+    public @ResponseBody List<User> viewAllAdsInJSONFormat() {
+        return userDao.findAll();
+    }
+    @GetMapping("/users/ajax")
+    public String viewAllAdsWithAjax() {
+        return "users/friend";
+    }
+
+
+
+    @GetMapping("/user/{id}/show")
+    @ResponseBody
+    public User getUserById(@PathVariable Long id) {
+        return userDao.findById(id).get();
+    }
+
+
+    @GetMapping("/friends")
+    public String showFriends(Model model){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(currentUser.getId());
+
+
+        List<User> users = userDao.findAll();
+        List<Pet> pets = petsDao.findAll();
+        List<Post> posts = postDao.findAll();
+        List<Event> events = eventDao.findAll(); // or however you fetch the events
+
+        model.addAttribute("events", events);
+        model.addAttribute("user", userData);
+        model.addAttribute("users", users);
+        model.addAttribute("pets",pets);
+        model.addAttribute("posts", posts);
+        return "users/friend";
+    }
 }
