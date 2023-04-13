@@ -166,14 +166,15 @@ public class UserController {
 
 
 
-    @GetMapping("/users.json")
-    public @ResponseBody List<User> viewAllAdsInJSONFormat() {
-        return userDao.findAll();
-    }
-    @GetMapping("/users/ajax")
-    public String viewAllAdsWithAjax() {
-        return "users/friend";
-    }
+//    @GetMapping("/users.json")
+//    public @ResponseBody List<User> viewAllAdsInJSONFormat() {
+//        return userDao.findAll();
+//    }
+//
+//    @GetMapping("/users/ajax")
+//    public String viewAllAdsWithAjax() {
+//        return "users/friend";
+//    }
 
 
 
