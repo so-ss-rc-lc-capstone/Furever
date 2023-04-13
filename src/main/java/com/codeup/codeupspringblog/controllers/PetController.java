@@ -1,8 +1,9 @@
 package com.codeup.codeupspringblog.controllers;
 
+import com.codeup.codeupspringblog.models.Breed;
 import com.codeup.codeupspringblog.models.Pet;
-import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
+import com.codeup.codeupspringblog.repositories.BreedRepository;
 import com.codeup.codeupspringblog.repositories.PetRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -20,10 +22,13 @@ public class PetController {
 
     private final UserRepository userDao;
     private final PetRepository petsDao;
+    private final BreedRepository breedsDao;
 
-    public PetController(UserRepository userDao, PetRepository petsDao) {
+
+    public PetController(UserRepository userDao, PetRepository petsDao, BreedRepository breedsDao) {
         this.userDao = userDao;
         this.petsDao = petsDao;
+        this.breedsDao = breedsDao;
     }
 
 
@@ -35,19 +40,29 @@ public class PetController {
 //        return "posts/index";
 //    }
 
+
+
     @GetMapping("/pets/register")
     public String showPetRegistrationForm(Model model){
 
         model.addAttribute("pet", new Pet());
         System.out.println("pet model created");
+
+        List<Breed> breedNames = breedsDao.findAll();
+        model.addAttribute("breeds", breedNames);
         return "pets/pet-register";
     }
 
     @PostMapping("/pets/register")
     public String registerPet(@ModelAttribute Pet pet){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         User userData = userDao.findById(currentUser.getId());
+
+        System.out.println(pet.getBreed());
+//        System.out.println(breeds.size());
+
+//        Breed breed = breedsDao.findByBreed_name(principal.getName());
+//        pet.setBreed(breed);
 
         pet.setUser(userData);
         petsDao.save(pet);
@@ -57,6 +72,10 @@ public class PetController {
 
     @GetMapping("/pets/card")
     public String getPetIndexPage(Model model){
+
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(currentUser.getId());
+        model.addAttribute("user",userData);
 
         List<Pet> pets = petsDao.findAll();
         System.out.println(pets.get(0).getUser().getUsername());
@@ -104,7 +123,7 @@ public class PetController {
         petsData.setPetname(pet.getPetname());
         petsData.setDateOfBirth(pet.getDateOfBirth());
         petsData.setGender(pet.getGender());
-//        petsData.setImage(pet.getImage());
+        petsData.setImage(pet.getImage());
         petsDao.save(petsData);
         model.addAttribute("pets", petsData);
         return "redirect:/profile"; // go to controller
@@ -122,6 +141,8 @@ public class PetController {
         }
         return "redirect:/profile";
     }
+
+
 
 
 

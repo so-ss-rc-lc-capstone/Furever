@@ -1,6 +1,7 @@
 package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.Event;
+import com.codeup.codeupspringblog.models.EventParticipation;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.EventRepository;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.security.Principal;
 import java.sql.SQLOutput;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -47,9 +50,23 @@ public class EventController {
         eventsDao.save(event);
         return "redirect:/events";
     }
+//Original code for /events
+//    @GetMapping("/events")
+//    public String allEvents(Model model) {
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User userData = usersDao.findById(currentUser.getId());
+//        model.addAttribute("user", userData);
+//        List<Event> events = eventsDao.findAll();
+//        model.addAttribute("events", events);
+//        return "event/index";
+//    }
 
+    //New Code for the formatted date
     @GetMapping("/events")
     public String allEvents(Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = usersDao.findById(currentUser.getId());
+        model.addAttribute("user", userData);
         List<Event> events = eventsDao.findAll();
         model.addAttribute("events", events);
         return "event/index";
@@ -63,7 +80,6 @@ public class EventController {
 
         Event event = eventsDao.findById(id).get(); // Getting data from the database first
         Long eventId = event.getUser().getId();
-
         System.out.println(currentUserId);
         System.out.println(eventId);
         if(currentUserId == eventId){
@@ -84,6 +100,7 @@ public class EventController {
         eventEdited.setEvent_DateAndTime(event.getEvent_DateAndTime());
         eventEdited.setLocation_address(event.getLocation_address());
         eventEdited.setCreated_at(LocalDateTime.now());
+        eventEdited.setEventPhoto(event.getEventPhoto());
         eventsDao.save(eventEdited);
         return "redirect:/events/" + id + "/find";
     }
@@ -92,6 +109,12 @@ public class EventController {
     @GetMapping("/events/{id}/find")
     public String findEvent(@PathVariable long id, Model model) {
         Event event = eventsDao.findById(id).get();
+        List<EventParticipation> participations = event.getParticipations();
+        List<User> participants = new ArrayList<>();
+        for (EventParticipation participation : participations) {
+            participants.add(participation.getUser());
+        }
+        model.addAttribute("participants", participants);
         model.addAttribute("event", event);
         return "event/show";
     }

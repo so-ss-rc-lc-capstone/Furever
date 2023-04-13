@@ -1,8 +1,10 @@
 package com.codeup.codeupspringblog.controllers;
 
+import com.codeup.codeupspringblog.models.Event;
 import com.codeup.codeupspringblog.models.Pet;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
+import com.codeup.codeupspringblog.repositories.EventRepository;
 import com.codeup.codeupspringblog.repositories.PetRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -26,9 +30,12 @@ public class UserController {
 
     private final PetRepository petsDao;
 
+    private final EventRepository eventDao;
 
 
-    public UserController(UserRepository userDao, PostRepository postDao, PetRepository petsDao){
+
+    public UserController(UserRepository userDao, PostRepository postDao, PetRepository petsDao, EventRepository eventDao){
+        this.eventDao = eventDao;
         this.userDao = userDao;
         this.postDao = postDao;
         this.petsDao = petsDao;
@@ -37,15 +44,24 @@ public class UserController {
 
     @GetMapping("/profile")
     public String showProfile(Model model){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(currentUser.getId());
+
+
+        List<User> users = userDao.findAll();
         List<Pet> pets = petsDao.findAll();
         List<Post> posts = postDao.findAll();
+        List<Event> events = eventDao.findAll(); // or however you fetch the events
 
-        model.addAttribute("user", user);
+        model.addAttribute("events", events);
+        model.addAttribute("user", userData);
+        model.addAttribute("users", users);
         model.addAttribute("pets",pets);
         model.addAttribute("posts", posts);
         return "users/profile";
     }
+
+
 
 
     @GetMapping("/register")
@@ -77,9 +93,7 @@ public class UserController {
         if (post.getId()==null) {
             return "posts/index";
         }
-
         User user = userDao.findById(id);
-
         List<Post> userPosts = user.getPosts();
         model.addAttribute("userAds",userPosts);
         return "posts/show";
@@ -100,8 +114,6 @@ public class UserController {
     }
 
 
-
-
     @PostMapping("/profile/edit")
     public String editUser(@ModelAttribute User user, Model model){
 
@@ -115,6 +127,7 @@ public class UserController {
         userData.setAddress(user.getAddress());
         userData.setZip_code(user.getZip_code());
         userData.setGender(user.getGender());
+        userData.setProfilePhoto(user.getProfilePhoto());
         userDao.save(userData);
 
 
@@ -124,6 +137,31 @@ public class UserController {
         model.addAttribute("user", userData);
         return "users/profile";
 
+    }
+
+
+    @GetMapping("/user/card")
+    public String getPetIndexPage(Model model){
+
+        List<User> users = userDao.findAll();
+        System.out.println(users.get(0).getUsername());
+        model.addAttribute("users", users);
+//        List<Post> filteredPostsList = posts
+//                .stream()
+//                .filter(product -> product.getPriceInCents()<1000)
+//                .collect(Collectors.toList());
+//        model.addAttribute("posts", filteredPostsList);
+
+        return "users/user-card";
+    }
+
+    @GetMapping("/user/{id}")
+    public String findPetById(@PathVariable long id , Model model) {
+        List<Pet> petData = petsDao.findAll();
+        User userData = userDao.findById(id);
+        model.addAttribute("user",userData);
+        model.addAttribute("pets", petData);
+        return "users/user-show";
     }
 
 }

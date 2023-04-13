@@ -34,10 +34,12 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+//                .csrf().disable()
+
                 /* Login configuration */
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/profile") // user's home page, it can be any URL
+                .defaultSuccessUrl("/events") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -47,12 +49,15 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
 
-                .requestMatchers("/", "/posts", "/posts/{id}", "/sign-up", "/about", "/register", "/logout", "/posts/find/{id}", "/posts/index","/matrix", "/posts/{id}/like", "/events", "/events/create",
-                        "/events/{id}",
-                        "/events/{id}/edit",
-                        "/events/{id}/find",
-                        "events/{id}/delete",
-                        "events/{id}/participate"
+                .requestMatchers(
+                        "/",
+                        "/posts", "/posts/{id}", "/posts/index","/matrix", "/posts/{id}/like",
+
+                        "/login", "/logout", "/sign-up", "/register",
+
+                        "/about",
+
+                        "/events", "/events/create", "/events/{id}", "/events/{id}/edit", "/events/{id}/find", "events/{id}/delete", "events/{id}/participate"
                         ) // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */
@@ -74,6 +79,8 @@ public class SecurityConfiguration {
                         "/profile/edit",
                         "/profile",
                         "/register",
+                        "/user/{id}",
+                        "/user/card",
 
 
                         "/posts/{id}/edit",
@@ -93,6 +100,7 @@ public class SecurityConfiguration {
                         "/events/{id}/find",
                         "events/{id}/delete",
                         "events/{id}/participate",
+
                         //added for search functionality
                         "/api/**",
                         "/users",

@@ -20,10 +20,13 @@ public class Event {
     @Column(nullable = false)
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private LocalDateTime event_DateAndTime;
     @Column(nullable = false)
     private String location_address;
     private LocalDateTime created_at;
+    private String eventPhoto;
+
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id") //
@@ -106,6 +109,14 @@ public class Event {
 
     public void setParticipations(List<EventParticipation> participations) {
         this.participations = participations;
+    }
+
+    public String getEventPhoto() {
+        return eventPhoto;
+    }
+
+    public void setEventPhoto(String eventPhoto) {
+        this.eventPhoto = eventPhoto;
     }
 
     @Override

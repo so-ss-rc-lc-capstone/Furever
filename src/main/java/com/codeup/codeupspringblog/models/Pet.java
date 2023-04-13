@@ -3,9 +3,13 @@ package com.codeup.codeupspringblog.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import com.codeup.codeupspringblog.models.Breed;
+
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="pets")
@@ -28,16 +32,24 @@ public class Pet {
     @JoinColumn(name = "user_id") //
     private User user;
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "breed_id", nullable = true) //
+    private Breed breed;
+
+//    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pet")
+//    private List<Breed> breeds = new ArrayList<>();
+
 
     public Pet() {
     }
 
-    public Pet(String petname, LocalDate dateOfBirth, String image, String gender, User user) {
+    public Pet(String petname, LocalDate dateOfBirth, String image, String gender, User user, Breed breed) {
         this.petname = petname;
         this.dateOfBirth = dateOfBirth;
         this.image = image;
         this.gender = gender;
         this.user = user;
+        this.breed = breed;
     }
 
     public long getId() {
@@ -87,4 +99,21 @@ public class Pet {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Breed getBreed() {
+        return breed;
+    }
+
+    public void setBreed(Breed breed) {
+        this.breed = breed;
+    }
+
+//    public List<Breed> getBreeds() {
+//        return breeds;
+//    }
+//
+//    public void setBreeds(List<Breed> breeds) {
+//        this.breeds = breeds;
+//    }
 }
+
