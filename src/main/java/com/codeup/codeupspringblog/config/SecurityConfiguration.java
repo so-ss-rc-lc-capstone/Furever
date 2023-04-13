@@ -81,7 +81,8 @@ public class SecurityConfiguration {
                         "/register",
                         "/user/{id}",
                         "/user/card",
-
+                        "/users/{id}/follow",
+                        "/followed",
 
                         "/posts/{id}/edit",
                         "/posts/create", // only authenticated users can create posts
@@ -90,6 +91,7 @@ public class SecurityConfiguration {
                         "/posts/{n}/delete",
                         "/posts/delete/{n}",
                         "/posts/{id}/like",
+
 
 
                         "/events",

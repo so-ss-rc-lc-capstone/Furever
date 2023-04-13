@@ -10,6 +10,8 @@ import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +20,11 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.jar.JarOutputStream;
 
 @Controller
 public class UserController {
-
+    @Autowired
     private final UserRepository userDao;
     private final PostRepository postDao;
 
@@ -160,4 +163,37 @@ public class UserController {
         model.addAttribute("pets", petData);
         return "users/user-show";
     }
+
+    //Following users and friends below
+    @GetMapping("/users/{id}/follow")
+    public String followUser(@PathVariable Long id){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUserData = userDao.findById(currentUser.getId());
+        System.out.println("current User: " + currentUserData);
+
+        User user = userDao.findById(id).get();
+        System.out.println("Followed user: " + user);
+
+        if(!currentUserData.getFollowedUsers().contains(user) && !user.getFollowingUsers().contains(currentUserData)){
+            currentUserData.getFollowedUsers().add(user);
+            user.getFollowingUsers().add(currentUserData);
+        }
+
+        System.out.println("The list: " + currentUserData.getFollowedUsers());
+
+       userDao.save(currentUserData);
+       return "redirect:/followed";
+    }
+
+    @GetMapping("/followed")
+    public String followedUsers(Model model){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(currentUser.getId());
+        List<User> followedUsers = userData.getFollowedUsers();
+        System.out.println(followedUsers);
+        model.addAttribute("followedusers", followedUsers);
+        return "friends/followed";
+    }
+
+    //Unfollow needs to be implemented
 }
