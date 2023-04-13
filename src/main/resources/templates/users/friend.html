@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Friends</title>
+  <!--  Jquery-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+  <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+
+</head>
+
+
+<body class="bg-gray-100 ">
+
+  <nav class="bg-white w-full border-b-2 border-gray-200 dark:bg-gray-900 fixed top-0 left-0" style="z-index: 9999;">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="https://flowbite.com/" class="flex items-center">
+        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt=" Logo" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Furever</span>
+      </a>
+      <div class="flex md:order-2">
+        <div class="relative hidden md:block">
+
+          <!--Hamburger-->
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+            <span class="sr-only">Search icon</span>
+          </div>
+          <input type="text" id="search" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">
+        </div>
+
+        <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false">
+          <span class="sr-only">Open menu</span>
+          <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+        </button>
+      </div>
+
+      <!--    Hamburger dropdown-->
+      <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
+        <div class="relative mt-3 md:hidden">
+          <!--        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">-->
+          <!--          <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>-->
+          <!--        </div>-->
+          <!--        <input type="text" id="search-navbar" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">-->
+
+          <ul class=" divide-y divide-gray-200 dark:divide-gray-700" >
+            <li>
+              <a href="/profile" class="flex items-center justify-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
+              </a>
+            </li>
+            <li>
+              <a href="/events" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
+              </a>
+            </li>
+            <li>
+              <a href="/logout" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                <span class="flex-1 ml-3 whitespace-nowrap">Logout</span>
+              </a>
+            </li>
+          </ul>
+
+
+        </div>
+
+      </div>
+    </div>
+  </nav>
+<div class="flex w-screen h-screen  w-[38em]">
+
+  <aside id="logo-sidebar items-center justify-center"
+         class="fixed top-0 left-0  border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white"
+         aria-label="Sidebar" style="z-index: 9998">
+    <div class="h-full w-64 px-3 pb-4 bg-white mt-[7em]">
+
+      <ul class="space-y-2">
+        <li>
+          <div class="w-full max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex flex-col items-center justify-center mt-1">
+              <img class="w-24 h-24 mb-3 rounded-full shadow-lg" th:src="${user.profilePhoto}"
+                   alt="Profile image"/>
+              <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">Welcome,
+                <span th:text="${#authentication.principal.username}"/>!</h5>
+              <span class="text-sm text-gray-500 dark:text-gray-400"></span>
+            </div>
+          </div>
+        </li>
+
+        <li class="flex w-full items-center justify-center p-3 border-b-2 pb-5 text-gray-900 dark:text-white ">
+          <form th:action="${'/logout'}" th:method="post">
+            <button type="submit" class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 ">Logout</button>
+          </form>
+        </li>
+
+        <li>
+          <a href="/profile" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+            <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+            <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
+          </a>
+        </li>
+        <li>
+          <a href="/events" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+            <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
+            <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
+          </a>
+        </li>
+
+
+
+      </ul>
+    </div>
+  </aside>
+  <!--- Feed -->
+  <div class="w-screen h-screen">
+    <!--Filter bar-->
+    <div class="mt-[6em] flex flex-row justify-end w-full h-full flex-row no-wrap">
+      <div class="w-2/4 sm:w-2/4 md:w-1/4 lg:w-1/4">
+        <section class="w-full h-full p-4 bg-white border border-gray-200 rounded-lg shadow ">
+          <div class="mb-5 text-xl font-semibold font-normal text-gray-900 ">My Friends</div>
+
+
+          <ul role="list">
+
+            <div th:each="user : ${users}">
+              <li class="group/item hover:bg-slate-100 "th:href="@{|/user/${user.id}|}">
+
+
+              <div class="flex flex-col space-x-4 mb-5 ">
+                <div class="flex items-center justify-between px-3">
+                  <div class="flex items-center">
+
+                    <img th:href="@{|/user/${user.id}|}" class="w-10 h-10 rounded-full" th:src="${user.profilePhoto}" alt="user-image" >
+                    <div class="ml-3 flex-col font-medium dark:text-white">
+                      <div class="text-base font-normal text-gray-900 "><span th:text="${user.first_name}" th:href="@{|/user/${user.id}|}"></span><span th:text="${user.last_name}" th:href="@{|/user/${user.id}|}"></span></div>
+                      <div class="text-sm text-gray-500 dark:text-gray-400">@<span th:text="${user.username}" th:href="@{|/user/${user.id}|}"></span></div>
+                    </div>
+                  </div>
+
+                  <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible " th:href="@{'/user.json'}" onclick="getUserInfo(${user.id}); return false;">
+                    <ion-icon class="group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 self-end" name="chevron-forward-outline"></ion-icon>
+                  </a>
+                </div>
+              </div>
+
+
+              </li>
+              <hr class="w-3/4 h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">
+            </div>
+          </ul>
+
+
+
+<!--          <div th:each="user : ${users}">-->
+
+<!--            <div class="flex flex-col space-x-4 mb-5">-->
+<!--              <div class="flex items-center items-center">-->
+<!--                <img th:href="@{|/user/${user.id}|}" class="w-10 h-10 rounded-full" th:src="${user.profilePhoto}" alt="user-image" >-->
+<!--                <div class="ml-3 flex-col font-medium dark:text-white">-->
+<!--                  <div class="text-base font-normal text-gray-900 "><span th:text="${user.first_name}" th:href="@{|/user/${user.id}|}"></span><span th:text="${user.last_name}" th:href="@{|/user/${user.id}|}"></span></div>-->
+<!--                  <div class="text-sm text-gray-500 dark:text-gray-400">@<span th:text="${user.username}" th:href="@{|/user/${user.id}|}"></span></div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <hr class="w-3/4 h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">-->
+<!--            </div>-->
+<!--          </div>-->
+
+
+        </section>
+      </div>
+      <div class="w-2/4 px-3">
+        <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
+          <div id="user-info"></div>
+        </section>
+      </div>
+
+
+
+
+    </div>
+    <!--End of Filter bar-->
+    <!--Event Feed Section-->
+<!--    <div class="w-full h-full">-->
+<!--&lt;!&ndash;        <div class="flex-row p-3" th:include="users/user-card :: userList"></div>&ndash;&gt;-->
+<!--    </div>-->
+
+  </div>
+</div>
+<script>
+  const checkbox = document.getElementById('toggle-checkbox');
+  const text = document.getElementById('toggle-text');
+
+
+
+  function getUserInfo(userId) {
+    $.ajax({
+      url: "/user/" + userId +"/show",
+      success: function(data) {
+        let user = JSON.parse(data);
+        $("#user-info").html(
+                <div className="flex items-center justify-between px-3">
+                  <div className="flex items-center">
+
+                    <img className="w-10 h-10 rounded-full"
+                         th:src="${user.profilePhoto}" alt="user-image"></img>
+                      <div className="ml-3 flex-col font-medium dark:text-white">
+                        <div className="text-base font-normal text-gray-900 ">
+                          <span th:text="${user.first_name}"
+                                th:href="@{|/user/${user.id}|}"></span><span
+                                th:text="${user.last_name}" th:href="@{|/user/${user.id}|}"></span></div>
+                        <div className="text-sm text-gray-500 dark:text-gray-400">@<span th:text="${user.username}"
+                                                                                         th:href="@{|/user/${user.id}|}"></span>
+                        </div>
+                      </div>
+                  </div>
+                </div>);
+      }
+    });
+  }
+
+
+
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      text.textContent = 'Listing';
+    } else {
+      text.textContent = 'Map';
+    }
+  });
+
+
+  //
+  // $(document).ready(function() {
+  //   const button = $('#color-toggle');
+  //
+  //   button.click(function() {
+  //     if (button.hasClass('bg-white')) {
+  //       button.removeClass('bg-white text-black');
+  //       button.addClass('bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:outline-none text-white');
+  //       button.text('Attending');
+  //     } else {
+  //       button.removeClass('bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none text-white');
+  //       button.addClass('bg-white text-black')
+  //       button.text('Participate');
+  //     }
+  //   });
+  // });
+</script>
+
+<script src="../../static/js/event-feed.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+</body>
+</html>
+
