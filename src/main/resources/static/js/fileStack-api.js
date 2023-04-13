@@ -14,7 +14,6 @@ $(document).ready(function() {
                 const url = res.filesUploaded[0].url;
                 input.attr('value', url);
                 inputEdit.attr('value', url);
-                petInput.attr('value', url);
             }
         }).open();
     });
