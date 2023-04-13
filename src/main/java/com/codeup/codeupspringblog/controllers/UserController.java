@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -202,22 +203,34 @@ public class UserController {
 
 
 
-    @GetMapping("/users.json")
-    public @ResponseBody List<User> viewAllAdsInJSONFormat() {
-        return userDao.findAll();
-    }
-    @GetMapping("/users/ajax")
-    public String viewAllAdsWithAjax() {
-        return "users/friend";
-    }
+//    @GetMapping("/users.json")
+//    public @ResponseBody List<User> viewAllAdsInJSONFormat() {
+//        return userDao.findAll();
+//    }
+//
+//    @GetMapping("/users/ajax")
+//    public String viewAllAdsWithAjax() {
+//        return "users/friend";
+//    }
 
 
 
     @GetMapping("/user/{id}/show")
     @ResponseBody
     public User getUserById(@PathVariable Long id) {
-        return userDao.findById(id).get();
+
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
+        if(currentPrincipalName!=null && !currentPrincipalName.equalsIgnoreCase( "anonymousUser")  ){
+            return userDao.findById(id).get();
+        }else{
+            return null;
+        }
     }
+
+    // try & catch
 
 
     @GetMapping("/friends")

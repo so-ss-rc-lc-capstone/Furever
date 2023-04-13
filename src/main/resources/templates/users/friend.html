@@ -142,28 +142,30 @@
           <ul role="list">
 
             <div th:each="user : ${users}">
-              <li class="group/item hover:bg-slate-100 "th:href="@{|/user/${user.id}|}">
+              <div th:if="${user.id} != ${#authentication.principal.id}">
+                <li class="group/item hover:bg-slate-100 "th:href="@{|/user/${user.id}|}">
 
 
-              <div class="flex flex-col space-x-4 mb-5 ">
-                <div class="flex items-center justify-between px-3">
-                  <div class="flex items-center">
+                <div class="flex flex-col space-x-4 mb-5 ">
+                  <div class="flex items-center justify-between px-3">
+                    <div class="flex items-center">
 
-                    <img th:href="@{|/user/${user.id}|}" class="w-10 h-10 rounded-full" th:src="${user.profilePhoto}" alt="user-image" >
-                    <div class="ml-3 flex-col font-medium dark:text-white">
-                      <div class="text-base font-normal text-gray-900 "><span th:text="${user.first_name}" th:href="@{|/user/${user.id}|}"></span><span th:text="${user.last_name}" th:href="@{|/user/${user.id}|}"></span></div>
-                      <div class="text-sm text-gray-500 dark:text-gray-400">@<span th:text="${user.username}" th:href="@{|/user/${user.id}|}"></span></div>
+                      <img th:href="@{|/user/${user.id}|}" class="w-10 h-10 rounded-full" th:src="${user.profilePhoto}" alt="user-image" >
+                      <div class="ml-3 flex-col font-medium dark:text-white">
+                        <div class="text-base font-normal text-gray-900 "><span th:text="${user.first_name}" th:href="@{|/user/${user.id}|}"></span><span th:text="${user.last_name}" th:href="@{|/user/${user.id}|}"></span></div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">@<span th:text="${user.username}" th:href="@{|/user/${user.id}|}"></span></div>
+                      </div>
                     </div>
+
+                    <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible " th:onclick="'getUserInfo(' + ${user.id} + ')'">
+                      <ion-icon class="group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 self-end" name="chevron-forward-outline"></ion-icon>
+                    </a>
                   </div>
-
-                  <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible " th:href="@{'/user.json'}" onclick="getUserInfo(${user.id}); return false;">
-                    <ion-icon class="group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 self-end" name="chevron-forward-outline"></ion-icon>
-                  </a>
                 </div>
+
+
+                </li>
               </div>
-
-
-              </li>
               <hr class="w-3/4 h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">
             </div>
           </ul>
@@ -189,7 +191,14 @@
       </div>
       <div class="w-2/4 px-3">
         <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
-          <div id="user-info"></div>
+
+
+          <div>
+            <h2>User Info</h2>
+            <p>Name: <span id="user-name"></span></p>
+            <p>Email: <span id="user-email"></span></p>
+            <!-- etc. -->
+          </div>
         </section>
       </div>
 
@@ -214,25 +223,12 @@
   function getUserInfo(userId) {
     $.ajax({
       url: "/user/" + userId +"/show",
-      success: function(data) {
-        let user = JSON.parse(data);
-        $("#user-info").html(
-                <div className="flex items-center justify-between px-3">
-                  <div className="flex items-center">
-
-                    <img className="w-10 h-10 rounded-full"
-                         th:src="${user.profilePhoto}" alt="user-image"></img>
-                      <div className="ml-3 flex-col font-medium dark:text-white">
-                        <div className="text-base font-normal text-gray-900 ">
-                          <span th:text="${user.first_name}"
-                                th:href="@{|/user/${user.id}|}"></span><span
-                                th:text="${user.last_name}" th:href="@{|/user/${user.id}|}"></span></div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">@<span th:text="${user.username}"
-                                                                                         th:href="@{|/user/${user.id}|}"></span>
-                        </div>
-                      </div>
-                  </div>
-                </div>);
+      type: "GET",
+      success: function(user) {
+        // populate user info into HTML elements on the page
+        $("#user-name").text(user.username);
+        $("#user-email").text(user.email);
+        // etc.
       }
     });
   }
