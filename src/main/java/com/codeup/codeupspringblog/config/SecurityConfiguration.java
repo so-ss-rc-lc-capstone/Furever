@@ -81,6 +81,10 @@ public class SecurityConfiguration {
                         "/register",
                         "/user/{id}",
                         "/user/card",
+
+                        "/users/{id}/follow",
+                        "/followed",
+
                         "/friends",
                         "/user/{id}/show",
 
@@ -92,6 +96,7 @@ public class SecurityConfiguration {
                         "/posts/{n}/delete",
                         "/posts/delete/{n}",
                         "/posts/{id}/like",
+
 
 
                         "/events",
