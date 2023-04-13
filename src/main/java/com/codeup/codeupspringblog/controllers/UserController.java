@@ -50,15 +50,6 @@ public class UserController {
         List<Post> posts = postDao.findAll();
         List<Event> events = eventDao.findAll(); // or however you fetch the events
 
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd h:mm a");
-        for (Event event : events) {
-            LocalDateTime created_at = LocalDateTime.parse(event.getCreated_at().toString().substring(0,19), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
-            String formattedDate = created_at.format(formatter);
-            LocalDateTime dateTime = LocalDateTime.parse(formattedDate, formatter);
-            event.setCreated_at(dateTime);
-        }
-
         model.addAttribute("events", events);
         model.addAttribute("user", userData);
         model.addAttribute("users", users);

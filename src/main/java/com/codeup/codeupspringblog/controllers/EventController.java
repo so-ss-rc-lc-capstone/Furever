@@ -68,15 +68,6 @@ public class EventController {
         User userData = usersDao.findById(currentUser.getId());
         model.addAttribute("user", userData);
         List<Event> events = eventsDao.findAll();
-
-        // loop through the events list and format the date string for each Event object
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd h:mm a");
-        for (Event event : events) {
-            LocalDateTime created_at = LocalDateTime.parse(event.getCreated_at().toString().substring(0,19), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"));
-            String formattedDate = created_at.format(formatter);
-            LocalDateTime dateTime = LocalDateTime.parse(formattedDate, formatter);
-            event.setCreated_at(dateTime);
-        }
         model.addAttribute("events", events);
         return "event/index";
     }
