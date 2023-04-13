@@ -81,6 +81,8 @@ public class SecurityConfiguration {
                         "/register",
                         "/user/{id}",
                         "/user/card",
+                        "/friends",
+                        "/user/{id}/show",
 
 
                         "/posts/{id}/edit",
