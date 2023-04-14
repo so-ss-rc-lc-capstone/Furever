@@ -129,7 +129,6 @@ public class UserController {
         userData.setPhone_number(user.getPhone_number());
         userData.setBio(user.getBio());
         userData.setAddress(user.getAddress());
-        userData.setZip_code(user.getZip_code());
         userData.setGender(user.getGender());
         userData.setProfilePhoto(user.getProfilePhoto());
         userDao.save(userData);
