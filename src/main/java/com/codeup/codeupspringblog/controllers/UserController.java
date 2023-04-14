@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.jar.JarOutputStream;
 
 @Controller
@@ -168,38 +169,55 @@ public class UserController {
     }
 
 
-    //Following users and friends below
+    //Following users and friends below,
+    // When button added, change it to post method
     @GetMapping("/users/{id}/follow")
     public String followUser(@PathVariable Long id){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUserData = userDao.findById(currentUser.getId());
-        System.out.println("current User: " + currentUserData);
 
         User user = userDao.findById(id).get();
-        System.out.println("Followed user: " + user);
 
         if(!currentUserData.getFollowedUsers().contains(user) && !user.getFollowingUsers().contains(currentUserData)){
             currentUserData.getFollowedUsers().add(user);
             user.getFollowingUsers().add(currentUserData);
         }
 
-        System.out.println("The list: " + currentUserData.getFollowedUsers());
-
        userDao.save(currentUserData);
        return "redirect:/followed";
     }
+
+    //Unfollow needs to be implemented
+    // When button added, change it to post method
+    @GetMapping("/users/{id}/unfollow")
+    public String unfollowUser(@PathVariable Long id) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUserData = userDao.findById(currentUser.getId());
+        System.out.println("Current User: " + currentUserData);
+        User user = userDao.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        System.out.println("Followed user: " + user);
+        if (currentUserData.getFollowedUsers().contains(user)) {
+            currentUserData.getFollowedUsers().remove(user);
+            user.getFollowingUsers().remove(currentUserData);
+        }
+
+        userDao.save(currentUserData);
+        return "redirect:/followed";
+    }
+
+
 
     @GetMapping("/followed")
     public String followedUsers(Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
+
         List<User> followedUsers = userData.getFollowedUsers();
         System.out.println(followedUsers);
         model.addAttribute("followedusers", followedUsers);
         return "friends/followed";
     }
 
-    //Unfollow needs to be implemented
 
 
 
