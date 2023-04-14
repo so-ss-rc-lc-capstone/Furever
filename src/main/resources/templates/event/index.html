@@ -166,30 +166,80 @@
     <div class="w-full h-full">
       <div th:include="event/event-card.html"></div>
     </div>
-
   </div>
+
+
+
 
   <aside class="fixed top-0 right-0 justify-items-center hidden md:flex w-[15em]"
          aria-label="Sidebar">
 
     <div class="w-full max-w-md p-5 mt-[103px] mr-3 h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div class="flex items-center justify-between mb-4">
-        <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Friends</h5>
-        <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-400 dark:text-blue-500">
-          View all
-        </a>
+
+
+
+
+
+
+<!--        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">-->
+<!--          <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">-->
+<!--            <li class="mr-2" role="presentation">-->
+<!--              <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>-->
+<!--            </li>-->
+<!--            <li class="mr-2" role="presentation">-->
+<!--              <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</button>-->
+<!--            </li>-->
+<!--            <li class="mr-2" role="presentation">-->
+<!--              <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</button>-->
+<!--            </li>-->
+<!--            <li role="presentation">-->
+<!--              <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Contacts</button>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--        <div id="myTabContent">-->
+<!--          <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">-->
+<!--            <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Profile tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>-->
+<!--          </div>-->
+<!--          <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">-->
+<!--            <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Dashboard tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>-->
+<!--          </div>-->
+<!--          <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">-->
+<!--            <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Settings tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>-->
+<!--          </div>-->
+<!--          <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">-->
+<!--            <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Contacts tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+
+
+
+
+        <!--        <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Friends</h5>-->
+<!--        <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-400 dark:text-blue-500">-->
+<!--          View all-->
+<!--        </a>-->
       </div>
 
       <div class="flow-root">
-        <button type="button" class="text-gray-900 bg-white w-full border border-gray-300  hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 ">Add a Friend</button>
 
-
+<!--        <div th:each="user : ${followedUsers}">-->
+<!--          <h3 th:text="${user.username}"> </h3>-->
+<!--          <h3 th:text="${user.first_name}"></h3>-->
+<!--                                <img class="w-10 h-10 rounded-full cursor-pointer" th:src="${user.profilePhoto}" alt="user-image" >-->
+<!--        </div>-->
+<!--        -->
 
 
 
         <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
 
-          <div th:each="user : ${users}">
+<!--          <div th:each="user : ${users}">-->
+            <div th:each="user : ${followedUsers}">
+
             <div th:if="${user.id} != ${#authentication.principal.id}">
               <li class="py-2 group/item hover:bg-slate-100 ">
 
@@ -223,11 +273,7 @@
 
                           <form th:action="@{/users/{id}/follow(id=${user.id})}" th:method="post"
                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                            <button th:text="${user.getFollowedUsers().contains(user) ? 'Unfollow' : 'Follow'}" type="submit"></button>
-
-<!--                            <form id="followButton" th:action="@{/users/{id}/follow(id=${user.id})}" method="post">-->
-<!--                              <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" th:text="${currentUserData.getFollowedUsers().contains(user) ? 'Unfollow' : 'Follow'}"></button>-->
-<!--                            </form>-->
+                            <button th:text="${user.getFollowedUsers().contains(user) ? 'follow' : 'unfollow'}" type="submit"></button>
                           </form>
 <!--                          <a id="followButton" th:text="${user.followingUsers.contains(user) ? 'Unfollow' : 'Follow'}"-->
 <!--                             th:onclick="${user.followingUsers.contains(user) ? '@{/users/'+ user.id + '/follow}' : '@{/users/'+ user.id + '/follow}'}"-->

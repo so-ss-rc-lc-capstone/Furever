@@ -207,7 +207,7 @@ public class UserController {
         System.out.println(followedUsers);
         model.addAttribute("currentUserData", currentUserData);
         model.addAttribute("followedUsers", followedUsers);
-        return "/event/index";
+        return "event/index";
     }
 
 
