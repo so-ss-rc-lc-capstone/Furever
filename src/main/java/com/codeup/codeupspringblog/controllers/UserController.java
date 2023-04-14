@@ -200,9 +200,13 @@ public class UserController {
 
         List<User> followedUsers = userData.getFollowedUsers();
         System.out.println(followedUsers);
-        model.addAttribute("followedusers", followedUsers);
+        model.addAttribute("followedUsers", followedUsers);
         return "friends/followed";
     }
+
+
+
+
 
 
 //    @GetMapping("/users.json")

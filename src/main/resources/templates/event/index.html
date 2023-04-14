@@ -183,33 +183,68 @@
       <div class="flow-root">
         <button type="button" class="text-gray-900 bg-white w-full border border-gray-300  hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 ">Add a Friend</button>
 
-        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700" >
 
 
-          <li class="py-3">
-            <div class="flex items-center space-x-4">
-              <div class="flex-shrink-0">
-                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">
-              </div>
-              <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                  Neil Sims
-                </p>
-                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                  @ns142
-                </p>
-              </div>
-              <div class="hover:cursor-pointer">
-                <a href="/login">
-                  <svg fill="currentColor" class="h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path clip-rule="evenodd" fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"></path>
-                  </svg>
-                </a>
-              </div>
 
-            </div>
-          </li>
-        </ul>
+
+            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+
+              <div th:each="user : ${users}">
+                <div th:if="${user.id} != ${#authentication.principal.id}">
+                  <li class="py-2 group/item hover:bg-slate-100 ">
+
+
+                    <div class="flex flex-col space-x-4 ">
+                      <div class="flex items-center justify-between px-3">
+                        <div th:data-dropdown-toggle="${user.email}" data-dropdown-placement="bottom-start" type="button" class="flex items-center">
+
+                          <img class="w-10 h-10 rounded-full cursor-pointer" th:src="${user.profilePhoto}" alt="user-image" >
+                          <div class="ml-3 flex-col font-medium dark:text-white">
+                            <div class="text-base font-normal text-gray-900 "><span th:text="${user.first_name}" th:href="@{|/user/${user.id}|}"></span><span th:text="${user.last_name}" th:href="@{|/user/${user.id}|}"></span></div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">@<span th:text="${user.username}" th:href="@{|/user/${user.id}|}"></span></div>
+                          </div>
+
+
+                          <div th:id="${user.email}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                              <div class="text-base font-normal text-gray-900 "><span th:text="${user.first_name } " ></span> <span th:text="${user.last_name}" ></span>  </div>
+                              <div class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${user.email}" ></span></div>
+
+                            </div>
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                              <li>
+                                <a th:href="@{|/user/${user.id}|}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View Profile</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Unfollow</a>
+                            </div>
+                          </div>
+                        </div>
+
+                        <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible "  th:href="@{|/user/${user.id}|}">
+
+                          <div class="hover:cursor-pointer group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500">
+                            <a href="/login">
+                              <svg fill="currentColor" class="h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path clip-rule="evenodd" fill-rule="evenodd" d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"></path>
+                              </svg>
+                            </a>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+
+
+                  </li>
+                </div>
+<!--                <hr class="w-3/4 h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">-->
+              </div>
+            </ul>
+
       </div>
     </div>
 

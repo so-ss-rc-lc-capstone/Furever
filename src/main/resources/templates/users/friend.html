@@ -147,7 +147,7 @@
 
                   <div class="flex flex-col space-x-4 mb-5 ">
                     <div class="flex items-center justify-between px-3">
-                      <div th:data-dropdown-toggle="${user.first_name}" data-dropdown-placement="bottom-start" type="button" class="flex items-center">
+                      <div th:data-dropdown-toggle="${user.email}" data-dropdown-placement="bottom-start" type="button" class="flex items-center">
 
                         <img class="w-10 h-10 rounded-full cursor-pointer" th:src="${user.profilePhoto}" alt="user-image" >
                         <div class="ml-3 flex-col font-medium dark:text-white">
@@ -156,7 +156,7 @@
                         </div>
 
 
-                        <div th:id="${user.first_name}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                        <div th:id="${user.email}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                           <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                             <div class="text-base font-normal text-gray-900 "><span th:text="${user.first_name } " ></span> <span th:text="${user.last_name}" ></span>  </div>
                             <div class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${user.email}" ></span></div>
