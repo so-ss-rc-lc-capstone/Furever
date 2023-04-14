@@ -13,6 +13,7 @@
   <link href="/Users/randychu/Desktop/Software Dev Projects/project-pet/src/main/resources/static/css/searchbar.css" rel="stylesheet" />
 </head>
 <style>
+
   #nav-mobile {
     position: fixed;
     bottom: 2rem;
@@ -60,8 +61,8 @@
 
 <nav th:replace="partials/navbar :: navbar-search"></nav>
 
-
-<div class="flex items-center justify-center w-[38em]">
+<!--The size of the feed div-->
+<div class="flex items-center justify-center w-screen md:w-[50em]">
 
   <aside id="logo-sidebar"
          class="fixed top-0 left-0  border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white"
@@ -221,26 +222,62 @@
 <script>
   const checkbox = document.getElementById('toggle-checkbox');
   const text = document.getElementById('toggle-text');
+  const closeIcon = document.getElementById('close');
+  const searchIcon = document.getElementById('search-icon');
+
+  closeIcon.style.opacity = 'none';
+  searchIcon.style.display = '1';
+
   const toggleSearch = (search, button) =>{
     const searchBar = document.getElementById(search),
-      searchButton = document.getElementById(button),
-      close = document.getElementById('close'),
-            searchInput= document.getElementById('search-input');
+            searchButton = document.getElementById(button),
+            close = document.getElementById('close'),
+            searchInput = document.getElementById('search-input'),
+            closeIcon = document.getElementById('close'),
+            searchIcon = document.getElementById('search-icon');
 
     searchButton.addEventListener('click', () => {
       searchBar.classList.toggle('w-[250px]');
       close.classList.toggle("opacity-1");
+
       if (searchBar.classList.contains('w-[250px]')) {
         searchInput.style.pointerEvents = "initial";
         searchInput.style.opacity = "1";
+        closeIcon.style.opacity = '1';
+        searchIcon.style.display = 'none';
       } else {
         searchInput.style.pointerEvents = "none";
         searchInput.style.opacity = "0";
+        closeIcon.style.opacity = '0';
+        searchIcon.style.display = 'block';
       }
-  });
+    });
   };
 
   toggleSearch('search', 'search-button');
+
+
+  // const toggleSearch = (search, button) =>{
+  //   const searchBar = document.getElementById(search),
+  //     searchButton = document.getElementById(button),
+  //     close = document.getElementById('close'),
+  //           searchInput= document.getElementById('search-input');
+  //
+  //
+  //   searchButton.addEventListener('click', () => {
+  //     searchBar.classList.toggle('w-[250px]');
+  //     close.classList.toggle("opacity-1");
+  //     if (searchBar.classList.contains('w-[250px]')) {
+  //       searchInput.style.pointerEvents = "initial";
+  //       searchInput.style.opacity = "1";
+  //     } else {
+  //       searchInput.style.pointerEvents = "none";
+  //       searchInput.style.opacity = "0";
+  //     }
+  // });
+  // };
+  //
+  // toggleSearch('search', 'search-button');
 
 
   // const toggleSearch = (search, button) => {
@@ -293,6 +330,7 @@
   //     }
   //   });
   // });
+
 </script>
 
 <script src="../../static/js/event-feed.js"></script>
