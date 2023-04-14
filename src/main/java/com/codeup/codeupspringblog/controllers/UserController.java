@@ -195,11 +195,13 @@ public class UserController {
         User userData = userDao.findById(currentUser.getId());
         List<User> followedUsers = userData.getFollowedUsers();
         System.out.println(followedUsers);
-        model.addAttribute("followedusers", followedUsers);
+        model.addAttribute("followedUsers", followedUsers);
         return "friends/followed";
     }
-
     //Unfollow needs to be implemented
+
+
+
 
 
 

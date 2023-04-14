@@ -10,7 +10,7 @@
 <h1>Users you follow: </h1>
 <br>
 <ul>
-    <li th:each="user : ${followedusers}">
+    <li th:each="user : ${followedUsers}">
         <span th:text="${user.username}"></span> <br>
         <span th:text="${user.email}"></span>
     </li>
