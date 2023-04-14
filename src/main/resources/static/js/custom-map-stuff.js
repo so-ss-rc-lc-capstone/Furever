@@ -1,18 +1,3 @@
-// let eventLoc=[
-//     {
-//         name: "Taco Blvd",
-//         address: "18360 Blanco Rd #116, San Antonio, TX 78258",
-//     },
-//     {
-//         name: "Chick fil a",
-//         address: "106 E Houston St, San Antonio, TX  78205",
-//     },
-//     {
-//         name: "Chama Gaucha",
-//         address: "18318 Sonterra Pl, San Antonio, TX  78258",
-//     }
-// ];
-
 fetch('http://localhost:8080/api/allevents', {
     method: "GET",
     headers: {
@@ -46,34 +31,16 @@ fetch('http://localhost:8080/api/allevents', {
 
         event.forEach(function(event) {
             geocode(event.address, keys.mapbox).then(function (result) {
-                console.log(result[0]);
-                console.log(result[1]);
-
                 let marker = new mapboxgl.Marker()
                     .setLngLat([result[0],result[1]])
                     .addTo(map);
 
                 let eventPopup = new mapboxgl.Popup()
-                    .setHTML(`<h2>Event Name: ${event.title}</h2><h3>Location: ${event.name}</h3><p>Address: ${event.address}</p>`)
-                    .on('click', function(e) {
-                        // Prevent the default map click behavior
-                        e.preventDefault();
-
-                        // Extract the eventId from the event object
-                        let eventId = event.id;
-
-                        // Construct the URL for the event details page
-                        let url = `http://localhost:8080/events/${eventId}/find?event=${eventId}`;
-
-                        // Open the event details page in a new tab
-                        window.open(url, '_blank');
-                    });
+                    .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
 
                 marker.setPopup(eventPopup);
             });
         });
     })
     .catch(error => console.error(error));
-
-
 
