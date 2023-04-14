@@ -25,22 +25,53 @@ fetch('http://localhost:8080/api/allevents', {
         // Get the user's current position
         navigator.geolocation.getCurrentPosition(position => {
             // Update the map's center to the user's position
-            map.setCenter([position.coords.longitude, position.coords.latitude]);
+            let userPosition = [position.coords.longitude, position.coords.latitude];
+            map.setCenter(userPosition);
             map.setZoom(10);
-        });
 
-        event.forEach(function(event) {
-            geocode(event.address, keys.mapbox).then(function (result) {
-                let marker = new mapboxgl.Marker()
-                    .setLngLat([result[0],result[1]])
-                    .addTo(map);
+            event.forEach(function(event) {
+                geocode(event.address, keys.mapbox).then(function (result) {
+                    // Calculate distance between user location and event location
+                    let eventPosition = [result[0], result[1]];
+                    let distance = getDistance(userPosition, eventPosition);
 
-                let eventPopup = new mapboxgl.Popup()
-                    .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
+                    if (distance <= 50) { // Display event marker only if within 50 miles
+                        let marker = new mapboxgl.Marker()
+                            .setLngLat(eventPosition)
+                            .addTo(map);
 
-                marker.setPopup(eventPopup);
+                        let eventPopup = new mapboxgl.Popup()
+                            .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
+
+                        marker.setPopup(eventPopup);
+                    }
+                });
             });
         });
+
+        function getDistance(coord1, coord2) {
+            const R = 3958.8; // Earth's radius in miles
+            const lat1 = deg2rad(coord1[1]);
+            const lon1 = deg2rad(coord1[0]);
+            const lat2 = deg2rad(coord2[1]);
+            const lon2 = deg2rad(coord2[0]);
+
+            const dLat = lat2 - lat1;
+            const dLon = lon2 - lon1;
+
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1) * Math.cos(lat2) *
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            const d = R * c;
+
+            return d;
+        }
+
+        function deg2rad(deg) {
+            return deg * (Math.PI/180)
+        }
+
     })
     .catch(error => console.error(error));
 
