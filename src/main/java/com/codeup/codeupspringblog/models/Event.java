@@ -19,7 +19,7 @@ public class Event {
     private String title;
     @Column(nullable = false, length = 50)
     private String location_name;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)

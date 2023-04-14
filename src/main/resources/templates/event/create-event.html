@@ -21,6 +21,17 @@
                     Ai Assistant
                 </h3>
 
+
+                <label for="mood" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+                <select id="mood" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Choose a Mood</option>
+                    <option value="formal">Formal</option>
+                    <option value="informal">Informal</option>
+                    <option value="funny">Funny</option>
+                    <option value="descriptive">Descriptive</option>
+                </select>
+
+
                 <button type="button" id="close"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                         data-modal-toggle="updateProductModal">
@@ -42,12 +53,12 @@
                             description</label>
                         <textarea id="ai-description" rows="5"
                                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                  placeholder="Write a brief description for the ai assistant..."></textarea>
+                                  placeholder= "List examples out: poodle, refreshments, meetup."></textarea>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
 
-                    <button type="submit"
+                    <button id="generate" type="submit"
                             class="text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                         Generate Description
                     </button>
@@ -145,8 +156,6 @@
         </div>
     </form>
 
-    <nav th:replace="partials/navbar :: navbar-mobile"></nav>
-
 
 </div>
 
@@ -167,6 +176,54 @@
 
     aiLink.addEventListener('click', () => {
         modal1.style.display = 'block';
+    });
+
+
+    const mood = document.getElementById('mood');
+    const moodParse = mood.value;
+    const description = document.getElementById('description');
+    let descriptionParse = description.value; // data would go here
+    //button
+    const generate = document.getElementById('generate');
+    let responseData;
+
+    //GPT
+    function generateText(mood , description) {
+        fetch('https://open-api.herokuapp.com/generate-text', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "prompt": "Re-write me a "+ mood + "description for a dog event use the following content to write the summary:" + description,
+                "engine": "text-davinci-002",
+                "maxTokens": 200
+            })
+        })
+            .then(response => response.json())
+            .then(data =>  {
+                responseData =  JSON.stringify(data)
+                console.log('here =>',responseData)
+            })
+            .catch(error => console.error(error));
+    }
+
+    generate.addEventListener('click', () => {
+
+        const aiDescription = document.getElementById('ai-description').value;
+        const selectedOption = mood.options[mood.selectedIndex];
+        const selectedValue = selectedOption.value;
+        console.log(aiDescription)
+        console.log(selectedValue)
+
+        generateText(selectedValue, aiDescription);
+        setTimeout(function () {
+            description.value = responseData.substring(1, responseData.length - 1);
+        }, 3000);
+        console.log(responseData)
+        modal.style.display = 'none';
+
+
     });
 
 </script>

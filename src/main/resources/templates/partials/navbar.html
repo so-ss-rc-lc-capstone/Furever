@@ -114,3 +114,23 @@
         </a>
     </ul>
 </nav>
+
+<nav th:fragment="navbar-mobile-other" class=" fixed bottom-[2em] md:hidden right-0 left-0 p-3 bg-white m-auto rounded-full w-[500px] h-[100px]" style= "box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
+    <ul class="nav__list h-full">
+        <a href="/events" class="nav__link h-full flex justify-center items-center w-[80px] rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
+            <i class="ri-home-5-line"></i>
+        </a>
+
+        <a href="/profile" class="nav__link h-full w-[80px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
+            <i class="ri-profile-line"></i>
+        </a>
+
+        <a href="/friends" class="nav__link h-full w-[80px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
+            <i class="ri-team-line"></i>
+        </a>
+
+        <a href="/logout" class="nav__link h-full w-[80px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
+            <i class="ri-logout-box-r-line"></i>
+        </a>
+    </ul>
+</nav>
