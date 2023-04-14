@@ -196,7 +196,7 @@
 
                 <div class="flex flex-col space-x-4 ">
                   <div class="flex items-center justify-between px-3">
-                    <div th:data-dropdown-toggle="${user.email}" data-dropdown-placement="bottom-start" type="button" class="flex items-center">
+                    <div th:data-dropdown-toggle="${user.id}" data-dropdown-placement="bottom-start" type="button" class="flex items-center">
 
                       <img class="w-10 h-10 rounded-full cursor-pointer" th:src="${user.profilePhoto}" alt="user-image" >
                       <div class="ml-3 flex-col font-medium dark:text-white">
@@ -205,7 +205,7 @@
                       </div>
 
 
-                      <div th:id="${user.email}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                      <div th:id="${user.id}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                           <div class="text-base font-normal text-gray-900 "><span th:text="${user.first_name } " ></span> <span th:text="${user.last_name}" ></span>  </div>
                           <div class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${user.email}" ></span></div>
@@ -220,7 +220,19 @@
                           </li>
                         </ul>
                         <div class="py-1">
-                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Unfollow</a>
+
+                          <form th:action="@{/users/{id}/follow(id=${user.id})}" th:method="post"
+                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                            <button th:text="${user.getFollowedUsers().contains(user) ? 'Unfollow' : 'Follow'}" type="submit"></button>
+
+<!--                            <form id="followButton" th:action="@{/users/{id}/follow(id=${user.id})}" method="post">-->
+<!--                              <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" th:text="${currentUserData.getFollowedUsers().contains(user) ? 'Unfollow' : 'Follow'}"></button>-->
+<!--                            </form>-->
+                          </form>
+<!--                          <a id="followButton" th:text="${user.followingUsers.contains(user) ? 'Unfollow' : 'Follow'}"-->
+<!--                             th:onclick="${user.followingUsers.contains(user) ? '@{/users/'+ user.id + '/follow}' : '@{/users/'+ user.id + '/follow}'}"-->
+<!--                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"></a>-->
+
                         </div>
                       </div>
                     </div>
@@ -252,6 +264,24 @@
 
 </div>
 <script>
+
+  function isFollowed(userId) {
+    $.ajax({
+      url: "/user/" + userId +"/follow",
+      type: "GET",
+      success: function(user) {
+        // populate user info into HTML elements on the page
+        $("#followBtn").text("Follow");
+        // etc.
+      }
+    });
+  }
+
+
+
+
+
+
   const checkbox = document.getElementById('toggle-checkbox');
   const text = document.getElementById('toggle-text');
   const toggleSearch = (search, button) =>{

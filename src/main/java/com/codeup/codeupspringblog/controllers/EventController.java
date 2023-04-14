@@ -71,6 +71,9 @@ public class EventController {
         model.addAttribute("user", userData);
 
 
+        List<User> followingUsers = userData.getFollowingUsers();
+        System.out.println(followingUsers);
+        model.addAttribute("followingUsers", followingUsers);
 
         List<User> users = usersDao.findAll();
         List<Event> events = eventsDao.findAll();
