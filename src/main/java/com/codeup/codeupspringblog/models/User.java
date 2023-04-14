@@ -43,11 +43,8 @@ public class User {
 
     @Column(length = 255)
     private String address;
-    @Column(length = 5)
-    private int zip_code;
 
     //Profile picture
-
     private String profilePhoto;
 
     @Column(columnDefinition = "LONGTEXT")
@@ -175,13 +172,13 @@ public class User {
         this.address = address;
     }
 
-    public int getZip_code() {
-        return zip_code;
-    }
-
-    public void setZip_code(int zip_code) {
-        this.zip_code = zip_code;
-    }
+//    public int getZip_code() {
+//        return zip_code;
+//    }
+//
+//    public void setZip_code(int zip_code) {
+//        this.zip_code = zip_code;
+//    }
 
     public List<Event> getEvents() {
         return events;
@@ -200,8 +197,25 @@ public class User {
         this.password = password;
     }
 
+    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, String profilePhoto, String bio, List<Post> posts, List<Event> events, List<User> followedUsers, List<User> followingUsers) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.phone_number = phone_number;
+        this.gender = gender;
+        this.address = address;
+        this.profilePhoto = profilePhoto;
+        this.bio = bio;
+        this.posts = posts;
+        this.events = events;
+        this.followedUsers = followedUsers;
+        this.followingUsers = followingUsers;
+    }
 
-//    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, int zip_code, String profilePhoto, String bio, List<Post> posts, List<Event> events) {
+    //
+//    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, int zip_code, String profilePhoto, String bio, List<Post> posts, List<Event> events, List<User> followedUsers, List<User> followingUsers) {
 //        this.username = username;
 //        this.email = email;
 //        this.password = password;
@@ -215,25 +229,9 @@ public class User {
 //        this.bio = bio;
 //        this.posts = posts;
 //        this.events = events;
+//        this.followedUsers = followedUsers;
+//        this.followingUsers = followingUsers;
 //    }
-
-    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, int zip_code, String profilePhoto, String bio, List<Post> posts, List<Event> events, List<User> followedUsers, List<User> followingUsers) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.phone_number = phone_number;
-        this.gender = gender;
-        this.address = address;
-        this.zip_code = zip_code;
-        this.profilePhoto = profilePhoto;
-        this.bio = bio;
-        this.posts = posts;
-        this.events = events;
-        this.followedUsers = followedUsers;
-        this.followingUsers = followingUsers;
-    }
 
 
     //Many to many constructors and setters and getters below
@@ -269,7 +267,6 @@ public class User {
                 ", phone_number='" + phone_number + '\'' +
                 ", gender='" + gender + '\'' +
                 ", address='" + address + '\'' +
-                ", zip_code=" + zip_code +
                 ", profilePhoto='" + profilePhoto + '\'' +
                 ", bio='" + bio + '\'' +
                 '}';
