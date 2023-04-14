@@ -6,6 +6,7 @@
 
 
 <nav th:replace="partials/navbar :: navbar"></nav>
+<nav th:replace="partials/navbar :: navbar-mobile-other"></nav>
 
 
 <div class="w-full h-screen">
@@ -29,6 +30,7 @@
                             <div class="md:mr-[95px] mr-[14px]"><h3 class="text-center text-lg font-bold">233</h3><h3 class="text-md text-gray-500">Following</h3></div>
                             <div><h3 class="text-center text-lg font-bold">43</h3><h3 class="text-md text-gray-500">Followers</h3></div>
                        </div>
+
                         <div class="flex w-full justify-evenly md:justify-start" th:if="${user.id} == ${#authentication.principal.id}">
                         <form class="mb-4 mt-3 md:mr-[5em]" th:action="@{/profile/edit}" method="get">
                             <input type="hidden" name="edit_id" />
@@ -60,8 +62,6 @@
 
 
             </div>
-            <!--        <div class="flex-row p-3" th:include="users/user-card :: userList"></div>-->
-
             <!--Pets-->
             <div class = "w-full flex flex-col justify-center items-center md:justify-start md:items-start">
                 <div class="flex md:justify-start md:items-start" >
@@ -77,17 +77,16 @@
                             </div>
                 </div>
 
-
                 <!--Events-->
 
-                <div class="flex w-full h-full mt-5 justify-center">
+                <div class="flex flex-col w-full h-full mt-5 justify-center">
                     <div class=" w-full">
                         <div class="w-full flex justify-center items-center">
                                     <div class="inline-block w-full p-4 bg-white border-b-2 text-center text-2xl">My Events</div>
                         </div>
 
                         <!--Render Photos or events-->
-                        <div class="h-full w-full grid grid-cols-1">
+                        <div class="w-full h-full grid grid-cols-1">
 
 
                             <div class="flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700"
@@ -200,7 +199,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <nav th:replace="partials/footer :: footer"></nav>
+
+
                 </div>
+
+
+
+
+
 
 
 
@@ -208,88 +216,11 @@
 
             </div>
         </div>
+
     </div>
+
 </div>
 
-
-<!--======-->
-<!--    <section class="bg-top bg-no-repeat bg-[url('https://imgtr.ee/images/2023/04/11/n5rU7.jpg')] position: relative">-->
-<!--        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">-->
-<!--            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">-->
-<!--                Welcome with your partner</h1>-->
-<!--            &lt;!&ndash;      <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Let's start another beautiful journey with your partner!</p>&ndash;&gt;-->
-<!--            <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
-
-<!--    <div class="flex w-full p-3">-->
-<!--        <div class="w-1/4">-->
-<!--            <div class="flex flex-col justify-center ">-->
-
-<!--                <img class="inline-flex w-24 h-24 mb-3 rounded-full shadow-lg"-->
-<!--                     th:src="${user.profilePhoto}"-->
-<!--                     alt="Pet image"/>-->
-<!--                <div class="mb-4" th:if="${user.first_name}==null">-->
-<!--                    <h3 class="mb-1 text-lg font-medium text-gray-600"><span th:text="${user.username}"></h3>-->
-<!--                    <h1><span th:text="${user.username}"></span></h1>-->
-<!--                </div>-->
-<!--                <div class="mb-4" th:unless="${user.first_name}==null">-->
-<!--                    <h3 class="mb-1 text-lg font-medium text-gray-600"><span th:text="${user.first_name}"></span> <span-->
-<!--                            th:text="${user.last_name}"></span></h3>-->
-<!--                    <div>-->
-<!--                        <p class="mb-3 text-gray-500 dark:text-gray-400" th:text="${user.bio}"></p>-->
-<!--                    </div>-->
-
-<!--                </div>-->
-<!--                <div class="flex flex-row">-->
-<!--                    <form class="mb-4" th:action="@{/profile/edit}" method="get">-->
-<!--                        <input type="hidden" name="edit_id"/>-->
-<!--                        <button type="submit"-->
-<!--                                class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">-->
-<!--                            Edit profile-->
-<!--                        </button>-->
-<!--                    </form>-->
-
-
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--      <div class="w-3/4 ">-->
-
-<!--        <div class="flex-row p-3" th:include="users/user-card :: userList"></div>-->
-<!--        &lt;!&ndash;      <div class="flex flex-col ">&ndash;&gt;-->
-<!--        &lt;!&ndash;        <div class="flex-row">&ndash;&gt;-->
-<!--        &lt;!&ndash;          <div class="flex-row" th:include="pets/pet-card :: petList">&ndash;&gt;-->
-<!--        &lt;!&ndash;          </div>&ndash;&gt;-->
-<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
-<!--        &lt;!&ndash;      </div>&ndash;&gt;-->
-<!--      </div>-->
-<!--    </div>-->
-<!--        <div class="flex flex-col w-full">-->
-<!--            <div class="w-100 mt-3">-->
-
-<!--                <div class="flex flex-row justify-start items-center">-->
-<!--                    <h3 class="mb-1 text-xl font-medium text-gray-900">Your Pets</h3>-->
-<!--                    <form class="mb-4" th:action="@{/pets/register}" method="get">-->
-<!--                        <input type="hidden" name="edit_id"/>-->
-<!--                        <button type="submit"-->
-<!--                                class="ml-5 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">-->
-<!--                            + Add-->
-<!--                        </button>-->
-<!--                    </form>-->
-<!--                </div>-->
-
-<!--                <div class="flex-row p-3" th:include="pets/pet-card :: petList">-->
-<!--                </div>-->
-<!--                <div class="flex-row p-3">-->
-<!--                    <h3 class="mb-1 text-xl font-medium text-gray-900">Your Events</h3>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--&gt;>>>>>> main-->
 
 </body>
 </html>
