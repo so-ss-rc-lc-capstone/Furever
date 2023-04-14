@@ -29,10 +29,12 @@ public class EventController {
     private final UserRepository usersDao;
     private final EventService eventService;
 
+
     public EventController(EventRepository eventsDao, UserRepository usersDao, EventService eventService) {
         this.eventsDao = eventsDao;
         this.usersDao = usersDao;
         this.eventService = eventService;
+
     }
 
     @GetMapping("/events/create")
@@ -67,7 +69,13 @@ public class EventController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = usersDao.findById(currentUser.getId());
         model.addAttribute("user", userData);
+
+
+
+        List<User> users = usersDao.findAll();
         List<Event> events = eventsDao.findAll();
+
+        model.addAttribute("users",users);
         model.addAttribute("events", events);
         return "event/index";
     }

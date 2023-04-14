@@ -82,6 +82,13 @@ public class SecurityConfiguration {
                         "/user/{id}",
                         "/user/card",
 
+                        "/users/{id}/follow",
+                        "/followed",
+                        "/users/{id}/unfollow",
+
+                        "/friends",
+                        "/user/{id}/show",
+
 
                         "/posts/{id}/edit",
                         "/posts/create", // only authenticated users can create posts
@@ -92,14 +99,20 @@ public class SecurityConfiguration {
                         "/posts/{id}/like",
 
 
+
                         "/events",
                         "/events/{id}",
                         "/events/create",
                         "/events/{id}/edit",
                         "/events/{id}/edit",
                         "/events/{id}/find",
-                        "/events/{id}/delete",
-                        "/events/{id}/participate",
+                        "events/{id}/delete",
+                        "events/{id}/participate",
+
+                        //added for search functionality
+                        "/api/**",
+                        "/users",
+                        "/test",
                         "/js/**"
                 )
                 .authenticated();
