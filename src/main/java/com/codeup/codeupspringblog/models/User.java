@@ -2,6 +2,7 @@ package com.codeup.codeupspringblog.models;
 
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.Breed;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -51,16 +52,18 @@ public class User {
 
     @Column(columnDefinition = "LONGTEXT")
     private String bio;
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Post> posts;
 
-
+@JsonIgnore
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Event> events;
 
     //Many-to-many relationship between users table
     //Keep in mind the cascade type
+
+    @JsonIgnore
     @ManyToMany()
     @JoinTable(
             name = "user_follows",
@@ -70,6 +73,7 @@ public class User {
     private List<User> followedUsers;//we want to follow
 
     //Many to many received here
+    @JsonIgnore
     @ManyToMany(mappedBy = "followedUsers")
     private List<User> followingUsers;
 

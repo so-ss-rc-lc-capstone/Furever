@@ -172,7 +172,8 @@ public class UserController {
     //Following users and friends below,
     // When button added, change it to post method
     @GetMapping("/users/{id}/follow")
-    public String followUser(@PathVariable Long id){
+    @ResponseBody
+    public User followUser(@PathVariable Long id){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUserData = userDao.findById(currentUser.getId());
 
@@ -182,29 +183,14 @@ public class UserController {
             currentUserData.getFollowedUsers().add(user);
             user.getFollowingUsers().add(currentUserData);
         }
-
-       userDao.save(currentUserData);
-       return "redirect:/followed";
-    }
-
-    //Unfollow needs to be implemented
-    // When button added, change it to post method
-    @GetMapping("/users/{id}/unfollow")
-    public String unfollowUser(@PathVariable Long id) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User currentUserData = userDao.findById(currentUser.getId());
-        System.out.println("Current User: " + currentUserData);
-        User user = userDao.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        System.out.println("Followed user: " + user);
-        if (currentUserData.getFollowedUsers().contains(user)) {
+        else if (currentUserData.getFollowedUsers().contains(user)) {
             currentUserData.getFollowedUsers().remove(user);
             user.getFollowingUsers().remove(currentUserData);
         }
 
-        userDao.save(currentUserData);
-        return "redirect:/followed";
+       userDao.save(currentUserData);
+       return userDao.findById(id).get();
     }
-
 
 
     @GetMapping("/followed")
@@ -217,8 +203,6 @@ public class UserController {
         model.addAttribute("followedusers", followedUsers);
         return "friends/followed";
     }
-
-
 
 
 //    @GetMapping("/users.json")
