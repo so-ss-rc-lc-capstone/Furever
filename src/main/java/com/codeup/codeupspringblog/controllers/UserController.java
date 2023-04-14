@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.jar.JarOutputStream;
 
 @Controller
@@ -128,7 +129,6 @@ public class UserController {
         userData.setPhone_number(user.getPhone_number());
         userData.setBio(user.getBio());
         userData.setAddress(user.getAddress());
-        userData.setZip_code(user.getZip_code());
         userData.setGender(user.getGender());
         userData.setProfilePhoto(user.getProfilePhoto());
         userDao.save(userData);
@@ -168,38 +168,43 @@ public class UserController {
     }
 
 
-    //Following users and friends below
+    //Following users and friends below,
+    // When button added, change it to post method
     @GetMapping("/users/{id}/follow")
-    public String followUser(@PathVariable Long id){
+    @ResponseBody
+    public User followUser(@PathVariable Long id){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUserData = userDao.findById(currentUser.getId());
-        System.out.println("current User: " + currentUserData);
 
         User user = userDao.findById(id).get();
-        System.out.println("Followed user: " + user);
 
         if(!currentUserData.getFollowedUsers().contains(user) && !user.getFollowingUsers().contains(currentUserData)){
             currentUserData.getFollowedUsers().add(user);
             user.getFollowingUsers().add(currentUserData);
         }
-
-        System.out.println("The list: " + currentUserData.getFollowedUsers());
+        else if (currentUserData.getFollowedUsers().contains(user)) {
+            currentUserData.getFollowedUsers().remove(user);
+            user.getFollowingUsers().remove(currentUserData);
+        }
 
        userDao.save(currentUserData);
-       return "redirect:/followed";
+       return userDao.findById(id).get();
     }
+
 
     @GetMapping("/followed")
     public String followedUsers(Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
+
         List<User> followedUsers = userData.getFollowedUsers();
         System.out.println(followedUsers);
-        model.addAttribute("followedusers", followedUsers);
+        model.addAttribute("followedUsers", followedUsers);
         return "friends/followed";
     }
 
-    //Unfollow needs to be implemented
+
+
 
 
 

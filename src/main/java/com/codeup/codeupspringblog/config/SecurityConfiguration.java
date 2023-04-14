@@ -86,6 +86,7 @@ public class SecurityConfiguration {
 
                         "/users/{id}/follow",
                         "/followed",
+                        "/users/{id}/unfollow",
 
                         "/friends",
                         "/user/{id}/show",

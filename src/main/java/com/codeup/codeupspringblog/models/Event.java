@@ -26,9 +26,9 @@ public class Event {
     private LocalDateTime event_DateAndTime;
     @Column(nullable = false)
     private String location_address;
+
     private LocalDateTime created_at;
     private String eventPhoto;
-
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -90,6 +90,7 @@ public class Event {
     public void setLocation_address(String location_address) {
         this.location_address = location_address;
     }
+
 
     public LocalDateTime getCreated_at() {
         return created_at;
