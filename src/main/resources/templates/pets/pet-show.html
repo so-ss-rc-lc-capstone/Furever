@@ -10,7 +10,7 @@
 
   <div class="w-2/3 h-1/2  flex md:justify-start justify-center">
     <div class="w-1/2 h-full flex flex-col md:justify-end p-5">
-      <img class="w-[200px] h-[200px] mb-3 rounded-full shadow-lg" th:href="@{|/pets/${pet.id}|}" alt="Pet image"/>
+      <img th:href="@{|/pets/${pet.id}|}" class="w-[15em] h-[15em] mb-3 rounded-full shadow-lg" th:src="${pet.image}" alt="Pet image"/>
 
       <div class="w-full">
       <div class="flex flex-col">
@@ -52,6 +52,8 @@
       <span class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${pet.breed.breed_name}"></span></span>
 
     </div>
+
+    <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 
 
   </div>

@@ -7,13 +7,13 @@
 
 
 <div class="w-full h-full flex justify-center items-center">
-  <div class="row d-flex mt-[2em] justify-content-center">
+  <div class="row d-flex mt-[3em] justify-content-center">
     <h1 class="text-3xl text-gray-900 mb-6">Edit your pet info</h1>
 
 
     <form th:method="POST" th:action="@{/pets/{id}/edit(id=${pet.id})}" th:object="${pet}" class="d-flex justify-content-center">
       <div class="mb-6">
-        <label for="petname" class="block mb-2 text-sm font-medium text-gray-900">Petname:</label>
+        <label for="petname" class="block mb-2 text-sm font-medium text-gray-900">Pet name:</label>
         <input th:field="*{petname}" type="text" name="petname" id="petname" placeholder="Enter name of your pet" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       </div>
       <div class="mb-6">
@@ -38,7 +38,7 @@
 
       <div class="mt-4">
         <label for="breed_name" class="block text-gray-700  font-bold mb-2">Breed Name:</label>
-        <input th:field="*{breed}" type="text" name="breed_name" id="breed_name" class="form-input border-2 rounded-md mt-1 block w-full" list="breeds">
+        <input th:field="*{breed}" type="text" name="breed_name" id="breed_name" class="form-input border-2 bg-gray-50 rounded-md mt-1 block w-full" list="breeds">
         <datalist id="breeds">
           <th:block th:each="breed : ${breeds}">
             <option th:value="${breed.id}" th:text="${breed.breed_name}"></option>
@@ -48,16 +48,19 @@
       <div class="mb-6">
         <label for="pet-image-input" class="block text-gray-700 font-bold mb-2 mt-5">Pet Image:</label>
         <div class = "flex">
-        <button type="button" class="border-2 p-2 rounded-l-lg" id="upload-pet">Upload</button>
-        <input  type="text" name="image" id="pet-image-input"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <button type="button" class="border-l-2 border-t-2 border-b-2 p-2 rounded-l-lg " id="upload-pet">Upload</button>
+        <input type="text" name="image" id="pet-image-input"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         </div>
       <div class="flex justify-between ">
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 
-        <h3 class="text-blue-600 flex justify-center"><a href="/events" class="mt-2">Go Back</a></h3>
+        <h3 class="text-blue-600 flex justify-center"><a href="/profile" class="mt-2">Go Back</a></h3>
       </div>
     </form>
+
+
+    <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 
   </div>
 </div>
