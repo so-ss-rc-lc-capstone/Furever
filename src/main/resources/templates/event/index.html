@@ -12,7 +12,18 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
   <link href="/Users/randychu/Desktop/Software Dev Projects/project-pet/src/main/resources/static/css/searchbar.css" rel="stylesheet" />
 </head>
+
 <style>
+  @media (max-width: 1280px) {
+    aside {
+      display: none !important;
+    }
+  }
+  @media (max-width: 1280px) {
+    #nav-mobiles {
+      display: flex;
+    }
+  }
 
   #nav-mobile {
     position: fixed;
@@ -40,88 +51,79 @@
     align-items: center;
   }
 
-  .nav__link i {
-    font-size: 1.5rem;
-    color: var(--title-color);
-    z-index: 20;
-    transition: .3s;
-  }
-
-
-
-  /* Active link */
-  .active-link i {
-    color: var(--body-color);
-  }
-
 
 </style>
 
-<body class="flex justify-center bg-gray-100">
-
 <nav th:replace="partials/navbar :: navbar-search"></nav>
 
-<!--The size of the feed div-->
-<div class="flex items-center justify-center w-screen md:w-[50em]">
+<nav id="nav-mobiles" th:replace="partials/navbar :: navbar-mobile"></nav>
 
-  <aside id="logo-sidebar"
-         class="fixed top-0 left-0  border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white"
-         aria-label="Sidebar" style="z-index: 9998">
-    <div class="h-full w-64 px-3 pb-4 bg-white mt-[7em]">
 
-      <ul class="space-y-2">
-        <li>
-          <div class="w-full max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex flex-col items-center justify-center mt-1">
-              <img class="w-24 h-24 mb-3 rounded-full shadow-lg" th:src="${user.profilePhoto}"
-                   alt="Profile image"/>
-              <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">Welcome,
-                <span th:text="${#authentication.principal.username}"/>!</h5>
-              <span class="text-sm text-gray-500 dark:text-gray-400"></span>
-            </div>
+<body class="flex w-full justify-center bg-gray-100">
+
+ <aside id="logo-sidebar" class="fixed top-0 left-0 border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white" aria-label="Sidebar" style="z-index: 9998">
+
+  <div class="h-full w-64 px-3 pb-4 bg-white mt-[7em]">
+
+    <ul class="space-y-2">
+      <li>
+        <div class="w-full max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
+          <div class="flex flex-col items-center justify-center mt-1">
+            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" th:src="${user.profilePhoto}"
+                 alt="Profile image"/>
+            <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">Welcome,
+              <span th:text="${#authentication.principal.username}"/>!</h5>
+            <span class="text-sm text-gray-500 dark:text-gray-400"></span>
           </div>
-        </li>
+        </div>
+      </li>
 
-        <li class="flex w-full items-center justify-center p-3 border-b-2 pb-5 text-gray-900 dark:text-white ">
-          <form th:action="${'/logout'}" th:method="post">
-            <button type="submit" class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 ">Logout</button>
-          </form>
-        </li>
+      <li class="flex w-full items-center justify-center p-3 border-b-2 pb-5 text-gray-900 dark:text-white ">
+        <form th:action="${'/logout'}" th:method="post">
+          <button type="submit" class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 ">Logout</button>
+        </form>
+      </li>
 
-        <li>
-          <a href="/profile" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-            <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-            <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
-          </a>
-        </li>
-        <li>
-          <a href="/events" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-            <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
-            <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
-          </a>
-        </li>
+      <li>
+        <a href="/profile" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+          <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+          <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
+        </a>
+      </li>
+      <li>
+        <a href="/events" class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+          <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
+          <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
+        </a>
+      </li>
 
 
 
-      </ul>
-    </div>
+    </ul>
+  </div>
 
-  </aside>
-  <!--- Feed -->
-  <div class="w-full ">
+</aside>
+
+<!--The size of the feed div-->
+<div class="flex items-center justify-center w-screen md:w-[800px]">
+
+
+
+    <!--- Feed -->
+    <div class="w-full ">
     <!--Filter bar-->
-    <div class=" mt-[3em] md:mt-[8em]">
+    <div class=" mt-[3em] md:mt-[9em]">
       <section class="dark:bg-gray-900 w-full h-[5em] flex items-center">
 
         <div class="w-full">
-          <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
-            <div class="w-full flex justify-between items-center">
+          <div class="relative bg-white shadow-lg p-3 dark:bg-gray-800 sm:rounded-lg">
+            <div class="w-full flex justify-between items-center mb-2">
               <h1 class="text-2xl p-3 ml-2 font-extrabold dark:text-white">Events<small class="ml-3 text-sm font-semibold text-gray-500 dark:text-gray-400" th:text="${events.size()}"></small> <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">results</span></h1>
               <button type="button" class="text-white w-1/3 mr-4 bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><a href="/events/create">Create Event</a></button>
             </div>
@@ -132,19 +134,20 @@
               <div class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
 
                 <div class="flex justify-end md:items-center w-full space-x-3 md:w-auto">
-                  <div class="flex justify-center items-center">
-                    <label class="relative col-span-1 mr-2 inline-flex items-center cursor-pointer">
-                      <input type="checkbox" value="" class="sr-only peer" checked id="toggle-checkbox">
-                      <div class="w-11 h-6 mr-2 bg-blue-600 rounded-full dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600"></div>
-                      <div class="w-11 text-center">
-                        <span id="toggle-text" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Listing</span>
-                      </div>
-                    </label>
+                  <div class="flex justify-center  items-center">
+                    <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+                      <li class="w-full toggle-btn">
+                        <a href="#" id="listing-btn" class="toggle-btn inline-block w-full border-l border-t border-b border-gray-300 p-4 text-gray-900 bg-gray-200 rounded-l-lg dark:bg-gray-700 dark:text-white" aria-current="page">Listing</a>
+                      </li>
+                      <li class="w-full toggle-btn">
+                        <a href="#" id="map-btn" class="toggle-btn inline-block w-full border border-gray-300 p-4 rounded-r-lg hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Map</a>
+                      </li>
+                    </ul>
                   </div>
 
 
 
-                  <select id="filter" class="bg-white ml-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ">
+                  <select id="filter" class="bg-white ml-3 border border-gray-300 text-gray-900 text-sm rounded-lg block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ">
                     <option selected>Filter</option>
                     <option value="local">Local</option>
                     <option value="all">All</option>
@@ -157,23 +160,26 @@
               </div>
             </div>
           </div>
-          <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 
         </div>
       </section>
     </div>
     <!--End of Filter bar-->
+
 <!--Event Feed Section-->
+
     <div class="w-full h-full">
-      <div th:include="event/event-card.html"></div>
+      <div th:include="event/event-card.html" ></div>
     </div>
 
-  </div>
+    </div>
+
+</div>
 
   <aside class="fixed top-0 right-0 justify-items-center hidden md:flex w-[15em]"
          aria-label="Sidebar">
 
-    <div class="w-full max-w-md p-5 mt-[103px] mr-3 h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full max-w-md p-5 mt-[95px] mr-3 h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div class="flex items-center justify-between mb-4">
         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Friends</h5>
         <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-400 dark:text-blue-500">
@@ -218,10 +224,8 @@
   </aside>
 
 
-</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 <script>
-  const checkbox = document.getElementById('toggle-checkbox');
-  const text = document.getElementById('toggle-text');
   const closeIcon = document.getElementById('close');
   const searchIcon = document.getElementById('search-icon');
 
@@ -257,83 +261,22 @@
   toggleSearch('search', 'search-button');
 
 
-  // const toggleSearch = (search, button) =>{
-  //   const searchBar = document.getElementById(search),
-  //     searchButton = document.getElementById(button),
-  //     close = document.getElementById('close'),
-  //           searchInput= document.getElementById('search-input');
-  //
-  //
-  //   searchButton.addEventListener('click', () => {
-  //     searchBar.classList.toggle('w-[250px]');
-  //     close.classList.toggle("opacity-1");
-  //     if (searchBar.classList.contains('w-[250px]')) {
-  //       searchInput.style.pointerEvents = "initial";
-  //       searchInput.style.opacity = "1";
-  //     } else {
-  //       searchInput.style.pointerEvents = "none";
-  //       searchInput.style.opacity = "0";
-  //     }
-  // });
-  // };
-  //
-  // toggleSearch('search', 'search-button');
+  const listingBtn = document.getElementById('listing-btn');
+  const mapBtn = document.getElementById('map-btn');
 
+  mapBtn.addEventListener('click', () => {
+    mapBtn.classList.add('bg-gray-200');
+    listingBtn.classList.remove('bg-gray-200');
+  });
 
-  // const toggleSearch = (search, button) => {
-  //   const searchBar = document.getElementById(search),
-  //           searchButton = document.getElementById(button),
-  //           close = document.getElementById('close'),
-  //           input = searchBar.querySelector('input'),
-  //           icon = searchButton.querySelector('.search__icon'),
-  //           closeIcon = searchButton.querySelector('.search__close');
-  //
-  //   searchButton.addEventListener('click', () => {
-  //     searchBar.classList.toggle('w-[250px]');
-  //     icon.classList.toggle('opacity-0');
-  //     closeIcon.classList.toggle('opacity-100');
-  //     searchButton.style.pointerEvents = "none";
-  //     searchButton.style.opacity = "0";
-  //
-  //     input.style.pointerEvents = "initial";
-  //     input.style.opacity = "1";
-  //   });
-  // };
-  //
-  // toggleSearch('search', 'search-button');
-
-
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      text.textContent = 'Listing';
-    } else {
-      text.textContent = 'Map';
-    }
+  listingBtn.addEventListener('click', () => {
+    listingBtn.classList.add('bg-gray-200');
+    mapBtn.classList.remove('bg-gray-200');
   });
 
 
 
-
-  //
-  // $(document).ready(function() {
-  //   const button = $('#color-toggle');
-  //
-  //   button.click(function() {
-  //     if (button.hasClass('bg-white')) {
-  //       button.removeClass('bg-white text-black');
-  //       button.addClass('bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:outline-none text-white');
-  //       button.text('Attending');
-  //     } else {
-  //       button.removeClass('bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none text-white');
-  //       button.addClass('bg-white text-black')
-  //       button.text('Participate');
-  //     }
-  //   });
-  // });
-
 </script>
-
-<script src="../../static/js/event-feed.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 </body>
 </html>

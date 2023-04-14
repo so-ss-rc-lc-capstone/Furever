@@ -6,20 +6,18 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 
-<div class="flex-container">
-  <div class="flex flex-col justify-content-center">
-    <h1 class="text-2xl text-gray-900 mb-6">Register Your Pet</h1>
+<div class="w-full h-full flex justify-center items-center">
+  <div class="row d-flex mt-[3em] justify-content-center">
+    <h1 class="text-3xl text-gray-900 mb-6">Edit your pet info</h1>
 
 
-    <form th:action="@{/pets/register}" th:method="POST" th:object="${pet}" class="flex-column justify-content-center">
-
-
+        <form th:action="@{/pets/register}" th:method="POST" th:object="${pet}" class="flex-column justify-content-center">
       <div class="mb-6">
-        <label for="petname" class="block text-gray-700 font-bold mb-2">Petname:</label>
+        <label for="petname" class="block mb-2 text-sm font-medium text-gray-900">Pet name:</label>
         <input th:field="*{petname}" type="text" name="petname" id="petname" placeholder="Enter name of your pet" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       </div>
       <div class="mb-6">
-        <label for="dateOfBirth" class="block text-gray-700 font-bold mb-2">Date of Birth:</label><br>
+        <label for="dateOfBirth" class="block text-sm font-medium text-gray-900">Date of Birth:</label><br>
         <input th:field="*{dateOfBirth}" type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Enter Date of Birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       </div>
       <div class="grid gap-6 mb-6 md:grid-cols-2">
@@ -38,60 +36,101 @@
         </div>
       </div>
 
-
       <div class="mt-4">
-        <label for="breed_name" class="block text-gray-700 font-bold mb-2">Breed Name:</label>
-        <input th:field="*{breed}" type="text" name="breed_name" id="breed_name" class="form-input rounded-md shadow-sm mt-1 block w-full" list="breeds">
+        <label for="breed_name" class="block text-gray-700  font-bold mb-2">Breed Name:</label>
+        <input th:field="*{breed}" type="text" name="breed_name" id="breed_name" class="form-input border-2 bg-gray-50 rounded-md mt-1 block w-full" list="breeds">
         <datalist id="breeds">
           <th:block th:each="breed : ${breeds}">
             <option th:value="${breed.id}" th:text="${breed.breed_name}"></option>
           </th:block>
         </datalist>
       </div>
-
       <div class="mb-6">
-        <label for="pet-image-input" class="block text-gray-700 font-bold mb-2">Pet Image:</label>
-        <button type="button" id="upload-pet">Upload Photo</button>
-        <input  type="text" name="image" id="pet-image-input"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <label for="pet-image-input" class="block text-gray-700 font-bold mb-2 mt-5">Pet Image:</label>
+        <div class = "flex">
+          <button type="button" class="border-l-2 border-t-2 border-b-2 p-2 rounded-l-lg " id="upload-pet">Upload</button>
+          <input type="text" name="image" id="pet-image-input"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        </div>
       </div>
+      <div class="flex justify-between ">
+        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 
-      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-
+        <h3 class="text-blue-600 flex justify-center"><a href="/profile" class="mt-2">Go Back</a></h3>
+      </div>
     </form>
+    <nav th:replace="partials/navbar :: navbar-mobile"></nav>
+
   </div>
 </div>
 
 <script th:src="@{/js/fileStack-api.js}" type="module"></script>
-
-<!--<script src="https://unpkg.com/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>-->
-<!--<script src="https://unpkg.com/stimulus@3.0.0/dist/stimulus.umd.js"></script>-->
-<!--<script>-->
-<!--  // Create a Stimulus controller for handling the breed suggestions-->
-<!--  const application = Stimulus.Application.start()-->
-<!--  application.register('breeds', class extends Stimulus.Controller {-->
-<!--    static targets = ['list']-->
-
-<!--    async suggestions() {-->
-<!--      const query = this.element.value-->
-<!--      const response = await fetch(`${this.data.get('action')}?query=${query}`)-->
-<!--      const suggestions = await response.json()-->
-<!--      this.listTargets.forEach((list) => {-->
-<!--        list.innerHTML = ''-->
-<!--        if (suggestions.length > 0) {-->
-<!--          suggestions.forEach((suggestion) => {-->
-<!--            const item = document.createElement('li')-->
-<!--            item.innerText = suggestion-->
-<!--            list.appendChild(item)-->
-<!--          })-->
-<!--          // Show the suggestions dropdown-->
-<!--          list.parentElement.classList.remove('hidden')-->
-<!--        } else {-->
-<!--          // Hide the suggestions dropdown if there are no suggestions-->
-<!--          list.parentElement.classList.add('hidden')-->
-<!--        }-->
-<!--      })-->
-<!--    }-->
-<!--  })-->
-
-
 </body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:replace="partials/header :: head"></head>-->
+
+<!--<body>-->
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+
+<!--<div class="flex justify-center items-center w-full">-->
+<!--  <div class="w-1/3 flex flex-col justify-content-center">-->
+<!--    <h1 class="text-2xl text-gray-900 mt-[5em] mb-6">Register Your Pet</h1>-->
+
+
+<!--    <form th:action="@{/pets/register}" th:method="POST" th:object="${pet}" class="flex-column justify-content-center">-->
+
+<!--      <div class="mb-6">-->
+<!--        <label for="petname" class="block text-gray-700 font-bold mb-2">Pets name:</label>-->
+<!--        <input th:field="*{petname}" type="text" name="petname" id="petname" placeholder="Enter name of your pet" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">-->
+<!--      </div>-->
+<!--      <div class="mb-6 w-1/4">-->
+<!--        <label for="dateOfBirth" class="block text-gray-700 font-bold mb-2">Date of Birth:</label><br>-->
+<!--        <input th:field="*{dateOfBirth}" type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Enter Date of Birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">-->
+<!--      </div>-->
+
+<!--      <div class="mt-4 w-1/3">-->
+<!--        <label for="breed_name" class="block text-gray-700 font-bold mb-2">Breed Name:</label>-->
+<!--        <input th:field="*{breed}" type="text" name="breed_name" id="breed_name" class="form-input bg-gray-50 border h-[35px] rounded-md shadow-sm mt-1 block w-full" list="breeds">-->
+<!--        <datalist id="breeds">-->
+<!--          <th:block  th:each="breed : ${breeds}">-->
+<!--            <option  th:value="${breed.id}" th:text="${breed.breed_name}"></option>-->
+<!--          </th:block>-->
+<!--        </datalist>-->
+<!--      </div>-->
+<!--      <label for="breed_name" class="block text-gray-700 font-bold mb-2 mt-2">Gender:</label>-->
+<!--      <div class="grid gap-6 mb-6 md:grid-cols-2">-->
+<!--        <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">-->
+<!--          <input th:field="*{gender}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" name="gender" id="male" value="M" >-->
+<!--          <label class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="male">-->
+<!--            M-->
+<!--          </label>-->
+<!--        </div>-->
+<!--        <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">-->
+<!--          <input th:field="*{gender}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" name="gender" id="female" value="F">-->
+<!--          <label class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="female">-->
+<!--            F-->
+<!--          </label>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+<!--      <div class="mb-6">-->
+<!--        <label for="pet-image-input" class="block text-gray-700 font-bold mb-2">Pet Image:</label>-->
+<!--        <button type="button" id="upload-pet">Upload Photo</button>-->
+<!--        <input  type="text" name="image" id="pet-image-input"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">-->
+<!--      </div>-->
+
+<!--      <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>-->
+
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<script th:src="@{/js/fileStack-api.js}" type="module"></script>-->
+
+
+<!--</body>-->

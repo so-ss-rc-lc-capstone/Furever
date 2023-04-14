@@ -1,46 +1,26 @@
-/*=============== GOOGLE FONTS ===============*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
-
-/*=============== VARIABLES CSS ===============*/
-:root {
-    /*========== Colors ==========*/
-    /*Color mode HSL(hue, saturation, lightness)*/
-    --first-color: hsl(222, 80%, 58%);
-    --dark-color: hsl(222, 24%, 8%);
-    --title-color: hsl(222, 8%, 8%);
-    --text-color-light: hsl(222, 8%, 65%);
-    --white-color: #fff;
-    --body-color: hsl(222, 100%, 99%);
-
-    /*========== Font and typography ==========*/
-    /*.5rem = 8px | 1rem = 16px ...*/
-    --body-font: "Poppins", sans-serif;
-    --small-font-size: .813rem;
+#nav-mobile {
+    position: fixed;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    width: 328px;
+    height: 72px;
+    box-shadow: 0 8px 32px hsla(231, 44%, 45%, .2);
+    margin: 0 auto;
+    padding: 1.5rem .5rem;
+    border-radius: .65rem;
+    overflow: hidden;
 }
 
-/* Responsive typography */
-@media screen and (min-width: 968px) {
-    :root {
-        --small-font-size: .875rem;
-    }
+.nav__list {
+    display: flex;
+    justify-content: center;
+    column-gap: 2rem;
 }
 
-/*=============== BASE ===============*/
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+.nav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-body {
-    background-color: var(--body-color);
-}
-
-/*=============== SEARCH ===============*/
-
-
-/* Search animated */
-
-
-/*=============== BREAKPOINTS ===============*/
-/* For medium devices */
