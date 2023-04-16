@@ -285,6 +285,21 @@
 
   toggleSearch('search', 'search-button');
 
+  // Map and Listing Toggle
+  const listingBtn = document.getElementById('listing-btn');
+  const mapBtn = document.getElementById('map-btn');
+
+  mapBtn.addEventListener('click', () => {
+    mapBtn.classList.add('bg-gray-200');
+    listingBtn.classList.remove('bg-gray-200');
+  });
+
+  listingBtn.addEventListener('click', () => {
+    listingBtn.classList.add('bg-gray-200');
+    mapBtn.classList.remove('bg-gray-200');
+  });
+
+
 
   // const toggleSearch = (search, button) => {
   //   const searchBar = document.getElementById(search),
@@ -309,13 +324,6 @@
   // toggleSearch('search', 'search-button');
 
 
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      text.textContent = 'Listing';
-    } else {
-      text.textContent = 'Map';
-    }
-  });
 
 
 
