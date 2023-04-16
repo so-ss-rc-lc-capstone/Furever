@@ -10,10 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.sql.SQLOutput;
@@ -62,6 +59,46 @@ public class EventController {
 //        model.addAttribute("events", events);
 //        return "event/index";
 //    }
+
+
+    // Added for Participants modal
+    @GetMapping("/events/{eventId}/participants")
+    @ResponseBody
+    public List<User> getEventAttendees(@PathVariable long eventId) {
+        Event event = eventsDao.findById(eventId).orElse(null);
+        if (event != null) {
+            List<EventParticipation> participations = event.getParticipations();
+            List<User> attendees = new ArrayList<>();
+            for (EventParticipation participation : participations) {
+                attendees.add(participation.getUser());
+            }
+            return attendees;
+        }
+        return null;
+    }
+//
+//    @GetMapping("/events/{eventId}/participants")
+//    @ResponseBody
+//    public ResponseEntity<Map<String, Object>> getEventAttendees(@PathVariable long eventId) {
+//        Event event = eventsDao.findById(eventId).orElse(null);
+//        if (event != null) {
+//            List<EventParticipation> participations = event.getParticipations();
+//            List<User> attendees = new ArrayList<>();
+//            for (EventParticipation participation : participations) {
+//                attendees.add(participation.getUser());
+//            }
+//            Map<String, Object> response = new HashMap<>();
+//            response.put("event", event);
+//            response.put("attendees", attendees);
+//            return ResponseEntity.ok().body(response);
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
+
+
+
+
+
 
     //New Code for the formatted date
     @GetMapping("/events")
