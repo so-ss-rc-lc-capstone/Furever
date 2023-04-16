@@ -262,6 +262,8 @@
 
 </div>
 <script>
+
+  //Search Bar Toggle
   const checkbox = document.getElementById('toggle-checkbox');
   const text = document.getElementById('toggle-text');
   const toggleSearch = (search, button) =>{
@@ -271,17 +273,21 @@
             searchInput= document.getElementById('search-input');
 
     searchButton.addEventListener('click', () => {
-      searchBar.classList.toggle('w-[250px]');
+      searchBar.classList.toggle('w-[350px]');
       close.classList.toggle("opacity-1");
-      if (searchBar.classList.contains('w-[250px]')) {
+      if (searchBar.classList.contains('w-[350px]')) {
         searchInput.style.pointerEvents = "initial";
         searchInput.style.opacity = "1";
+        searchInput.style.transition ="1.4s";
       } else {
         searchInput.style.pointerEvents = "none";
         searchInput.style.opacity = "0";
+        searchInput.style.transition ="0.4s";
       }
     });
   };
+
+  toggleSearch('search', 'search-button');
 
   toggleSearch('search', 'search-button');
 
