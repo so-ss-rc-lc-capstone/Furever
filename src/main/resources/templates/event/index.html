@@ -58,6 +58,8 @@
 <body class="flex justify-center bg-gray-100">
 
 <nav th:replace="partials/navbar :: navbar-search"></nav>
+<nav th:replace="partials/navbar :: navbar-mobile"></nav>
+<nav th:include="event/participants-modal"></nav>
 
 
 <div class="flex items-center justify-center w-[38em]">
@@ -156,7 +158,6 @@
               </div>
             </div>
           </div>
-          <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 
         </div>
       </section>
