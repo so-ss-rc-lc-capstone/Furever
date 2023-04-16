@@ -19,6 +19,13 @@
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
 </head>
 <style>
+
+  @media (max-width: 1095px) {
+    aside {
+      display: none !important;
+    }
+  }
+
   #nav-mobile {
     position: fixed;
     bottom: 2rem;
@@ -277,7 +284,6 @@
 
   toggleSearch('search', 'search-button');
 
-  toggleSearch('search', 'search-button');
 
   // Map and Listing Toggle
   const listingBtn = document.getElementById('listing-btn');
@@ -292,33 +298,6 @@
     listingBtn.classList.add('bg-gray-200');
     mapBtn.classList.remove('bg-gray-200');
   });
-
-
-
-  // const toggleSearch = (search, button) => {
-  //   const searchBar = document.getElementById(search),
-  //           searchButton = document.getElementById(button),
-  //           close = document.getElementById('close'),
-  //           input = searchBar.querySelector('input'),
-  //           icon = searchButton.querySelector('.search__icon'),
-  //           closeIcon = searchButton.querySelector('.search__close');
-  //
-  //   searchButton.addEventListener('click', () => {
-  //     searchBar.classList.toggle('w-[250px]');
-  //     icon.classList.toggle('opacity-0');
-  //     closeIcon.classList.toggle('opacity-100');
-  //     searchButton.style.pointerEvents = "none";
-  //     searchButton.style.opacity = "0";
-  //
-  //     input.style.pointerEvents = "initial";
-  //     input.style.opacity = "1";
-  //   });
-  // };
-  //
-  // toggleSearch('search', 'search-button');
-
-
-
 
 
 
