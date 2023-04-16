@@ -49,6 +49,7 @@ public class EventController {
         eventsDao.save(event);
         return "redirect:/events";
     }
+
 //Original code for /events
 //    @GetMapping("/events")
 //    public String allEvents(Model model) {
