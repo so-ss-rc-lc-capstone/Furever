@@ -1,3 +1,5 @@
+// import {keys} from "./keys.js";
+
 fetch('http://localhost:8080/api/allevents', {
     method: "GET",
     headers: {
