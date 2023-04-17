@@ -73,8 +73,6 @@ public class EventController {
 
         List<User> followedUsers = userData.getFollowedUsers();
 
-
-
         List<User> users = usersDao.findAll();
         List<Event> events = eventsDao.findAll();
 

@@ -51,6 +51,8 @@ public class UserController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
 
+        List<User> followedUsers = userData.getFollowedUsers();
+        model.addAttribute("followedUsers",followedUsers);
 
         List<User> users = userDao.findAll();
         List<Pet> pets = petsDao.findAll();
@@ -229,11 +231,22 @@ public class UserController {
 
     @GetMapping("/user/{id}/show")
     @ResponseBody
-    public User getUserById(@PathVariable Long id) {
+    public User getUserById(@PathVariable Long id, Model model) {
+
+
+
+        User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(loggedUser.getId());
+        List<User> followedUsers = userData.getFollowedUsers();
+
+        model.addAttribute("followedUsers",followedUsers);
+
 
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
+
+
 
         if(currentPrincipalName!=null && !currentPrincipalName.equalsIgnoreCase( "anonymousUser")  ){
             return userDao.findById(id).get();
@@ -250,6 +263,8 @@ public class UserController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
 
+        List<User> followedUsers = userData.getFollowedUsers();
+        model.addAttribute("followedUsers",followedUsers);
 
         List<User> users = userDao.findAll();
         List<Pet> pets = petsDao.findAll();
