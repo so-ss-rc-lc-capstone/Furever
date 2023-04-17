@@ -58,9 +58,10 @@ function allEvents() {
 }
 // ==========> Events within 50 miles radius <=================
 
-let withinFiftymilesIds = [];
 
-async function withinFiftyMiles() {
+let withinFiftymilesIds = [];
+function withinFiftyMiles() {
+
 
     fetch('http://localhost:8080/api/allevents', {
         method: "GET",
@@ -107,7 +108,7 @@ async function withinFiftyMiles() {
 
                             let eventPopup = new mapboxgl.Popup()
                                 .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
-                            withinFiftymilesLocation.push(event.id);
+                            withinFiftymilesIds.push(event.id);
                             marker.setPopup(eventPopup);
                         }
                     });
@@ -140,10 +141,9 @@ async function withinFiftyMiles() {
 
         })
         .catch(error => console.error(error));
-}
-
-withinFiftyMiles();
-// for(let i = 0; i < withinFiftymilesLocation.length; i++) {
-//     console.log("Test" + withinFiftymilesLocation[i]);
-// }
     console.log(withinFiftymilesIds);
+}
+withinFiftyMiles();
+
+
+
