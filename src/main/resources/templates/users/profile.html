@@ -54,23 +54,6 @@
                         </form>
                         </div>
 
-                        <div class="flex w-full justify-evenly md:justify-start"
-                             th:if="${user.id} == ${#authentication.principal.id}">
-                            <form class="mb-4 mt-3 md:mr-[5em]" th:action="@{/profile/edit}" method="get">
-                                <input type="hidden" name="edit_id"/>
-                                <button type="submit"
-                                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Follow
-                                </button>
-                            </form>
-                            <form class="mb-4 mt-3" th:action="@{/profile/edit}" method="get">
-                                <input type="hidden" name="edit_id"/>
-                                <button type="submit"
-                                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Message
-                                </button>
-                            </form>
-                        </div>
 
                         <h2 class="text-[15px] mb-3 mt-1 text-center md:text-end"><span class="text-black"
                                                                                         th:text="${user.address}"></span>
