@@ -3,6 +3,7 @@ package com.codeup.codeupspringblog.models;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.Breed;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     public User(User copy) {
         id = copy.id; // copy users from database

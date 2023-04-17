@@ -118,6 +118,7 @@ public class SecurityConfiguration {
                         "/events/{id}/find",
                         "events/{id}/delete",
                         "events/{id}/participate",
+                        "/events/{eventId}/participants",
 
                         //added for search functionality
                         "/api/**",

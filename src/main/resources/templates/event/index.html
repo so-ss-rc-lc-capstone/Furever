@@ -19,6 +19,13 @@
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
 </head>
 <style>
+
+  @media (max-width: 1095px) {
+    aside {
+      display: none !important;
+    }
+  }
+
   #nav-mobile {
     position: fixed;
     bottom: 2rem;
@@ -45,29 +52,17 @@
     align-items: center;
   }
 
-  .nav__link i {
-    font-size: 1.5rem;
-    color: var(--title-color);
-    z-index: 20;
-    transition: .3s;
-  }
-
-
-
-  /* Active link */
-  .active-link i {
-    color: var(--body-color);
-  }
-
 
 </style>
 
 <body class="flex justify-center bg-gray-100">
 
 <nav th:replace="partials/navbar :: navbar-search"></nav>
+<nav th:replace="partials/navbar :: navbar-mobile"></nav>
+<nav th:include="event/participants-modal"></nav>
 
 
-<div class="flex items-center justify-center w-[38em]">
+<div class="flex items-center justify-center w-full  lg:w-[38em] xl:w-[51em]">
 
   <aside id="logo-sidebar"
          class="fixed top-0 left-0  border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white"
@@ -145,13 +140,14 @@
 
                 <div class="flex justify-end md:items-center w-full space-x-3 md:w-auto">
                   <div class="flex justify-center items-center">
-                    <label class="relative col-span-1 mr-2 inline-flex items-center cursor-pointer">
-                      <input type="checkbox" value="" class="sr-only peer" checked id="toggle-checkbox">
-                      <div class="w-11 h-6 mr-2 bg-blue-600 rounded-full dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600"></div>
-                      <div class="w-11 text-center">
-                        <span id="toggle-text" class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Listing</span>
-                      </div>
-                    </label>
+                    <ul class=" text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+                      <li class="w-full toggle-btn">
+                        <a href="#" id="listing-btn" class="toggle-btn inline-block w-full border-l border-t border-b border-gray-300 p-2.5 text-gray-900 bg-gray-200 rounded-l-lg dark:bg-gray-700 dark:text-white" aria-current="page">Listing</a>
+                      </li>
+                      <li class="w-full toggle-btn">
+                        <a href="#" id="map-btn" class="toggle-btn inline-block w-full border border-gray-300 p-2.5 rounded-r-lg hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Map</a>
+                      </li>
+                    </ul>
                   </div>
 
 
@@ -169,12 +165,12 @@
               </div>
             </div>
           </div>
-          <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 
         </div>
       </section>
     </div>
     <!--End of Filter bar-->
+
     <!--Event Feed Section-->
     <div class="w-full h-full">
       <div th:include="event/event-card.html"></div>
@@ -269,6 +265,8 @@
 
 </div>
 <script>
+
+  //Search Bar Toggle
   const checkbox = document.getElementById('toggle-checkbox');
   const text = document.getElementById('toggle-text');
   const toggleSearch = (search, button) =>{
@@ -278,14 +276,16 @@
             searchInput= document.getElementById('search-input');
 
     searchButton.addEventListener('click', () => {
-      searchBar.classList.toggle('w-[250px]');
+      searchBar.classList.toggle('w-[350px]');
       close.classList.toggle("opacity-1");
-      if (searchBar.classList.contains('w-[250px]')) {
+      if (searchBar.classList.contains('w-[350px]')) {
         searchInput.style.pointerEvents = "initial";
         searchInput.style.opacity = "1";
+        searchInput.style.transition ="1.4s";
       } else {
         searchInput.style.pointerEvents = "none";
         searchInput.style.opacity = "0";
+        searchInput.style.transition ="0.4s";
       }
     });
   };
@@ -293,36 +293,100 @@
   toggleSearch('search', 'search-button');
 
 
-  // const toggleSearch = (search, button) => {
-  //   const searchBar = document.getElementById(search),
-  //           searchButton = document.getElementById(button),
-  //           close = document.getElementById('close'),
-  //           input = searchBar.querySelector('input'),
-  //           icon = searchButton.querySelector('.search__icon'),
-  //           closeIcon = searchButton.querySelector('.search__close');
-  //
-  //   searchButton.addEventListener('click', () => {
-  //     searchBar.classList.toggle('w-[250px]');
-  //     icon.classList.toggle('opacity-0');
-  //     closeIcon.classList.toggle('opacity-100');
-  //     searchButton.style.pointerEvents = "none";
-  //     searchButton.style.opacity = "0";
-  //
-  //     input.style.pointerEvents = "initial";
-  //     input.style.opacity = "1";
-  //   });
-  // };
-  //
-  // toggleSearch('search', 'search-button');
+  // Map and Listing Toggle
+  const listingBtn = document.getElementById('listing-btn');
+  const mapBtn = document.getElementById('map-btn');
 
-
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      text.textContent = 'Listing';
-    } else {
-      text.textContent = 'Map';
-    }
+  mapBtn.addEventListener('click', () => {
+    mapBtn.classList.add('bg-gray-200');
+    listingBtn.classList.remove('bg-gray-200');
   });
+
+  listingBtn.addEventListener('click', () => {
+    listingBtn.classList.add('bg-gray-200');
+    mapBtn.classList.remove('bg-gray-200');
+  });
+
+  //Modal div
+  let participantsList = document.getElementById("view-participants-list");
+  // Get all event buttons
+  let eventButtons = document.querySelectorAll(".view-participants-btn");
+
+  // Add a click event listener to each event button that fetches the participants for the event
+  eventButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      participantsList.innerHTML = "";
+      console.log("clicked")
+      // Get the event ID from the "data-event-id" attribute of the button
+      let eventId = button.getAttribute("data-event-id");
+      console.log(eventId);
+
+      // Fetch participants for the selected event
+      fetch('http://localhost:8080/events/' + eventId + '/participants', {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+              .then(res => {
+                if (!res.ok) {
+                  throw new Error("Network response was not ok");
+                }
+                return res.json();
+              })
+              .then(data => {
+                console.log(data);
+                let viewParticipants = JSON.stringify(data);
+                getAllParticipants(viewParticipants);
+              })
+              .catch(error => console.error(error));
+    });
+  });
+
+  function getAllParticipants(data){
+    let viewParticipants = JSON.parse(data);
+    let html = '';
+    for(let i = 0; i < viewParticipants.length; i++){
+      html += `<div class="flex flex-col">
+
+            <div class="flex border-b border-gray-200 hover:cursor-pointer">
+            <a class="flex pb-5">
+                <img src="${viewParticipants[i].profilePhoto}" alt="profile picture" class="w-[50px] h-[50px] rounded-full mr-4">
+                <div class="flex flex-col">
+                <p>${viewParticipants[i].first_name} ${viewParticipants[i].last_name}</p>
+                <p>@${viewParticipants[i].username}</p>
+                </div>
+            </a>
+            </div>
+
+
+
+             </div>`;
+    }
+    participantsList.innerHTML = html;
+  }
+
+
+
+
+  // let viewParticipantsBtn = document.getElementById("view-participants-btn");
+  // let viewParticipantsList = document.getElementById("view-participants-list");
+  //
+  // viewParticipantsBtn.addEventListener("click", function() {
+  //   let eventId = viewParticipantsBtn.getAttribute("data-event-id");
+  //
+  //   fetch('/events/' + eventId + '/participants')
+  //           .then(response => response.json())
+  //           .then(data => {
+  //             let attendees = "";
+  //             data.forEach(attendee => {
+  //               attendees += "<li>" + attendee.name + "</li>";
+  //             });
+  //             viewParticipantsList.innerHTML = attendees;
+  //           })
+  //           .catch(error => console.error(error));
+  // });
+  //
 
 
 
