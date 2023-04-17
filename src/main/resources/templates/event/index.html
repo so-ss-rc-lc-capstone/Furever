@@ -73,8 +73,15 @@
         <li>
           <div class="w-full max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
             <div class="flex flex-col items-center justify-center mt-1">
-              <img class="w-24 h-24 mb-3 rounded-full shadow-lg" th:src="${user.profilePhoto}"
+              <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                   th:if="${not #strings.isEmpty(user.profilePhoto)}"
+                   th:src="${user.profilePhoto}"
                    alt="Profile image"/>
+              <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                   th:if="${#strings.isEmpty(user.profilePhoto)}"
+                   th:src="@{/img/profile.jpeg}"
+                   alt="Default profile image"/>
+
               <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">Welcome,
                 <span th:text="${#authentication.principal.username}"/>!</h5>
               <span class="text-sm text-gray-500 dark:text-gray-400"></span>
@@ -404,6 +411,7 @@
 
 <!--keys-->
 <script src="/js/keys.js "></script>
+<!---->
 <!--utils doc-->
 <script src="/js/mapbox-geocoder-utils.js"></script>
 <!--Mapbox-->

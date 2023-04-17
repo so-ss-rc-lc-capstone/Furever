@@ -53,13 +53,26 @@ public class SecurityConfiguration {
 
                 .requestMatchers(
                         "/",
-                        "/posts", "/posts/{id}", "/posts/index","/matrix", "/posts/{id}/like",
+                        "/posts",
+                        "/posts/{id}",
+                        "/posts/index",
+                        "/posts/{id}/like",
 
-                        "/login", "/logout", "/sign-up", "/register",  "/js/**", "/css/**",
+                        "/matrix",
 
+                        "/login",
+                        "/logout",
+                        "/sign-up",
+                        "/register",
                         "/about",
 
-                        "/events", "/events/create", "/events/{id}", "/events/{id}/edit", "/events/{id}/find", "events/{id}/delete", "events/{id}/participate"
+                        "/js/**",
+                        "/css/**",
+                        "/img/**",
+
+                        "/events",
+                        "/events/{id}",
+                        "/events/{id}/find"
                         ) // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */
@@ -77,20 +90,17 @@ public class SecurityConfiguration {
                         "/pets/{id}/edit",
                         "/pets/register",
 
-
                         "/profile/edit",
                         "/profile",
                         "/register",
                         "/user/{id}",
                         "/user/card",
-
                         "/users/{id}/follow",
                         "/followed",
                         "/users/{id}/unfollow",
 
                         "/friends",
                         "/user/{id}/show",
-
 
                         "/posts/{id}/edit",
                         "/posts/create", // only authenticated users can create posts
@@ -99,8 +109,6 @@ public class SecurityConfiguration {
                         "/posts/{n}/delete",
                         "/posts/delete/{n}",
                         "/posts/{id}/like",
-
-
 
                         "/events",
                         "/events/{id}",
@@ -115,7 +123,10 @@ public class SecurityConfiguration {
                         //added for search functionality
                         "/api/**",
                         "/users",
-                        "/test"
+                        "/test",
+                        "/js/**",
+                        "/img/**",
+                        "/css/**"
                 )
                 .authenticated();
         return http.build();
