@@ -109,9 +109,37 @@ public class EventController {
         model.addAttribute("user", userData);
 
 
+        List<User> followedUsers = userData.getFollowedUsers();
+
+
 
         List<User> users = usersDao.findAll();
         List<Event> events = eventsDao.findAll();
+
+        for(int i=0; i<users.size(); i++){
+            System.out.println("[User]:"+ users.get(i).getId());
+            if(followedUsers.contains(users.get(i))){
+                System.out.println("[[already following!!!]]");
+                model.addAttribute("followedUsers",followedUsers);
+
+            }else{
+                System.out.println("[[Not following!!!]]");
+
+            }
+        }
+
+
+//        for(int i=0; i<followedUsers.size(); i++){
+//            System.out.println("[Followed User]:"+ followedUsers.get(i).getId());
+////            if(followedUsers.get(i).getId()){
+////                System.out.println("[[already following!!!]]");
+////            }else{
+////                System.out.println("[[Not following!!!]]");
+////
+////            }
+//        }
+
+//        System.out.println("Followed Users "+followedUsers);
 
         model.addAttribute("users",users);
         model.addAttribute("events", events);

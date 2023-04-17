@@ -51,6 +51,8 @@ public class UserController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
 
+        List<User> followedUsers = userData.getFollowedUsers();
+        model.addAttribute("followedUsers",followedUsers);
 
         List<User> users = userDao.findAll();
         List<Pet> pets = petsDao.findAll();
@@ -165,11 +167,12 @@ public class UserController {
 
     //Following users and friends below,
     // When button added, change it to post method
-    @GetMapping("/users/{id}/follow")
-    @ResponseBody
-    public User followUser(@PathVariable Long id){
+    @PostMapping("/users/{id}/follow")
+//    @ResponseBody
+    public String followUser(@PathVariable Long id, Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUserData = userDao.findById(currentUser.getId());
+        model.addAttribute("currentUserData", currentUserData);
 
         User user = userDao.findById(id).get();
 
@@ -181,21 +184,25 @@ public class UserController {
             currentUserData.getFollowedUsers().remove(user);
             user.getFollowingUsers().remove(currentUserData);
         }
-
        userDao.save(currentUserData);
-       return userDao.findById(id).get();
+
+//        return userDao.findById(id).get();
+        return "redirect:/events";
     }
 
 
-    @GetMapping("/followed")
+    @GetMapping("/following")
     public String followedUsers(Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User userData = userDao.findById(currentUser.getId());
 
-        List<User> followedUsers = userData.getFollowedUsers();
+        User currentUserData = userDao.findById(currentUser.getId());
+
+        List<User> followedUsers = currentUserData.getFollowedUsers();
+
         System.out.println(followedUsers);
+        model.addAttribute("currentUserData", currentUserData);
         model.addAttribute("followedUsers", followedUsers);
-        return "friends/followed";
+        return "event/index";
     }
 
 
@@ -217,11 +224,22 @@ public class UserController {
 
     @GetMapping("/user/{id}/show")
     @ResponseBody
-    public User getUserById(@PathVariable Long id) {
+    public User getUserById(@PathVariable Long id, Model model) {
+
+
+
+        User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(loggedUser.getId());
+        List<User> followedUsers = userData.getFollowedUsers();
+
+        model.addAttribute("followedUsers",followedUsers);
+
 
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
+
+
 
         if(currentPrincipalName!=null && !currentPrincipalName.equalsIgnoreCase( "anonymousUser")  ){
             return userDao.findById(id).get();
@@ -238,6 +256,8 @@ public class UserController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
 
+        List<User> followedUsers = userData.getFollowedUsers();
+        model.addAttribute("followedUsers",followedUsers);
 
         List<User> users = userDao.findAll();
         List<Pet> pets = petsDao.findAll();
