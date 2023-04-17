@@ -3,31 +3,46 @@
 
 
 
-//Search Bar Toggle
+// Search Bar Toggle
 const checkbox = document.getElementById('toggle-checkbox');
 const text = document.getElementById('toggle-text');
-const toggleSearch = (search, button) =>{
-    const searchBar = document.getElementById(search),
-        searchButton = document.getElementById(button),
-        close = document.getElementById('close'),
-        searchInput= document.getElementById('search-input');
+
+const toggleSearch = (search, button) => {
+    const searchBar = document.getElementById(search);
+    const searchButton = document.getElementById(button);
+    const close = document.getElementById('close');
+    const searchInput = document.getElementById('search-input');
 
     searchButton.addEventListener('click', () => {
         searchBar.classList.toggle('w-[350px]');
-        close.classList.toggle("opacity-1");
+        close.classList.toggle('opacity-1');
         if (searchBar.classList.contains('w-[350px]')) {
-            searchInput.style.pointerEvents = "initial";
-            searchInput.style.opacity = "1";
-            searchInput.style.transition ="1.4s";
+            searchInput.style.pointerEvents = 'initial';
+            searchInput.style.opacity = '1';
+            searchInput.style.transition = '1.4s';
         } else {
-            searchInput.style.pointerEvents = "none";
-            searchInput.style.opacity = "0";
-            searchInput.style.transition ="0.4s";
+            searchInput.style.pointerEvents = 'none';
+            searchInput.style.opacity = '0';
+            searchInput.style.transition = '0.4s';
         }
+    });
+
+    searchInput.addEventListener('keyup', (e) => {
+        const searchTerm = e.target.value;
+        fetch(`http://localhost:8080/api/alluser?search=${searchTerm}`)
+            .then((response) => response.json())
+            .then((data) => {
+                // Do something with the data
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     });
 };
 
 toggleSearch('search', 'search-button');
+
 
 
 // Map and Listing Toggle
