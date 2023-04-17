@@ -11,6 +11,7 @@ import com.codeup.codeupspringblog.repositories.UserRepository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -169,7 +170,11 @@ public class UserController {
     // When button added, change it to post method
     @PostMapping("/users/{id}/follow")
 //    @ResponseBody
-    public String followUser(@PathVariable Long id, Model model, @RequestParam){
+    public String followUser(@PathVariable Long id, Model model, HttpServletRequest request ){
+
+
+
+
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUserData = userDao.findById(currentUser.getId());
         model.addAttribute("currentUserData", currentUserData);
@@ -184,11 +189,14 @@ public class UserController {
             currentUserData.getFollowedUsers().remove(user);
             user.getFollowingUsers().remove(currentUserData);
         }
-       userDao.save(currentUserData);
+        userDao.save(currentUserData);
 
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
 //        return userDao.findById(id).get();
-        return "redirect:/events";
+//        return "redirect:/events";
     }
+
 
 
     @GetMapping("/following")
