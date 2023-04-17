@@ -27,7 +27,18 @@
             <div class="w-2/5 p-4 border-l-2">
 
                 <div class="flex flex-row">
-                    <img class="w-[70px] h-[70px] rounded-full mr-3" th:src="${event.user.profilePhoto}">
+
+                    <img class="w-[70px] h-[70px] rounded-full mr-3"
+                         th:if="${not #strings.isEmpty(event.user.profilePhoto)}"
+                         th:src="${event.user.profilePhoto}"
+                         alt="Profile image"/>
+
+                    <img class="w-[70px] h-[70px] rounded-full mr-3"
+                         th:else
+                         th:src="@{/img/profile.jpeg}"
+                         alt="Default profile image"/>
+
+
                     <div class="flex ml-2 flex-col">
                         <h3 class="text-[15px] text-gray-400"> Event Hosted by</h3>
                         <h3><span class="font-bold" th:text="${event.user.first_name}"></span> <span class="font-bold" th:text="${event.user.last_name}"></span></h3>
