@@ -169,7 +169,7 @@ public class UserController {
     // When button added, change it to post method
     @PostMapping("/users/{id}/follow")
 //    @ResponseBody
-    public String followUser(@PathVariable Long id, Model model){
+    public String followUser(@PathVariable Long id, Model model, @RequestParam){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUserData = userDao.findById(currentUser.getId());
         model.addAttribute("currentUserData", currentUserData);
