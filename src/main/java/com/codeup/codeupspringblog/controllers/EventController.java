@@ -111,7 +111,7 @@ public class EventController {
 
         List<User> followedUsers = userData.getFollowedUsers();
 
-        List<User> usersNotFollowing = usersDao.findAll();
+        List<User> usersNotFollowing = new ArrayList<>();
 
 
         List<User> users = usersDao.findAll();
@@ -125,10 +125,12 @@ public class EventController {
                 System.out.println("[[already following!!!]]");
             }else{
                 System.out.println("[[Not following!!!]]");
-                model.addAttribute("usersNotFollowing", usersNotFollowing);
-
+                usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
             }
         }
+        model.addAttribute("usersNotFollowing", usersNotFollowing);
+
+
 
 
 //        for(int i=0; i<followedUsers.size(); i++){
