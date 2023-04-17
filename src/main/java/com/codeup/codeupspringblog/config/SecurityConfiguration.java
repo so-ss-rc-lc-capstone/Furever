@@ -91,6 +91,7 @@ public class SecurityConfiguration {
                         "/pets/register",
 
                         "/profile/edit",
+                        "/profile/delete",
                         "/profile",
                         "/register",
                         "/user/{id}",

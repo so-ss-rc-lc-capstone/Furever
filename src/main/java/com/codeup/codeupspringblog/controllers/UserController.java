@@ -140,6 +140,35 @@ public class UserController {
 
     }
 
+    @GetMapping("/profile/delete")
+    public String showDeletePage(Model model){
+
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User userData = userDao.findById(currentUser.getId());
+
+        if(currentUser.getId() == userData.getId()){
+            model.addAttribute("user",userData);
+            return "users/user-delete";
+        }else{
+            return "users/login";
+        }
+
+    }
+
+    @PostMapping("/profile/delete")
+    public String deleteUser(){
+
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        User userData = userDao.findById(currentUser.getId());
+
+        if(currentUser.getId() == userData.getId()){
+            userDao.deleteById(currentUser.getId());
+        }
+        return "users/login";
+    }
+
 
     @GetMapping("/user/card")
     public String getPetIndexPage(Model model){
@@ -171,8 +200,6 @@ public class UserController {
     @PostMapping("/users/{id}/follow")
 //    @ResponseBody
     public String followUser(@PathVariable Long id, Model model, HttpServletRequest request ){
-
-
 
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
