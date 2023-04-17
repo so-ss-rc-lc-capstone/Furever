@@ -96,7 +96,7 @@ public class SecurityConfiguration {
                         "/user/{id}",
                         "/user/card",
                         "/users/{id}/follow",
-                        "/followed",
+                        "/following",
                         "/users/{id}/unfollow",
 
                         "/friends",
@@ -116,9 +116,12 @@ public class SecurityConfiguration {
                         "/events/{id}/edit",
                         "/events/{id}/edit",
                         "/events/{id}/find",
+
                         "events/{id}/delete",
                         "events/{id}/delete-profile-event",
                         "events/{id}/participate",
+                        "/events/{id}/delete",
+                        "/events/{id}/participate",
                         "/events/{eventId}/participants",
 
                         //added for search functionality
