@@ -35,7 +35,16 @@
             </div>
           </div>
           <a th:href="@{|/pets/${pet.id}|}" class="flex flex-col items-center pb-10">
-            <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg" th:src="${pet.image}" alt="Pet image"/>
+
+            <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                 th:if="${not #strings.isEmpty(pet.image)}"
+                 th:src="${pet.image}"
+                 alt="Pet image"/>
+            <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                 th:unless="${not #strings.isEmpty(pet.image)}"
+                 th:src="@{/img/pet-profile.jpg}"
+                 alt="Default pet image"/>
+
             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><span th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"></span></h5>
             <span class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${pet.breed.breed_name}"></span></span>
             <span class="text-sm text-gray-500 dark:text-gray-400">Own by: <span th:text="${pet.user.first_name}"></span></span>
@@ -57,7 +66,6 @@
     </div>
   </div>
 </div>
-  <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 
 
 </div>

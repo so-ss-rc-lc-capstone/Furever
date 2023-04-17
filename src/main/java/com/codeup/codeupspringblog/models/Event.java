@@ -2,11 +2,13 @@ package com.codeup.codeupspringblog.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -19,16 +21,16 @@ public class Event {
     private String title;
     @Column(nullable = false, length = 50)
     private String location_name;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     private LocalDateTime event_DateAndTime;
     @Column(nullable = false)
     private String location_address;
+
     private LocalDateTime created_at;
     private String eventPhoto;
-
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -91,6 +93,7 @@ public class Event {
         this.location_address = location_address;
     }
 
+
     public LocalDateTime getCreated_at() {
         return created_at;
     }
@@ -134,6 +137,14 @@ public class Event {
                 ", location_address='" + location_address + '\'' +
                 ", created_at=" + created_at +
                 '}';
+    }
+
+
+    // Added for participants modal
+    public List<User> getAttendees() {
+        return participations.stream()
+                .map(EventParticipation::getUser)
+                .collect(Collectors.toList());
     }
 
     public void addParticipation(User user) {

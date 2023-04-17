@@ -131,17 +131,11 @@ public class UserController {
         userData.setPhone_number(user.getPhone_number());
         userData.setBio(user.getBio());
         userData.setAddress(user.getAddress());
-        userData.setZip_code(user.getZip_code());
         userData.setGender(user.getGender());
         userData.setProfilePhoto(user.getProfilePhoto());
         userDao.save(userData);
-
-
-
-//        System.out.println(user.getId());
-//        System.out.println(post.getUser().getId());
         model.addAttribute("user", userData);
-        return "users/profile";
+        return "redirect:/profile";
 
     }
 

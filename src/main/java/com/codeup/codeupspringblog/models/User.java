@@ -3,6 +3,7 @@ package com.codeup.codeupspringblog.models;
 import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.Breed;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
     public User(User copy) {
         id = copy.id; // copy users from database
@@ -43,11 +45,8 @@ public class User {
 
     @Column(length = 255)
     private String address;
-    @Column(length = 5)
-    private int zip_code;
 
     //Profile picture
-
     private String profilePhoto;
 
     @Column(columnDefinition = "LONGTEXT")
@@ -175,13 +174,6 @@ public class User {
         this.address = address;
     }
 
-    public int getZip_code() {
-        return zip_code;
-    }
-
-    public void setZip_code(int zip_code) {
-        this.zip_code = zip_code;
-    }
 
     public List<Event> getEvents() {
         return events;
@@ -200,24 +192,7 @@ public class User {
         this.password = password;
     }
 
-
-//    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, int zip_code, String profilePhoto, String bio, List<Post> posts, List<Event> events) {
-//        this.username = username;
-//        this.email = email;
-//        this.password = password;
-//        this.first_name = first_name;
-//        this.last_name = last_name;
-//        this.phone_number = phone_number;
-//        this.gender = gender;
-//        this.address = address;
-//        this.zip_code = zip_code;
-//        this.profilePhoto = profilePhoto;
-//        this.bio = bio;
-//        this.posts = posts;
-//        this.events = events;
-//    }
-
-    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, int zip_code, String profilePhoto, String bio, List<Post> posts, List<Event> events, List<User> followedUsers, List<User> followingUsers) {
+    public User(String username, String email, String password, String first_name, String last_name, String phone_number, String gender, String address, String profilePhoto, String bio, List<Post> posts, List<Event> events, List<User> followedUsers, List<User> followingUsers) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -226,7 +201,6 @@ public class User {
         this.phone_number = phone_number;
         this.gender = gender;
         this.address = address;
-        this.zip_code = zip_code;
         this.profilePhoto = profilePhoto;
         this.bio = bio;
         this.posts = posts;
@@ -269,7 +243,6 @@ public class User {
                 ", phone_number='" + phone_number + '\'' +
                 ", gender='" + gender + '\'' +
                 ", address='" + address + '\'' +
-                ", zip_code=" + zip_code +
                 ", profilePhoto='" + profilePhoto + '\'' +
                 ", bio='" + bio + '\'' +
                 '}';

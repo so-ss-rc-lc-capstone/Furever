@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -31,10 +32,11 @@ public class SecurityConfiguration {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-//                .csrf().disable()
 
                 /* Login configuration */
                 .formLogin()
@@ -51,13 +53,26 @@ public class SecurityConfiguration {
 
                 .requestMatchers(
                         "/",
-                        "/posts", "/posts/{id}", "/posts/index","/matrix", "/posts/{id}/like",
+                        "/posts",
+                        "/posts/{id}",
+                        "/posts/index",
+                        "/posts/{id}/like",
 
-                        "/login", "/logout", "/sign-up", "/register",
+                        "/matrix",
 
+                        "/login",
+                        "/logout",
+                        "/sign-up",
+                        "/register",
                         "/about",
 
-                        "/events", "/events/create", "/events/{id}", "/events/{id}/edit", "/events/{id}/find", "events/{id}/delete", "events/{id}/participate"
+                        "/js/**",
+                        "/css/**",
+                        "/img/**",
+
+                        "/events",
+                        "/events/{id}",
+                        "/events/{id}/find"
                         ) // anyone can see home, the posts pages, and sign up
                 .permitAll()
                 /* Pages that require authentication */
@@ -75,20 +90,17 @@ public class SecurityConfiguration {
                         "/pets/{id}/edit",
                         "/pets/register",
 
-
                         "/profile/edit",
                         "/profile",
                         "/register",
                         "/user/{id}",
                         "/user/card",
-
                         "/users/{id}/follow",
                         "/following",
                         "/users/{id}/unfollow",
 
                         "/friends",
                         "/user/{id}/show",
-
 
                         "/posts/{id}/edit",
                         "/posts/create", // only authenticated users can create posts
@@ -98,8 +110,6 @@ public class SecurityConfiguration {
                         "/posts/delete/{n}",
                         "/posts/{id}/like",
 
-
-
                         "/events",
                         "/events/{id}",
                         "/events/create",
@@ -108,12 +118,15 @@ public class SecurityConfiguration {
                         "/events/{id}/find",
                         "events/{id}/delete",
                         "events/{id}/participate",
+                        "/events/{eventId}/participants",
 
                         //added for search functionality
                         "/api/**",
                         "/users",
                         "/test",
-                        "/js/**"
+                        "/js/**",
+                        "/img/**",
+                        "/css/**"
                 )
                 .authenticated();
         return http.build();
