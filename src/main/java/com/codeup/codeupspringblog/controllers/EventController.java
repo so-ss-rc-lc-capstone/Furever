@@ -6,6 +6,7 @@ import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.EventRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
+import jakarta.mail.Address;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,7 +89,6 @@ public class EventController {
 
 
         List<User> followedUsers = userData.getFollowedUsers();
-
         List<User> usersNotFollowing = new ArrayList<>();
 
 
@@ -109,8 +109,6 @@ public class EventController {
         model.addAttribute("usersNotFollowing", usersNotFollowing);
 
 
-
-
 //        for(int i=0; i<followedUsers.size(); i++){
 //            System.out.println("[Followed User]:"+ followedUsers.get(i).getId());
 ////            if(followedUsers.get(i).getId()){
@@ -127,6 +125,9 @@ public class EventController {
         model.addAttribute("events", events);
         return "event/index";
     }
+
+
+
 
     //Edit the event
     @GetMapping("/events/{id}/edit")
