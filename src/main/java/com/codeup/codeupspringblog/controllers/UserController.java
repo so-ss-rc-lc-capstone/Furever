@@ -84,15 +84,6 @@ public class UserController {
         return "users/login";
     }
 
-//    @PostMapping("/register")
-//    public String registerUser(@RequestParam(name="username") String username, @RequestParam(name="email") String email, @RequestParam(name="password") String password){
-//        String hashedPw = BCrypt.hashpw(password, BCrypt.gensalt());
-//        User user = new User(username, email, hashedPw);
-//
-//        userDao.save(user);
-//        return "redirect:/posts/index";
-//    }
-
     @GetMapping("/user/{id}/posts")
     public String userAds(@PathVariable long id, Model model){
         Post post = postDao.findById(id).get();
@@ -169,7 +160,7 @@ public class UserController {
     // When button added, change it to post method
     @PostMapping("/users/{id}/follow")
 //    @ResponseBody
-    public String followUser(@PathVariable Long id, Model model, @RequestParam){
+    public String followUser(@PathVariable Long id, Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUserData = userDao.findById(currentUser.getId());
         model.addAttribute("currentUserData", currentUserData);
