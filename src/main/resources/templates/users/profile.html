@@ -6,7 +6,31 @@
 
 
 <nav th:replace="partials/navbar :: navbar"></nav>
-<nav th:replace="partials/navbar :: navbar-mobile-other"></nav>
+<nav th:replace="partials/navbar :: navbar-mobile"></nav>
+
+<div th:fragment="participation-modal" id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 bottom-0 z-50 hidden flex items-center justify-center flex-col">
+    <div class="absolute h-screen inset-0 bg-black opacity-50 flex justify-center items-center" onclick="hideModal()"></div>
+    <div class="relative w-full max-w-2xl max-h-full bg-white rounded-lg shadow dark:bg-gray-700 items-center">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Participants
+                </h3>
+                <button type="button" id="close-btn" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="defaultModal" onclick="hideModal()">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Participants -->
+            <div id="view-participants-list" class="p-6 space-y-6">
+
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
 <div class="w-full h-screen">
@@ -104,7 +128,7 @@
 
                 <!--Events-->
 
-                <div class="flex flex-col w-full h-full mt-5 justify-center">
+                <div class="flex flex-col w-full h-screen mt-5  justify-center">
                     <div class=" w-full">
                         <div class="w-full flex justify-center items-center">
                             <div class="inline-block w-full p-4 bg-white border-b-2 text-center text-2xl">My Events
@@ -112,13 +136,14 @@
                         </div>
 
                         <!--Render Photos or events-->
-                        <div class="w-full h-full grid grid-cols-1">
+                        <div class="w-full h-screen grid grid-cols-1" style="overflow: auto;">
+
+                            <div th:each="event : ${events}" th:if="${event.hasParticipated(#authentication.principal.id)}"
+                                 class="flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700"
+
+                                 th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
 
 
-                            <div class="flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700"
-                                 th:each="event : ${events}"
-                                 th:if="${event.hasParticipated(#authentication.principal.id)}"
-                            >
                                 <div class=" w-full mt-[10px] h-[3em]">
                                     <div class="w-full flex items-center justify-between">
 
@@ -133,9 +158,8 @@
 
 
                                         <!--Delete btn-->
-                                        <div class="w-full flex justify-end"
-                                             th:if="${event.user.id} == ${#authentication.principal.id}">
-                                            <form th:action="@{/events/{id}/delete(id=${event.id})}" method="get">
+                                        <div class="w-full flex justify-end" th:if="${event.user.id} == ${#authentication.principal.id}">
+                                            <form th:action="@{events/{id}/delete-profile-event(id=${event.id})}" method="get">
                                                 <input type="hidden" name="delete_id" th:value="${event.id}"/>
                                                 <button type="submit"
                                                         class="flex items-center mr-[4em] justify-center text-white h-12 w-[60px] rounded-lg bg-red-600 hover:bg-red-800 font-medium text-sm text-center inline-flex items-center dark:bg-blue-600">
@@ -148,9 +172,8 @@
                                         <div th:if="${event.user.id} != ${#authentication.principal.id}">
                                             <button type="button"
                                                     class="flex items-center mr-[4em] justify-center text-white h-12 w-12 bg-white hover:bg-gray-100 font-medium rounded-full text-sm text-center inline-flex items-center dark:bg-blue-600">
-                                                <svg class="black w-5" fill="none" stroke="black" stroke-width="1.5"
-                                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                                                     aria-hidden="true">
+                                                <svg class="black w-5" fill="none" stroke="black" stroke-width="1.5" viewBox="0 0 24 24"
+                                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                           d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
                                                 </svg>
@@ -163,22 +186,24 @@
 
                                 <div class=" flex justify-center items-center w-full h-[10em]">
                                     <!--Event Description-->
-                                    <div class="w-4/5 h-full bg-white rounded-xl">
+                                    <div class="w-full md:w-4/5 h-full bg-white rounded-xl">
 
-                                        <div class="flex flex-row w-full h-2/3">
+                                        <div class="flex flex-row w-full h-2/3 justify-between">
                                             <div class="w-2/3">
                                                 <div class="w-full">
-                                                    <h2 class="text-2xl font-bold pl-3 pt-1 pr-3"
-                                                        th:text="${event.title}"></h2>
+                                                    <h2 class="text-2xl font-bold pl-3 pt-1 pr-3" th:text="${event.title}"></h2>
                                                     <div class="text-sm pl-3 pr-3 pb-3">
-                                                        <p class="text-[14px]"
-                                                           th:text="${#temporals.format(event.event_DateAndTime, 'dd-MMM-yyyy h:mm a')}"
-                                                        ></p>
-                                                        <!--                                                        <p class="text-[10px] flex"><span>-->
-                                                        <!--                              <svg fill="none" class = "h-[13px] mt-1" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">-->
-                                                        <!--                              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>-->
-                                                        <!--                              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>-->
-                                                        <!--                            </svg></span>10 Miles Away</p>-->
+
+                                                        <p class="text-[14px]" th:text="${#temporals.format(event.event_DateAndTime, 'dd-MMM-yyyy h:mm a')}"></p>
+                                                        <!--                            <p class="text-[10px] flex"><span>-->
+                                                        <!--                              <svg fill="none" class="h-[13px] mt-1" stroke="currentColor" stroke-width="1.5"-->
+                                                        <!--                                   viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">-->
+                                                        <!--                              <path stroke-linecap="round" stroke-linejoin="round"-->
+                                                        <!--                                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>-->
+                                                        <!--                              <path stroke-linecap="round" stroke-linejoin="round"-->
+                                                        <!--                                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>-->
+                                                        <!--                            </svg></span>10 Miles Away-->
+                                                        <!--                            </p>-->
                                                     </div>
 
 
@@ -186,26 +211,20 @@
 
                                             </div>
                                             <div class="flex pt-3 pr-3">
-
-
-                                                <div class="w-1/3 h-1/3 text-[10px] flex items-center mr-4"><h3
-                                                        class="text-blue-600"><a href="/login">Participants</a></h3>
-                                                </div>
-
+                                                <div class="view-participants-btn w-1/3 h-1/3 text-[10px] flex items-center mr-4"><h3 class="text-blue-600">
+                                                    <a class="view-participants-btn hover:cursor-pointer" data-modal-target="defaultModal" data-modal-toggle="defaultModal" th:data-event-id="${event.id}">Participants</a>
+                                                </h3></div>
 
                                                 <div class="flex h-1/3 -space-x-4">
-                                                    <a th:each="participation, i : ${event.participations}"
-                                                       th:if="${i.index &lt; 3}">
+                                                    <a th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 3}">
                                                         <img class="w-9 h-9 border-2 border-white rounded-full dark:border-gray-800"
                                                              th:if="${not #strings.isEmpty(participation.user.profilePhoto)}"
-                                                             th:src="${participation.user.profilePhoto}"
-                                                             alt="User profile photo"/>
-
+                                                             th:src="${participation.user.profilePhoto}" alt="Profile image"/>
                                                         <img class="w-9 h-9 border-2 border-white rounded-full dark:border-gray-800"
                                                              th:unless="${not #strings.isEmpty(participation.user.profilePhoto)}"
-                                                             th:src="@{/img/profile.jpeg}" alt="Default profile photo"/>
-
+                                                             th:src="@{/img/profile.jpeg}" alt="Default profile image"/>
                                                     </a>
+
                                                     <a class="flex items-center justify-center w-9 h-9 text-xs font-medium text-white bg-gray-700 border-2 border-white rounded-full hover:bg-gray-600 dark:border-gray-800"
                                                        href="#"><span th:text="${event.participations.size}"></span></a>
                                                 </div>
@@ -216,26 +235,15 @@
                                         <div class="w-full h-1/3">
                                             <div class="flex pl-3 items-center space-x-4 justify-between">
                                                 <div class="flex ">
-
-                                                    <img class="w-10 h-10 rounded-full mr-3"
-                                                         th:if="${not #strings.isEmpty(event.user.profilePhoto)}"
-                                                         th:src="${event.user.profilePhoto}"
-                                                         alt="User profile photo"/>
-
-                                                    <img class="w-10 h-10 rounded-full mr-3"
-                                                         th:unless="${not #strings.isEmpty(event.user.profilePhoto)}"
-                                                         th:src="@{/img/profile.jpeg}"
-                                                         alt="Default profile photo"/>
-
-
+                                                    <img class="w-10 h-10 rounded-full mr-3" th:src="${#strings.isEmpty(event.user.profilePhoto) ? '/img/profile.jpeg' : event.user.profilePhoto}">
                                                     <div class="font-medium dark:text-white">
                                                         <div><span th:text="${event.user.getUsername()}"></span></div>
-                                                        <div class="text-[10px] text-gray-500 dark:text-gray-400">
-                                                            Created at <span class="text-[10px]
-                                                        text-gray-500 dark:text-gray-400"
-                                                                             th:text="${#temporals.format(event.created_at, 'dd-MMM-yyyy h:mm a')}"></span>
-                                                        </div>
+                                                        <div class="text-[10px] text-gray-500 dark:text-gray-400"
+                                                        ><h4>Created at <span class="text-[10px] text-gray-500 dark:text-gray-400"
+                                                                              th:text="${#temporals.format(event.created_at, 'dd-MMM-yyyy h:mm a')}"></span></h4></div>
                                                     </div>
+
+
 
                                                 </div>
                                                 <form th:action="@{/events/{id}/edit(id=${event.id})}" method="get">
@@ -248,8 +256,7 @@
                                                     </div>
                                                 </form>
                                                 <div>
-                                                    <form th:action="@{/events/{id}/find (id=${event.id})}"
-                                                          method="get">
+                                                    <form th:action="@{/events/{id}/find (id=${event.id})}" method="get">
                                                         <input type="hidden" name="event" th:value="${event.id}"/>
                                                         <button type="submit"
                                                                 class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
@@ -259,18 +266,24 @@
 
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
+
+
+
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
 
-                    <nav th:replace="partials/footer :: footer"></nav>
 
 
                 </div>
-
+                <div class = "w-full "><nav th:replace="partials/footer :: footer"></nav>
+                </div>
 
             </div>
         </div>
@@ -278,7 +291,92 @@
     </div>
 
 </div>
+<script>
 
+
+    const modal = document.getElementById('defaultModal');
+    const closeBtn = document.getElementById('close-btn');
+    const modalToggle = document.querySelectorAll('[data-modal-toggle]');
+    const modalClose = document.querySelectorAll('[data-modal-hide]');
+
+    modalToggle.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            const target = toggle.getAttribute('data-modal-target');
+            const modalTarget = document.getElementById(target);
+            modalTarget.classList.toggle('hidden');
+        });
+    });
+
+    modalClose.forEach((toggle) => {
+        toggle.addEventListener('click', () => {
+            const target = toggle.closest('.modal').getAttribute('id');
+            const modalTarget = document.getElementById(target);
+            modalTarget.classList.toggle('hidden');
+        });
+    });
+
+    function hideModal() {
+        document.getElementById("defaultModal").classList.add("hidden");
+    }
+
+
+    //Modal div
+    let participantsList = document.getElementById("view-participants-list");
+    let allBtns = document.querySelectorAll('.pt-3.pr-3 .view-participants-btn');
+
+    allBtns.forEach(event => {
+        event.addEventListener('click', function() {
+            participantsList.innerHTML = "";
+            console.log("clicked");
+            // Get the event ID from the "data-event-id" attribute of the button
+            let eventId = event.getAttribute("data-event-id");
+            console.log(eventId);
+
+            // Fetch participants for the selected event
+            fetch('http://localhost:8080/events/' + eventId + '/participants', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    let viewParticipants = JSON.stringify(data);
+                    getAllParticipants(viewParticipants);
+                })
+                .catch(error => console.error(error));
+        });
+    });
+
+
+
+
+    function getAllParticipants(data){
+        let viewParticipants = JSON.parse(data);
+        let html = '';
+        for(let i = 0; i < viewParticipants.length; i++){
+            html += `<div class="flex flex-col">
+      <div class="flex border-b border-gray-200 hover:cursor-pointer">
+        <a class="flex pb-5">
+          <img class="w-[50px] h-[50px] rounded-full mr-4" src="${viewParticipants[i].profilePhoto || '/img/profile.jpeg'}" alt="Profile image"/>
+          <div class="flex flex-col">
+            <p>${viewParticipants[i].first_name} ${viewParticipants[i].last_name}</p>
+            <p>@${viewParticipants[i].username}</p>
+          </div>
+        </a>
+      </div>
+    </div>`;
+        }
+        participantsList.innerHTML = html;
+    }
+
+</script>
 
 </body>
 </html>

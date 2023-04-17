@@ -266,7 +266,7 @@
 </div>
 <script>
 
-  //Search Bar Toggle
+  // //Search Bar Toggle
   const checkbox = document.getElementById('toggle-checkbox');
   const text = document.getElementById('toggle-text');
   const toggleSearch = (search, button) =>{
@@ -348,45 +348,19 @@
     let html = '';
     for(let i = 0; i < viewParticipants.length; i++){
       html += `<div class="flex flex-col">
-
-            <div class="flex border-b border-gray-200 hover:cursor-pointer">
-            <a class="flex pb-5">
-                <img src="${viewParticipants[i].profilePhoto}" alt="profile picture" class="w-[50px] h-[50px] rounded-full mr-4">
-                <div class="flex flex-col">
-                <p>${viewParticipants[i].first_name} ${viewParticipants[i].last_name}</p>
-                <p>@${viewParticipants[i].username}</p>
-                </div>
-            </a>
-            </div>
-
-
-
-             </div>`;
+      <div class="flex border-b border-gray-200 hover:cursor-pointer">
+        <a class="flex pb-5">
+          <img class="w-[50px] h-[50px] rounded-full mr-4" src="${viewParticipants[i].profilePhoto || '/img/profile.jpeg'}" alt="Profile image"/>
+          <div class="flex flex-col">
+            <p>${viewParticipants[i].first_name} ${viewParticipants[i].last_name}</p>
+            <p>@${viewParticipants[i].username}</p>
+          </div>
+        </a>
+      </div>
+    </div>`;
     }
     participantsList.innerHTML = html;
   }
-
-
-
-
-  // let viewParticipantsBtn = document.getElementById("view-participants-btn");
-  // let viewParticipantsList = document.getElementById("view-participants-list");
-  //
-  // viewParticipantsBtn.addEventListener("click", function() {
-  //   let eventId = viewParticipantsBtn.getAttribute("data-event-id");
-  //
-  //   fetch('/events/' + eventId + '/participants')
-  //           .then(response => response.json())
-  //           .then(data => {
-  //             let attendees = "";
-  //             data.forEach(attendee => {
-  //               attendees += "<li>" + attendee.name + "</li>";
-  //             });
-  //             viewParticipantsList.innerHTML = attendees;
-  //           })
-  //           .catch(error => console.error(error));
-  // });
-  //
 
 
 
@@ -416,7 +390,6 @@
 <script src="/js/mapbox-geocoder-utils.js"></script>
 <!--Mapbox-->
 <script src="/js/custom-map-stuff.js"></script>
-
 <script src="/js/event-feed.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 </body>
