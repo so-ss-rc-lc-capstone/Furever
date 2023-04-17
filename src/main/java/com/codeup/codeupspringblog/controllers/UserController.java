@@ -190,7 +190,6 @@ public class UserController {
             currentUserData.getFollowedUsers().remove(user);
             user.getFollowingUsers().remove(currentUserData);
         }
-
        userDao.save(currentUserData);
 
 //        return userDao.findById(id).get();

@@ -285,6 +285,8 @@
         <div th:each="user : ${users}">
 
           <div th:if="${user.id} != ${#authentication.principal.id}">
+            <div th:if="!${followedUsers.contains(user)}">
+
             <li class="py-2 group/item hover:bg-slate-100 ">
 
 
@@ -342,6 +344,7 @@
 
 
             </li>
+          </div>
           </div>
           <!--                <hr class="w-3/4 h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">-->
         </div>
