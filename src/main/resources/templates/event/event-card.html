@@ -1,16 +1,5 @@
 <!-- User POSTS -->
 
-
-<!--<div class="flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700" th:each="event : ${events}" th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">-->
-
-
-    <!--${ 'background-image: url(/' +  (event.eventPhoto != null) ? event.eventPhoto : '/img/corgi.jpg' }-->
-
-<!--<div class="flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700"-->
-<!--     th:each="event : ${events}"-->
-<!--     th:style="'background-image: url(\'' + (${event.eventPhoto} != null ? ${event.eventPhoto} : './static/img/corgi.jpg') + '\'); background-size: cover; background-position: center;'">-->
-
-
 <div class="flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700"
      th:each="event : ${events}"
      th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
@@ -87,14 +76,6 @@
                         <a class="view-participants-btn hover:cursor-pointer" data-modal-target="defaultModal" data-modal-toggle="defaultModal" th:data-event-id="${event.id}">Participants</a>
                     </h3></div>
 
-<!--                    <div class="flex h-1/3 w-full -space-x-4">-->
-<!--                        <a th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 3}"><img-->
-<!--                                class="w-9 h-9 border-2 border-white rounded-full dark:border-gray-800"-->
-<!--                                th:src="${participation.user.profilePhoto}" alt=""></a>-->
-
-
-<!--                    <div class="w-1/3 h-1/3 text-[10px] flex items-center mr-4"><h3 class="text-blue-600"><a-->
-<!--                            href="/login">Participants</a></h3></div>-->
 
 
                     <div class="flex h-1/3 -space-x-4">
@@ -151,9 +132,6 @@
 
             </div>
         </div>
-
-        <nav th:replace="partials/navbar :: navbar-mobile"></nav>
-
 
     </div>
 </div>

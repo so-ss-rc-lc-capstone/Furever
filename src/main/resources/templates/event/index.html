@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
 
 <head>
 
@@ -289,10 +290,7 @@
     </div>
 
     <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-
-
       <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-
         <!--          <div th:each="user : ${users}">-->
         <div th:each="user : ${usersNotFollowing}">
 
@@ -357,75 +355,11 @@
 
 
             </li>
-          </div>
-
-<!--          <div th:unless="!${followedUsers.contains(user)} ">-->
-
-<!--            <li class="py-2 group/item hover:bg-slate-100 ">-->
-
-
-<!--              <div class="flex flex-col space-x-4 ">-->
-<!--                <div class="flex items-center justify-between px-3">-->
-<!--                  <div th:data-dropdown-toggle="${user.email}" data-dropdown-placement="bottom-start" type="button" class="flex items-center">-->
-
-<!--                    <img class="w-10 h-10 rounded-full cursor-pointer" th:src="${user.profilePhoto}" alt="user-image" >-->
-<!--                    <div class="ml-3 flex-col font-medium dark:text-white">-->
-<!--                      <div class="text-sm text-gray-500 dark:text-gray-400">@<span th:text="${user.username}" th:href="@{|/user/${user.id}|}"></span></div>-->
-<!--                    </div>-->
-
-
-<!--                    <div th:id="${user.email}" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">-->
-<!--                      <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">-->
-<!--                        <div class="text-base font-normal text-gray-900 "><span th:text="${user.first_name } " ></span> <span th:text="${user.last_name}" ></span>  </div>-->
-<!--                        <div class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${user.email}" ></span></div>-->
-
-<!--                      </div>-->
-<!--                      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">-->
-<!--                        <li>-->
-<!--                          <a th:href="@{|/user/${user.id}|}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View Profile</a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                          <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>-->
-<!--                        </li>-->
-<!--                      </ul>-->
-<!--                      <div class="py-1">-->
-
-<!--                        <form th:action="@{/users/{id}/follow(id=${user.id})}" th:name="followFromEvent" th:method="post"-->
-<!--                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">-->
-<!--                          <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}" type="submit"></button>-->
-<!--                        </form>-->
-<!--                        &lt;!&ndash;                          <a id="followButton" th:text="${user.followingUsers.contains(user) ? 'Unfollow' : 'Follow'}"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                             th:onclick="${user.followingUsers.contains(user) ? '@{/users/'+ user.id + '/follow}' : '@{/users/'+ user.id + '/follow}'}"&ndash;&gt;-->
-<!--                        &lt;!&ndash;                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"></a>&ndash;&gt;-->
-
-<!--                      </div>-->
-<!--                    </div>-->
-<!--                  </div>-->
-
-
-<!--                  <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible " >-->
-
-<!--                    <form th:action="@{/users/{id}/follow(id=${user.id})}" th:name="followFromEvent" th:method="post"-->
-<!--                          class="block px-4 py-2 text-sm text-gray-200 dark:text-gray-600 dark:hover:text-white">-->
-<!--                      <button class="items-center justify-center hover:cursor-pointer group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 " type="submit">-->
-<!--                        <i class="gg-user-add"></i>-->
-<!--                      </button>-->
-<!--                    </form>-->
-
-<!--                  </a>-->
-<!--                </div>-->
-<!--              </div>-->
-
-
-<!--            </li>-->
-<!--          </div>-->
-
-
-
 
           </div>
-          <!--                <hr class="w-3/4 h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">-->
-        </div>
+
+          </div>
+
       </ul>
 
 
@@ -435,192 +369,17 @@
 </div>
 
 
-
-
-
-
-
-        <!--        <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Friends</h5>-->
-<!--        <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-400 dark:text-blue-500">-->
-<!--          View all-->
-<!--        </a>-->
+     
       </div>
 
-      <div class="flow-root">
-
-<!--        <div th:each="user : ${followedUsers}">-->
-<!--          <h3 th:text="${user.username}"> </h3>-->
-<!--          <h3 th:text="${user.first_name}"></h3>-->
-<!--                                <img class="w-10 h-10 rounded-full cursor-pointer" th:src="${user.profilePhoto}" alt="user-image" >-->
-<!--        </div>-->
-<!--        -->
-
-
-
-
-
-      </div>
+      
     </div>
 
 
+
   </aside>
-
-
 </div>
-<script>
-
-  const checkbox = document.getElementById('toggle-checkbox');
-  const text = document.getElementById('toggle-text');
-  const toggleSearch = (search, button) =>{
-    const searchBar = document.getElementById(search),
-            searchButton = document.getElementById(button),
-            close = document.getElementById('close'),
-            searchInput= document.getElementById('search-input');
-
-    searchButton.addEventListener('click', () => {
-      searchBar.classList.toggle('w-[350px]');
-      close.classList.toggle("opacity-1");
-      if (searchBar.classList.contains('w-[350px]')) {
-        searchInput.style.pointerEvents = "initial";
-        searchInput.style.opacity = "1";
-        searchInput.style.transition ="1.4s";
-      } else {
-        searchInput.style.pointerEvents = "none";
-        searchInput.style.opacity = "0";
-        searchInput.style.transition ="0.4s";
-      }
-    });
-  };
-
-  toggleSearch('search', 'search-button');
-
-
-  // Map and Listing Toggle
-  const listingBtn = document.getElementById('listing-btn');
-  const mapBtn = document.getElementById('map-btn');
-
-  mapBtn.addEventListener('click', () => {
-    mapBtn.classList.add('bg-gray-200');
-    listingBtn.classList.remove('bg-gray-200');
-  });
-
-  listingBtn.addEventListener('click', () => {
-    listingBtn.classList.add('bg-gray-200');
-    mapBtn.classList.remove('bg-gray-200');
-  });
-
-  //Modal div
-  let participantsList = document.getElementById("view-participants-list");
-  // Get all event buttons
-  let eventButtons = document.querySelectorAll(".view-participants-btn");
-
-  // Add a click event listener to each event button that fetches the participants for the event
-  eventButtons.forEach(button => {
-    button.addEventListener("click", function() {
-      participantsList.innerHTML = "";
-      console.log("clicked")
-      // Get the event ID from the "data-event-id" attribute of the button
-      let eventId = button.getAttribute("data-event-id");
-      console.log(eventId);
-
-      // Fetch participants for the selected event
-      fetch('http://localhost:8080/events/' + eventId + '/participants', {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        }
-      })
-              .then(res => {
-                if (!res.ok) {
-                  throw new Error("Network response was not ok");
-                }
-                return res.json();
-              })
-              .then(data => {
-                console.log(data);
-                let viewParticipants = JSON.stringify(data);
-                getAllParticipants(viewParticipants);
-              })
-              .catch(error => console.error(error));
-    });
-  });
-
-  function getAllParticipants(data){
-    let viewParticipants = JSON.parse(data);
-    let html = '';
-    for(let i = 0; i < viewParticipants.length; i++){
-      html += `<div class="flex flex-col">
-
-            <div class="flex border-b border-gray-200 hover:cursor-pointer">
-            <a class="flex pb-5">
-                <img src="${viewParticipants[i].profilePhoto}" alt="profile picture" class="w-[50px] h-[50px] rounded-full mr-4">
-                <div class="flex flex-col">
-                <p>${viewParticipants[i].first_name} ${viewParticipants[i].last_name}</p>
-                <p>@${viewParticipants[i].username}</p>
-                </div>
-            </a>
-            </div>
 
 
 
-             </div>`;
-    }
-    participantsList.innerHTML = html;
-  }
-
-
-
-
-  // let viewParticipantsBtn = document.getElementById("view-participants-btn");
-  // let viewParticipantsList = document.getElementById("view-participants-list");
-  //
-  // viewParticipantsBtn.addEventListener("click", function() {
-  //   let eventId = viewParticipantsBtn.getAttribute("data-event-id");
-  //
-  //   fetch('/events/' + eventId + '/participants')
-  //           .then(response => response.json())
-  //           .then(data => {
-  //             let attendees = "";
-  //             data.forEach(attendee => {
-  //               attendees += "<li>" + attendee.name + "</li>";
-  //             });
-  //             viewParticipantsList.innerHTML = attendees;
-  //           })
-  //           .catch(error => console.error(error));
-  // });
-  //
-
-
-
-
-  //
-  // $(document).ready(function() {
-  //   const button = $('#color-toggle');
-  //
-  //   button.click(function() {
-  //     if (button.hasClass('bg-white')) {
-  //       button.removeClass('bg-white text-black');
-  //       button.addClass('bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:outline-none text-white');
-  //       button.text('Attending');
-  //     } else {
-  //       button.removeClass('bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none text-white');
-  //       button.addClass('bg-white text-black')
-  //       button.text('Participate');
-  //     }
-  //   });
-  // });
-</script>
-
-<!--keys-->
-<script src="/js/keys.js "></script>
-<!---->
-<!--utils doc-->
-<script src="/js/mapbox-geocoder-utils.js"></script>
-<!--Mapbox-->
-<script src="/js/custom-map-stuff.js"></script>
-
-<script src="/js/event-feed.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
-</body>
-</html>
 

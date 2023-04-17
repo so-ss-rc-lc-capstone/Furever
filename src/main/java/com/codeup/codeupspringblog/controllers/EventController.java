@@ -77,28 +77,6 @@ public class EventController {
         }
         return null;
     }
-//
-//    @GetMapping("/events/{eventId}/participants")
-//    @ResponseBody
-//    public ResponseEntity<Map<String, Object>> getEventAttendees(@PathVariable long eventId) {
-//        Event event = eventsDao.findById(eventId).orElse(null);
-//        if (event != null) {
-//            List<EventParticipation> participations = event.getParticipations();
-//            List<User> attendees = new ArrayList<>();
-//            for (EventParticipation participation : participations) {
-//                attendees.add(participation.getUser());
-//            }
-//            Map<String, Object> response = new HashMap<>();
-//            response.put("event", event);
-//            response.put("attendees", attendees);
-//            return ResponseEntity.ok().body(response);
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
-
-
-
-
 
 
     //New Code for the formatted date
@@ -213,7 +191,24 @@ public class EventController {
         return "redirect:/events";
     }
 
-//    Event participation Mapping method
+    @GetMapping("events/{id}/delete-profile-event")
+    public String deleteProfileEvent(@PathVariable long id) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        long currentUserId = currentUser.getId();
+
+        Event event = eventsDao.findById(id).get(); // Getting data from the database first
+        long eventId = event.getUser().getId();
+
+        if(currentUserId == eventId){
+            eventsDao.deleteById(id);
+        }else{
+            System.out.println("IDs do not match.");
+        }
+        return "redirect:/profile";
+    }
+
+
+    //    Event participation Mapping method
 @PostMapping("/events/{id}/participate")
 public String participateEvent(@PathVariable Long id, Principal principal) {
     User user = usersDao.findByUsername(principal.getName());
