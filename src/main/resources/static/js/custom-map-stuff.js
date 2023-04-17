@@ -60,7 +60,7 @@ function allEvents() {
 
 
 let withinFiftymilesIds = [];
-function withinFiftyMiles() {
+
 
 
     fetch('http://localhost:8080/api/allevents', {
@@ -142,8 +142,7 @@ function withinFiftyMiles() {
         })
         .catch(error => console.error(error));
     console.log(withinFiftymilesIds);
-}
-withinFiftyMiles();
+
 
 
 
