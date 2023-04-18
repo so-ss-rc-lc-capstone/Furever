@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.jar.JarOutputStream;
@@ -176,14 +177,36 @@ public class UserController {
         return "users/user-card";
     }
 
+    //Old user code
+//    @GetMapping("/user/{id}")
+//    public String findPetById(@PathVariable long id , Model model) {
+//        List<Pet> petData = petsDao.findAll();
+//        User userData = userDao.findById(id);
+//        model.addAttribute("user",userData);
+//        model.addAttribute("pets", petData);
+//        return "users/user-show";
+//    }
+
     @GetMapping("/user/{id}")
-    public String findPetById(@PathVariable long id , Model model) {
+    public String findPetById(@PathVariable long id, Model model) {
         List<Pet> petData = petsDao.findAll();
         User userData = userDao.findById(id);
-        model.addAttribute("user",userData);
+        List<Event> eventsData = eventDao.findAll();
+        List<Event> userEvents = new ArrayList<>();
+
+        // Filter events in which the user is participating
+        for (Event event : eventsData) {
+            if (event.hasParticipated(userData)) {
+                userEvents.add(event);
+            }
+        }
+
+        model.addAttribute("user", userData);
         model.addAttribute("pets", petData);
+        model.addAttribute("events", userEvents);
         return "users/user-show";
     }
+
 
 
     //Following users and friends below,
