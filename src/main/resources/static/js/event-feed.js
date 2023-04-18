@@ -64,7 +64,7 @@ const toggleSearch = (search, button) => {
                         result.classList.add('search-result');
                         result.innerHTML = `
                     <div class="bg-white p-3 w-[12em] h-[4.5em]" style="overflow: auto; z-index: 9999">
-                        <div class="username">${user.username}</div>
+                        <div class="username font-bold">${user.username}</div>
                         <div class="name">${name}</div>
                     </div>
                     `;
