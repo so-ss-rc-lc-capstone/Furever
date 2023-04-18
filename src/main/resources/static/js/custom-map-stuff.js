@@ -1,6 +1,8 @@
 
 //Function to get all the event locations
 
+// function allEvents() {
+
 
     fetch('http://localhost:8080/api/allevents', {
         method: "GET",
@@ -57,12 +59,16 @@
         .catch(error => console.error(error));
 
 
+
+
+// }
+
 // ==========> Events within 50 miles radius <=================
 
 //
 // let withinFiftymilesIds = [];
 //
-//
+
 //     fetch('http://localhost:8080/api/allevents', {
 //         method: "GET",
 //         headers: {
@@ -108,12 +114,17 @@
 //
 //                             let eventPopup = new mapboxgl.Popup()
 //                                 .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
+
 //                             withinFiftymilesLocation.push(event.id);
 //                             console.log(withinFiftymilesLocation)
+
+//                             withinFiftymilesIds.push(event.id);
+//
 //                             marker.setPopup(eventPopup);
 //                         }
 //                     });
 //                 });
+
 //             });
 //
 //
@@ -143,6 +154,7 @@
 //         })
 //         .catch(error => console.error(error));
 //
+
 
 
 
