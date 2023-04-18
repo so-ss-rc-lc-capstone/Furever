@@ -11,7 +11,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
-  <link href="/Users/randychu/Desktop/Software Dev Projects/project-pet/src/main/resources/static/css/searchbar.css" rel="stylesheet" />
   <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
   <link href='https://css.gg/css' rel='stylesheet'>
 
@@ -21,6 +20,8 @@
 <!--direction stuff-->
   <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css" type="text/css">
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
 </head>
 <style>
 
@@ -29,6 +30,13 @@
       display: none !important;
     }
   }
+
+  @media (max-width: 1095px) {
+    #nav-menu {
+      display: flex;
+    }
+  }
+
 
   #nav-mobile {
     position: fixed;
@@ -71,8 +79,8 @@
 <div class="flex items-center justify-center w-full  lg:w-[38em] xl:w-[51em]">
 
   <aside id="logo-sidebar"
-         class="fixed top-0 left-0  border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white"
-         aria-label="Sidebar" style="z-index: 9998">
+         class="fixed top-0 left-0 z-9 border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white"
+         aria-label="Sidebar" style="z-index: 9">
     <div class="h-full w-64 px-3 pb-4 bg-white mt-[7em]">
 
       <ul class="space-y-2">
@@ -170,8 +178,8 @@
 
                   <select id="filter" class="bg-white ml-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ">
                     <option selected>Filter</option>
-                    <option value="local">Local</option>
-                    <option value="all">All</option>
+                    <option id="local" value="local">Local</option>
+                    <option id = "all" value="all">All</option>
 
                   </select>
 
@@ -195,16 +203,13 @@
     </div>
   </div>
 
-
-
+  <!-- Friends -->
 
   <aside class="fixed top-0 right-0 justify-items-center hidden md:flex w-[15em]"
          aria-label="Sidebar">
 
     <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div class="w-full flex flex-row items-center justify-between mb-4">
-
-
 
 <div class="w-full flex flex-col justify-center">
   <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -381,9 +386,6 @@
 </div>
 
 
-
-
-
 <!--keys-->
 <script src="/js/keys.js "></script>
 <!---->
@@ -391,6 +393,7 @@
 <script src="/js/mapbox-geocoder-utils.js"></script>
 <!--Mapbox-->
 <script src="/js/custom-map-stuff.js"></script>
+
 <script src="/js/event-feed.js"></script>
 <script src="/js/all-events.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
