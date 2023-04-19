@@ -1,9 +1,8 @@
 
 
 
+//Search Bar Toggle
 
-
-// Search Bar Toggle
 
 const checkbox = document.getElementById('toggle-checkbox');
 const text = document.getElementById('toggle-text');
