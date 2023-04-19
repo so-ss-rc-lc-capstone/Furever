@@ -1,72 +1,392 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/header :: head"></head>
+<head th:replace="partials/header :: head">
+</head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+<style>
 
+    .login__img img {
+        position: relative;
+        animation-name: bob;
+        animation-duration: 2s; /* Adjust this value to control the speed of the animation */
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+    }
 
-<div class="flex items-center justify-center h-screen w-full p-4 ">
+    @keyframes bob {
+        from {
+            top: 0;
+        }
+        to {
+            top: 25px; /* Adjust this value to control the amount of movement */
+        }
+    }
 
+    .container {
+        opacity: 0;
+        transform: translateY(50%);
+        transition: opacity 1s ease, transform 1s ease;
+    }
 
-      <div th:if="${param.error}">
-        Invalid Username and Password.
-      </div>
-      <div th:if="${param.logout}">
-        You have been logged out.
-      </div>
+    .container.visible {
+        opacity: 1;
+        transform: translateY(0%);
+    }
 
-      <form th:action="@{/login}"  th:method="POST" class="flex flex-col items-center justify-center w-1/2">
-        <p class="text-4xl text-gray-400 mb-5">Login</p>
+    /*===== GOOGLE FONTS =====*/
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
 
-        <div class="mb-6 w-2/5">
-          <label for="username" class="block mb-2 text-sm font-medium text-gray-500 text-black">Your username</label>
-          <input type="username" name="username" id="username" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required>
+    /*===== VARIABLES CSS =====*/
+    :root{
+        /*===== Colores =====*/
+        --first-color: #4089ff;
+        --first-color-dark: #11406f;
+        --first-color-light: #6f6f6f;
+        --first-color-lighten: #F2F2F2;
+
+        /*===== Font and typography =====*/
+        --body-font: 'Open Sans', sans-serif;
+        --h1-font-size: 1.5rem;
+        --normal-font-size: .938rem;
+        --small-font-size: .813rem;
+    }
+
+    @media screen and (min-width: 768px){
+        :root{
+            --normal-font-size: 1rem;
+            --small-font-size: .875rem;
+        }
+    }
+
+    /*===== BASE =====*/
+    *,::before,::after{
+        box-sizing: border-box;
+    }
+
+    body{
+        margin: 0;
+        padding: 0;
+        font-family: var(--body-font);
+        font-size: var(--normal-font-size);
+        color: var(--first-color-dark);
+    }
+
+    h1{
+        margin: 0;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    img{
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /*===== LOGIN =====*/
+    .login{
+        display: grid;
+        grid-template-columns: 100%;
+        height: 100vh;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+
+    .login__content{
+        display: grid;
+    }
+
+    .login__img{
+        justify-self: center;
+    }
+
+    .login__img img{
+        width: 310px;
+        margin-top: 1.5rem;
+    }
+
+    .login__forms{
+        position: relative;
+        height: 368px;
+    }
+
+    .login__registre, .login__create{
+        position: absolute;
+        bottom: 1rem;
+        width: 100%;
+        background-color: var(--first-color-lighten);
+        padding: 2rem 1rem;
+        border-radius: 1rem;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,.1);
+        animation-duration: .4s;
+        animation-name: animate-login;
+    }
+
+    @keyframes animate-login{
+        0%{
+            transform: scale(1,1);
+        }
+        50%{
+            transform: scale(1.1,1.1);
+        }
+        100%{
+            transform: scale(1,1);
+        }
+    }
+
+    .login__title{
+        font-size: var(--h1-font-size);
+        margin-bottom: 2rem;
+    }
+
+    .login__box{
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        column-gap: .5rem;
+        padding: 1.125rem 1rem;
+        background-color: #FFF;
+        margin-top: 1rem;
+        border-radius: .5rem;
+    }
+
+    .login__icon{
+        font-size: 1.5rem;
+        color: var(--first-color);
+    }
+
+    .login__input{
+        border: none;
+        outline: none;
+        font-size: var(--normal-font-size);
+        font-weight: 700;
+        color: var(--first-color-dark);
+    }
+
+    .login__input::placeholder{
+        font-size: var(--normal-font-size);
+        font-family: var(--body-font);
+        color: var(--first-color-light);
+    }
+
+    .login__forgot{
+        display: block;
+        width: max-content;
+        margin-left: auto;
+        margin-top: .5rem;
+        font-size: var(--small-font-size);
+        font-weight: 600;
+        color: var(--first-color-light);
+    }
+
+    .login__button{
+        display: block;
+        padding: 1rem;
+        margin: 2rem 0;
+        background-color: var(--first-color);
+        color: #FFF;
+        font-weight: 600;
+        text-align: center;
+        border-radius: .5rem;
+        transition: .3s;
+    }
+
+    .login__button:hover{
+        background-color: var(--first-color-dark);
+    }
+
+    .login__account, .login__signin, .login__signup{
+        font-weight: 600;
+        font-size: var(--small-font-size);
+    }
+
+    .login__account{
+        color: var(--first-color-dark);
+    }
+
+    .login__signin, .login__signup{
+        color: var(--first-color);
+        cursor: pointer;
+    }
+
+    .login__social{
+        margin-top: 2rem;
+    }
+
+    .login__social-icon{
+        font-size: 1.5rem;
+        color: var(--first-color-dark);
+        margin: 0 1.5rem;
+    }
+
+    /*Show login*/
+    .block{
+        display: block;
+    }
+
+    /*Hidden login*/
+    .none{
+        display: none;
+    }
+
+    /* ===== MEDIA QUERIES =====*/
+    @media screen and (min-width: 576px){
+        .login__forms{
+            width: 348px;
+            justify-self: center;
+        }
+    }
+
+    @media screen and (min-width: 1024px){
+        .login{
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .login__content{
+            grid-template-columns: repeat(2, max-content);
+            justify-content: center;
+            align-items: center;
+            margin-left: 10rem;
+        }
+
+        .login__img{
+            display: flex;
+            width: 600px;
+            height: 588px;
+            background-color: var(--first-color-lighten);
+            border-radius: 1rem;
+            padding-left: 1rem;
+        }
+
+        .login__img img{
+            width: 390px;
+            margin-top: 0;
+        }
+
+        .login__registre, .login__create{
+            left: -11rem;
+        }
+
+        .login__registre{
+            bottom: -2rem;
+        }
+
+        .login__create{
+            bottom: -5.5rem;
+        }
+    }
+
+</style>
+
+<div class="login">
+    <div class="login__content container">
+        <div class="login__img items-center">
+            <img th:src="@{/img/doggologin.png}" alt="doggo" class="h-[23em]" >
         </div>
-        <div class="mb-6 w-2/5">
-          <label for="password" class="block mb-2 text-sm font-medium text-gray-500 text-black">Your password</label>
-          <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+
+        <div class="login__forms">
+            <form th:action="@{/login}"  th:method="POST" class="login__registre" id="login-in">
+                <h1 class="login__title">Sign in to your account</h1>
+
+                <div th:if="${param.error}">
+                            Invalid Username and Password.
+                          </div>
+                <div class="login__box">
+
+                    <i class='bx bx-user login__icon'></i>
+                    <input type="text" name="username" id="username" placeholder="Username" class="login__input">
+                </div>
+                <div class="login__box">
+                    <i class='bx bx-lock-alt login__icon'></i>
+                    <input type="password" name="password" id="password"  placeholder="Password" class="login__input">
+                </div>
+
+                <div class="w-full flex justify-center items-center">
+                <button class="login__button w-[10em]">Sign In</button>
+                </div>
+
+                <div >
+                    <span class="login__account">Don't have an Account ?</span>
+                    <span class="login__signin" id="sign-up">Sign Up</span>
+                </div>
+            </form>
+
+            <form th:action="@{/register}" th:method="POST" th:object="${user}" class="login__create none" id="login-up">
+                <h1 class="login__title">Create Account</h1>
+
+
+                <div class="login__box">
+                    <i class='bx bx-user login__icon'></i>
+                    <input type="text" name="username" id="website-admin" placeholder="Username" class="login__input">
+                </div>
+
+                <div class="login__box">
+                    <i class='bx bx-at login__icon'></i>
+                    <input type="text" name="email"  id="input-group-1" placeholder="Email" class="login__input">
+                </div>
+
+                <div class="login__box">
+                    <i class='bx bx-lock-alt login__icon'></i>
+                    <input type="password" name="password" id="register-pass" placeholder="Password" class="login__input">
+                </div>
+
+                <div class="w-full flex justify-center items-center">
+                    <button class="login__button w-[10em]">Sign up</button>
+                </div>
+
+                <div>
+                    <span class="login__account">Already have an Account ?</span>
+                    <span class="login__signup" id="sign-in">Sign In</span>
+                </div>
+
+            </form>
         </div>
-
-        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-      </form>
-
-
+    </div>
 </div>
 
 
-<!--<div class="flex-container d-flex justify-content-center">-->
-<!--  <div class="row d-flex justify-content-center">-->
-
-<!--    <h1 class="text-center">Sign in</h1>-->
-<!--    <div th:if="${param.error}">-->
-<!--      Invalid Username and Password.-->
-<!--    </div>-->
-<!--    <div th:if="${param.logout}">-->
-<!--      You have been logged out.-->
-<!--    </div>-->
-<!--    <form th:action="@{/login}"  th:method="POST" class="d-flex justify-content-center">-->
-<!--      <div class="card " style="width: 18rem;">-->
-<!--        <div class="card-header text-center">-->
-<!--          Sign in-->
-<!--        </div>-->
-<!--        <div class="card-body">-->
-<!--          <div class="mb-3">-->
-<!--            <label for="username">Username:</label>-->
-<!--            <input type="text" name="username" id="username" placeholder="Enter username">-->
-<!--          </div>-->
-<!--          <div class="mb-3">-->
-<!--            <label for="password">Password:</label>-->
-<!--            <input type="password" name="password" id="password" placeholder="Enter password">-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <button class="btn btn-primary">Sign in</button>-->
-<!--      </div>-->
-<!--    </form>-->
-<!--  </div>-->
-<!--</div>-->
 
 
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+        let container = document.querySelector(".container");
+        container.classList.add("visible");
+    });
+
+    /*===== LOGIN SHOW and HIDDEN =====*/
+    const signUp = document.getElementById('sign-up'),
+        signIn = document.getElementById('sign-in'),
+        loginIn = document.getElementById('login-in'),
+        loginUp = document.getElementById('login-up')
+
+
+    signUp.addEventListener('click', ()=>{
+        // Remove classes first if they exist
+        loginIn.classList.remove('block')
+        loginUp.classList.remove('none')
+
+        // Add classes
+        loginIn.classList.toggle('none')
+        loginUp.classList.toggle('block')
+    })
+
+    signIn.addEventListener('click', ()=>{
+        // Remove classes first if they exist
+        loginIn.classList.remove('none')
+        loginUp.classList.remove('block')
+
+        // Add classes
+        loginIn.classList.toggle('block')
+        loginUp.classList.toggle('none')
+    })
+</script>
 
 </body>
 </html>

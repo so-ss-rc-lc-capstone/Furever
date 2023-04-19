@@ -5,13 +5,6 @@
  * @param {string} search is the address to search for the geocoded coordinates
  * @param {string} token is your API token for MapBox
  * @returns {Promise} a promise containing the latitude and longitude as a two element array
- *
- * EXAMPLE:
- *
- *  geocode("San Antonio", API_TOKEN_HERE).then(function(results) {
- *      // do something with results
- *  })
- *
  */
 function geocode(search, token) {
     let baseUrl = 'https://api.mapbox.com';
@@ -31,13 +24,7 @@ function geocode(search, token) {
  * @param {object} coordinates is an object with properties "lat" and "lng" for latitude and longitude
  * @param {string} token is your API token for MapBox
  * @returns {Promise} a promise containing the string of the closest matching location to the coordinates provided
- *
- * EXAMPLE:
- *
- *  reverseGeocode({lat: 32.77, lng: -96.79}, API_TOKEN_HERE).then(function(results) {
- *      // do something with results
- *  })
- *
+
  */
 function reverseGeocode(coordinates, token) {
     let baseUrl = 'https://api.mapbox.com';
@@ -51,8 +38,3 @@ function reverseGeocode(coordinates, token) {
             return data.features[0].place_name;
         });
 }
-
-
-// geocode syntax
-//
-// geocode(${enter address here}, keys.mapbox).then(function (data) {});
