@@ -89,6 +89,11 @@ public class UserController {
 
 
 
+    @GetMapping(value = "/getUser")
+    public ResponseEntity<User> getUser(@RequestParam(required = true) Long userId) {
+        return new ResponseEntity<>(userDao.findById(userId).get(), HttpStatus.OK);
+    }
+
 
 
 

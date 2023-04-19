@@ -24,7 +24,7 @@ public class ChatController {
 //    @Autowired
 //    private TalkJSConfig talkJSConfig;
     @GetMapping("/chat/{selectedId}")
-    public String chattingPage(Model model, @PathVariable Long selectedId) {
+    public User chattingPage(Model model, @PathVariable Long selectedId) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         User currentUserData = userDao.findById(currentUser.getId());
@@ -33,7 +33,9 @@ public class ChatController {
         User otherUserData = userDao.findById(selectedId).get();
         model.addAttribute("otherUser", otherUserData);
 
-        return "users/friend";
+
+        return userDao.findById(selectedId).get();
+//        return "users/friend";
     }
 
 //    @Autowired

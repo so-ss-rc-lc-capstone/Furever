@@ -154,11 +154,11 @@
           <div class="mb-5 text-xl font-semibold font-normal text-gray-900 ">My Friends</div>
 
 
-          <ul role="list">
+          <ul id="loggedUser" role="list" th:title="${#authentication.principal.id}">
 
-            <div th:each="user : ${followedUsers}">
-              <div th:if="${user.id} != ${#authentication.principal.id}">
-                <li class="group/item hover:bg-slate-100 ">
+            <div th:each="user : ${followedUsers}" >
+              <div th:if="${user.id} != ${#authentication.principal.id}" >
+                <li th:title="${user.id}"  class="friend-card group/item hover:bg-slate-100 ">
 
 
                   <div class="flex flex-col space-x-4 mb-5 ">
@@ -195,10 +195,11 @@
                         </div>
                       </div>
 
-                      <a th:href="@{/chat/{id}(id=${user.id})}" class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible "  >
-<!--                         th:onclick="'getUserInfo(' + ${user.id} + ')'">-->
+                      <button type="button" th:id="${user.id}" class="all-users flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible">
                         <ion-icon class="group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 self-end" name="chevron-forward-outline"></ion-icon>
-                      </a>
+                      </button>
+
+
                     </div>
                   </div>
 
@@ -211,19 +212,6 @@
 
 
 
-          <!--          <div th:each="user : ${users}">-->
-
-          <!--            <div class="flex flex-col space-x-4 mb-5">-->
-          <!--              <div class="flex items-center items-center">-->
-          <!--                <img th:href="@{|/user/${user.id}|}" class="w-10 h-10 rounded-full" th:src="${user.profilePhoto}" alt="user-image" >-->
-          <!--                <div class="ml-3 flex-col font-medium dark:text-white">-->
-          <!--                  <div class="text-base font-normal text-gray-900 "><span th:text="${user.first_name}" th:href="@{|/user/${user.id}|}"></span><span th:text="${user.last_name}" th:href="@{|/user/${user.id}|}"></span></div>-->
-          <!--                  <div class="text-sm text-gray-500 dark:text-gray-400">@<span th:text="${user.username}" th:href="@{|/user/${user.id}|}"></span></div>-->
-          <!--                </div>-->
-          <!--              </div>-->
-          <!--              <hr class="w-3/4 h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">-->
-          <!--            </div>-->
-          <!--          </div>-->
 
 
         </section>
@@ -232,172 +220,118 @@
         <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
 
 
-<!--          <body>-->
-<!--          <h1>Chat Room</h1>-->
-<!--          <div th:each="message : ${messages}">-->
-<!--            <p><b th:text="${message.sender}"/>: <span th:text="${message.content}"/></p>-->
-<!--          </div>-->
-<!--          <form th:action="@{/postMessage}" th:object="${newMessage}" method="post">-->
-<!--            <input type="text" th:field="*{content}" placeholder="Message"/>-->
-<!--            <input type="text" th:field="*{sender}" placeholder="Sender"/>-->
-<!--            <input type="submit" value="Send"/>-->
-<!--          </form>-->
-<!--          </body>-->
-
-
           <div class="container">
-            <h1>Chatting</h1>
             <!-- container element in which TalkJS will display a chat UI -->
             <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
               <i>Loading chat...</i>
             </div>
 
           </div>
-
-
-
-          <div>
-            <h2>User Info</h2>
-            <p>Username: <span id="user-name"></span></p>
-            <p>Email: <span id="user-email"></span></p>
-            <!-- etc. -->
-          </div>
-          <div id="user-info"></div>
         </section>
       </div>
-
-
-
-
     </div>
-    <!--End of Filter bar-->
-    <!--Event Feed Section-->
-    <!--    <div class="w-full h-full">-->
-    <!--&lt;!&ndash;        <div class="flex-row p-3" th:include="users/user-card :: userList"></div>&ndash;&gt;-->
-    <!--    </div>-->
-
   </div>
 </div>
 
-<!--<script>-->
-<!--  // TalkJS 초기화-->
-<!--  Talk.ready.then(function() {-->
-<!--    // 사용자 정보-->
-<!--    var currentUser = {-->
-      id: /*[[${user.id}]]*/,
-      username: /*[[${user.username}]]*/,
-      email: /*[[${user.email}]]*/,
-      profilePhoto: /*[[${user.profilePhoto}]]*/
-<!--    };-->
-
-<!--    // TalkJS 대화 상대 정보-->
-<!--    var otherUser = {-->
-<!--      id: /*[[${user.id}]]*/,-->
-<!--      username: /*[[${user.username}]]*/,-->
-<!--      email: /*[[${user.email}]]*/,-->
-<!--      profilePhoto: /*[[${user.profilePhoto}]]*/-->
-<!--    };-->
-
-<!--    // TalkJS 대화 상자 생성-->
-<!--    var conversation = Talk.oneOnOneConversation(currentUser, otherUser, {-->
-<!--      subject: 'TalkJS 테스트 대화'-->
-<!--    });-->
-
-<!--    // TalkJS 채팅 화면 렌더링-->
-<!--    var chatbox = conversation.createChatbox(document.getElementById("talkjs-container"));-->
-<!--    chatbox.mount();-->
-<!--  });-->
-<!--</script>-->
-
-
-<!--<script>-->
-<!--  // TalkJS 초기화 및 사용자 데이터 설정-->
-<!--  Talk.ready.then(function() {-->
-<!--    // 대화 생성-->
-<!--    var conversation = talkSession.startConversationWithPopup({-->
-<!--      subject: '지원',-->
-<!--      participants: [{-->
-<!--        id: [[${userId}]],-->
-<!--        username: [[${user.username}]],-->
-<!--        email: [[${userEmail}]],-->
-<!--      }]-->
-<!--    });-->
-
-<!--    // 대화를 컨테이너에 임베드-->
-<!--    conversation.setPopupAnchor(document.getElementById('talkjs-container'));-->
-<!--  });-->
-<!--</script>-->
-
-
-
-
-
-<!--<script th:inline="javascript">-->
-<!--  var me = new Talk.User({-->
-    id: [[${currentUserId}]],
-    name: [[${currentUserDisplayName}]],
-    email: [[${currentUserEmail}]],
-<!--    photoUrl: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200'-->
-<!--  });-->
-
-<!--  Talk.ready.then(function() {-->
-<!--    var conversationId = '[[${conversationId}]]';-->
-<!--    var otherUserId = '[[${otherUserId}]]';-->
-
-<!--    var other = new Talk.User({-->
-<!--      id: otherUserId,-->
-<!--      name: 'Other User',-->
-<!--      email: 'otheruser@example.com',-->
-<!--      photoUrl: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200'-->
-<!--    });-->
-
-<!--    var conversation = talkSession.getOrCreateConversation(conversationId);-->
-<!--    conversation.setParticipant(me);-->
-<!--    conversation.setParticipant(other);-->
-
-<!--    var chatbox = talkSession.createChatbox(conversation);-->
-<!--    chatbox.mount(document.getElementById('talkjs-container'));-->
-<!--  });-->
-<!--</script>-->
-
 
 <script>
-  (function(t,a,l,k,j,s){
-    s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s);
-    k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
-                .push([f])},catch:function(){return k&&new k()},c:l}}
-  })(window,document,[]);
-  Talk.ready.then(function () {
-    var me = new Talk.User({
-      id: '123456',
-      name: 'Alice',
-      email: 'alice@example.com',
-      photoUrl: 'https://talkjs.com/images/avatar-1.jpg',
-      welcomeMessage: 'Hey there! How are you? :-)',
-    });
-    window.talkSession = new Talk.Session({
-      appId: 'tp21z3C9',
-      me: me,
-    });
-    var other = new Talk.User({
-      id: '654321',
-      name: 'Sebastian',
-      email: 'Sebastian@example.com',
-      photoUrl: 'https://talkjs.com/images/avatar-5.jpg',
-      welcomeMessage: 'Hey, how can I help?',
-    });
-    var conversation = talkSession.getOrCreateConversation(
-            Talk.oneOnOneId(me, other)
-    );
-    conversation.setParticipant(me);
-    conversation.setParticipant(other);
-    var inbox = talkSession.createInbox({ selected: conversation });
-    inbox.mount(document.getElementById('talkjs-container'));
-  });
+  (
+          async function() {
+            const response = await fetch('http://localhost:8080/api/alluser', {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              }
+            });
+            const data = await response.json();
+// console.log(data);
+            for(let i = 0; i < data.length; i++){
+              console.log("data:")
+              console.log(data[i].id);
+            }
+
+
+            function findUser (userId){
+
+              for(let i=0; i<data.length; i++ ){
+                if(data[i].id == userId ){
+                  return data[i];
+                }
+              }
+            }
+
+            const buttons = document.querySelectorAll(".all-users");
+            buttons.forEach(function (button) {
+              button.addEventListener("click", function () {
+                let loggedUserId = document.getElementById("loggedUser").title;
+                console.log("logged in user: " + loggedUserId)
+                const buttonId = button.getAttribute("id");
+                console.log(buttonId);
+
+                let loggedUser = findUser(loggedUserId);
+                let selectedUser = findUser(buttonId);
+
+                console.log(loggedUser.username);
+                console.log(selectedUser.username);
+
+
+
+                Talk.ready.then(function () {
+                  var me = new Talk.User({
+                    id: loggedUser.id,
+                    name: loggedUser.username,
+                    email: loggedUser.email,
+// photoUrl: loggedUser.profilePhoto,
+                  });
+                  window.talkSession = new Talk.Session({
+                    appId: 'tp21z3C9',
+                    me: me,
+                  });
+                  var other = new Talk.User({
+                    id: selectedUser.id,
+                    name: selectedUser.username,
+                    email: selectedUser.email,
+// photoUrl: selectedUser.profilePhoto,
+                  });
+
+                  var conversation = talkSession.getOrCreateConversation(
+                          Talk.oneOnOneId(me, other)
+                  );
+                  conversation.setParticipant(me);
+                  conversation.setParticipant(other);
+                  var inbox = talkSession.createInbox({ selected: conversation });
+                  inbox.mount(document.getElementById('talkjs-container'));
+                });
+
+
+              });
+            });
+
+
+
+
+
+            (function(t,a,l,k,j,s){
+              s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s);
+              k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
+                          .push([f])},catch:function(){return k&&new k()},c:l}}
+            })(window,document,[]);
+
+
+          })();
+
+
+
+
+
+
+
+
 </script>
 
 
 <script>
+
   const checkbox = document.getElementById('toggle-checkbox');
   const text = document.getElementById('toggle-text');
 
@@ -407,41 +341,23 @@
       url: "/user/" + userId +"/show",
       type: "GET",
       success: function(user) {
-        // populate user info into HTML elements on the page
+// populate user info into HTML elements on the page
         $("#user-name").text(user.username);
         $("#user-email").text(user.email);
-        // etc.
+// etc.
       }
-    });
-  }
+    })
 
 
+    checkbox.addEventListener('change', () => {
+      if (checkbox.checked) {
+        text.textContent = 'Listing';
+      } else {
+        text.textContent = 'Map';
+      }
+    })}
 
-  checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-      text.textContent = 'Listing';
-    } else {
-      text.textContent = 'Map';
-    }
-  });
 
-
-  //
-  // $(document).ready(function() {
-  //   const button = $('#color-toggle');
-  //
-  //   button.click(function() {
-  //     if (button.hasClass('bg-white')) {
-  //       button.removeClass('bg-white text-black');
-  //       button.addClass('bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:outline-none text-white');
-  //       button.text('Attending');
-  //     } else {
-  //       button.removeClass('bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none text-white');
-  //       button.addClass('bg-white text-black')
-  //       button.text('Participate');
-  //     }
-  //   });
-  // });
 </script>
 
 <script src="../../static/js/event-feed.js"></script>
