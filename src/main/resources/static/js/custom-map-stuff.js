@@ -1,7 +1,6 @@
 
 //Function to get all the event locations
 function allEvents() {
-    let allEventsIds = [];
     fetch('http://localhost:8080/api/allevents', {
         method: "GET",
         headers: {
@@ -42,7 +41,7 @@ function allEvents() {
 
                         let eventPopup = new mapboxgl.Popup()
                             .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
-                        allEventsIds.push(event.id);
+                        
                         marker.setPopup(eventPopup);
                     });
                 });
@@ -54,8 +53,8 @@ function allEvents() {
 
         })
         .catch(error => console.error(error));
-    return allEventsIds;
 }
+
 
 // ==========> Events within 50 miles radius <=================
 let localLocations = async function () {
@@ -221,10 +220,5 @@ mapBtn.addEventListener("click", function () {
         }
     });
 });
-
-
-
-
-
 
 
