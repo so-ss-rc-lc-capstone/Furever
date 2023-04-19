@@ -1,4 +1,4 @@
-import {keys} from "./keys.js";
+// import {keys} from "./keys.js";
 
 $(document).ready(function() {
     const uploadBtn = $('#upload-btn');
