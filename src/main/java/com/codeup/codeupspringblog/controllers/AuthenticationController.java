@@ -33,12 +33,6 @@ public class AuthenticationController {
         Boolean isValidUser = authentication.isAuthenticated();
         System.out.println(isValidUser);
 
-//        if(!currentPrincipalName.equalsIgnoreCase( "anonymousUser") || currentPrincipalName !=null ){
-//            return "redirect:/events";
-////            return "users/login";
-//
-//        }
-
 
 
         return "users/login";
@@ -46,19 +40,6 @@ public class AuthenticationController {
 
     }
 
-//    @PostMapping("/login")
-//    public String loadFromLoginForm(Model model) {
-//
-//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//
-//        System.out.println(currentUser.getId());
-//        if(currentUser.getId() != 0){
-//            User userData = userDao.findById(currentUser.getId());
-//            model.addAttribute("user", userData);
-//            return "redirect:/profile";
-//        }else{
-//            return "users/login";
-//        }
-//    }
+
 }
 
