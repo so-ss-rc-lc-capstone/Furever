@@ -16,6 +16,9 @@
       ;k=t.Promise;t.Talk={v:2,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
                   .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
   </script>
+
+  <script src="https://cdn.talkjs.com/talk.js"></script>
+
 </head>
 
 
@@ -192,7 +195,8 @@
                         </div>
                       </div>
 
-                      <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible "  th:onclick="'getUserInfo(' + ${user.id} + ')'">
+                      <a th:href="@{/chat/{id}(id=${user.id})}" class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible "  >
+<!--                         th:onclick="'getUserInfo(' + ${user.id} + ')'">-->
                         <ion-icon class="group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 self-end" name="chevron-forward-outline"></ion-icon>
                       </a>
                     </div>
@@ -228,10 +232,29 @@
         <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
 
 
-          <!-- container element in which TalkJS will display a chat UI -->
-          <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
-            <i>Loading chat...</i>
+<!--          <body>-->
+<!--          <h1>Chat Room</h1>-->
+<!--          <div th:each="message : ${messages}">-->
+<!--            <p><b th:text="${message.sender}"/>: <span th:text="${message.content}"/></p>-->
+<!--          </div>-->
+<!--          <form th:action="@{/postMessage}" th:object="${newMessage}" method="post">-->
+<!--            <input type="text" th:field="*{content}" placeholder="Message"/>-->
+<!--            <input type="text" th:field="*{sender}" placeholder="Sender"/>-->
+<!--            <input type="submit" value="Send"/>-->
+<!--          </form>-->
+<!--          </body>-->
+
+
+          <div class="container">
+            <h1>Chatting</h1>
+            <!-- container element in which TalkJS will display a chat UI -->
+            <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
+              <i>Loading chat...</i>
+            </div>
+
           </div>
+
+
 
           <div>
             <h2>User Info</h2>
@@ -255,27 +278,105 @@
 
   </div>
 </div>
+
+<!--<script>-->
+<!--  // TalkJS 초기화-->
+<!--  Talk.ready.then(function() {-->
+<!--    // 사용자 정보-->
+<!--    var currentUser = {-->
+      id: /*[[${user.id}]]*/,
+      username: /*[[${user.username}]]*/,
+      email: /*[[${user.email}]]*/,
+      profilePhoto: /*[[${user.profilePhoto}]]*/
+<!--    };-->
+
+<!--    // TalkJS 대화 상대 정보-->
+<!--    var otherUser = {-->
+<!--      id: /*[[${user.id}]]*/,-->
+<!--      username: /*[[${user.username}]]*/,-->
+<!--      email: /*[[${user.email}]]*/,-->
+<!--      profilePhoto: /*[[${user.profilePhoto}]]*/-->
+<!--    };-->
+
+<!--    // TalkJS 대화 상자 생성-->
+<!--    var conversation = Talk.oneOnOneConversation(currentUser, otherUser, {-->
+<!--      subject: 'TalkJS 테스트 대화'-->
+<!--    });-->
+
+<!--    // TalkJS 채팅 화면 렌더링-->
+<!--    var chatbox = conversation.createChatbox(document.getElementById("talkjs-container"));-->
+<!--    chatbox.mount();-->
+<!--  });-->
+<!--</script>-->
+
+
+<!--<script>-->
+<!--  // TalkJS 초기화 및 사용자 데이터 설정-->
+<!--  Talk.ready.then(function() {-->
+<!--    // 대화 생성-->
+<!--    var conversation = talkSession.startConversationWithPopup({-->
+<!--      subject: '지원',-->
+<!--      participants: [{-->
+<!--        id: [[${userId}]],-->
+<!--        username: [[${user.username}]],-->
+<!--        email: [[${userEmail}]],-->
+<!--      }]-->
+<!--    });-->
+
+<!--    // 대화를 컨테이너에 임베드-->
+<!--    conversation.setPopupAnchor(document.getElementById('talkjs-container'));-->
+<!--  });-->
+<!--</script>-->
+
+
+
+
+
+<!--<script th:inline="javascript">-->
+<!--  var me = new Talk.User({-->
+    id: [[${currentUserId}]],
+    name: [[${currentUserDisplayName}]],
+    email: [[${currentUserEmail}]],
+<!--    photoUrl: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200'-->
+<!--  });-->
+
+<!--  Talk.ready.then(function() {-->
+<!--    var conversationId = '[[${conversationId}]]';-->
+<!--    var otherUserId = '[[${otherUserId}]]';-->
+
+<!--    var other = new Talk.User({-->
+<!--      id: otherUserId,-->
+<!--      name: 'Other User',-->
+<!--      email: 'otheruser@example.com',-->
+<!--      photoUrl: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200'-->
+<!--    });-->
+
+<!--    var conversation = talkSession.getOrCreateConversation(conversationId);-->
+<!--    conversation.setParticipant(me);-->
+<!--    conversation.setParticipant(other);-->
+
+<!--    var chatbox = talkSession.createChatbox(conversation);-->
+<!--    chatbox.mount(document.getElementById('talkjs-container'));-->
+<!--  });-->
+<!--</script>-->
+
+
 <script>
-  const checkbox = document.getElementById('toggle-checkbox');
-  const text = document.getElementById('toggle-text');
-
-
-  <!-- minified snippet to load TalkJS without delaying your page -->
-    (function(t,a,l,k,j,s){
-    s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
-    ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
-    .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
-
+  (function(t,a,l,k,j,s){
+    s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s);
+    k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
+                .push([f])},catch:function(){return k&&new k()},c:l}}
+  })(window,document,[]);
   Talk.ready.then(function () {
     var me = new Talk.User({
-      id: 'sk_test_32g8SBamMRKJjGzs2WRSorDpVDyVuKAi',
+      id: '123456',
       name: 'Alice',
       email: 'alice@example.com',
       photoUrl: 'https://talkjs.com/images/avatar-1.jpg',
       welcomeMessage: 'Hey there! How are you? :-)',
     });
     window.talkSession = new Talk.Session({
-      appId: 'YOUR_APP_ID',
+      appId: 'tp21z3C9',
       me: me,
     });
     var other = new Talk.User({
@@ -285,16 +386,20 @@
       photoUrl: 'https://talkjs.com/images/avatar-5.jpg',
       welcomeMessage: 'Hey, how can I help?',
     });
-
     var conversation = talkSession.getOrCreateConversation(
             Talk.oneOnOneId(me, other)
     );
     conversation.setParticipant(me);
     conversation.setParticipant(other);
-
     var inbox = talkSession.createInbox({ selected: conversation });
     inbox.mount(document.getElementById('talkjs-container'));
   });
+</script>
+
+
+<script>
+  const checkbox = document.getElementById('toggle-checkbox');
+  const text = document.getElementById('toggle-text');
 
 
   function getUserInfo(userId) {

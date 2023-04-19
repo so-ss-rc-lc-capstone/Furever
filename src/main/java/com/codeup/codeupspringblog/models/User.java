@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -55,7 +56,7 @@ public class User {
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Post> posts;
 
-@JsonIgnore
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Event> events;
 
@@ -75,6 +76,10 @@ public class User {
     @JsonIgnore
     @ManyToMany(mappedBy = "followedUsers")
     private List<User> followingUsers;
+
+
+
+
 
     public long getId() {
         return id;
