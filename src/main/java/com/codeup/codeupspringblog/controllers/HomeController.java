@@ -28,20 +28,20 @@ public class HomeController {
         this.emailService = emailService;
     }
 
-    @GetMapping("/")
-    @ResponseBody
-    public String welcome(){
-//        User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        Long loggedID = loggedUser.getId();
-//
-//        User user = userDao.findById(loggedID).get();
-//
-//
-//        Post post = postDao.findById().get()
-//        emailService.prepareAndSend(post);
-//        System.out.println("Email sent!");
-        return "This is the landing page!";
-    }
+//    @GetMapping("/")
+//    @ResponseBody
+//    public String welcome(){
+////        User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+////        Long loggedID = loggedUser.getId();
+////
+////        User user = userDao.findById(loggedID).get();
+////
+////
+////        Post post = postDao.findById().get()
+////        emailService.prepareAndSend(post);
+////        System.out.println("Email sent!");
+//        return "This is the landing page!";
+//    }
 
     @GetMapping("/matrix")
     public String returnMatrixPage(){

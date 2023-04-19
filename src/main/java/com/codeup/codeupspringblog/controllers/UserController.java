@@ -14,6 +14,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -72,6 +74,32 @@ public class UserController {
 
 
 
+//        @Autowired
+//        UserRepository userRepository;
+//
+//        @PostMapping(value = "/createUser")
+//        public ResponseEntity<User> createUser(@RequestBody User user) {
+//            return new ResponseEntity<>(userRepository.save(user), HttpStatus.OK);
+//        }
+//
+//        @GetMapping(value = "/getUser")
+//        public ResponseEntity<User> getUser(@RequestParam(required = true) Long userId) {
+//            return new ResponseEntity<>(userRepository.findById(userId).get(), HttpStatus.OK);
+//        }
+
+
+
+
+    @GetMapping(value = "/getUser")
+    public ResponseEntity<User> getUser(@RequestParam(required = true) Long userId) {
+        return new ResponseEntity<>(userDao.findById(userId).get(), HttpStatus.OK);
+    }
+
+
+
+
+
+
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
         model.addAttribute("user", new User());
@@ -85,6 +113,9 @@ public class UserController {
         userDao.save(user);
         return "users/login";
     }
+
+
+
 
     @GetMapping("/user/{id}/posts")
     public String userAds(@PathVariable long id, Model model){

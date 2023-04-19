@@ -65,6 +65,8 @@ public class SecurityConfiguration {
                         "/sign-up",
                         "/register",
                         "/about",
+                        "/chat",
+                        "/chat/{selectedId}",
 
                         "/js/**",
                         "/css/**",

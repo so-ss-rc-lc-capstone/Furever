@@ -42,7 +42,7 @@ function allEvents() {
 
                         let eventPopup = new mapboxgl.Popup()
                             .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
-                        
+
                         marker.setPopup(eventPopup);
                     });
                 });
@@ -175,10 +175,10 @@ filter.addEventListener('change', function () {
     if (selectedValue === 'local') {
         localIdComparison();
         map.style.display = "none";
-        } else {
-            location.reload();
-            allIdcomparison();
-        }
+    } else {
+        location.reload();
+        allIdcomparison();
+    }
 });
 
 
