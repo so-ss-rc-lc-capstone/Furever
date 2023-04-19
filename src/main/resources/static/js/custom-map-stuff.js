@@ -1,5 +1,6 @@
 
 //Function to get all the event locations
+
 function allEvents() {
     fetch('http://localhost:8080/api/allevents', {
         method: "GET",
@@ -54,7 +55,6 @@ function allEvents() {
         })
         .catch(error => console.error(error));
 }
-
 
 // ==========> Events within 50 miles radius <=================
 let localLocations = async function () {
@@ -220,5 +220,3 @@ mapBtn.addEventListener("click", function () {
         }
     });
 });
-
-
