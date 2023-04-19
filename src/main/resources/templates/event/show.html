@@ -11,12 +11,12 @@
 
     <div class="w-full relative flex items-start justify-center h-1/2" th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
 
-        <div class="flex w-[50em] h-full rounded-xl bg-white border-2"  style="transform: translateY(95%);">
+        <div class="flex w-[50em] h-full rounded-xl bg-white border-2"  style="transform: translateY(85%);">
 
-            <div class="w-3/5 p-4">
+            <div class="w-3/5 p-6">
                 <h1 class = "text-2xl font-bold mb-3"><span th:text="${event.title}"></span></h1>
-                <h3 class="mb-2">Starts at <span th:text="${#temporals.format(event.event_DateAndTime, 'dd-MMM-yyyy h:mm a')}"></span></h3>
-                <h3 >Event created at <span th:text="${#temporals.format(event.created_at, 'dd-MMM-yyyy h:mm a')}"></span></h3>
+                <h3 class="mb-2">Starts at <span th:text="${#temporals.format(event.event_DateAndTime, 'h:mm a dd-MMM-yyyy')}"></span></h3>
+                <h3 >Event created at <span th:text="${#temporals.format(event.created_at, 'dd-MMM-yyyy')}"></span></h3>
                 <h3 class="mt-5 font-bold">Location</h3>
                 <h3><span th:text="${event.location_name}"></span></h3>
                 <h3><span th:text="${event.location_address}"></span></h3>
@@ -24,7 +24,7 @@
                 <p th:text="${event.description}"></p>
             </div>
 
-            <div class="w-2/5 p-4 border-l-2">
+            <div class="w-2/5 p-6 border-l-2">
 
                 <div class="flex flex-row">
 
