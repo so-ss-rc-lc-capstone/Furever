@@ -2,6 +2,7 @@ package com.codeup.codeupspringblog.models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,16 @@ public class Post {
 
     @OneToMany(mappedBy = "post")
     private List<Comments> comments = new ArrayList<>();
+
+    public LocalDateTime getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
+    }
+
+    private LocalDateTime created_at;
 
 
     public String getImage() {
