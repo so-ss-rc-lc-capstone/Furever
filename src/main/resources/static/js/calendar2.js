@@ -15,13 +15,9 @@
         console.log(data[i].id);
     }
 
-
-
     let eventDates = [];
     let eventMonths = [];
     let eventYears = [];
-
-
 
     for (let i =0; i<data.length; i++){
 
@@ -36,13 +32,8 @@
         let eventYear = eventDate.getDate();
         eventYears.push(eventYear)
 
-
-
         console.log(eventDates);
     }
-
-
-
 
     const daysTag = document.querySelector(".days"),
         currentDate = document.querySelector(".current-date"),
@@ -66,25 +57,26 @@
             liTag += `<li class="inactive">${lastDateofLastMonth - i + 1}</li>`;
         }
 
-
-
         for (let i = 1; i <= lastDateofMonth; i++) { // creating li of all days of current month
             // adding active class to li if the current day, month, and year matched
 
-
-            // let isToday = i === date.getDate() && currMonth === new Date().getMonth()
-            // && currYear === new Date().getFullYear() ? "active" : "inactive";
+            // let isToday =
+            //     i === date.getDate() &&
+            //     currMonth === new Date().getMonth() &&
+            //     currYear === new Date().getFullYear() ? "active" : "inactive";
             // liTag += `<li class="${isToday}">${i}</li>`;
+            //
 
-            let isEvent =
-                i === date.getDate() &&
-                currMonth === new Date().getMonth() &&
-                currYear === new Date().getFullYear() ? "active" : "inactive";
+            let isEvent = "inactive";
+            for (let j = 0; j < eventDates.length; j++) {
+                if (i === eventDates[j] && currMonth === eventMonths[j]) {
+                    isEvent = "active";
+                } else if (i === date.getDate() && currMonth === date.getMonth() && currYear === date.getFullYear()) {
+                    isEvent = "active";
+                }
+            }
             liTag += `<li class="${isEvent}">${i}</li>`;
 
-            if(eventDates.includes(i)) {
-                liTag += `<li class="active">${i}</li>`;
-            }
         }
         for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days
             liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`
