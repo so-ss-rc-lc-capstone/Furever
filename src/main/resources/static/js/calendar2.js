@@ -72,7 +72,7 @@
                 if (i === eventDates[j] && currMonth === eventMonths[j]) {
                     isEvent = "active";
                 } else if (i === date.getDate() && currMonth === date.getMonth() && currYear === date.getFullYear()) {
-                    isEvent = "active";
+                    isEvent = "today";
                 }
             }
             liTag += `<li class="${isEvent}">${i}</li>`;
