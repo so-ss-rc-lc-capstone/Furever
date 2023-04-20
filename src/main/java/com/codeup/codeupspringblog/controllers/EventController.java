@@ -93,15 +93,15 @@ public class EventController {
         model.addAttribute("followedUsers",followedUsers);
 
 //
-//        for(int i=0; i<users.size(); i++){
-//            System.out.println("[User]:"+ users.get(i).getId());
-//            if(followedUsers.contains(users.get(i))){
-//                System.out.println("[[already following!!!]]");
-//            }else{
-//                System.out.println("[[Not following!!!]]");
-//                usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
-//            }
-//        }
+        for(int i=0; i<users.size(); i++){
+            System.out.println("[User]:"+ users.get(i).getId());
+            if(followedUsers.contains(users.get(i))){
+                System.out.println("[[already following!!!]]");
+            }else{
+                System.out.println("[[Not following!!!]]");
+                usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
+            }
+        }
         model.addAttribute("usersNotFollowing", usersNotFollowing);
 
 
