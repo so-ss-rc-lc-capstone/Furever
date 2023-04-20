@@ -55,15 +55,6 @@ public class PostController {
         List<User> users = usersDao.findAll();
         List<Comments> comments = commentDao.findAll();
 
-//        for(int i=0; i<users.size(); i++){
-//            System.out.println("[User]:"+ users.get(i).getId());
-//            if(followedUsers.contains(users.get(i))){
-//                System.out.println("[[already following!!!]]");
-//            }else{
-//                System.out.println("[[Not following!!!]]");
-//                usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
-//            }
-//        }
         model.addAttribute("comments", comments);
         model.addAttribute("followedUsers",followedUsers);
         model.addAttribute("posts", posts);
@@ -74,21 +65,7 @@ public class PostController {
         return "posts/index";
     }
 
-//    @PostMapping("/comment/create")
-//    public String createComment(@ModelAttribute Comments comments) {
-//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        User userData = usersDao.findById(currentUser.getId());
-//        Post post = postDao.findById(currentUser.getId()).get();
-//        System.out.println(userData);
-//        comments.setContent(comments.getContent());
-//        comments.setUserId(userData);
-//        comments.setPostId(post);
-//        comments.setCreated_at(LocalDateTime.now());
-//
-//        commentDao.save(comments);
-//
-//        return "redirect:/posts";
-//    }
+
 @PostMapping("/comment/{id}/create")
 public String createComment(@ModelAttribute Comments comments, @PathVariable Long id) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
