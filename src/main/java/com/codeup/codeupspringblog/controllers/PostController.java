@@ -55,15 +55,15 @@ public class PostController {
         List<User> users = usersDao.findAll();
         List<Comments> comments = commentDao.findAll();
 
-//        for(int i=0; i<users.size(); i++){
-//            System.out.println("[User]:"+ users.get(i).getId());
-//            if(followedUsers.contains(users.get(i))){
-//                System.out.println("[[already following!!!]]");
-//            }else{
-//                System.out.println("[[Not following!!!]]");
-//                usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
-//            }
-//        }
+        for(int i=0; i<users.size(); i++){
+            System.out.println("[User]:"+ users.get(i).getId());
+            if(followedUsers.contains(users.get(i))){
+                System.out.println("[[already following!!!]]");
+            }else{
+                System.out.println("[[Not following!!!]]");
+                usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
+            }
+        }
         model.addAttribute("comments", comments);
         model.addAttribute("followedUsers",followedUsers);
         model.addAttribute("posts", posts);
@@ -74,21 +74,38 @@ public class PostController {
         return "posts/index";
     }
 
-//    @PostMapping("/comment/create")
-//    public String createComment(@ModelAttribute Comments comments) {
-//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        User userData = usersDao.findById(currentUser.getId());
-//        Post post = postDao.findById(currentUser.getId()).get();
-//        System.out.println(userData);
-//        comments.setContent(comments.getContent());
-//        comments.setUserId(userData);
-//        comments.setPostId(post);
-//        comments.setCreated_at(LocalDateTime.now());
-//
-//        commentDao.save(comments);
-//
-//        return "redirect:/posts";
+
+//    @GetMapping("/events/{id}/find")
+//    public String findEvent(@PathVariable long id, Model model) {
+//        Event event = eventsDao.findById(id).get();
+//        List<EventParticipation> participations = event.getParticipations();
+//        List<User> participants = new ArrayList<>();
+//        for (EventParticipation participation : participations) {
+//            participants.add(participation.getUser());
+//        }
+//        model.addAttribute("participants", participants);
+//        model.addAttribute("event", event);
+//        return "event/show";
 //    }
+
+
+    @GetMapping("/posts/{id}/show")
+    public String showComment(@PathVariable Long id, Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = usersDao.findById(user.getId());
+        Post post = postDao.findById(id).get();
+
+        List<Comments> comments = post.getComments();
+        List<User> users = usersDao.findAll();
+
+        model.addAttribute("comments", new Comments());
+        model.addAttribute("user", userData);
+        model.addAttribute("post", post);
+        model.addAttribute("comment", comments);
+        return "posts/comment-show";
+    }
+
+
 @PostMapping("/comment/{id}/create")
 public String createComment(@ModelAttribute Comments comments, @PathVariable Long id) {
     User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -111,8 +128,6 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
 
 
 
-
-
 //Form Model Binding
     @GetMapping("/posts/create")
     public String showCreate(Model model){
@@ -128,11 +143,6 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
         User userData = usersDao.findById(currentUser.getId());
         post.setUser(userData);
         post.setCreated_at(LocalDateTime.now());
-
-//        User user = Users.randomUser(userDao);
-
-//        System.out.println("logged in ID: "+currentUser.getId());
-//        System.out.println("Post ID: " + post.getId());
         postDao.save(post);
         emailService.prepareAndSend(post);
         return "redirect:/posts"; // go to controller
@@ -196,21 +206,6 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
 
 
 
-//    @GetMapping("/posts")
-//    public String getPostIndexPage(Model model){
-//
-//        List<Post> posts = postDao.findAll();
-//        model.addAttribute("posts", posts);
-////        List<Post> filteredPostsList = posts
-////                .stream()
-////                .filter(product -> product.getPriceInCents()<1000)
-////                .collect(Collectors.toList());
-////        model.addAttribute("posts", filteredPostsList);
-//
-//        return "posts/index";
-//    }
-
-
     @GetMapping("/posts/{n}/delete")
     public String deletePost(@PathVariable long n){
 
@@ -251,31 +246,6 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
 
 
 
-
-//    public void increment(Long id){
-//        try {
-//            String insertQuery = "UPDATE products SET quantity = quantity+1 WHERE id = ?";
-//            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
-//            stmt.setLong(1, id);
-//            stmt.executeUpdate();
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error inserting a product", e);
-//        }
-//    }
-//
-//
-//    public void decrement(Long id){
-//        try {
-//            String insertQuery = "UPDATE products SET quantity = quantity-1 WHERE id = ? AND quantity>0";
-//            PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
-//            stmt.setLong(1, id);
-//            stmt.executeUpdate();
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error inserting a product", e);
-//        }
-//    }
 
 
 }
