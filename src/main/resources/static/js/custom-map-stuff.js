@@ -42,7 +42,7 @@ function allEvents() {
 
                         let eventPopup = new mapboxgl.Popup()
                             .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
-                        
+
                         marker.setPopup(eventPopup);
                     });
                 });
@@ -175,16 +175,16 @@ filter.addEventListener('change', function () {
     if (selectedValue === 'local') {
         localIdComparison();
         map.style.display = "none";
-        } else {
-            location.reload();
-            allIdcomparison();
-        }
+    } else {
+        location.reload();
+        allIdcomparison();
+    }
 });
 
 
 //Listing button that show list of events when clicked on and hides map
 const listBtn = document.getElementById('listing-btn');
-const mapBtn = document.getElementById('map-btn');
+const mapButton = document.getElementById('map-btn');
 listBtn.addEventListener("click", function () {
     let map = document.getElementById('map');
     let eventCards = document.querySelectorAll(".card-div");
@@ -204,7 +204,7 @@ listBtn.addEventListener("click", function () {
 
 
 // Map button shows map on click and hides the list of events
-mapBtn.addEventListener("click", function () {
+mapButton.addEventListener("click", function () {
     let map = document.getElementById('map');
     let eventCards = document.querySelectorAll(".card-div");
     const selectedValue = filter.value;

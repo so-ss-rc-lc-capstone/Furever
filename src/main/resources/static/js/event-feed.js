@@ -63,9 +63,16 @@ const toggleSearch = (search, button) => {
                         const result = document.createElement('div');
                         result.classList.add('search-result');
                         result.innerHTML = `
-                    <div class="bg-white p-3 w-[12em] h-[4.5em]" style="overflow: auto; z-index: 9999">
-                        <div class="username font-bold">${user.username}</div>
-                        <div class="name">${name}</div>
+                    <div class="bg-white p-3 w-[17em] h-[4.5em]" style="overflow: auto; z-index: 9999">
+                        <a href="/user/${user.id}">
+                            <div class="flex items-center">
+                               <img src="${user.profilePhoto ? user.profilePhoto : '/img/profile.jpeg'}" alt="${name}" class="profile-photo rounded-full h-10 w-10 mr-2">
+                                <div>
+                                    <div class="username font-bold">@${user.username}</div>
+                                    <div class="name">${name}</div>
+                                </div>           
+                            </div>
+                        </a>
                     </div>
                     `;
                         searchResults.appendChild(result);
