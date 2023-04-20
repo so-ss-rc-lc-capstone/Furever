@@ -51,17 +51,6 @@ public class EventController {
         return "redirect:/events";
     }
 
-//Original code for /events
-//    @GetMapping("/events")
-//    public String allEvents(Model model) {
-//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        User userData = usersDao.findById(currentUser.getId());
-//        model.addAttribute("user", userData);
-//        List<Event> events = eventsDao.findAll();
-//        model.addAttribute("events", events);
-//        return "event/index";
-//    }
-
 
     // Added for Participants modal
     @GetMapping("/events/{eventId}/participants")
@@ -85,14 +74,13 @@ public class EventController {
     public String allEvents(Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = usersDao.findById(currentUser.getId());
-        model.addAttribute("user", userData);
+
         List<User> followedUsers = userData.getFollowedUsers();
         List<User> usersNotFollowing = new ArrayList<>();
         List<User> users = usersDao.findAll();
         List<Event> events = eventsDao.findAll();
-        model.addAttribute("followedUsers",followedUsers);
 
-//
+
         for(int i=0; i<users.size(); i++){
             System.out.println("[User]:"+ users.get(i).getId());
             if(followedUsers.contains(users.get(i))){
@@ -102,22 +90,10 @@ public class EventController {
                 usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
             }
         }
+        model.addAttribute("user", userData);
+        model.addAttribute("followedUsers",followedUsers);
         model.addAttribute("usersNotFollowing", usersNotFollowing);
-
-
-//        for(int i=0; i<followedUsers.size(); i++){
-//            System.out.println("[Followed User]:"+ followedUsers.get(i).getId());
-////            if(followedUsers.get(i).getId()){
-////                System.out.println("[[already following!!!]]");
-////            }else{
-////                System.out.println("[[Not following!!!]]");
-////
-////            }
-//        }
-
-//        System.out.println("Followed Users "+followedUsers);
-
-        model.addAttribute("users",users);
+        model.addAttribute("users", users);
         model.addAttribute("events", events);
         return "event/index";
     }
@@ -210,24 +186,26 @@ public class EventController {
 public String participateEvent(@PathVariable Long id, Principal principal) {
     User user = usersDao.findByUsername(principal.getName());
     Event event = eventsDao.findById(id).get();
-    System.out.println("User participation: " + event.hasParticipated(user));
-
-//
-//    Event event = eventsDao.findById(id).get();
-    System.out.println("Event participations: " + event.getParticipations());
-//    User user = usersDao.findByUsername(principal.getName());
-    System.out.println("Current user: " + user);
-    System.out.println("User participation: " + event.hasParticipated(user));
-
-
-//
-
     if(event.hasParticipated(user)){
-        System.out.println("participated.");
         eventService.decrementParticipations(id, user);
     }else{
-        System.out.println("Not participated.");
         eventService.incrementParticipations(id, user);
+    }
+    return "redirect:/events";
+}
+
+
+//Event Likes below
+@PostMapping("/events/{id}/like")
+public String likeEvent(@PathVariable Long id, Principal principal) {
+
+    User user = usersDao.findByUsername(principal.getName());
+    Event event = eventsDao.findById(id).get();
+
+    if(event.hasLikedEvent(user)){
+        eventService.decrementEventLikes(id, user);
+    }else{
+        eventService.incrementEventLikes(id, user);
     }
     return "redirect:/events";
 }
