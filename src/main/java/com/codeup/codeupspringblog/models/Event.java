@@ -42,6 +42,11 @@ public class Event {
     private List<EventParticipation> participations = new ArrayList<>();
 
 
+    //Event like connection
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EventsLike> eventLikes = new ArrayList<>();
+
+
     public Event() {
     }
 
@@ -164,5 +169,37 @@ public class Event {
     public int getCount() {
         return participations.size();
     }
+
+    //Events like
+
+
+    public List<EventsLike> getEventLikes() {
+        return eventLikes;
+    }
+
+    public void setEventLikes(List<EventsLike> eventLikes) {
+        this.eventLikes = eventLikes;
+    }
+
+    public void addEventLike(User user) {
+        EventsLike eventLike = new EventsLike();
+        eventLike.setEvent(this);
+        eventLike.setUser(user);
+        eventLikes.add(eventLike);
+    }
+
+
+    public void removeEventLike(User user) {
+        eventLikes.removeIf(eventLike -> eventLike.getUser().equals(user));
+    }
+
+    public boolean hasLikedEvent(User user) {
+        return eventLikes.stream().anyMatch(eventLike -> eventLike.getUser().equals(user));
+    }
+
+    public int getEventLikeCount() {
+        return eventLikes.size();
+    }
+
 
 }
