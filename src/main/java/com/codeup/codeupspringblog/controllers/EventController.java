@@ -80,6 +80,16 @@ public class EventController {
         List<User> users = usersDao.findAll();
         List<Event> events = eventsDao.findAll();
 
+
+        for(int i=0; i<users.size(); i++){
+            System.out.println("[User]:"+ users.get(i).getId());
+            if(followedUsers.contains(users.get(i))){
+                System.out.println("[[already following!!!]]");
+            }else{
+                System.out.println("[[Not following!!!]]");
+                usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
+            }
+        }
         model.addAttribute("user", userData);
         model.addAttribute("followedUsers",followedUsers);
         model.addAttribute("usersNotFollowing", usersNotFollowing);
