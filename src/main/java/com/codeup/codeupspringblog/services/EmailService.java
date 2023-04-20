@@ -21,13 +21,11 @@ public class EmailService {
     public void prepareAndSend(Post post) {
         System.out.println(post.getId());
         System.out.println(post.getBody());
-        System.out.println(post.getTitle());
         System.out.println(post.getUser().getId());
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(from);
         msg.setTo(post.getUser().getEmail());
 //        msg.setTo("osj4129@gmail.com");
-        msg.setSubject(post.getTitle());
         msg.setText(post.getBody());
 
         try{

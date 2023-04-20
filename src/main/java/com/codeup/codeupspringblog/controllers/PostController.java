@@ -1,12 +1,12 @@
 package com.codeup.codeupspringblog.controllers;
 
-import com.codeup.codeupspringblog.models.Like;
-import com.codeup.codeupspringblog.models.Post;
-import com.codeup.codeupspringblog.models.User;
-import com.codeup.codeupspringblog.models.Users;
+import com.codeup.codeupspringblog.models.*;
+import com.codeup.codeupspringblog.repositories.CommentRepository;
+import com.codeup.codeupspringblog.repositories.EventRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 import com.codeup.codeupspringblog.services.EmailService;
+import org.attoparser.dom.Comment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +17,8 @@ import java.security.Principal;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,31 +27,91 @@ public class PostController {
 
     // Dependency Injection
     private final PostRepository postDao;
-    private final UserRepository userDao;
+    private final UserRepository usersDao;
+
+    private final CommentRepository commentDao;
 
     private final EmailService emailService;
 
     private final PostService postService;
 
 
-    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService, PostService postService) {
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService, PostService postService, CommentRepository commentDao) {
         this.postDao = postDao;
-        this.userDao = userDao;
+        this.usersDao = userDao;
         this.emailService = emailService;
         this.postService = postService;
+        this.commentDao = commentDao;
     }
 
+    @GetMapping("/posts")
+    public String allEvents(Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = usersDao.findById(currentUser.getId());
 
+        List<Post> posts = postDao.findAll();
+        List<User> followedUsers = userData.getFollowedUsers();
+        List<User> usersNotFollowing = new ArrayList<>();
+        List<User> users = usersDao.findAll();
+        List<Comments> comments = commentDao.findAll();
 
-
-    @GetMapping("posts/create/cat")
-    public String createCat(){
-        User user = userDao.findById(1);
-
-        Post product = new Post("Cat","said Meow", user);
-        postDao.save(product);
-        return "redirect:/posts";
+//        for(int i=0; i<users.size(); i++){
+//            System.out.println("[User]:"+ users.get(i).getId());
+//            if(followedUsers.contains(users.get(i))){
+//                System.out.println("[[already following!!!]]");
+//            }else{
+//                System.out.println("[[Not following!!!]]");
+//                usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
+//            }
+//        }
+        model.addAttribute("comments", comments);
+        model.addAttribute("followedUsers",followedUsers);
+        model.addAttribute("posts", posts);
+        model.addAttribute("usersNotFollowing", usersNotFollowing);
+        model.addAttribute("user", userData);
+        model.addAttribute("comments", new Comments());
+        model.addAttribute("users",users);
+        return "posts/index";
     }
+
+//    @PostMapping("/comment/create")
+//    public String createComment(@ModelAttribute Comments comments) {
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User userData = usersDao.findById(currentUser.getId());
+//        Post post = postDao.findById(currentUser.getId()).get();
+//        System.out.println(userData);
+//        comments.setContent(comments.getContent());
+//        comments.setUserId(userData);
+//        comments.setPostId(post);
+//        comments.setCreated_at(LocalDateTime.now());
+//
+//        commentDao.save(comments);
+//
+//        return "redirect:/posts";
+//    }
+@PostMapping("/comment/{id}/create")
+public String createComment(@ModelAttribute Comments comments, @PathVariable Long id) {
+    User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User userData = usersDao.findById(currentUser.getId());
+    Post post = postDao.findById(id).get();
+
+    post.getComments().add(comments);
+
+    System.out.println("THE POST" + post);
+    System.out.println("Current id of logged in:" + userData);
+    comments.setUser(userData);
+    comments.setPost(post);
+    comments.setCreated_at(LocalDateTime.now());
+
+    Comments comment = new Comments(comments);
+    commentDao.save(comment);
+    return "redirect:/posts";
+}
+
+
+
+
+
 
 //Form Model Binding
     @GetMapping("/posts/create")
@@ -63,35 +125,19 @@ public class PostController {
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        User userData = userDao.findById(currentUser.getId());
+        User userData = usersDao.findById(currentUser.getId());
         post.setUser(userData);
 
 //        User user = Users.randomUser(userDao);
 
-        System.out.println("logged in ID: "+currentUser.getId());
-        System.out.println("Post ID: " + post.getId());
+//        System.out.println("logged in ID: "+currentUser.getId());
+//        System.out.println("Post ID: " + post.getId());
         postDao.save(post);
         emailService.prepareAndSend(post);
         return "redirect:/posts"; // go to controller
 //        return "<p>Post: "+name+"</p><p>Price: " +price+"</p>";
     }
 
-//    @GetMapping("/posts/create")
-//    public String postIndex(){
-//        return "posts/create";
-//    }
-
-//
-//    @PostMapping("/posts/create")
-//    public String createPost(@RequestParam String title , @RequestParam String body){
-//        System.out.println(title);
-//        System.out.println(body);
-//        User user = userDao.findById(1);
-//        Post post = new Post(title,body,user);
-//        postDao.save(post);
-//        return "redirect:/posts/index"; // go to controller
-////        return "<p>Post: "+name+"</p><p>Price: " +price+"</p>";
-//    }
 
 
     @GetMapping("/posts/{id}/edit")
@@ -115,7 +161,6 @@ public class PostController {
     public String editPost( @ModelAttribute Post post, @PathVariable Long id , Model model){
         Post postData = postDao.findById(id).get(); // Getting data from the database first
 
-        postData.setTitle(post.getTitle());
         postData.setBody(post.getBody());
         postDao.save(postData);
         model.addAttribute("posts", postData);
@@ -150,19 +195,20 @@ public class PostController {
 
 
 
-    @GetMapping("/posts")
-    public String getPostIndexPage(Model model){
+//    @GetMapping("/posts")
+//    public String getPostIndexPage(Model model){
+//
+//        List<Post> posts = postDao.findAll();
+//        model.addAttribute("posts", posts);
+////        List<Post> filteredPostsList = posts
+////                .stream()
+////                .filter(product -> product.getPriceInCents()<1000)
+////                .collect(Collectors.toList());
+////        model.addAttribute("posts", filteredPostsList);
+//
+//        return "posts/index";
+//    }
 
-        List<Post> posts = postDao.findAll();
-        model.addAttribute("posts", posts);
-//        List<Post> filteredPostsList = posts
-//                .stream()
-//                .filter(product -> product.getPriceInCents()<1000)
-//                .collect(Collectors.toList());
-//        model.addAttribute("posts", filteredPostsList);
-
-        return "posts/index";
-    }
 
     @GetMapping("/posts/{n}/delete")
     public String deletePost(@PathVariable long n){
@@ -191,7 +237,7 @@ public class PostController {
 
     @PostMapping("/posts/{id}/like")
     public String likePost(@PathVariable Long id, Principal principal) {
-        User user = userDao.findByUsername(principal.getName());
+        User user = usersDao.findByUsername(principal.getName());
         Post post = postDao.findById(id).get();
         System.out.println(post.hasLiked(user));
         if(post.hasLiked(user)){

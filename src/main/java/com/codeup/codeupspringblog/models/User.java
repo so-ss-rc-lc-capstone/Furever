@@ -55,7 +55,11 @@ public class User {
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Post> posts;
 
-@JsonIgnore
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Comments> comments;
+
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "user")
     private List<Event> events;
 
@@ -247,6 +251,8 @@ public class User {
                 ", bio='" + bio + '\'' +
                 '}';
     }
+
+
 }
 
 
