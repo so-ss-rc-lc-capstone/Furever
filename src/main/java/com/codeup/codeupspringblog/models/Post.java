@@ -13,32 +13,46 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto incrementing ID
     private Long id;
 
-    @Column(nullable = false)
-    private String title;
-
-
     @Column(nullable = false, columnDefinition = "TEXT")
     private String body;
 
+    @Column(nullable = true, columnDefinition = "LONGTEXT")
+    private String image;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id") //
     private User user;
 
-
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Like> likes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "post")
+    private List<Comments> comments = new ArrayList<>();
 
-    public Post(String title, String body, User user) {
-        this.title = title;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
+    }
+
+    public Post(String body, User user) {
         this.body = body;
         this.user = user;
     }
 
     public Post(Long id, String title, String body, User user) {
         this.id = id;
-        this.title = title;
         this.body = body;
         this.user = user;
     }
@@ -52,14 +66,6 @@ public class Post {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getBody() {
@@ -91,7 +97,6 @@ public class Post {
     public String toString() {
         return "Post{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
                 ", body='" + body + '\'' +
                 ", user=" + user +
                 ", likes=" + likes +
@@ -116,6 +121,7 @@ public class Post {
     public int getLikeCount() {
         return likes.size();
     }
+
 
 
 }

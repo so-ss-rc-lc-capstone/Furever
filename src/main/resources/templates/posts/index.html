@@ -1,20 +1,432 @@
 <!DOCTYPE html>
-<head th:replace="partials/header :: head"></head>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<head>
+    <title>Posts</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet"/>
+    <link href="/Users/randychu/Desktop/Software Dev Projects/project-pet/src/main/resources/static/css/searchbar.css"
+          rel="stylesheet"/>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <link href='https://css.gg/css' rel='stylesheet'>
+
+    <!--Mapbox-->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+    <!--direction stuff-->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css"
+          type="text/css">
+
+</head>
+<style>
+
+    @media (max-width: 1095px) {
+        aside {
+            display: none !important;
+        }
+    }
 
 
-<body>
-    <nav th:replace="partials/navbar :: navbar"></nav>
+    #nav-mobile {
+        position: fixed;
+        bottom: 2rem;
+        left: 0;
+        right: 0;
+        width: 328px;
+        height: 72px;
+        box-shadow: 0 8px 32px hsla(231, 44%, 45%, .2);
+        margin: 0 auto;
+        padding: 1.5rem .5rem;
+        border-radius: .65rem;
+        overflow: hidden;
+    }
+
+    .nav__list {
+        display: flex;
+        justify-content: center;
+        column-gap: 2rem;
+    }
+
+    .nav__link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+</style>
+
+<body class="flex justify-center bg-gray-100">
+<nav th:replace="partials/navbar :: navbar-search"></nav>
+<nav th:replace="partials/navbar :: navbar-mobile"></nav>
+<nav th:include="event/participants-modal"></nav>
+
+<!--Ai Modal -->
+<div id="ai-assistant" tabindex="-1" aria-hidden="true"
+     class=" bg-black bg-opacity-50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 bottom-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full" style="display: none">
+
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg mr-5 font-semibold text-gray-900 dark:text-white">
+                    Ai Assistant
+                </h3>
+
+                <select id="mood" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Choose a Mood</option>
+                    <option value="formal">Formal</option>
+                    <option value="informal">Informal</option>
+                    <option value="funny">Funny</option>
+                    <option value="descriptive">Descriptive</option>
+                </select>
+
+
+                <div
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-toggle="updateProductModal">
+                    <svg id="close-icon" aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+
+                    <span class="sr-only">Close modal</span>
+                </div>
+
+            </div>
+            <!-- Modal body -->
+            <form action="#">
+                <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                    <div class="sm:col-span-2">
+                        <label for="ai-description"
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provide a brief
+                            description</label>
+                        <textarea id="ai-description" rows="5"
+                                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                  placeholder= "List examples out: poodle, refreshments, meetup."></textarea>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+
+                    <button id="generate" type="submit"
+                            class="text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        Generate Description
+                    </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="flex items-center justify-center w-full lg:w-[35em] xl:w-[45em]">
+    <aside id="logo-sidebar"
+           class="fixed top-0 left-0  border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white"
+           aria-label="Sidebar" style="z-index: 99">
+        <div class="h-full w-64 px-3 pb-4 bg-white mt-[7em]">
+            <ul class="space-y-2">
+                <li>
+                    <div class="w-full max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
+                        <div class="flex flex-col items-center justify-center mt-1">
+                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                                 th:if="${not #strings.isEmpty(user.profilePhoto)}"
+                                 th:src="${user.profilePhoto}"
+                                 alt="Profile image"/>
+                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                                 th:if="${#strings.isEmpty(user.profilePhoto)}"
+                                 th:src="@{/img/profile.jpeg}"
+                                 alt="Default profile image"/>
+                            <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">Welcome,
+                                <span th:text="${#authentication.principal.username}"/>!</h5>
+                            <span class="text-sm text-gray-500 dark:text-gray-400"></span>
+                        </div>
+
+                    </div>
+                </li>
+
+                <li class="flex w-full items-center justify-center p-3 border-b-2 pb-5 text-gray-900 dark:text-white ">
+                    <form th:action="${'/logout'}" th:method="post">
+                        <button type="submit"
+                                class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 ">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+
+                <li>
+
+                    <a href="/profile"
+                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-person-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                             viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/friends"
+                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-people-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                             viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/events"
+                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white bi bi-calendar4-event"
+                             viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
+                            <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </aside>
+    <div class="w-full mt-[8em]">
+        <!--Posts bar-->
+        <!-- User POSTS -->
+        <div class="bg-white border w-full h-[135px] p-3 border-gray-200 rounded-lg shadow dark:border-gray-700">
+            <div class="flex flex-row">
+                <div class="flex justify-center">
+                    <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                          th:if="${not #strings.isEmpty(user.profilePhoto)}"
+                          th:src="${user.profilePhoto}"
+                          alt="Profile image"/>
+                    <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                         th:if="${#strings.isEmpty(user.profilePhoto)}"
+                         th:src="@{/img/profile.jpeg}"
+                         alt="Default profile image"/>
+                </div>
+
+                <form th:action="@{/posts/create}" th:method="POST" th:object="${post}" class="w-full">
+                    <div id="ai" class=" ml-[80px] text-blue-600 hover:cursor-pointer">Use Ai Assistant</div>
+
+                    <label for="chat" class="sr-only">Your message</label>
+                    <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
+                        <button type="button" class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                            <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path></svg>
+                            <span class="sr-only">Upload image</span>
+                        </button>
+
+                        <textarea id="chat" name="body" rows="1" class=" resize-none mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Your message..."></textarea>
+
+                        <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+                            <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+                            <span class="sr-only">Send message</span>
+                        </button>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+
+        <!--Posts-->
+        <div th:each="post : ${posts}" class = "mt-5">
+            <div class="w-full grid grid-cols-3 bg-white border-2 rounded-t-lg shadow dark:border-gray-700" style="grid-template-columns: 1fr 6fr 1fr;grid-template-rows: 2fr 1fr">
+
+                <div class="flex justify-center border-b border-gray-300">
+
+            <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
+                th:src="${post.user.profilePhoto}" alt="Profile image"/>
+
+            <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                 th:if="${#strings.isEmpty(post.user.profilePhoto)}"
+                 th:src="@{/img/profile.jpeg}"
+                 alt="Default profile image"/></div>
+
+                <!--Name Date body-->
+                <div id="name-body" class = "mt-[20px]">
+                    <div class="ml-3">
+                        <h1 th:text="${post.user.username}" class="font-bold text-[18px]"></h1>
+                        <h3>9:05 AM ﹒ 15 Mar 2023 </h3>
+                        <div class="w-full pb-5 pt-[5px]" style="min-height: 50px" th:text="${post.body}"></div>
+                    </div>
+                    <div class="w-full h-[30px] pb-3 border-b border-gray-300 flex flex-row justify-around ">
+
+                        <div class="flex flex-row justify-center items-center">
+                            <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"></path>
+                            </svg>
+                            <h3>Comments</h3>
+                        </div>
+
+                        <div class = "flex flex-row justify-center items-center">
+                            <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
+                            </svg>
+                            <h3>Like</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full h-full border-b border-gray-300">
+                </div>
+
+                <div class="w-full h-full">
+                    <div class="flex justify-center">
+                        <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                        th:if="${not #strings.isEmpty(user.profilePhoto)}"
+                        th:src="${user.profilePhoto}" alt="Profile image"/>
+
+                        <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                             th:if="${#strings.isEmpty(user.profilePhoto)}"
+                             th:src="@{/img/profile.jpeg}"
+                             alt="Default profile image"/></div>
+                </div>
+                <!-- Comment on posts-->
+                <div class="w-full h-full flex">
+                    <form class="w-full pt-2" th:action="@{/comment/{id}/create(id=${post.id})}" th:method="POST" th:object="${comments}">
+                        <label for="comment" class="sr-only">Your message</label>
+                        <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
+
+                            <textarea th:field="*{content}" id="comment" name = "content" rows="1" class="block mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
+
+                            <button type="submit"  class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+                                <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+                                <span class="sr-only">Send message</span>
+                            </button>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <!--Comment reply body-->
+            <div th:each="comment : ${post.comments}" class="w-full grid grid-cols-3 bg-white border-l-2 border-r-2 border-b-2 shadow dark:border-gray-700" style="grid-template-columns: 1fr 6fr 1fr;"> <div class="flex justify-center">
+
+                <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                     th:if="${not #strings.isEmpty(comment.user.profilePhoto)}"
+                     th:src="${comment.user.profilePhoto}"
+                     alt="Profile image"/>
+                <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                     th:if="${#strings.isEmpty(comment.user.profilePhoto)}"
+                     th:src="@{/img/profile.jpeg}"
+                     alt="Default profile image"/></div>
+
+                <div id="comment-body" class = "mt-[20px]">
+                    <div class="ml-3">
+<!--                        9:05 AM ﹒ 15 Mar 2023-->
+                        <div class="flex flex-row">
+                            <h1 th:text="${comment.user.username}" class ="mr-2 font-bold text-[20px]"></h1>
+                            <h4 class="mt-2 text-[10px]" th:text ="${comment.created_at}">  </h4>
+                        </div>
+                        <div class="w-full flex flex-row">
+                            <p class = "text-[8px] mt-2">replying to</p> <span class="ml-1 text-[15px] text-blue-500" th:text="${post.user.username}"></span>
+                        </div>
+
+                        <div class="w-full pt-[7px]" style="min-height: 50px" th:text="${comment.content}"></div>
+
+                    </div></div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+<script src="/js/event-feed.js"></script>
+<script th:src="@{/js/fileStack-api.js}" type="module"></script>
+
+<script>
+    const closeButton = document.getElementById('close-icon');
+    const aiLink = document.getElementById('ai');
+    const modal1 = document.getElementById('ai-assistant');
+
+    closeButton.addEventListener('click', () => {
+        modal1.style.display = 'none';
+    });
+
+    aiLink.addEventListener('click', () => {
+        modal1.style.display = 'block';
+    });
+
+    // add event listener to close modal when clicking outside of it
+    window.addEventListener('click', (event) => {
+        if (event.target == modal1) {
+            modal1.style.display = 'none';
+        }
+    });
 
 
 
 
-    <h1>Product List</h1>
-    <div th:replace="posts/post-card :: postList"></div>
-<!--    <div th:each="post : ${posts}">-->
-<!--        <h1 th:text="${post.title}"></h1>-->
-<!--        <h3>Contents: <span th:text="${post.body}"></span></h3>-->
-<!--        <br>-->
-<!--    </div>-->
+    const mood = document.getElementById('mood');
+    const moodParse = mood.value;
+    const description = document.getElementById('description');
+    let descriptionParse = description.value; // data would go here
+    //button
+    const generate = document.getElementById('generate');
+    let responseData;
+
+    //GPT
+    function generateText(mood , description) {
+        fetch('https://open-api.herokuapp.com/generate-text', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "prompt": "Re-write me a "+ mood + "description for a dog event use the following content to write the summary:" + description,
+                "engine": "text-davinci-002",
+                "maxTokens": 200
+            })
+        })
+            .then(response => response.json())
+            .then(data =>  {
+                responseData =  JSON.stringify(data)
+                console.log('here =>',responseData)
+            })
+            .catch(error => console.error(error));
+    }
+
+    generate.addEventListener('click', () => {
+
+        const aiDescription = document.getElementById('ai-description').value;
+        const selectedOption = mood.options[mood.selectedIndex];
+        const selectedValue = selectedOption.value;
+        console.log(aiDescription)
+        console.log(selectedValue)
+
+        generateText(selectedValue, aiDescription);
+        setTimeout(function () {
+            description.value = responseData.substring(1, responseData.length - 1);
+        }, 3000);
+        console.log(responseData)
+        modal.style.display = 'none';
+
+
+    });
+
+</script>
 
 </body>
 </html>

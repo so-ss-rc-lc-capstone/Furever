@@ -59,7 +59,7 @@ public class SecurityConfiguration {
                         "/posts/{id}/like",
 
                         "/matrix",
-
+                        "/comment/create",
                         "/login",
                         "/logout",
                         "/sign-up",
@@ -105,6 +105,7 @@ public class SecurityConfiguration {
                         "/friends",
                         "/user/{id}/show",
 
+                        "/posts",
                         "/posts/{id}/edit",
                         "/posts/create", // only authenticated users can create posts
                         "/posts/{id}/edit", // only authenticated users can edit ads
@@ -112,6 +113,7 @@ public class SecurityConfiguration {
                         "/posts/{n}/delete",
                         "/posts/delete/{n}",
                         "/posts/{id}/like",
+                        "/comment/{id}/create",
 
                         "/events",
                         "/events/{id}",
