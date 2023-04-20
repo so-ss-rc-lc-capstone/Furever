@@ -127,6 +127,7 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
 
         User userData = usersDao.findById(currentUser.getId());
         post.setUser(userData);
+        post.setCreated_at(LocalDateTime.now());
 
 //        User user = Users.randomUser(userDao);
 
