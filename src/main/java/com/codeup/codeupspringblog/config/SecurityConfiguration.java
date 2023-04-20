@@ -71,6 +71,7 @@ public class SecurityConfiguration {
                         "/js/**",
                         "/css/**",
                         "/img/**",
+                        "/static/**",
 
                         "/events",
                         "/events/{id}",
@@ -134,8 +135,7 @@ public class SecurityConfiguration {
                         "/users",
                         "/test",
                         "/js/**",
-                        "/img/**",
-                        "/css/**"
+                        "/img/**"
                 )
                 .authenticated();
         return http.build();
