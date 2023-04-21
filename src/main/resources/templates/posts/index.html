@@ -66,6 +66,56 @@
         align-items: center;
     }
 
+    #comment-body, #name-body {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        text-overflow: ellipsis;
+    }
+
+
+    @media (max-width: 1095px) {
+        aside {
+            display: none !important;
+        }
+    }
+
+
+    .like-container {
+        display: inline-block;
+        position: relative;
+
+    }
+
+    .like-icon {
+        height: 20px;
+        width: 20px;
+        transition: transform 0.4s ease-in-out, fill 0.2s ease-in-out, stroke 0.2s ease-in-out;
+        stroke: currentColor;
+        stroke-width: 1.5;
+        fill: none;
+    }
+
+    .like-container.clicked .like-icon {
+        transform: translateY(-10%) scale(1);
+        fill: red;
+        stroke: red;
+    }
+
+
+    .like-container.clicked h3 {
+        color: red;
+    }
+
+    .like-container:hover:not(.clicked) h3 {
+        color: red;
+    }
+
+    .like-container:hover:not(.clicked) .like-icon path {
+        stroke: red;
+    }
+
+
 </style>
 
 <body class="flex justify-center bg-gray-100">
@@ -283,7 +333,7 @@
                             <div class="ml-5">
                                 <h1 class="font-bold text-[22px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
 
-                                <h3 class = "text-blue-400 mt-1">@ <span th:text="${post.user.username}"></span></h3>
+                                <h3 class = "text-blue-400 mt-1"><a th:href="@{/user/{id}(id=${post.user.id})}"> @ <span th:text="${post.user.username}"></span></a></h3>
                                 <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'dd-MMM-yyyy')}"></span></h3>
                                 <div class="w-full pb-5 pt-[5px] ml-[2px] text-[18px]" th:text="${post.body}"></div>
                             </div>
@@ -297,7 +347,7 @@
                         </svg>
                         <form th:action="@{/posts/{id}/show (id=${post.id})}" method="get">
                             <input type="hidden" name="event" th:value="${post.id}"/>
-                        <button>Comments</button>
+                        <button><span th:text="${post.comments.size}" class="ml-1 mr-1"></span>Comments</button>
                         </form>
                     </div>
 
@@ -365,7 +415,7 @@
                         <div class="flex flex-row">
                             <div class="flex flex-col">
                                 <h1 class="font-bold text-[16px]"><span th:text="${comment.user.first_name}"></span> <span th:text="${comment.user.last_name}"></span></h1>
-                                <h3 class = "text-blue-400 mt-1 text-[13px]">@ <span th:text="${comment.user.username}"></span></h3>
+                                <h3 class = "text-blue-400 mt-1 text-[13px]"><a th:href="@{/user/{id}(id=${comment.user.id})}">@ <span th:text="${comment.user.username}"></span></a></h3>
 
                                 <h3 class="mt-1 text-[8px] text-gray-400"><span th:text="${#temporals.format(comment.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(comment.created_at, 'dd-MMM-yyyy')}"></span></h3>
                             </div>
