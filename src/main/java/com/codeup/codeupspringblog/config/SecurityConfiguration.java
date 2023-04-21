@@ -121,8 +121,8 @@ public class SecurityConfiguration {
                         "/events/{id}",
                         "/events/create",
                         "/events/{id}/edit",
-                        "/events/{id}/edit",
                         "/events/{id}/find",
+
 
                         "/events/{id}/delete",
                         "/events/{id}/delete-profile-event",
