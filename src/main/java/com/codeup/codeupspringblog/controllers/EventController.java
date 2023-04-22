@@ -79,8 +79,32 @@ public class EventController {
         List<User> usersNotFollowing = new ArrayList<>();
         List<User> users = usersDao.findAll();
         List<Event> events = eventsDao.findAll();
+        model.addAttribute("followedUsers",followedUsers);
 
 
+        for(int i=0; i<users.size(); i++){
+            System.out.println("[User]:"+ users.get(i).getId());
+            if(followedUsers.contains(users.get(i))){
+                System.out.println("[[already following!!!]]");
+            }else{
+                System.out.println("[[Not following!!!]]");
+                usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
+            }
+        }
+        model.addAttribute("usersNotFollowing", usersNotFollowing);
+
+
+//        for(int i=0; i<followedUsers.size(); i++){
+//            System.out.println("[Followed User]:"+ followedUsers.get(i).getId());
+//            if(followedUsers.get(i).getId()){
+//                System.out.println("[[already following!!!]]");
+//            }else{
+//                System.out.println("[[Not following!!!]]");
+//
+//            }
+//        }
+
+        System.out.println("Followed Users "+followedUsers);
         for(int i=0; i<users.size(); i++){
             System.out.println("[User]:"+ users.get(i).getId());
             if(followedUsers.contains(users.get(i))){
@@ -94,6 +118,7 @@ public class EventController {
         model.addAttribute("followedUsers",followedUsers);
         model.addAttribute("usersNotFollowing", usersNotFollowing);
         model.addAttribute("users", users);
+
         model.addAttribute("events", events);
         return "event/index";
     }
@@ -131,12 +156,15 @@ public class EventController {
         eventEdited.setCreated_at(LocalDateTime.now());
         eventEdited.setEventPhoto(event.getEventPhoto());
         eventsDao.save(eventEdited);
-        return "redirect:/events/" + id + "/find";
+        return "redirect:/events";
     }
 
     //Find an event by id and print it in a html file
     @GetMapping("/events/{id}/find")
     public String findEvent(@PathVariable long id, Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = usersDao.findById(currentUser.getId());
+        model.addAttribute("user", userData);
         Event event = eventsDao.findById(id).get();
         List<EventParticipation> participations = event.getParticipations();
         List<User> participants = new ArrayList<>();

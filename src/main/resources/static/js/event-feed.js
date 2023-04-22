@@ -69,7 +69,7 @@ const toggleSearch = (search, button) => {
                                <img src="${user.profilePhoto ? user.profilePhoto : '/img/profile.jpeg'}" alt="${name}" class="profile-photo rounded-full h-10 w-10 mr-2">
                                 <div>
                                     <div class="username font-bold">@${user.username}</div>
-                                    <div class="name">${name}</div>
+                                    <div class="name" th:text="${name} ? ${name} :'New User'"></div>
                                 </div>           
                             </div>
                         </a>
@@ -179,7 +179,8 @@ function getAllParticipants(data){
                      </a>
                     </div>
                    
-                    
+                   
+                   
                   </div>
                 </div>
               </div>

@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/header :: head"></head>
-
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
-
+<nav th:include="event/participants-modal"></nav>
+<nav th:replace="partials/navbar :: navbar-mobile-other"></nav>
 
 <div class="w-full h-screen">
+    <div class="w-full relative flex items-start justify-center" th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
 
-    <div class="w-full relative flex items-start justify-center h-1/2" th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
 
-        <div class="flex w-[50em] h-full rounded-xl bg-white border-2"  style="transform: translateY(85%);">
+        <div class = "absolute top-20 left-0"><i class="ri-arrow-left-line"></i></div>
 
+
+        <div class="flex w-[50em] relative h-full rounded-xl bg-white shadow-md"  style="transform: translateY(70%);">
+            <div class = "absolute top-[-60px] left-[25px] h-[80px] w-[80px] rounded-xl bg-white shadow-lg">
+                <div class="h-1/4 bg-red-600 rounded-t-lg"></div>
+                <div class="h-3/4 flex justify-center items-center text-3xl font-bold"><span th:text="${#temporals.format(event.event_DateAndTime, 'dd')}"></span></div>
+            </div>
             <div class="w-3/5 p-6">
+                <h3 class="mb-2 text-red-600 font-bold"> <span th:text="${#temporals.format(event.event_DateAndTime, 'EEEE, MMMM dd, yyyy')}"></span> At <span th:text="${#temporals.format(event.event_DateAndTime, 'h:mm a')}"></span></h3>
                 <h1 class = "text-2xl font-bold mb-3"><span th:text="${event.title}"></span></h1>
-                <h3 class="mb-2">Starts at <span th:text="${#temporals.format(event.event_DateAndTime, 'h:mm a dd-MMM-yyyy')}"></span></h3>
-                <h3 >Event created at <span th:text="${#temporals.format(event.created_at, 'dd-MMM-yyyy')}"></span></h3>
-                <h3 class="mt-5 font-bold">Location</h3>
+
+                <h2 class="text-xl font-bold">Details</h2>
+                <h3 class="mt-2 font-bold flex">
+                    <span class="mr-1">
+                      <svg fill="none" class="h-[15px] mt-1" stroke="currentColor" stroke-width="1.5"
+                           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
+                    </svg>
+                    </span>
+                Location</h3>
                 <h3><span th:text="${event.location_name}"></span></h3>
                 <h3><span th:text="${event.location_address}"></span></h3>
                 <h3 class="text mt-5 font-bold">Description</h3>
@@ -26,7 +43,7 @@
 
             <div class="w-2/5 p-6 border-l-2">
 
-                <div class="flex flex-row">
+                <div class="flex flex-row justify-between">
 
                     <img class="w-[70px] h-[70px] rounded-full mr-3"
                          th:if="${not #strings.isEmpty(event.user.profilePhoto)}"
@@ -38,12 +55,35 @@
                          th:src="@{/img/profile.jpeg}"
                          alt="Default profile image"/>
 
-
-                    <div class="flex ml-2 flex-col">
-                        <h3 class="text-[15px] text-gray-400"> Event Hosted by</h3>
+                    <div class="flex ml-2 w-full flex-col">
+                        <h3 class="text-[15px] text-gray-400"> Event Hosted By</h3>
                         <h3><span class="font-bold" th:text="${event.user.first_name}"></span> <span class="font-bold" th:text="${event.user.last_name}"></span></h3>
-                        <h4><span class="text-blue-600 mr-1">@</span><span th:text="${event.user.username}"></span></h4>
+                        <div class="text-blue-600 mr-1"> <a th:href="@{/user/{id}(id=${event.user.id})}">@<span th:text="${event.user.username}"></span></a></div>
                     </div>
+
+                    <!--Edit-->
+                    <div th:if="${event.user.id == #authentication.principal.id}">
+                        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-gray-600 hover:text-gray-400 font-medium rounded-lg text-2xl text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button"><i class="ri-edit-box-line"></i></button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                                <li>
+                                    <form th:action="@{/events/{id}/edit(id=${event.id})}" method="get">
+                                        <input type="hidden" name="edit_id" th:value="${event.id}"/>
+                                        <button type="submit" class="block flex w-full px-4 py-2 text-gray-500 hover:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">Edit</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <form th:action="@{/events/{id}/delete(id=${event.id})}" method="get" onsubmit="return confirmDelete();"> <input type="hidden" name="delete_id" th:value="${event.id}"/>
+                                        <button type="submit" class="block flex w-full px-4 py-2 text-red-500 hover:text-red-400 dark:hover:bg-gray-600 dark:hover:text-white">Delete</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+
                 </div>
                 <div class ="mt-5">
                     <h4 class="text-[15px]">Phone Number</h4>
@@ -54,18 +94,44 @@
                 </div>
 
 
+
+
+
+
+
+
             </div>
         </div>
     </div>
+
     <!--More Details/Mapbox-->
     <div class="w-full h-full flex mt-5 justify-center">
-        <div class = "w-[50em] mt-[8em] h-full ">
-            <h2 class="text-2xl p-4 font-bold">Participants <span class="text-gray-400 text-[17px]" th:text="${event.participations.size}"></span></h2>
+        <div class = "w-[50em] mt-[18em] h-full ">
+           <div class ="w-full flex justify-between">
+               <a href="#" id="view-participants-btn" class="view-participants-btn hover:cursor-pointer" data-modal-target="defaultModal"
+                  data-modal-toggle="defaultModal" th:data-event-id="${event.id}">
+                   <h2 class="text-2xl p-4 font-bold">Participants <span class="text-gray-400 text-[17px]" th:text="${event.participations.size}"></span></h2>
+               </a>
+
+               <div class="flex items-center">
+                   <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Attend</button>
+               </div>
+           </div>
             <!--Avatars-->
             <div class=" w-full flex h-[60px]">
-                <a th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 10}"><img
-                        class="w-[60px] h-[60px] border-2 border-white rounded-full dark:border-gray-800"
-                        th:src="${participation.user.profilePhoto}" alt=""></a> </div>
+                <div th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 10}">
+                    <img class="w-[70px] h-[70px] rounded-full mr-3"
+                         th:if="${not #strings.isEmpty(event.user.profilePhoto)}"
+                         th:src="${participation.user.profilePhoto}"
+                         alt="Profile image"/>
+
+                    <img class="w-[70px] h-[70px] rounded-full mr-3"
+                         th:else
+                         th:src="@{/img/profile.jpeg}"
+                         alt="Default profile image"/>
+
+                   </div>
+            </div>
             <!--Map box-->
             <div>
 
@@ -75,10 +141,109 @@
         </div>
     </div>
 
-    <nav th:replace="partials/navbar :: navbar-mobile-other"></nav>
 
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 
+
+<script>
+    function confirmDelete() {
+        if (confirm("Are you sure you want to delete this event?")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    let participantsList = document.getElementById("view-participants-list");
+    // Get all event buttons
+    let eventButtons = document.querySelectorAll(".view-participants-btn");
+
+    eventButtons.forEach(function(eventButton) {
+        eventButton.addEventListener("click", function(event) {
+            event.preventDefault(); // prevent the default behavior of the link
+
+            participantsList.innerHTML = "";
+            console.log("clicked");
+            // Get the event ID from the "data-event-id" attribute of the button
+            let eventId = eventButton.getAttribute("data-event-id");
+            console.log(eventId);
+
+            // Fetch participants for the selected event
+            fetch('http://localhost:8080/events/' + eventId + '/participants', {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    let viewParticipants = JSON.stringify(data);
+                    getAllParticipants(viewParticipants);
+                })
+                .catch(error => console.error(error));
+        });
+    });
+
+
+    function getAllParticipants(data){
+        let viewParticipants = JSON.parse(data);
+        let html = '';
+        if (Array.isArray(viewParticipants) && viewParticipants.length > 0) {
+            for(let i = 0; i < viewParticipants.length; i++){
+                html += `<div class="flex justify-center items-center w-full flex-col">
+                <div class="flex w-full h-[6em] rounded-full" style="box-shadow: 0 4px 24px hsla(222,68%,20%, .1); overflow: hidden; transition: width .5s cubic-bezier(.9, 0, .3, .9)">
+                <div class="flex w-full">
+                <div class="flex justify-between p-3 w-full" >
+                  <div class="flex items-center ml-[1em]">
+                  <img class="w-[50px] h-[50px] rounded-full mr-4" src="${viewParticipants[i].profilePhoto || '/img/profile.jpeg'}" alt="Profile image"/>
+                  <div>
+                    <p>${viewParticipants[i].first_name ?? ''} ${viewParticipants[i].last_name ?? '' ? viewParticipants[i].last_name : ''} ${viewParticipants[i].first_name === null && viewParticipants[i].last_name === null ? 'User' : ''}</p>
+                    <p class="text-gray-400">@${viewParticipants[i].username}</p></div>
+
+                    </div>
+
+                    <div class="flex w-1/3 items-center justify-evenly mr-3">
+
+                   <a class="hover:cursor-pointer"> <div class="flex justify-center items-center w-[40px]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-fill transition duration-300 text-gray-300 hover:text-gray-500"  viewBox="0 0 16 16">
+                      <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
+                    </svg>
+                    </div></a>
+
+                    <a class="hover:cursor-pointer" href="/user/${viewParticipants[i].id}">
+                    <div class="flex justify-center items-center w-[40px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-300 hover:text-gray-500 transition duration-300  bi-person-circle" viewBox="0 0 16 16">
+                          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        </div>
+                     </a>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>`;
+            }
+        } else {
+            html += `<div class="flex flex-col">
+          <div class="flex hover:cursor-pointer">
+           <h2>No Participants</h2>
+          </div>
+        </div>`;
+        }
+        participantsList.innerHTML = html;
+    }
+
+</script>
 </body>
 </html>
