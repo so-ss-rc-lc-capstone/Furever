@@ -71,6 +71,7 @@ public class SecurityConfiguration {
                         "/js/**",
                         "/css/**",
                         "/img/**",
+                        "/static/**",
 
                         "/events",
                         "/events/{id}",
@@ -123,7 +124,7 @@ public class SecurityConfiguration {
                         "/events/{id}/edit",
                         "/events/{id}/find",
 
-
+                        "/events/{id}/like",
                         "/events/{id}/delete",
                         "/events/{id}/delete-profile-event",
                         "/events/{id}/participate",
@@ -131,13 +132,13 @@ public class SecurityConfiguration {
                         "/events/{id}/participate",
                         "/events/{eventId}/participants",
 
+
                         //added for search functionality
                         "/api/**",
                         "/users",
                         "/test",
                         "/js/**",
-                        "/img/**",
-                        "/css/**"
+                        "/img/**"
                 )
                 .authenticated();
         return http.build();

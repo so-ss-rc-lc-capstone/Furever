@@ -55,6 +55,7 @@ public class PostController {
         List<User> users = usersDao.findAll();
         List<Comments> comments = commentDao.findAll();
 
+
         for(int i=0; i<users.size(); i++){
             System.out.println("[User]:"+ users.get(i).getId());
             if(followedUsers.contains(users.get(i))){
@@ -64,6 +65,7 @@ public class PostController {
                 usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
             }
         }
+
         model.addAttribute("comments", comments);
         model.addAttribute("followedUsers",followedUsers);
         model.addAttribute("posts", posts);
@@ -73,20 +75,6 @@ public class PostController {
         model.addAttribute("users",users);
         return "posts/index";
     }
-
-
-//    @GetMapping("/events/{id}/find")
-//    public String findEvent(@PathVariable long id, Model model) {
-//        Event event = eventsDao.findById(id).get();
-//        List<EventParticipation> participations = event.getParticipations();
-//        List<User> participants = new ArrayList<>();
-//        for (EventParticipation participation : participations) {
-//            participants.add(participation.getUser());
-//        }
-//        model.addAttribute("participants", participants);
-//        model.addAttribute("event", event);
-//        return "event/show";
-//    }
 
 
     @GetMapping("/posts/{id}/show")
@@ -104,7 +92,6 @@ public class PostController {
         model.addAttribute("comment", comments);
         return "posts/comment-show";
     }
-
 
 @PostMapping("/comment/{id}/create")
 public String createComment(@ModelAttribute Comments comments, @PathVariable Long id) {
@@ -127,7 +114,6 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
 
 
 
-
 //Form Model Binding
     @GetMapping("/posts/create")
     public String showCreate(Model model){
@@ -146,19 +132,14 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
         postDao.save(post);
         emailService.prepareAndSend(post);
         return "redirect:/posts"; // go to controller
-//        return "<p>Post: "+name+"</p><p>Price: " +price+"</p>";
-    }
 
+    }
 
 
     @GetMapping("/posts/{id}/edit")
     public String showEdit(@PathVariable Long id, Model model){
-//        Post post = postDao.findById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findById(id).get(); // Getting data from the database first
-
-//        System.out.println(user.getId());
-//        System.out.println(post.getUser().getId());
         if(user.getId() == post.getUser().getId()){
             model.addAttribute("post", postDao.findById(id).get());
             return "posts/edit";
@@ -178,31 +159,15 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
         return "redirect:/posts/{id}"; // go to controller
     }
 
-
-//    @GetMapping("/posts/edit")
-//    public String editPost(){
-//        User user = userDao.findById(2);
-//        Post post = new Post(1L,"Dog","woof, woof, wooooof!!!",user);
-//        postDao.save(post);
-//        return "redirect:/posts/index"; // go to controller
-////        return "<p>Post: "+name+"</p><p>Price: " +price+"</p>";
-//    }
-
-
-
     @GetMapping("/posts/card")
     public String getPostCard(Model model){
 
         List<Post> posts = postDao.findAll();
         model.addAttribute("posts", posts);
-//        List<Post> filteredPostsList = posts
-//                .stream()
-//                .filter(product -> product.getPriceInCents()<1000)
-//                .collect(Collectors.toList());
-//        model.addAttribute("posts", filteredPostsList);
-
         return "posts/post-card";
     }
+
+
 
 
 
@@ -211,8 +176,6 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findById(n).get();
-//        System.out.println(user.getId());
-//        System.out.println(post.getUser().getId());
         if(user.getId() == post.getUser().getId()){
             postDao.deleteById(n);
         }
@@ -235,7 +198,7 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
     public String likePost(@PathVariable Long id, Principal principal) {
         User user = usersDao.findByUsername(principal.getName());
         Post post = postDao.findById(id).get();
-        System.out.println(post.hasLiked(user));
+
         if(post.hasLiked(user)){
             postService.decrementLikes(id, user);
         }else{
@@ -243,9 +206,6 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
         }
         return "redirect:/posts";
     }
-
-
-
 
 
 }
