@@ -142,16 +142,6 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
     }
 
 
-
-
-    @GetMapping("/posts")
-    public String getPostIndexPage(Model model){
-
-        List<Post> posts = postDao.findAll();
-        model.addAttribute("posts", posts);
-        return "posts/index";
-    }
-
     @GetMapping("/posts/{n}/delete")
     public String deletePost(@PathVariable long n){
 
