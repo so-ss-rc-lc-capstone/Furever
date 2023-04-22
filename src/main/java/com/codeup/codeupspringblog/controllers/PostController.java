@@ -168,9 +168,6 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
     }
 
 
-
-
-
     @GetMapping("/posts/{n}/delete")
     public String deletePost(@PathVariable long n){
 
