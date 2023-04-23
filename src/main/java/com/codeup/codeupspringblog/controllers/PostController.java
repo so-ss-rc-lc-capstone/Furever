@@ -2,21 +2,15 @@ package com.codeup.codeupspringblog.controllers;
 
 import com.codeup.codeupspringblog.models.*;
 import com.codeup.codeupspringblog.repositories.CommentRepository;
-import com.codeup.codeupspringblog.repositories.EventRepository;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
 import com.codeup.codeupspringblog.services.EmailService;
-import org.attoparser.dom.Comment;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -164,7 +158,7 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
 
         List<Post> posts = postDao.findAll();
         model.addAttribute("posts", posts);
-        return "posts/post-card";
+        return "extra-to-delete-post-card";
     }
 
 
