@@ -58,7 +58,6 @@ public class SecurityConfiguration {
                         "/posts/index",
                         "/posts/{id}/like",
 
-                        "/matrix",
                         "/comment/create",
                         "/login",
                         "/logout",
