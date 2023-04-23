@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/header :: head"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="partials/header :: head">
+  <title>
+  Pet Register
+</title>
+</head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -47,11 +51,13 @@
       </div>
       <div class="mb-6">
         <label for="pet-image-input" class="block text-gray-700 font-bold mb-2 mt-5">Pet Image:</label>
+        <span><img id="pet-thumbnail" alt="thumbnail" height="100" width="100"></span>
         <div class = "flex">
-          <button type="button" class="border-l-2 border-t-2 border-b-2 p-2 rounded-l-lg " id="upload-pet">Upload</button>
+          <button id="pet-upload" type="button" class="border-l-2 border-t-2 border-b-2 p-2 rounded-l-lg ">Upload</button>
           <input type="text" name="image" id="pet-image-input"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
       </div>
+
       <div class="flex justify-between ">
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 
@@ -65,8 +71,7 @@
 
 <!--keys-->
 <script src="/js/keys.js "></script>
-
-<script th:src="@{/js/fileStack-api.js}" type="module"></script>
+<script th:src="@{/js/fileStack-pet.js}"></script>
 </body>
 </html>
 
@@ -133,7 +138,7 @@
 <!--  </div>-->
 <!--</div>-->
 
-<!--<script th:src="@{/js/fileStack-api.js}" type="module"></script>-->
+<!--<script th:src="@{/js/extra-tobedeleted-fileStack-api.js}" type="module"></script>-->
 
 
 <!--</body>-->
