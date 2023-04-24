@@ -41,6 +41,7 @@
             </div>
 
 
+
             <div th:if="${event.user.id} != ${#authentication.principal.id}">
                 <form th:action="@{/events/{id}/like(id=${event.id})}" method="post">
                     <button type="submit"
