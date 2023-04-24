@@ -18,6 +18,8 @@
   </script>
 
   <script src="https://cdn.talkjs.com/talk.js"></script>
+  <link rel="stylesheet" href="/css/loading.css">
+
 
 </head>
 
@@ -220,10 +222,34 @@
         <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
 
 
-          <div class="container">
+          <div class="container flex flex-col justify-center items-center">
             <!-- container element in which TalkJS will display a chat UI -->
             <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
-              <i>Loading chat...</i>
+              <div class="load-row">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+                <div class="wheel"></div>
+                <div class="hamster">
+                  <div class="hamster__body">
+                    <div class="hamster__head">
+                      <div class="hamster__ear"></div>
+                      <div class="hamster__eye"></div>
+                      <div class="hamster__nose"></div>
+                    </div>
+                    <div class="hamster__limb hamster__limb--fr"></div>
+                    <div class="hamster__limb hamster__limb--fl"></div>
+                    <div class="hamster__limb hamster__limb--br"></div>
+                    <div class="hamster__limb hamster__limb--bl"></div>
+                    <div class="hamster__tail"></div>
+                  </div>
+                </div>
+                <div class="spoke"></div>
+              </div>
+              <h2></h2>
             </div>
 
           </div>

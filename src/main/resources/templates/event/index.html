@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns="http://www.w3.org/1999/html">
 
+
 <head>
 
     <meta charset="UTF-8">
@@ -23,6 +24,8 @@
     <link rel="stylesheet"
           href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css"
           type="text/css">
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/add.css' rel='stylesheet'>
+
 
 </head>
 <style>
@@ -91,7 +94,6 @@
                                 <span th:text="${#authentication.principal.username}"/>!</h5>
                             <span class="text-sm text-gray-500 dark:text-gray-400"></span>
                         </div>
-
                     </div>
                 </li>
 
@@ -156,8 +158,8 @@
                 </li>
             </ul>
         </div>
-
     </aside>
+
     <!--- Feed -->
     <div class="w-full ">
         <!--Filter bar-->
@@ -394,19 +396,7 @@
                                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
                                                                 </li>
                                                             </ul>
-                                                            <div class="py-1">
 
-                                                                <form th:action="@{/users/{id}/follow(id=${user.id})}"
-                                                                      th:name="followFromEvent" th:method="post"
-                                                                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                                    <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
-                                                                            type="submit"></button>
-                                                                </form>
-                                                                <!--                          <a id="followButton" th:text="${user.followingUsers.contains(user) ? 'Unfollow' : 'Follow'}"-->
-                                                                <!--                             th:onclick="${user.followingUsers.contains(user) ? '@{/users/'+ user.id + '/follow}' : '@{/users/'+ user.id + '/follow}'}"-->
-                                                                <!--                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"></a>-->
-
-                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -418,8 +408,10 @@
                                                               class="block px-4 py-2 text-sm text-gray-200 dark:text-gray-600 dark:hover:text-white">
                                                             <button class="items-center justify-center hover:cursor-pointer group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 "
                                                                     type="submit">
-                                                                <i class="gg-user-add"></i>
-                                                            </button>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                                                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                                                    <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                                                                </svg>                                                            </button>
                                                         </form>
 
                                                     </a>

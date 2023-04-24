@@ -51,7 +51,7 @@
                          alt="Profile image"/>
 
                     <img class="w-[70px] h-[70px] rounded-full mr-3"
-                         th:else
+                         th:if="${#strings.isEmpty(event.user.profilePhoto)}"
                          th:src="@{/img/profile.jpeg}"
                          alt="Default profile image"/>
 

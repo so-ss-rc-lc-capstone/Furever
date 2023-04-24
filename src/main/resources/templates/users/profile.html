@@ -3,6 +3,7 @@
 <head th:replace="partials/header :: head">
 </head>
 <link rel="stylesheet" href="/css/calendar2.css">
+<link href='https://unpkg.com/css.gg@2.0.0/icons/css/add.css' rel='stylesheet'>
 
 <body>
 
@@ -112,6 +113,7 @@
                                 th:text="${user.last_name}"></span></h2>
                         <h2 class="text-blue-600 text-[20px] mb-2 font-bold"> @ <span class="text-black" th:text="${user.username}"></span>
                         </h2>
+                 
                         <div class="flex w-full justify-evenly md:justify-start" th:if="${user.id} == ${#authentication.principal.id}">
                             <form th:action="@{/users/{id}/follow(id=${user.id})}" th:method="post"
                                   class="mb-4 mt-3 md:mr-[5em]">
@@ -446,6 +448,8 @@
                 </div>
               </div>
             </div>`;
+
+
         }
         participantsList.innerHTML = html;
     }
