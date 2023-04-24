@@ -2,20 +2,17 @@ $(document).ready(function () {
     let defaultImage = "/img/default-img.webp";
     const postUpload = $('#post-photoBtn');
     const postInput = $('#post-photo-input');
-//     const inputEdit = $('#photo-edit');
-
     const  postThumbnail = $('#post-thumbnail');
-//
-//     //thumbnail function
-//     function showThumbnail(url) {
-//         if (thumbnail.attr('src') === '') {
-//             thumbnail.src = url;
-//         } else {
-//             thumbnail.attr('src', url);
-//         }breeds
-//     }
-//
 
+    //thumbnail function
+    function showPostThumbnail(url) {
+        if (postThumbnail.attr('src') === '') {
+            postThumbnail.attr('src', url);
+        } else {
+            postThumbnail.attr('src', url);
+        }
+    }
+//
 
     const postClient = filestack.init(keys.filestack);
     postUpload.on('click', function () {
@@ -26,10 +23,10 @@ $(document).ready(function () {
             onUploadDone: function (res) {
                 const url = res.filesUploaded[0].url;
                 postInput.attr('value', url);
-                postThumbnail.attr('value', url);
+                postThumbnail.attr('src', url);
+
             }
         }).open();
     });
-//
-//     showThumbnail(defaultImage);
+    showPostThumbnail(defaultImage);
 });
