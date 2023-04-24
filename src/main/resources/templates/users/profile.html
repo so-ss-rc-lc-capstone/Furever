@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/header :: head"></head>
+<head th:replace="partials/header :: head">
+</head>
 <link rel="stylesheet" href="/css/calendar2.css">
 <link href='https://unpkg.com/css.gg@2.0.0/icons/css/add.css' rel='stylesheet'>
 
@@ -39,30 +40,78 @@
 
     </div>
     <div class="flex justify-center ">
-        <div class="w-full md:w-4/5 flex flex-col justify-between p-7 bg-white">
-            <div class="h-[20px] w-full flex justify-center md:justify-start " style="transform: translateY(-550%)">
-                <img class="w-[200px] h-[200px] mb-3 rounded-full shadow-lg"
-                     th:if="${not #strings.isEmpty(user.profilePhoto)}"
-                     th:src="${user.profilePhoto}"
-                     alt="Profile image"/>
 
-                <img class="w-[200px] h-[200px] mb-3 rounded-full shadow-lg"
-                     th:unless="${not #strings.isEmpty(user.profilePhoto)}"
-                     th:src="@{/img/profile.jpeg}"
-                     alt="Default profile image"/>
+        <div class="w-full md:w-4/5 flex flex-col justify-between bg-white">
+            <div class="h-[20px] w-full flex justify-center md:justify-start " style="transform: translateY(-850%)">
+                <div class="w-[17em] h-[17em] flex flex-col justify-center rounded-full items-center md:items-start">
+                    <div class="w-[170px] h-[170px] flex justify-center items-center bg-white rounded-full">
+                        <img class="w-[160px] h-[160px] rounded-full shadow-lg"
+                               th:if="${not #strings.isEmpty(user.profilePhoto)}"
+                               th:src="${user.profilePhoto}"
+                               alt="Profile image"/>
+
+                        <img class="w-[160px] h-[160px] rounded-full shadow-lg"
+                             th:unless="${not #strings.isEmpty(user.profilePhoto)}"
+                             th:src="@{/img/profile.jpeg}"
+                             alt="Default profile image"/></div>
+
+                </div>
+
+            </div>
+            <div class="w-full flex justify-end ">
+
+                <div class="w-full flex justify-end mr-[4em]" th:if="${user.id == #authentication.principal.id}">
+                    <div class="dropdown relative">
+
+                        <button id="dropdownButton-${event.id}" class=" rounded-full hover:bg-gray-200 px-3 py-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="ri-more-2-fill" style="font-size: 1.5em;"></i>                        </button>
+
+                        <div class="dropdown-menu hidden absolute w-[100px] z-999 dropdown-menu-right bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" aria-labelledby="dropdownDefaultButton-${event.id}">
+                            <form th:action="@{/profile/edit}" method="get">
+                                <button type="submit" class="block flex p-3 text-gray-500 hover:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Edit Profile</button>
+                            </form>
+                            <form  th:action="@{/profile/delete}" method="get" id="deleteForm">
+                                <button type="submit" class="block flex p-3 text-red-500 hover:text-red-400 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Delete Profile</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+<!--                <div class="flex flex-row justify-between">-->
+<!--                    <form class="mb-4 mr-4" th:action="@{/profile/edit}" method="get">-->
+<!--                        <input type="hidden" name="edit_id"/>-->
+<!--                        <button type="submit"-->
+<!--                                class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">-->
+<!--                            Edit profile-->
+<!--                        </button>-->
+<!--                    </form>-->
+
+<!--                    <form class="mb-4 mr-4" th:action="@{/profile/delete}" method="get" id="deleteForm">-->
+<!--                        <input type="hidden" name="edit_id"/>-->
+<!--                        <button type="button"-->
+<!--                                class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-red-700 round-lg hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"-->
+<!--                                onclick="confirmUserDelete()">-->
+<!--                            Delete profile-->
+<!--                        </button>-->
+<!--                    </form>-->
+<!--                </div>-->
+
+
+
+
+
             </div>
 
 
-
             <!--Bio-->
-            <div class="mb-5 mt-[5em] flex flex-col justify-center items-center md:flex-row w-full">
+            <div class="mb-5 flex flex-col justify-center items-center md:items-start md:justify-start md:flex-row w-full">
 
                 <div class="w-3/5 flex justify-center items-center md:justify-start md:items-start">
                     <div class="w-full flex flex-col justify-center items-center md:items-start md:justify-end">
                         <h2 class="text-2xl font-bold mb-1"><span th:text="${user.first_name}"></span> <span
                                 th:text="${user.last_name}"></span></h2>
-                        <h2 class="text-blue-600 text-[20px] mb-2 font-bold"> @ <span class="text-black"
-                                                                                      th:text="${user.username}"></span>
+                        <h2 class="text-blue-600 text-[20px] mb-2 font-bold"> @ <span class="text-black" th:text="${user.username}"></span>
                         </h2>
 
                         <div class="flex w-2/3 justify-evenly md:justify-start">
@@ -70,6 +119,7 @@
                             <div><h3 class="text-center text-lg font-bold">43</h3><h3 class="text-md text-gray-500">Followers</h3></div>
                         </div>
                         <div class="flex w-full justify-evenly md:justify-start">
+
                             <form th:action="@{/users/{id}/follow(id=${user.id})}" th:method="post"
                                   class="mb-4 mt-3 md:mr-[5em]">
                                 <button th:text="${followedUsers.contains(user) ? 'Follow' : 'Following'}" type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"></button>
@@ -89,9 +139,6 @@
                              th:text="${user.bio}" style="overflow-wrap: break-word;">
                         </div>
 
-
-
-                    </div>
 
 
 
@@ -143,10 +190,11 @@
                                 Delete profile
                             </button>
                         </form>
+
                     </div>
 
-
                 </div>
+
             </div>
             <!--Pets-->
             <div class="w-full flex flex-col justify-center items-center md:justify-start md:items-start">
@@ -327,6 +375,25 @@
 
 
 <script>
+
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    const dropdownButton = document.querySelector(".dropdown-toggle");
+
+    dropdownButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+        document.addEventListener("click", hideDropdownMenu);
+    });
+
+    function hideDropdownMenu(event) {
+        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add("hidden");
+            document.removeEventListener("click", hideDropdownMenu);
+        }
+    }
+
+
+
+
     const modal = document.getElementById('defaultModal');
     const closeBtn = document.getElementById('close-btn');
     const modalToggle = document.querySelectorAll('[data-modal-toggle]');
