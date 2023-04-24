@@ -16,7 +16,7 @@
                     <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Attending' : 'Participate'}"></span>
                 </button>
             </form>
-
+            
             <div class="w-full flex justify-end mr-[4em]" th:if="${event.user.id == #authentication.principal.id}">
                 <div class="dropdown relative">
                     <button id="dropdownButton-${event.id}" class="text-black rounded-full bg-white hover:bg-gray-200 px-4 py-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
