@@ -46,10 +46,11 @@
         </datalist>
       </div>
       <div class="mb-6">
-        <label for="pet-image-input" class="block text-gray-700 font-bold mb-2 mt-5">Pet Image:</label>
+        <label for="pet-upload" class="block text-gray-700 font-bold mb-2 mt-5">Pet Image:</label>
+        <span><img id="new-pet-thumbnail" alt="thumbnail" height="100" width="100"></span>
         <div class = "flex">
-        <button type="button" class="border-l-2 border-t-2 border-b-2 p-2 rounded-l-lg " id="upload-pet">Upload</button>
-        <input type="text" name="image" id="pet-image-input"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <button id="pet-upload" type="button" class="border-l-2 border-t-2 border-b-2 p-2 rounded-l-lg " >Upload</button>
+        <input th:field="*{image}" type="text" name="image" id="new-pet-input"  class="new-pet-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         </div>
         </div>
       <div class="flex justify-between ">
@@ -65,8 +66,8 @@
   </div>
 </div>
 <!--keys-->
-<script src="/js/keys.js "></script>
+<!--<script src="/js/keys.js "></script>-->
 
-<script th:src="@{/js/fileStack-api.js}" type="module"></script>
+<script th:src="@{/js/fileStack-pet.js}" type="module"></script>
 </body>
 </html>

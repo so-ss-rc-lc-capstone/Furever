@@ -17,9 +17,10 @@
                       <h1 class="text-2xl font-bold mb-5">Edit Profile</h1>
 
                       <label for="user-input" class="block text-md font-bold text-gray-900 dark:text-white mb-3">Upload a photo for your Avatar</label>
-
+                     <span><img id="user-thumbnail" alt="thumbnail" height="100" width="100"></span>
                       <div class="flex mb-5">
-                          <button id="uploadUser" type="button" class=" border-l border-t border-b border-gray-300 rounded-l-lg hover:bg-gray-100 bg-gray-200 p-2 text-blue-600 font-bold text-[10px]">Click to upload photo</button><input class="block w-1/2 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="user-input" name="profilePhoto" type="text">
+                          <button id="uploadUser" type="button" class=" border-l border-t border-b border-gray-300 rounded-l-lg hover:bg-gray-100 bg-gray-200 p-2 text-blue-600 font-bold text-[10px]">Click to upload photo</button>
+                          <input th:field="*{profilePhoto}" class=" user-image block w-1/2 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="user-input" name="profilePhoto" type="text">
                       </div>
 
 
@@ -92,9 +93,9 @@
 
 
 <!--keys-->
-<script src="/js/keys.js "></script>
+<!--<script src="/js/keys.js "></script>-->
 
-<script th:src="@{/js/fileStack-api.js}" type="module"></script>
+<script th:src="@{/js/fileStack-user.js}" type="module"></script>
 
 <script>
   const addressInput = document.getElementById("address");

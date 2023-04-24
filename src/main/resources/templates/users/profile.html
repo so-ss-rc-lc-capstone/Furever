@@ -3,6 +3,7 @@
 <head th:replace="partials/header :: head">
 </head>
 <link rel="stylesheet" href="/css/calendar2.css">
+<link href='https://unpkg.com/css.gg@2.0.0/icons/css/add.css' rel='stylesheet'>
 
 <body>
 
@@ -85,12 +86,13 @@
 
 
             <!--Bio-->
-            <div class="mb-5 flex flex-col justify-center items-center md:items-start md:justify-start md:flex-row w-full">
+            <div class="mb-5 flex flex-col justify-center items-center md:items-start md:justify-start w-full">
 
                 <div class="w-3/5 flex justify-center items-center md:justify-start md:items-start">
                     <div class="w-full flex flex-col justify-center items-center md:items-start md:justify-end">
                         <h2 class="text-2xl font-bold mb-1"><span th:text="${user.first_name}"></span> <span
                                 th:text="${user.last_name}"></span></h2>
+
 
 
                         <div class="text-[15px] flex mb-3 mt-1 text-center md:text-end">
@@ -149,9 +151,9 @@
                             </div>
                         </div>
 
-                    </div>
 
                 </div>
+
 
             </div>
             <!--Pets-->
@@ -490,6 +492,8 @@
                 </div>
               </div>
             </div>`;
+
+
         }
         participantsList.innerHTML = html;
     }
