@@ -63,7 +63,7 @@
 
             <div class="w-full flex mt-[3em] justify-end ">
 
-                <div class="w-full flex justify-start mr-[4em]" th:if="${user.id == #authentication.principal.id}">
+                <div class="w-full flex ml-[20px] justify-start mr-[4em]" th:if="${user.id == #authentication.principal.id}">
 
                     <div class="dropdown relative">
 
@@ -86,8 +86,8 @@
 
 
             <!--Bio-->
-            <div class="mb-5 flex flex-col justify-center items-center md:items-start md:justify-start w-full">
-
+            <div class=" flex flex-col justify-center items-center md:items-start md:justify-start w-full">
+                <div class ="flex flex-col items-center justify-center md:flex-row w-full">
                 <div class="w-3/5 flex justify-center items-center md:justify-start md:items-start">
                     <div class="w-full flex flex-col justify-center items-center md:items-start md:justify-end">
                         <h2 class="text-2xl font-bold mb-1"><span th:text="${user.first_name}"></span> <span
@@ -107,6 +107,7 @@
                         </div>
 
 
+
                         <h2 class="text-gray-800 text-[13px] mb-2"> @<span class="text-black" th:text="${user.username}"></span>  <span class="text-[15px] font-bold text-gray-500">﹒</span> <span th:text="${user.email}"></span></h2>
 
                         <div class="flex w-full justify-evenly md:justify-start" th:if="${user.id} != ${#authentication.principal.id}">
@@ -124,11 +125,13 @@
                     </div>
 
                 </div>
+
+
                 <!--Calendar-->
-                <div class="flex flex-col justify-center md:w-2/5 mr-[44px] md:mr-[0px] md:mt-0 md:justify-end">
+                <div class="flex w-[50em] justify-center items-center md:mr-[3em] md:mt-0 md:justify-end">
 
                     <!--calendar section-->
-                    <div class="calendar-container h-[30em]" style="z-index: 10;">
+                    <div class="calendar-container ml-[50px] w-full h-[30em]" style="z-index: 10;">
                         <div class="wrapper">
                             <header>
                                 <p class="current-date"></p>
@@ -152,12 +155,13 @@
                         </div>
 
 
+                    </div>
+
+
                 </div>
-
-
-            </div>
+                </div>
             <!--Pets-->
-            <div class="w-full flex flex-col justify-center items-center md:justify-start md:items-start">
+            <div class="w-full flex mt-[3em] flex-col justify-center items-center md:justify-start md:items-start">
                 <div class="flex md:justify-start md:items-start">
                     <h2 class="font-bold mb-2 ml-7 md:ml-0 mr-2">My Pets</h2>
                     <form th:action="@{/pets/register}" method="get">
@@ -168,7 +172,7 @@
                     </form>
                 </div>
 
-                <div class="w-full flex mb-[1em] justify-center items-center md:justify-start md:items-center">
+                <div class="w-full flex mb-[1em] mt-[1em] justify-center items-center md:justify-start md:items-center">
                     <div class="mt-2" th:include="pets/pet-card :: petList">
                     </div>
                 </div>
