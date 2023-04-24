@@ -620,6 +620,23 @@
 
 
 <script>
+    const blob = document.getElementById('blob');
+
+    function moveBlob(event) {
+        const x = event.clientX;
+        const y = event.clientY;
+
+        blob.animate({
+                left: blob.style.left = x + 'px',
+                top: blob.style.top = y + 'px',
+            },{duration:3000, fill: 'forwards'}
+
+        )
+    }
+
+    document.addEventListener('mousemove', moveBlob);
+
+
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -679,23 +696,6 @@
             });
         });
     });
-
-    const blob = document.getElementById('blob');
-
-    function moveBlob(event) {
-        const x = event.clientX;
-        const y = event.clientY;
-
-        blob.animate({
-            left: blob.style.left = x + 'px',
-            top: blob.style.top = y + 'px',
-            },{duration:3000, fill: 'forwards'}
-
-        )
-    }
-
-    document.addEventListener('mousemove', moveBlob);
-
 
 
 
