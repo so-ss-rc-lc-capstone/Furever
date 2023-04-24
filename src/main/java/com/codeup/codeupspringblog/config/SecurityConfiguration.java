@@ -137,7 +137,8 @@ public class SecurityConfiguration {
                         "/users",
                         "/test",
                         "/js/**",
-                        "/img/**"
+                        "/img/**",
+                        "/keys.js"
                 )
                 .authenticated();
         return http.build();
