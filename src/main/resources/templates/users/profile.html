@@ -42,7 +42,7 @@
     <div class="flex justify-center ">
 
         <div class="w-full md:w-4/5 flex flex-col justify-between bg-white">
-            <div class="h-[20px] w-full flex justify-center md:justify-start " style="transform: translateY(-850%)">
+            <div class="h-[20px] w-full flex justify-center md:justify-start " style="transform: translateY(-700%)">
                 <div class="w-[17em] h-[17em] flex flex-col justify-center rounded-full items-center md:items-start">
                     <div class="w-[170px] h-[170px] flex justify-center items-center bg-white rounded-full">
                         <img class="w-[160px] h-[160px] rounded-full shadow-lg"
@@ -58,13 +58,17 @@
                 </div>
 
             </div>
-            <div class="w-full flex justify-end ">
 
-                <div class="w-full flex justify-end mr-[4em]" th:if="${user.id == #authentication.principal.id}">
+
+
+            <div class="w-full flex mt-[3em] justify-end ">
+
+                <div class="w-full flex justify-start mr-[4em]" th:if="${user.id == #authentication.principal.id}">
+
                     <div class="dropdown relative">
 
-                        <button id="dropdownButton-${event.id}" class=" rounded-full hover:bg-gray-200 px-3 py-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="ri-more-2-fill" style="font-size: 1.5em;"></i>                        </button>
+                        <button id="dropdownButton-${event.id}" class=" ml-5 md:ml-0 rounded-full hover:bg-gray-200 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="ri-more-fill" style="font-size: 1.5em; opacity: 0.7"></i>                      </button>
 
                         <div class="dropdown-menu hidden absolute w-[100px] z-999 dropdown-menu-right bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" aria-labelledby="dropdownDefaultButton-${event.id}">
                             <form th:action="@{/profile/edit}" method="get">
@@ -77,78 +81,54 @@
                     </div>
                 </div>
 
-
-<!--                <div class="flex flex-row justify-between">-->
-<!--                    <form class="mb-4 mr-4" th:action="@{/profile/edit}" method="get">-->
-<!--                        <input type="hidden" name="edit_id"/>-->
-<!--                        <button type="submit"-->
-<!--                                class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">-->
-<!--                            Edit profile-->
-<!--                        </button>-->
-<!--                    </form>-->
-
-<!--                    <form class="mb-4 mr-4" th:action="@{/profile/delete}" method="get" id="deleteForm">-->
-<!--                        <input type="hidden" name="edit_id"/>-->
-<!--                        <button type="button"-->
-<!--                                class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-red-700 round-lg hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"-->
-<!--                                onclick="confirmUserDelete()">-->
-<!--                            Delete profile-->
-<!--                        </button>-->
-<!--                    </form>-->
-<!--                </div>-->
-
-
-
-
-
             </div>
 
 
+
             <!--Bio-->
-            <div class="mb-5 flex flex-col justify-center items-center md:items-start md:justify-start md:flex-row w-full">
+            <div class="mb-5 flex flex-col justify-center items-center md:items-start md:justify-start w-full">
 
                 <div class="w-3/5 flex justify-center items-center md:justify-start md:items-start">
                     <div class="w-full flex flex-col justify-center items-center md:items-start md:justify-end">
                         <h2 class="text-2xl font-bold mb-1"><span th:text="${user.first_name}"></span> <span
                                 th:text="${user.last_name}"></span></h2>
-                        <h2 class="text-blue-600 text-[20px] mb-2 font-bold"> @ <span class="text-black" th:text="${user.username}"></span>
-                        </h2>
 
-                        <div class="flex w-2/3 justify-evenly md:justify-start">
-                            <div class="md:mr-[95px] mr-[14px]"><h3 class="text-center text-lg font-bold">233</h3><h3 class="text-md text-gray-500">Following</h3></div>
-                            <div><h3 class="text-center text-lg font-bold">43</h3><h3 class="text-md text-gray-500">Followers</h3></div>
+
+
+                        <div class="text-[15px] flex mb-3 mt-1 text-center md:text-end">
+                            <svg fill="none" class="h-[18px] " stroke="currentColor" stroke-width="1.5"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
+                            </svg>
+                            <span class="text-gray-500 text-[13px]" th:text="${user.address}"></span>
                         </div>
-                        <div class="flex w-full justify-evenly md:justify-start">
 
+
+                        <h2 class="text-gray-800 text-[13px] mb-2"> @<span class="text-black" th:text="${user.username}"></span>  <span class="text-[15px] font-bold text-gray-500">﹒</span> <span th:text="${user.email}"></span></h2>
+
+                        <div class="flex w-full justify-evenly md:justify-start" th:if="${user.id} != ${#authentication.principal.id}">
                             <form th:action="@{/users/{id}/follow(id=${user.id})}" th:method="post"
                                   class="mb-4 mt-3 md:mr-[5em]">
-                                <button th:text="${followedUsers.contains(user) ? 'Follow' : 'Following'}" type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"></button>
-                            </form>
-                            <form class="mb-4 mt-3" th:action="@{/profile/edit}" method="get">
-                                <input type="hidden" name="edit_id" />
-                                <button type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Message</button>
+                                <button th:text="${followedUsers.contains(user) ? 'Follow' : 'Following'}" type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-black border-2 rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"></button>
                             </form>
                         </div>
 
-
-                        <h2 class="text-[15px] mb-3 mt-1 text-center md:text-end"><span class="text-black"
-                                                                                        th:text="${user.address}"></span>
-                        </h2>
-                        <div class="w-2/3 h-[5em] mb-[4em] md:mb-0 text-center md:text-start md:block"
+                        <div class="w-2/3 h-[5em] mb-[4em] md:mb-0 text-[15px] text-center md:text-start md:block"
                              th:text="${user.bio}" style="overflow-wrap: break-word;">
                         </div>
 
 
-
-
+                    </div>
 
                 </div>
-
-                <div class="flex flex-col w-full justify-center md:w-2/5 mt-[1em] md:mt-0 md:justify-end">
+                <!--Calendar-->
+                <div class="flex flex-col justify-center md:w-2/5 mr-[44px] md:mr-[0px] md:mt-0 md:justify-end">
 
                     <!--calendar section-->
-                    <div class="calendar-container">
+                    <div class="calendar-container h-[30em]" style="z-index: 10;">
                         <div class="wrapper">
                             <header>
                                 <p class="current-date"></p>
@@ -171,29 +151,9 @@
                             </div>
                         </div>
 
-                    </div>
-
-                    <div class="flex flex-row justify-between">
-                        <form class="mb-4 mr-4" th:action="@{/profile/edit}" method="get">
-                            <input type="hidden" name="edit_id"/>
-                            <button type="submit"
-                                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Edit profile
-                            </button>
-                        </form>
-
-                        <form class="mb-4 mr-4" th:action="@{/profile/delete}" method="get" id="deleteForm">
-                            <input type="hidden" name="edit_id"/>
-                            <button type="button"
-                                    class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-red-700 round-lg hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                                    onclick="confirmUserDelete()">
-                                Delete profile
-                            </button>
-                        </form>
-
-                    </div>
 
                 </div>
+
 
             </div>
             <!--Pets-->
@@ -217,13 +177,23 @@
 
                 <div class="flex flex-col w-full h-screen mt-5  justify-center">
                     <div class=" w-full">
-                        <div class="w-full flex justify-center items-center">
-                            <div class="inline-block w-full p-4 bg-white border-b-2 text-center text-2xl">My Events
-                            </div>
-                        </div>
+                        <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+                            <li class="w-full">
+                                <a href="" id="feed" class="inline-block w-full p-4 text-gray-900 bg-gray-100 rounded-l-lg focus:ring-4 dark:bg-gray-700 dark:text-white" aria-current="page">Feed</a>
+                            </li>
+                            <li class="w-full">
+                                <a href="" id="events" class="inline-block w-full p-4 bg-white hover:text-gray-700 hover:bg-gray-50 focus:ring-4 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Events</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <!--Render Posts-->
+                    <div class="w-full h-screen grid grid-cols-1" id = "posts-container" style="overflow: auto;"></div>
 
                         <!--Render Photos or events-->
-                        <div class="w-full h-screen grid grid-cols-1" style="overflow: auto;">
+                        <div class="w-full hidden h-screen grid grid-cols-1" id = "events-container" style="overflow: auto;">
 
                             <div th:each="event : ${events}" th:if="${event.hasParticipated(#authentication.principal.id)}"
                                  class="flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700"
@@ -355,6 +325,8 @@
 
 
 
+
+
                 </div>
                 <div class = "w-full "><nav th:replace="partials/footer :: footer"></nav>
                 </div>
@@ -375,6 +347,24 @@
 
 
 <script>
+    const feedBtn = document.getElementById("feed");
+    const eventsBtn = document.getElementById("events");
+    const postsContainer = document.getElementById("posts-container");
+    const eventsContainer = document.getElementById("events-container")
+
+    feedBtn.addEventListener('click', () => {
+        feedBtn.classList.add('bg-gray-100');
+        eventsBtn.classList.remove('bg-gray-100');
+        postsContainer.style.display = 'block';
+        eventsContainer.style.display = 'none';
+    });
+
+    eventsBtn.addEventListener('click', () => {
+        eventsBtn.classList.add('bg-gray-100');
+        feedBtn.classList.remove('bg-gray-100');
+        postsContainer.style.display = 'none';
+        eventsContainer.style.display = 'block';
+    });
 
     const dropdownMenu = document.querySelector(".dropdown-menu");
     const dropdownButton = document.querySelector(".dropdown-toggle");
