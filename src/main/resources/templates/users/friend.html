@@ -222,9 +222,9 @@
         <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
 
 
-          <div class="container flex flex-col justify-center items-center">
+          <div class="container">
             <!-- container element in which TalkJS will display a chat UI -->
-            <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px">
+            <div id="talkjs-container" class="flex flex-col justify-center items-center" style="width: 90%; margin: 30px; height: 500px">
               <div class="load-row">
                 <span></span>
                 <span></span>
@@ -249,7 +249,9 @@
                 </div>
                 <div class="spoke"></div>
               </div>
-              <h2></h2>
+              <h2 class="text-[15px] mb-3 mt-1 text-center md:text-end  text-gray-500 rounded-lg dark:text-white">
+                Try click  ' <span class="text-black"> > </span>'  to start chatting!
+              </h2>
             </div>
 
           </div>
