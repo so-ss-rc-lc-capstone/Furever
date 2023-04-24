@@ -6,6 +6,8 @@
   </head>
 <body>
 <style>
+
+
     #blob {
         background: linear-gradient(to right, aquamarine, mediumpurple);
         width: 500px;
@@ -19,18 +21,6 @@
         z-index: -1; /* set to a lower value */
     }
 
-    #blob2 {
-        background: linear-gradient(to right, aquamarine, mediumpurple);
-        width: 700px;
-        height: 700px;
-        position: absolute;
-        left: 50%;
-        right: 50%;
-        translate: -50% -50%;
-        border-radius: 50%;
-        animation: rotate 20s infinite;
-        z-index: -1; /* set to a lower value */
-    }
 
     #blur{
         height: 100%;
@@ -63,12 +53,6 @@
         }
     }
 
-    /*#image-track > .image{*/
-    /*    width: 40vmin;*/
-    /*    height: 56vmin;*/
-    /*    object-fit: cover;*/
-    /*    object-position: center;*/
-    /*}*/
 
     #image-track {
         display: flex;
@@ -227,9 +211,6 @@
 
 <div id="pagewrapper" >
     <div id="blob"></div>
-
-
-
     <div id="blur"></div>
     <section id="home" class="h-full">
         <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
@@ -239,11 +220,11 @@
                     Discover exciting new opportunities to bond with your pet and connect with other pet owners in your area.
                 </p>
 
-                 <div class="w-full landing hiddens flex justify-center flex-col-reverse lg:flex-row items-center lg:justify-start">
-                        <a href="#" class=" inline-flex px-5 py-3 ml-5 mt-5 text-base font-medium bg-blue-600 text-center text-white rounded-full shadow-xl ">
+                 <div class="w-full landing hiddens flex justify-center hover:cursor-pointer flex-col-reverse lg:flex-row items-center lg:justify-start">
+                        <button id="login-link" data-url="/login" class=" inline-flex px-5 py-3 ml-5 mt-5 text-base font-medium  bg-blue-600 transition-all hover:bg-blue-700 text-center text-white rounded-full shadow-xl">
                             Get started
                             <svg class="w-5 h-5 ml-2 mt-[2px] -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </a>
+                        </button>
 
                      <div class="flex h-1/3 ml-[50px] lg:mt-4 -space-x-4">
                          <a th:each="user, i : ${users}" th:if="${i.index &lt; 4}">
@@ -284,8 +265,7 @@
 
     </section>
 
-
-    <section class=" h-screen mt-[4em] bg-white">
+    <section class=" h-screen mt-[4em]">
         <div class="flex hidden-up flex-col mb-[5em] justify-center items-center">
                 <h1 class="mb-4 mt-[3em] text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 dark:text-white">Providing The Best  <br>  Service To Help Pet Owners Connect<span class="text-blue-600">.</span></h1>
                 <p class="mb-6 text-lg font-normal text-center text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">We focus on bringing people together for stronger communities and meaningful connections.</p>
@@ -305,7 +285,7 @@
     </section>
 
     <!--Features-->
-    <section class="hidden-up bg-white mt-[9em] w-full dark:bg-gray-900">
+    <section class="hidden-up  mt-[9em] w-full dark:bg-gray-900">
         <div class="py-8 flex justify-center items-center px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
             <div class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
                 <h2 class="mb-4 text-5xl tracking-tight text-center font-extrabold text-gray-900 dark:text-white">Connect through <br> our socialization features<span class="text-blue-600">.</span></h2>
@@ -313,7 +293,7 @@
         </div>
     </section>
 
-    <section id="features" class="hiddens bg-white dark:bg-gray-900">
+    <section id="features" class="hiddens dark:bg-gray-900">
         <div  class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
             <img class="w-full dark:hidden rounded-lg" th:src="@{/img/laptop.jpg}" alt="dashboard image">
             <div class="mt-4 md:mt-0">
@@ -323,7 +303,7 @@
         </div>
     </section>
 
-    <section class="hidden-right bg-white dark:bg-gray-900">
+    <section class="hidden-right dark:bg-gray-900">
         <div class="gap-16 flex flex-col-reverse items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
             <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Paw-some Local Event Discovery with Personalized Calendar<span class="text-blue-600">.</span></h2>
@@ -348,7 +328,7 @@
     </section>
 
 <!--About us-->
-    <section id="about" class=" bg-white mt-[6em] dark:bg-gray-900">
+    <section id="about" class=" mt-[6em] dark:bg-gray-900">
         <div  class="py-8 px-4  mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
             <div class="mx-auto hidden-up max-w-screen-sm text-center mb-8 lg:mb-16">
                 <h2 class="mb-4 text-5xl  tracking-tight font-extrabold text-gray-900 dark:text-white">Meet Our Team<span class="text-blue-600">.</span></h2>
@@ -478,7 +458,7 @@
 
     <!-- Testimonials -->
     <section id="testimonials" class="hiddens dark:bg-gray-900">
-        <div  class="py-8 mt-[6em] px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
+        <div class="py-8 mt-[6em] px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto max-w-screen-sm">
                 <h2 class="mb-4 text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">Testimonials<span class="text-blue-600">.</span></h2>
                 <p class="mb-8 font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">See for yourself how Furever has simplified the management of pets, enhanced socialization, and provided an all-in-one solution for all your pet-related needs.</p>
@@ -542,7 +522,7 @@
         </div>
     </section>
     <!--FAQ-->
-    <section id ="faq" class="bg-white hidden-right mt-[6em] dark:bg-gray-900">
+    <section id ="faq" class="hidden-right mt-[6em] dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto flex flex-col justify-center items-center max-w-screen-xl sm:py-16 lg:px-6">
             <h2 class="mb-8 text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">Frequently asked questions<span class="text-blue-600">.</span></h2>
             <div class="grid pt-8 text-left border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">
@@ -664,6 +644,17 @@
     });
 
 
+    const loginLink = document.getElementById('login-link');
+    loginLink.addEventListener('click', () => {
+        const url = loginLink.dataset.url;
+        window.location.href = url;
+    });
+
+    const logoutLink = document.getElementById('logout-link');
+    logoutLink.addEventListener('click', () => {
+        const url = logoutLink.dataset.url;
+        window.location.href = url;
+    });
 
 
     const anchors = document.querySelectorAll('a');
@@ -706,21 +697,6 @@
     document.addEventListener('mousemove', moveBlob);
 
 
-    const blob2 = document.getElementById('blob2');
-
-    function moveBlob2(event) {
-        const x = event.clientX;
-        const y = event.clientY;
-
-        blob.animate({
-                left: blob.style.left = x + 'px',
-                top: blob.style.top = y + 'px',
-            },{duration:3000, fill: 'forwards'}
-
-        )
-    }
-
-    document.addEventListener('mousemove', moveBlob2);
 
 
     const track = document.getElementById("image-track");
