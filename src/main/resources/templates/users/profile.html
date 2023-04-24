@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="partials/header :: head"></head>
 <link rel="stylesheet" href="/css/calendar2.css">
+<link href='https://unpkg.com/css.gg@2.0.0/icons/css/add.css' rel='stylesheet'>
 
 <body>
 
@@ -67,7 +68,7 @@
                         <div class="flex w-2/3 justify-evenly md:justify-start">
                             <div class="md:mr-[95px] mr-[14px]"><h3 class="text-center text-lg font-bold">233</h3><h3 class="text-md text-gray-500">Following</h3></div>
                             <div><h3 class="text-center text-lg font-bold">43</h3><h3 class="text-md text-gray-500">Followers</h3></div>
-                       </div>
+                        </div>
                         <div class="flex w-full justify-evenly md:justify-start" th:if="${user.id} == ${#authentication.principal.id}">
                             <form th:action="@{/users/{id}/follow(id=${user.id})}" th:method="post"
                                   class="mb-4 mt-3 md:mr-[5em]">
@@ -439,6 +440,8 @@
                 </div>
               </div>
             </div>`;
+
+
         }
         participantsList.innerHTML = html;
     }

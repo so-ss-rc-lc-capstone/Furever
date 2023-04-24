@@ -40,14 +40,15 @@ public class PostController {
 
     @GetMapping("/posts")
     public String allEvents(Model model) {
+        System.out.println("hello");
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = usersDao.findById(currentUser.getId());
 
         List<Post> posts = postDao.findAll();
         List<User> followedUsers = userData.getFollowedUsers();
-        List<User> usersNotFollowing = new ArrayList<>();
         List<User> users = usersDao.findAll();
         List<Comments> comments = commentDao.findAll();
+        List<User> usersNotFollowing = new ArrayList<>();
 
 
         for(int i=0; i<users.size(); i++){
