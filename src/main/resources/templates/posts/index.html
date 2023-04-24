@@ -21,7 +21,6 @@
     <link rel="stylesheet"
           href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css"
           type="text/css">
-
 </head>
 <style>
 
@@ -307,8 +306,6 @@
                         </button>
                     </div>
                 </form>
-
-
             </div>
         </div>
 
@@ -393,7 +390,6 @@
                                 <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
                                 <span class="sr-only">Send message</span>
                             </button>
-
                         </div>
                     </form>
 
@@ -437,7 +433,7 @@
         </div>
 
         <!--Friends Aside-->
-        <aside class="fixed top-0 right-0 mr-2 mt-4 justify-items-center hidden md:flex w-[16em]"
+        <aside class="fixed top-0 right-0 mr-2 justify-items-center hidden md:flex w-[16em]"
                aria-label="Sidebar">
 
             <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -447,9 +443,9 @@
                     <div class="w-full flex flex-col justify-center">
                         <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                             <ul class="flex flex-row -mb-px text-sm font-medium text-center" id="myTab"
-                                data-tabs-toggle="#myTabContent" role="tablist">
+                                data-tabs-toggle="#myTabContent-event" role="tablist">
                                 <li class="w-1/2 mr-2" role="presentation">
-                                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab"
+                                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab-post"
                                             data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
                                             aria-selected="false">Followers
                                     </button>
@@ -463,9 +459,9 @@
 
                             </ul>
                         </div>
-                        <div id="myTabContent">
+                        <div id="myTabContent-event">
                             <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
-                                 aria-labelledby="profile-tab">
+                                 aria-labelledby="profile-tab-post">
 
 
                                 <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
@@ -607,19 +603,7 @@
                                                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
                                                                     </li>
                                                                 </ul>
-                                                                <div class="py-1">
 
-                                                                    <form th:action="@{/users/{id}/follow(id=${user.id})}"
-                                                                          th:name="followFromEvent" th:method="post"
-                                                                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                                        <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
-                                                                                type="submit"></button>
-                                                                    </form>
-                                                                    <!--                          <a id="followButton" th:text="${user.followingUsers.contains(user) ? 'Unfollow' : 'Follow'}"-->
-                                                                    <!--                             th:onclick="${user.followingUsers.contains(user) ? '@{/users/'+ user.id + '/follow}' : '@{/users/'+ user.id + '/follow}'}"-->
-                                                                    <!--                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"></a>-->
-
-                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -631,39 +615,24 @@
                                                                   class="block px-4 py-2 text-sm text-gray-200 dark:text-gray-600 dark:hover:text-white">
                                                                 <button class="items-center justify-center hover:cursor-pointer group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 "
                                                                         type="submit">
-                                                                    <i class="gg-user-add"></i>
-                                                                </button>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                                                                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                                                        <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                                                                    </svg>                                                            </button>
                                                             </form>
-
                                                         </a>
                                                     </div>
                                                 </div>
-
-
                                             </li>
-
                                         </div>
-
                                     </div>
-
                                 </ul>
-
-
                             </div>
-
                         </div>
                     </div>
-
-
                 </div>
-
-
             </div>
-
-
         </aside>
-
-
     </div>
 
 

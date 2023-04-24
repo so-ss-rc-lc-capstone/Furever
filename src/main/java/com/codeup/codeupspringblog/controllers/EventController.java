@@ -76,35 +76,12 @@ public class EventController {
         User userData = usersDao.findById(currentUser.getId());
 
         List<User> followedUsers = userData.getFollowedUsers();
-        List<User> usersNotFollowing = new ArrayList<>();
         List<User> users = usersDao.findAll();
         List<Event> events = eventsDao.findAll();
-        model.addAttribute("followedUsers",followedUsers);
+        List<User> usersNotFollowing = new ArrayList<>();
 
 
-        for(int i=0; i<users.size(); i++){
-            System.out.println("[User]:"+ users.get(i).getId());
-            if(followedUsers.contains(users.get(i))){
-                System.out.println("[[already following!!!]]");
-            }else{
-                System.out.println("[[Not following!!!]]");
-                usersNotFollowing.add(usersDao.findById(users.get(i).getId()));
-            }
-        }
-        model.addAttribute("usersNotFollowing", usersNotFollowing);
 
-
-//        for(int i=0; i<followedUsers.size(); i++){
-//            System.out.println("[Followed User]:"+ followedUsers.get(i).getId());
-//            if(followedUsers.get(i).getId()){
-//                System.out.println("[[already following!!!]]");
-//            }else{
-//                System.out.println("[[Not following!!!]]");
-//
-//            }
-//        }
-
-        System.out.println("Followed Users "+followedUsers);
         for(int i=0; i<users.size(); i++){
             System.out.println("[User]:"+ users.get(i).getId());
             if(followedUsers.contains(users.get(i))){

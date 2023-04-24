@@ -20,11 +20,11 @@
 
             <!--Edit Post btn-->
             <div class="w-full flex justify-end  mr-[4em]" th:if="${event.user.id} == ${#authentication.principal.id}">
-                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-black rounded-full bg-white hover:bg-gray-200 px-4 py-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                <button th:id="dropdownDefaultButton + ${event.id}" th:data-dropdown-toggle="dropdown + ${event.id}" class="text-black rounded-full bg-white hover:bg-gray-200 px-4 py-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
                     <i class="ri-edit-box-line"></i>
                 </button>
                     <!-- Dropdown menu -->
-                    <div id="dropdown" class="z-10 w-[80px] hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <div th:id="dropdown + ${event.id}" class="z-10 w-[80px] hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                             <li>
                                 <form th:action="@{/events/{id}/edit(id=${event.id})}" method="get" class="edit-form">
