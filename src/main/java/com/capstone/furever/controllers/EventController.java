@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -72,6 +73,7 @@ public class EventController {
         List<User> followedUsers = userData.getFollowedUsers();
         List<User> users = usersDao.findAll();
         List<Event> events = eventsDao.findAll();
+        Collections.reverse(events);
         List<User> usersNotFollowing = new ArrayList<>();
 
         for (int i = 0; i < users.size(); i++) {
@@ -87,7 +89,6 @@ public class EventController {
         model.addAttribute("followedUsers", followedUsers);
         model.addAttribute("usersNotFollowing", usersNotFollowing);
         model.addAttribute("users", users);
-
         model.addAttribute("events", events);
         return "event/index";
     }
