@@ -1,13 +1,7 @@
 package com.codeup.codeupspringblog.controllers;
 
-import com.codeup.codeupspringblog.models.Event;
-import com.codeup.codeupspringblog.models.Pet;
-import com.codeup.codeupspringblog.models.Post;
-import com.codeup.codeupspringblog.models.User;
-import com.codeup.codeupspringblog.repositories.EventRepository;
-import com.codeup.codeupspringblog.repositories.PetRepository;
-import com.codeup.codeupspringblog.repositories.PostRepository;
-import com.codeup.codeupspringblog.repositories.UserRepository;
+import com.codeup.codeupspringblog.models.*;
+import com.codeup.codeupspringblog.repositories.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,13 +34,14 @@ public class UserController {
 
     private final EventRepository eventDao;
 
+    private final CommentRepository commentDao;
 
-
-    public UserController(UserRepository userDao, PostRepository postDao, PetRepository petsDao, EventRepository eventDao){
+    public UserController(UserRepository userDao, PostRepository postDao, PetRepository petsDao, EventRepository eventDao, CommentRepository commentDao){
         this.eventDao = eventDao;
         this.userDao = userDao;
         this.postDao = postDao;
         this.petsDao = petsDao;
+        this.commentDao = commentDao;
     }
 
 
@@ -57,12 +52,13 @@ public class UserController {
 
         List<User> followedUsers = userData.getFollowedUsers();
         model.addAttribute("followedUsers",followedUsers);
-
+        List<Comments> comments = commentDao.findAll();
         List<User> users = userDao.findAll();
         List<Pet> pets = petsDao.findAll();
         List<Post> posts = postDao.findAll();
         List<Event> events = eventDao.findAll(); // or however you fetch the events
 
+        model.addAttribute("comments", comments);
         model.addAttribute("events", events);
         model.addAttribute("user", userData);
         model.addAttribute("users", users);
@@ -86,8 +82,6 @@ public class UserController {
 //        public ResponseEntity<User> getUser(@RequestParam(required = true) Long userId) {
 //            return new ResponseEntity<>(userRepository.findById(userId).get(), HttpStatus.OK);
 //        }
-
-
 
 
     @GetMapping(value = "/getUser")
