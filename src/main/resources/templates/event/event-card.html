@@ -1,6 +1,6 @@
 <!-- User POSTS -->
 
-<div class="card-div flex flex-col mt-[4em] justify-between border w-full h-[25em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700"
+<div class="card-div flex flex-col mt-[4em] justify-between border w-full h-[30em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700"
      th:each="event : ${events}" th:title="${event.id}"
      th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
 
@@ -59,7 +59,7 @@
 
     <div class=" flex justify-center items-center w-full h-[10em]">
         <!--Event Description-->
-        <div class="w-full md:w-5/6 h-full bg-white rounded-xl">
+        <div class="w-full md:w-5/6 h-[11em] bg-white rounded-xl">
 
             <div class="flex flex-row w-full h-2/3 justify-between">
                 <div class="w-2/3">
@@ -115,7 +115,10 @@
                         <img class="w-10 h-10 rounded-full mr-3"
                              th:src="${#strings.isEmpty(event.user.profilePhoto) ? '/img/profile.jpeg' : event.user.profilePhoto}">
                         <div class="font-medium dark:text-white">
-                            <span th:if="${event.user.first_name == null and event.user.last_name == null}" th:text="${event.user.username}"></span>
+                         <div class="flex flex-col">
+                             <span th:text ="${#strings.isEmpty(event.user.first_name) ? event.user.username : event.user.first_name}"></span>
+                         </div>
+
                             <div class="text-[10px] text-gray-500 dark:text-gray-400"
                             ><h4>Created at <span class="text-[10px] text-gray-500 dark:text-gray-400"
                                                   th:text="${#temporals.format(event.created_at, 'MMMM-dd-yyyy')}"></span>
