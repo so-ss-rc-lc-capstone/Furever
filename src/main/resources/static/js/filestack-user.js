@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    let defaultImage = "/img/default-img.webp";
+    let defaultImage = "";
+
+    // let defaultImage = "/img/default-img.webp";
 //User photo on edit
     const uploadButton = $('#uploadUser');
     let userInputThumbnail = $('#user-thumbnail');
