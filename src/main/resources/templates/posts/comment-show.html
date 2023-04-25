@@ -54,30 +54,38 @@
 
 
     <div class="flex flex-col w-full h-full bg-gray rounded-lg">
-        <div class="flex">
 
-            <div class="flex justify-center">
-                <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
-                     th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
-                     th:src="${post.user.profilePhoto}" alt="Profile image"/>
 
-                <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
-                     th:if="${#strings.isEmpty(post.user.profilePhoto)}"
-                     th:src="@{/img/profile.jpeg}"
-                     alt="Default profile image"/>
-            </div>
             <!--                    th:text="${#temporals.format(event.created_at, 'dd-MMM-yyyy h:mm a')}-->
             <!--Name Date body-->
             <div id="name-body" class = "mt-[20px]">
-                <div class="ml-5">
-                    <h1 class="font-bold text-[18px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
+                <div class="ml-5 flex-col">
+                    <div class="flex justify-center flex-col">
+                        <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                             th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
+                             th:src="${post.user.profilePhoto}" alt="Profile image"/>
 
-                    <h3 class = "text-blue-400">@ <span th:text="${post.user.username}"></span></h3>
-                    <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'dd-MMM-yyyy')}"></span></h3>
-                    <div class="w-full pb-5 pt-[5px] ml-[2px]" th:text="${post.body}"></div>
+                        <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                             th:if="${#strings.isEmpty(post.user.profilePhoto)}"
+                             th:src="@{/img/profile.jpeg}"
+                             alt="Default profile image"/>
+
+
+                        <h1 class="font-bold text-[18px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
+                        <h3 class = "text-blue-400">@ <span th:text="${post.user.username}"></span></h3>
+                        <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'dd-MMM-yyyy')}"></span></h3>
+                        <div class="w-full pb-5 pt-[5px] ml-[2px]  pr-[40px]" th:text="${post.body}"></div>
+
+                    </div>
+                        <div class="w-full flex justify-center items-center">
+                            <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
+                            <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full flex  mb-5">
+                                <span class = "w-full flex justify-center items-center"><img th:src="${post.image}" class=" w-[70%] mt-[5px] rounded-lg"></span>
+                            </div>
+                        </div>
                 </div>
             </div>
-        </div>
+
 
         <div class="w-full h-[60px] pb-3 border-b border-gray-300 flex flex-row justify-around ">
 

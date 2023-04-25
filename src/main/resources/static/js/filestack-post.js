@@ -15,15 +15,19 @@ $(document).ready(function () {
 //
 
     const postClient = filestack.init(keys.filestack);
+    const imageContainer = document.getElementById("post-thumbnail");
     postUpload.on('click', function () {
 
         postClient.picker({
             accept: ['image/*', 'video/*'], // Allow only photos and videos to be uploaded
             fromSources: ['local_file_system', 'url'], // Limit the upload sources
             onUploadDone: function (res) {
+
                 const url = res.filesUploaded[0].url;
                 postInput.attr('value', url);
                 postThumbnail.attr('src', url);
+                imageContainer.classList.remove('hidden');
+
 
             }
         }).open();
