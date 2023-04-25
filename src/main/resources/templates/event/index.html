@@ -13,32 +13,31 @@
         }
     }
 
+    #nav-mobile {
+        position: fixed;
+        bottom: 2rem;
+        left: 0;
+        right: 0;
+        width: 328px;
+        height: 72px;
+        box-shadow: 0 8px 32px hsla(231, 44%, 45%, .2);
+        margin: 0 auto;
+        padding: 1.5rem .5rem;
+        border-radius: .65rem;
+        overflow: hidden;
+    }
 
-  #nav-mobile {
-    position: fixed;
-    bottom: 2rem;
-    left: 0;
-    right: 0;
-    width: 328px;
-    height: 72px;
-    box-shadow: 0 8px 32px hsla(231, 44%, 45%, .2);
-    margin: 0 auto;
-    padding: 1.5rem .5rem;
-    border-radius: .65rem;
-    overflow: hidden;
-  }
+    .nav__list {
+        display: flex;
+        justify-content: center;
+        column-gap: 2rem;
+    }
 
-  .nav__list {
-    display: flex;
-    justify-content: center;
-    column-gap: 2rem;
-  }
-
-  .nav__link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    .nav__link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
 </style>
 
@@ -47,10 +46,7 @@
 <nav th:replace="partials/navbar :: navbar-search"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 <nav th:include="event/participants-modal"></nav>
-
-
 <div class="flex items-center justify-center w-full  lg:w-[35em] xl:w-[45em]">
-
     <aside id="logo-sidebar"
            class="fixed top-0 left-0  border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white"
            aria-label="Sidebar" style="z-index: 99">
@@ -82,9 +78,7 @@
                         </button>
                     </form>
                 </li>
-
                 <li>
-
                     <a href="/profile"
                        class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -98,10 +92,12 @@
                 <li>
                     <a href="/posts"
                        class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
+                             viewBox="0 0 16 16">
                             <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
-                            <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
+                            <path fill-rule="evenodd"
+                                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
                         </svg>
                         <span class="flex-1 ml-3 whitespace-nowrap">My Feed</span>
                     </a>
@@ -109,7 +105,6 @@
                 <li>
                     <a href="/friends"
                        class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-people-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                              viewBox="0 0 16 16">
@@ -121,7 +116,6 @@
                 <li>
                     <a href="/events"
                        class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white bi bi-calendar4-event"
                              viewBox="0 0 16 16">
@@ -135,17 +129,10 @@
         </div>
     </aside>
 
-
-
-
-
     <aside class="fixed top-0 right-0 mr-2 justify-items-center hidden md:flex w-[16em]"
            aria-label="Sidebar">
-
         <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div class="w-full flex flex-row items-center justify-between mb-4">
-
-
                 <div class="w-full flex flex-col justify-center">
                     <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                         <ul class="flex flex-row -mb-px text-sm font-medium text-center" id="myTab"
@@ -168,8 +155,6 @@
                     <div id="myTabContent">
                         <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
                              aria-labelledby="profile-tab">
-
-
                             <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
 
                                 <!--          <div th:each="user : ${users}">-->
@@ -177,8 +162,6 @@
 
                                     <div th:if="${user.id} != ${#authentication.principal.id}">
                                         <li class="py-2 group/item hover:bg-slate-100 ">
-
-
                                             <div class="flex flex-col space-x-4 ">
                                                 <div class="flex items-center justify-between px-3">
                                                     <div th:data-dropdown-toggle="${user.id}"
@@ -197,8 +180,6 @@
                                                                     th:text="${user.username}"
                                                                     th:href="@{|/user/${user.id}|}"></span></div>
                                                         </div>
-
-
                                                         <div th:id="${user.id}"
                                                              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                                                             <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
@@ -265,10 +246,7 @@
 
                                     <div th:if="${user.id} != ${#authentication.principal.id}">
 
-                                        <!--            <div th:if="!${followedUsers.contains(user)} ">-->
-
                                         <li class="py-2 group/item hover:bg-slate-100 ">
-
 
                                             <div class="flex flex-col space-x-4 ">
                                                 <div class="flex items-center justify-between px-3">
@@ -285,8 +263,6 @@
                                                             </span>
                                                             </div>
                                                         </div>
-
-
                                                         <div th:id="${user.email}"
                                                              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                                                             <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
@@ -295,6 +271,7 @@
                                                                         th:text="${user.last_name}"></span>
                                                                 </div>
                                                                 <div class="text-sm text-gray-500 dark:text-gray-400">
+
                                                                     <span th:text="${user.email}"></span>
                                                                 </div>
 
@@ -315,13 +292,14 @@
                                                     </div>
 
                                                     <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible ">
-
                                                         <form th:action="@{/users/{id}/follow(id=${user.id})}"
                                                               th:name="followFromEvent" th:method="post"
                                                               class="block px-4 py-2 text-sm text-gray-200 dark:text-gray-600 dark:hover:text-white">
                                                             <button class="items-center justify-center hover:cursor-pointer group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 "
                                                                     type="submit">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                     height="16" fill="currentColor"
+                                                                     class="bi bi-person-fill-add" viewBox="0 0 16 16">
                                                                     <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                                                                     <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
                                                                 </svg>
@@ -340,10 +318,6 @@
             </div>
         </div>
     </aside>
-
-
-
-
 
     <!--- Feed -->
     <div class="w-full ">
@@ -416,30 +390,42 @@
 
 <!-- minified snippet to load TalkJS without delaying your page -->
 <script>
-  (function(t,a,l,k,j,s){
-    s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
-    ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
-                .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
+    (function (t, a, l, k, j, s) {
+        s = a.createElement('script');
+        s.async = 1;
+        s.src = "https://cdn.talkjs.com/talk.js";
+        a.head.appendChild(s)
+        ;k = t.Promise;
+        t.Talk = {
+            v: 3, ready: {
+                then: function (f) {
+                    if (k) return new k(function (r, e) {
+                        l.push([f, r, e])
+                    });
+                    l
+                        .push([f])
+                }, catch: function () {
+                    return k && new k()
+                }, c: l
+            }
+        };
+    })(window, document, []);
 
-  const dropdownMenu = document.querySelector(".dropdown-menu");
-  const dropdownButton = document.querySelector(".dropdown-toggle");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    const dropdownButton = document.querySelector(".dropdown-toggle");
 
-  dropdownButton.addEventListener("click", () => {
-      dropdownMenu.classList.toggle("hidden");
-  });
+    dropdownButton.addEventListener("click", () => {
+        dropdownMenu.classList.toggle("hidden");
+    });
 
 
 </script>
 
-<!--keys-->
-<script src="/keys.js" type="text/javascript"></script>
 <script src="/js/event-feed.js"></script>
-<!---->
 <!--utils doc-->
 <script src="/js/mapbox-geocoder-utils.js"></script>
 <!--Mapbox-->
 <script src="/js/custom-map-stuff.js"></script>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 </body>

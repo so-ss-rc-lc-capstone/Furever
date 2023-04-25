@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.codeup.codeup-spring-blog' is invalid and this project uses 'com.codeup.codeupspringblog' instead.
+* The original package name 'com.capstone.codeup-spring-blog' is invalid and this project uses 'com.capstone.furever' instead.
 
 # Getting Started
 
