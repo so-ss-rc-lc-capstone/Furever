@@ -402,7 +402,7 @@
                         <label for="comment" class="sr-only">Your message</label>
                         <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
 
-                            <textarea th:field="*{content}" id="comment" name = "content" rows="1" class="resize-none h-[60px] mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
+                            <textarea id="comment" name = "content" rows="1" class="resize-none h-[60px] mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
 
                             <button type="submit"  class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
                                 <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
@@ -417,9 +417,8 @@
 
             </div>
             <!--Comment reply body-->
-            <div th:each="comment, i : ${post.comments}" th:if="${i.index &lt; 3}"  class="w-full h-full flex bg-white border-l-2 border-r-2 border-b-2 shadow dark:border-gray-700">
+            <div th:each="comment, i : ${post.comments}" th:if="${i.index < 3}" class="w-full h-full flex bg-white border-l-2 border-r-2 border-b-2 shadow dark:border-gray-700">
                 <div class="flex ml-[5px] justify-center">
-
                     <img class="w-[40px] h-[40px] mt-[26px] ml-7 rounded-full shadow-md"
                          th:if="${not #strings.isEmpty(comment.user.profilePhoto)}"
                          th:src="${comment.user.profilePhoto}"
@@ -440,19 +439,12 @@
                                 <h3 class="mt-1 text-[8px] text-gray-400"><span th:text="${#temporals.format(comment.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(comment.created_at, 'dd-MMM-yyyy')}"></span></h3>
                             </div>
                         </div>
-
                         <div class="w-full pt-2 h-auto text-[12px]" th:text="${comment.content}"></div>
-
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
-
-
-
 </div>
 
 <!--Friends Aside-->
