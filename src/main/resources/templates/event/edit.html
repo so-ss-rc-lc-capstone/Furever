@@ -2,7 +2,11 @@
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/header :: head"></head>
+<head th:replace="partials/header :: head">
+    <title>
+        Edit Event
+    </title>
+</head>
 
 <body class="w-full h-screen flex relative justify-center items-center">
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -80,11 +84,10 @@
         </div>
 
         <label for="photo-edit" class="block text-sm font-medium text-gray-900 dark:text-white mb-3">Upload a photo for your event</label>
-
+        <img id="thumbnail-eventEdit" alt="thumbnail" height="100" width="100">
         <div class="flex mb-5">
             <button id="upload-btn" type="button" class=" border-l border-t border-b border-gray-300 rounded-l-lg hover:bg-gray-100 bg-gray-200 p-2 text-blue-600 font-bold text-[10px]">Click to upload photo</button>
-            <img id="thumbnail-eventEdit" alt="thumbnail" height="100" width="100"></span>
-            <input class="block w-2/3 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="photo-edit" th:field="*{eventPhoto}" name="eventPhoto" type="text">
+            <input class="input-edit-photo block w-2/3 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="photo-edit" th:field="*{eventPhoto}" name="eventPhoto" type="text">
         </div>
 
 

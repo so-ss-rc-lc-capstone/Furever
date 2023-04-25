@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/header :: head"></head>
+<head th:replace="partials/header :: head">
+  <title>
+    Pet Edit
+  </title>
+</head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -38,13 +42,16 @@
 
       <div class="mt-4">
         <label for="breed_name" class="block text-gray-700  font-bold mb-2">Breed Name:</label>
-        <input th:field="*{breed}" type="text" name="breed_name" id="breed_name" class="form-input border-2 bg-gray-50 rounded-md mt-1 block w-full" list="breeds">
+        <input th:field="*{breed.id}" type="hidden" />
+        <input th:field="*{breed.breed_name}" type="text" name="breed_name" id="breed_name" class="form-input border-2 bg-gray-50 rounded-md mt-1 block w-full" list="breeds" th:onchange="'javascript:document.getElementById(\'breed_id\').value=this.selectedOptions[0].getAttribute(\'data-id\');'">
+        <input th:field="*{breed.id}" type="hidden" name="breed_id" id="breed_id"/>
         <datalist id="breeds">
           <th:block th:each="breed : ${breeds}">
-            <option th:value="${breed.id}" th:text="${breed.breed_name}"></option>
+            <option th:data-id="${breed.id}" th:value="${breed.breed_name}" th:text="${breed.breed_name}"></option>
           </th:block>
         </datalist>
       </div>
+
       <div class="mb-6">
         <label for="pet-upload" class="block text-gray-700 font-bold mb-2 mt-5">Pet Image:</label>
         <span><img id="new-pet-thumbnail" alt="thumbnail" height="100" width="100"></span>
