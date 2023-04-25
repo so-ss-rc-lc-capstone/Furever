@@ -26,6 +26,12 @@ function allEvents() {
                 center: [-98.4916, 45.4252]
             });
 
+
+
+
+
+
+
             // Get the user's current position
             navigator.geolocation.getCurrentPosition(position => {
                 // Update the map's center to the user's position
@@ -56,6 +62,9 @@ function allEvents() {
         .catch(error => console.error(error));
 }
 
+
+
+
 // ==========> Events within 50 miles radius <=================
 let localLocations = async function () {
     let withinFiftyMilesIds = [];
@@ -81,6 +90,9 @@ let localLocations = async function () {
             zoom: 10,
             center: [-98.4916, 29.4252]
         });
+
+
+
 
         // Get the user's current position
         let userPosition = await new Promise((resolve, reject) => {
@@ -220,3 +232,53 @@ mapButton.addEventListener("click", function () {
         }
     });
 });
+
+
+
+const spinnerEl = document.getElementById('spinner');
+const backgroundEl = document.getElementById('loading-background');
+
+
+map.on('load', ()=> {
+    loadingSpinner(false);
+
+    map.addSource('addr', {
+        type: 'vector',
+        url: 'mapbox://mollymerp.openadd'
+
+    });
+});
+
+function addLayerSpinner(){
+    loadingSpinner(true);
+    map.addLayer({
+        id: 'test',
+        source: 'addr',
+        'source-layer':'openaddresses',
+        type: 'circle',
+        paint: {
+            'circle-color':'pink'
+        }
+    });
+    map.on('render', stopSpinner);
+}
+
+function stopSpinner (e) {
+    if (e.target && e.target.loaded()) {
+        loadingSpinner(false);
+        map.off('render', stopSpinner)
+    }
+}
+function loadingSpinner(on) {
+    if (on) {
+        spinnerEl.classList.add('loading');
+        backgroundEl.classList.add('absolute');
+        backgroundEl.classList.remove('none');
+    } else {
+        spinnerEl.classList.remove('loading');
+        backgroundEl.classList.remove('absolute');
+        backgroundEl.classList.add('none');
+    }
+}
+
+

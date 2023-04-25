@@ -30,7 +30,7 @@ public class PetController {
     }
 
     @GetMapping("/pets/register")
-    public String showPetRegistrationForm(Model model){
+    public String showPetRegistrationForm(Model model) {
 
         model.addAttribute("pet", new Pet());
         System.out.println("pet model created");
@@ -41,7 +41,7 @@ public class PetController {
     }
 
     @PostMapping("/pets/register")
-    public String registerPet(@ModelAttribute Pet pet){
+    public String registerPet(@ModelAttribute Pet pet) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
 
@@ -51,11 +51,11 @@ public class PetController {
     }
 
     @GetMapping("/pets/card")
-    public String getPetIndexPage(Model model){
+    public String getPetIndexPage(Model model) {
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
-        model.addAttribute("user",userData);
+        model.addAttribute("user", userData);
 
         List<Pet> pets = petsDao.findAll();
         System.out.println(pets.get(0).getUser().getUsername());
@@ -64,20 +64,25 @@ public class PetController {
     }
 
     @GetMapping("/pets/{id}")
-    public String findPetById(@PathVariable long id , Model model) {
+    public String findPetById(@PathVariable long id, Model model) {
         Pet petData = petsDao.findById(id).get();
-        if (petData.getId() ==0) {
+        if (petData.getId() == 0) {
             return "users/profile";
         }
         model.addAttribute("pet", petData);
+
         return "pets/pet-show";
     }
 
     @GetMapping("/pets/{id}/edit")
-    public String showPetEdit(@PathVariable Long id, Model model){
+    public String showPetEdit(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Pet petData = petsDao.findById(id).get(); // Getting data from the database first
-        if(user.getId() == petData.getUser().getId()){
+
+        List<Breed> breedNames = breedsDao.findAll();
+        model.addAttribute("breeds", breedNames);
+
+        if (user.getId() == petData.getUser().getId()) {
             model.addAttribute("pet", petData);
             return "pets/pet-edit";
         }
@@ -85,7 +90,7 @@ public class PetController {
     }
 
     @PostMapping("/pets/{id}/edit")
-    public String editPet( @ModelAttribute Pet pet, @PathVariable Long id , Model model){
+    public String editPet(@ModelAttribute Pet pet, @PathVariable Long id, Model model) {
         Pet petsData = petsDao.findById(id).get(); // Getting data from the database first
 
         petsData.setPetname(pet.getPetname());
@@ -98,29 +103,13 @@ public class PetController {
     }
 
     @GetMapping("/pets/{n}/delete")
-    public String deletePet(@PathVariable long n){
+    public String deletePet(@PathVariable long n) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Pet petData = petsDao.findById(n).get();
-        if(user.getId() == petData.getUser().getId()){
+        if (user.getId() == petData.getUser().getId()) {
             petsDao.deleteById(n);
         }
         return "redirect:/profile";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // edited Pet
 }
