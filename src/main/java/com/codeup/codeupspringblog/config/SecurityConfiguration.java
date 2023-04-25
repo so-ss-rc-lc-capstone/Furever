@@ -113,6 +113,7 @@ public class SecurityConfiguration {
                         "/posts/{n}/delete",
                         "/posts/delete/{n}",
                         "/posts/{id}/like",
+                        "/posts/{id}/profile-like",
                         "/posts/1/show",
                         "/posts/{id}/show",
                         "/comment/{id}/create",

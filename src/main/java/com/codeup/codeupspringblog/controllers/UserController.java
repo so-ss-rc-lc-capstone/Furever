@@ -58,7 +58,6 @@ public class UserController {
         List<Post> posts = postDao.findAll();
         List<Event> events = eventDao.findAll(); // or however you fetch the events
 
-        model.addAttribute("comments", new Comments());
         model.addAttribute("comments", comments);
         model.addAttribute("events", events);
         model.addAttribute("user", userData);

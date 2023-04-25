@@ -199,6 +199,19 @@ public String createComment(@ModelAttribute Comments comments, @PathVariable Lon
         return "redirect:/posts";
     }
 
+    @PostMapping("/posts/{id}/profile-like")
+    public String likePostProfile(@PathVariable Long id, Principal principal) {
+        User user = usersDao.findByUsername(principal.getName());
+        Post post = postDao.findById(id).get();
+
+        if(post.hasLiked(user)){
+            postService.decrementLikes(id, user);
+        }else{
+            postService.incrementLikes(id, user);
+        }
+        return "redirect:/profile";
+    }
+
 
 }
 
