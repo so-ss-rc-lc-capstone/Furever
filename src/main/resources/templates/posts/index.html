@@ -178,7 +178,7 @@
                             description</label>
                         <textarea id="ai-description" rows="5"
                                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                  placeholder= "List examples out: poodle, refreshments, meetup."></textarea>
+                                  placeholder= "List examples out: went to park with my dog, met friend, ate lunch."></textarea>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -288,7 +288,7 @@
         <!-- User POSTS -->
         <div class="bg-white border w-full p-3 border-gray-200 rounded-lg mb-6 shadow dark:border-gray-700">
             <div class="flex flex-col">
-                <div class="flex flex-row pb-3">
+                <div class="flex flex-row">
                 <div class="flex justify-center">
                     <img class="w-[55px] h-[55px] mt-[60px] ml-7 rounded-full shadow-md"
                           th:if="${not #strings.isEmpty(user.profilePhoto)}"
@@ -303,27 +303,35 @@
                 <form th:action="@{/posts/create}" th:method="POST" th:object="${post}" class="w-full">
 
                     <div class="flex w-full justify-center-center">
-                    <div class="ml-[5em]"> <span class = "font-bold text-2xl">Posts</span> <span class="text-[15px] text-gray-400"> - Share Something</span></div>
+                    <div class="ml-[1em]"> <span class = "font-bold text-2xl">Posts</span> <span class="text-[15px] text-gray-400"> - Share Something</span></div>
                     </div>
 
                     <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
-                        <div class="flex flex-col">
-                            <button id="post-photoBtn" type="button" class="flex items-center text-[20px] w-[40px] h-[40px] justify-center text-black rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                            <i class="ri-image-2-fill"></i>
-                        </button>
-                            <image th:src="@{/img/ai-icon.png}" id="ai" class="w-[45px] hover:cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"></image></div>
+                            <span><input id="post-photo-input" name="image" type="hidden"></span>
 
-                        <span><input id="post-photo-input" name="image" type="hidden"></span>
+                            <textarea id="chat" name="body" rows="1" class="text-[15px] resize-none h-[90px] p-2.5 w-[90%] text-sm text-gray-900 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 " placeholder="Whats on your mind?"></textarea>
 
-                        <textarea id="chat" name="body" rows="1" class="text-[15px] resize-none h-[90px] mx-4 p-2.5 w-[90%] text-sm text-gray-900 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 " placeholder="Your message..."></textarea>
-
-                        <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
-                            <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
-                            <span class="sr-only">Send message</span>
-                        </button>
+                            <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+                                <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+                                <span class="sr-only">Send message</span>
+                            </button>
                     </div>
                 </form>
 
+                </div>
+
+                <div class="flex w-full justify-evenly">
+                    <div  id="post-photoBtn" class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+                        <button type="button" class="flex items-center justify-center text-[20px] w-[40px] h-[40px] justify-center text-black dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                            <i class="ri-image-2-fill w-[40px]"></i>
+                        </button>
+                        <h3 class="text-gray-400 text-[13px]">Image/Video</h3>
+                    </div>
+
+                    <div id="ai" class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+                    <image th:src="@{/img/ai-icon2.png}" class="w-[40px] hover:cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"></image>
+                        <h3 class="text-gray-400 text-[13px]">Ai Assistance</h3>
+                    </div>
                 </div>
 
                 <div class ="w-full flex justify-center items-center"> <img id="post-thumbnail" class="h-[60%] hidden rounded-lg w-[70%]">
@@ -359,7 +367,7 @@
                             <div class="ml-5">
                                 <h1 class="font-bold text-[22px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
                                 <h3 class = "text-blue-400 mt-1"><a th:href="@{/user/{id}(id=${post.user.id})}"> @ <span th:text="${post.user.username}"></span></a></h3>
-                                <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'dd-MMM-yyyy')}"></span></h3>
+                                <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
 
                                 <div class="w-full pb-3 mt-1 pt-[5px] pr-[40px] ml-[2px] text-[18px]" th:text="${post.body}">
                                 </div>
@@ -386,19 +394,21 @@
                         <button><span th:text="${post.comments.size}" class="ml-1 mr-1"></span>Comments</button>
                         </form>
                     </div>
+
                     <!--                    Like functionality-->
-                    <form th:action="@{'/posts/' + ${post.id} + '/like'}" method="post">
-                        <button type="submit">
+                        <div class="flex items-center">
                             <div class="flex flex-row justify-center items-center hover:text-red-500 hover:cursor-pointer transition-all">
                                 <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                                      th:classappend="${post.hasLiked(#authentication.principal.id) ? 'text-red-500 fill-red-500' : ''}">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
                                 </svg>
-                                <span class="ml-1 mr-1" th:text="${post.likes.size}"></span>
-                                <h3>Likes</h3>
+                                <form th:action="@{'/posts/' + ${post.id} + '/like'}" method="post">
+                                <button><span class="ml-1 mr-1" th:text="${post.likes.size}"></span>Likes</button>
+
+                                </form>
                             </div>
-                        </button>
-                    </form>
+                        </div>
+
                 </div>
 
 
