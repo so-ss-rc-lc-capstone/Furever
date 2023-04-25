@@ -96,6 +96,7 @@ public class PetController {
             return "users/profile";
         }
         model.addAttribute("pet", petData);
+
         return "pets/pet-show";
     }
 
@@ -106,6 +107,8 @@ public class PetController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Pet petData = petsDao.findById(id).get(); // Getting data from the database first
 
+        List<Breed> breedNames = breedsDao.findAll();
+        model.addAttribute("breeds", breedNames);
 //        System.out.println(user.getId());
 //        System.out.println(petData.getUser().getId());
         if(user.getId() == petData.getUser().getId()){

@@ -158,70 +158,8 @@
         </div>
     </aside>
 
-    <!--- Feed -->
-    <div class="w-full ">
-        <!--Filter bar-->
-        <div class=" mt-[3em] md:mt-[8em]">
-            <section class="dark:bg-gray-900 w-full h-[5em] flex items-center">
-
-                <div class="w-full">
-                    <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
-                        <div class="w-full flex justify-between items-center">
-                            <h1 class="text-2xl p-3 ml-2 font-extrabold dark:text-white">Events<small
-                                    class="ml-3 text-sm font-semibold text-gray-500 dark:text-gray-400"
-                                    th:text="${events.size()}"></small> <span
-                                    class="text-sm font-semibold text-gray-500 dark:text-gray-400">results</span></h1>
-                            <button type="button"
-                                    class="text-white w-1/3 mr-4 bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                <a href="/events/create">Create Event</a></button>
-                        </div>
-                        <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700">
-                        <div class="flex flex-col items-center justify-end p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
 
 
-                            <div class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
-
-                                <div class="flex justify-end md:items-center w-full space-x-3 md:w-auto">
-                                    <div class="flex justify-center items-center">
-                                        <ul class=" text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
-                                            <li class="w-full toggle-btn">
-                                                <a id="listing-btn"
-                                                   class="toggle-btn inline-block w-full border-l border-t border-b border-gray-300 p-2.5 text-gray-900 bg-gray-200 rounded-l-lg dark:bg-gray-700 dark:text-white"
-                                                   aria-current="page">Listing</a>
-                                            </li>
-                                            <li class="w-full toggle-btn">
-                                                <a id="map-btn"
-                                                   class="toggle-btn inline-block w-full border border-gray-300 p-2.5 rounded-r-lg hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Map</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <select id="filter"
-                                            class="bg-white ml-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                        <option  id="all" value="all">All</option>
-                                        <option id="local" value="local">Local</option>
-
-                                    </select>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-        </div>
-        <!--End of Filter bar-->
-
-        <!--Event Feed Section-->
-        <div id="event-feed" class="w-full h-full">
-            <div th:include="event/event-card.html"></div>
-
-            <!--PUT MAPBOX HERE-->
-            <div id='map' style='width: 100%; height: 500px;'></div>
-
-        </div>
-    </div>
 
 
     <aside class="fixed top-0 right-0 mr-2 justify-items-center hidden md:flex w-[16em]"
@@ -329,17 +267,15 @@
                                                             <svg fill="currentColor" class="h-5" viewBox="0 0 24 24"
                                                                  xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                                                 <path clip-rule="evenodd" fill-rule="evenodd"
-                                                                      d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"></path>
+                                                                      d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z">
+                                                                </path>
                                                             </svg>
                                                         </div>
                                                     </a>
                                                 </div>
                                             </div>
-
-
                                         </li>
                                     </div>
-                                    <!--                <hr class="w-3/4 h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">-->
                                 </div>
                             </ul>
                         </div>
@@ -368,7 +304,9 @@
                                                         <div class="ml-3 flex-col font-medium dark:text-white">
                                                             <div class="text-sm text-gray-500 dark:text-gray-400">@<span
                                                                     th:text="${user.username}"
-                                                                    th:href="@{|/user/${user.id}|}"></span></div>
+                                                                    th:href="@{|/user/${user.id}|}">
+                                                            </span>
+                                                            </div>
                                                         </div>
 
 
@@ -377,9 +315,11 @@
                                                             <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                                                                 <div class="text-base font-normal text-gray-900 "><span
                                                                         th:text="${user.first_name } "></span> <span
-                                                                        th:text="${user.last_name}"></span></div>
+                                                                        th:text="${user.last_name}"></span>
+                                                                </div>
                                                                 <div class="text-sm text-gray-500 dark:text-gray-400">
-                                                                    <span th:text="${user.email}"></span></div>
+                                                                    <span th:text="${user.email}"></span>
+                                                                </div>
 
                                                             </div>
                                                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -394,10 +334,8 @@
                                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
                                                                 </li>
                                                             </ul>
-
                                                         </div>
                                                     </div>
-
 
                                                     <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible ">
 
@@ -409,36 +347,94 @@
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
                                                                     <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                                                                     <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
-                                                                </svg>                                                            </button>
+                                                                </svg>
+                                                            </button>
                                                         </form>
-
                                                     </a>
                                                 </div>
                                             </div>
-
-
                                         </li>
-
                                     </div>
-
                                 </div>
-
                             </ul>
-
-
                         </div>
-
                     </div>
                 </div>
-
-
             </div>
-
-
         </div>
-
-
     </aside>
+
+
+
+
+
+    <!--- Feed -->
+    <div class="w-full ">
+        <!--Filter bar-->
+        <div class=" mt-[3em] md:mt-[8em]">
+            <section class="dark:bg-gray-900 w-full h-[5em] flex items-center">
+
+                <div class="w-full">
+                    <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
+                        <div class="w-full flex justify-between items-center">
+                            <h1 class="text-2xl p-3 ml-2 font-extrabold dark:text-white">Events<small
+                                    class="ml-3 text-sm font-semibold text-gray-500 dark:text-gray-400"
+                                    th:text="${events.size()}"></small> <span
+                                    class="text-sm font-semibold text-gray-500 dark:text-gray-400">results</span></h1>
+                            <button type="button"
+                                    class="text-white w-1/3 mr-4 bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                <a href="/events/create">Create Event</a></button>
+                        </div>
+                        <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700">
+                        <div class="flex flex-col items-center justify-end p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
+
+
+                            <div class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
+
+                                <div class="flex justify-end md:items-center w-full space-x-3 md:w-auto">
+                                    <div class="flex justify-center items-center">
+                                        <ul class=" text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+                                            <li class="w-full toggle-btn">
+                                                <a id="listing-btn"
+                                                   class="toggle-btn inline-block w-full border-l border-t border-b border-gray-300 p-2.5 text-gray-900 bg-gray-200 rounded-l-lg dark:bg-gray-700 dark:text-white"
+                                                   aria-current="page">Listing</a>
+                                            </li>
+                                            <li class="w-full toggle-btn">
+                                                <a id="map-btn"
+                                                   class="toggle-btn inline-block w-full border border-gray-300 p-2.5 rounded-r-lg hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Map</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <select id="filter"
+                                            class="bg-white ml-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                        <option  id="all" value="all">All</option>
+                                        <option id="local" value="local">Local</option>
+
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+        <!--End of Filter bar-->
+
+        <!--Event Feed Section-->
+        <div id="event-feed" class="w-full h-full">
+            <div th:include="event/event-card.html"></div>
+
+            <!--PUT MAPBOX HERE-->
+            <div id='map' style='width: 100%; height: 500px;'>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>
 
 <!-- minified snippet to load TalkJS without delaying your page -->

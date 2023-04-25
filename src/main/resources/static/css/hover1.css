@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+:root {
+    --delay: 0.015s;
+    --duration: 0.6s;
+    --easing: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #f5f6f3;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.rolling-text {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    line-height: calc(48px * 1.5);
+    letter-spacing: calc(48px / 2);
+    height: calc(48px * 1.5);
+    text-decoration: none;
+    overflow: hidden;
+    color: #1a1a1a;
+}
+
+.rolling-text:hover .letter,
+.rolling-text.play .letter {
+    transform: translateY(-100%);
+}
+
+.block:last-child .letter {
+    color: #d3a13b;
+}
+
+.letter {
+    display: inline-block;
+    transition: transform var(--duration) var(--easing);
+}
+
+
+.letter:nth-child(1) {
+    transition-delay: calc(var(--delay) * 0);
+}
+
+.letter:nth-child(2) {
+    transition-delay: calc(var(--delay) * 1);
+}
+
+.letter:nth-child(3) {
+    transition-delay: calc(var(--delay) * 2);
+}
+
+.letter:nth-child(4) {
+    transition-delay: calc(var(--delay) * 3);
+}
+
+.letter:nth-child(5) {
+    transition-delay: calc(var(--delay) * 4);
+}
+
+.letter:nth-child(6) {
+    transition-delay: calc(var(--delay) * 5);
+}
+
+.letter:nth-child(7) {
+    transition-delay: calc(var(--delay) * 6);
+}
+
+.letter:nth-child(8) {
+    transition-delay: calc(var(--delay) * 7);
+}
+
+.letter:nth-child(9) {
+    transition-delay: calc(var(--delay) * 8);
+}
+
+.letter:nth-child(10) {
+    transition-delay: calc(var(--delay) * 9);
+}
+
+.letter:nth-child(11) {
+    transition-delay: calc(var(--delay) * 10);
+}
+
+.letter:nth-child(12) {
+    transition-delay: calc(var(--delay) * 11);
+}
+
+.letter:nth-child(13) {
+    transition-delay: calc(var(--delay) * 12);
+}
+
+.letter:nth-child(14) {
+    transition-delay: calc(var(--delay) * 13);
+}
+
+.letter:nth-child(15) {
+    transition-delay: calc(var(--delay) * 14);
+}
+
+.letter:nth-child(16) {
+    transition-delay: calc(var(--delay) * 15);
+}
+
+
+
+
