@@ -34,7 +34,7 @@
 
 
 <div class="w-full h-screen">
-    <div class="h-2/3 relative"
+    <div class="h-2/5 relative"
          style="background-image: url('https://imgtr.ee/images/2023/04/11/n5rU7.jpg'); background-position: center; background-size: cover;">
 
     </div>
@@ -43,62 +43,38 @@
         <div class="w-full md:w-4/5 flex flex-col justify-between bg-white">
             <div class="h-[20px] w-full flex justify-center md:justify-start " style="transform: translateY(-700%)">
                 <div class="w-[17em] h-[17em] flex flex-col justify-center rounded-full items-center md:items-start">
-                    <div class="w-[170px] h-[170px] relative flex justify-center items-center bg-white rounded-full">
+                    <div class="w-[200px] h-[200px] relative flex justify-center items-center bg-white rounded-full">
 
-                        <img class="w-[160px] h-[160px] rounded-full shadow-lg"
+                        <img class="w-[190px] h-[190px] rounded-full shadow-lg"
                                th:if="${not #strings.isEmpty(user.profilePhoto)}"
                                th:src="${user.profilePhoto}"
                                alt="Profile image"/>
 
-                        <img class="w-[160px] h-[160px] rounded-full shadow-lg"
+                        <img class="w-[190px] h-[190px] rounded-full shadow-lg"
                              th:unless="${not #strings.isEmpty(user.profilePhoto)}"
                              th:src="@{/img/profile.jpeg}"
                              alt="Default profile image"/>
 
-                        <div th:if="${user.id} == ${#authentication.principal.id}" class="absolute bottom-4">
-                            <h3>
+                        <div th:if="${user.id} == ${#authentication.principal.id}" class="absolute bottom-0 right-1 ">
+
                                 <form th:action="@{/profile/edit}" method="get">
-                                <button type="submit" class ="text-blue-500 hover:cursor-pointer underline underline-offset-1 text-[15px]">Edit Profile</button>
+                                    <button type="submit" class="absolute flex items-center bg-blue-400 hover:bg-blue-500 hover:mouse-pointer justify-center h-[40px] w-[40px] rounded-full right-0 bottom-5"><i class="bi bi-pencil text-white"></i></button>
                                 </form>
-
-                            </h3>
                         </div>
 
                     </div>
-
 
                 </div>
 
             </div>
 
 
-            <!--Edit profile-->
-            <div class="w-full flex mt-[3em] justify-end ">
 
-                <div class="w-full flex ml-[20px] justify-start mr-[4em]" th:if="${user.id == #authentication.principal.id}">
-
-                    <div class="dropdown relative">
-
-                        <button id="dropdownButton-${event.id}" class=" ml-5 md:ml-0 rounded-full hover:cursor-pointer text-center inline-flex items-center  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="ri-more-fill" style="font-size: 1.5em; opacity: 0.7"></i>                      </button>
-
-                        <div class="dropdown-menu hidden absolute w-[100px] z-999 dropdown-menu-right bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" aria-labelledby="dropdownDefaultButton-${event.id}">
-                            <form th:action="@{/profile/edit}" method="get">
-                                <button type="submit" class="block flex p-3 text-gray-500 hover:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Edit Profile</button>
-                            </form>
-                            <form  th:action="@{/profile/delete}" method="get" id="deleteForm">
-                                <button type="submit" class="block flex p-3 text-red-500 hover:text-red-400 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Delete Profile</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
 
 
 
             <!--Bio-->
-            <div class=" flex flex-col justify-center items-center md:items-start md:justify-start w-full">
+            <div class=" flex flex-col justify-center mt-[5em] items-center md:items-start md:justify-start w-full">
                 <div class ="flex flex-col items-start justify-center md:flex-row w-full">
                 <div class="w-3/5 flex justify-center items-center md:justify-start md:items-start">
                     <div class="w-full flex flex-col justify-center items-center md:items-start md:justify-end">
