@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class PostController {
@@ -40,9 +39,11 @@ public class PostController {
         User userData = usersDao.findById(currentUser.getId());
 
         List<Post> posts = postDao.findAll();
+        Collections.reverse(posts);
         List<User> followedUsers = userData.getFollowedUsers();
         List<User> users = usersDao.findAll();
         List<Comments> comments = commentDao.findAll();
+        Collections.reverse(comments);
         List<User> usersNotFollowing = new ArrayList<>();
 
         for (int i = 0; i < users.size(); i++) {
@@ -55,12 +56,11 @@ public class PostController {
             }
         }
 
-        model.addAttribute("comments", comments);
         model.addAttribute("followedUsers", followedUsers);
         model.addAttribute("posts", posts);
         model.addAttribute("usersNotFollowing", usersNotFollowing);
         model.addAttribute("user", userData);
-        model.addAttribute("comments", new Comments());
+        model.addAttribute("comments", comments); // add the comments list to the model once
         model.addAttribute("users", users);
         return "posts/index";
     }
@@ -73,6 +73,7 @@ public class PostController {
         Post post = postDao.findById(id).get();
 
         List<Comments> comments = post.getComments();
+        Collections.reverse(comments);
         List<User> users = usersDao.findAll();
 
         model.addAttribute("comments", new Comments());
@@ -133,7 +134,6 @@ public class PostController {
         }
     }
 
-
     @PostMapping("/posts/{id}/edit")
     public String editPost(@ModelAttribute Post post, @PathVariable Long id, Model model) {
         Post postData = postDao.findById(id).get(); // Getting data from the database first
@@ -154,7 +154,6 @@ public class PostController {
 
     @GetMapping("/posts/{n}/delete")
     public String deletePost(@PathVariable long n) {
-
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findById(n).get();
         if (user.getId() == post.getUser().getId()) {
