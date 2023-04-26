@@ -12,10 +12,10 @@
 <nav th:replace="partials/navbar :: navbar-mobile-other"></nav>
 
 <div class="w-full h-screen">
-    <div class="w-full relative flex items-start justify-center" th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
+    <div class="w-full relative flex items-start justify-center" th:style="'background-image:url(\'' + ${event.eventPhoto != null and event.eventPhoto != '' ? event.eventPhoto : '/img/event-img.jpg'} + '\'); background-size:cover; background-position:center;'">
 
 
-        <div class = "absolute top-20 left-2 bg-white w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-gray-200 hover:cursor-pointer" onclick="window.history.back()"><i class="ri-arrow-left-line font-[30px]"></i></div>
+    <div class = "absolute top-20 left-2 bg-white w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-gray-200 hover:cursor-pointer" onclick="window.history.back()"><i class="ri-arrow-left-line font-[30px]"></i></div>
 
 
         <div class="flex w-[50em] relative h-full rounded-xl bg-white shadow-md"  style="transform: translateY(70%);">
