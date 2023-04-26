@@ -164,13 +164,6 @@ public class PostController {
         return "redirect:/posts/{id}"; // go to controller
     }
 
-    @GetMapping("/posts/card")
-    public String getPostCard(Model model) {
-
-        List<Post> posts = postDao.findAll();
-        model.addAttribute("posts", posts);
-        return "extra-to-delete-post-card";
-    }
 
     @GetMapping("/posts/{n}/delete")
     public String deletePost(@PathVariable long n) {
