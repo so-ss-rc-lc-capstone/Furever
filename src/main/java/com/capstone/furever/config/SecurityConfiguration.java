@@ -70,6 +70,7 @@ public class SecurityConfiguration {
                         "/css/**",
                         "/img/**",
                         "/static/**",
+                        "/error/**",
 
                         "/events",
                         "/events/{id}",

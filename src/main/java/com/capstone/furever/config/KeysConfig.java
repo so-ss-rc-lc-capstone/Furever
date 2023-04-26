@@ -9,5 +9,4 @@ public class KeysConfig {
     public String fileStack;
     @Value("${keys.mapbox}")
     public String mapbox;
-
 }
