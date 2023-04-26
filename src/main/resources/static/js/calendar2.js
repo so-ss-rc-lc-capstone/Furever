@@ -69,13 +69,15 @@
 
             let isEvent = "inactive";
             for (let j = 0; j < eventDates.length; j++) {
-                if (i === eventDates[j] && currMonth === eventMonths[j]) {
+                if(i === eventDates[j] && currMonth === eventMonths[j] && i === date.getDate() && currMonth === date.getMonth() && currYear === date.getFullYear()){
+                    isEvent = "dDay";
+                } else if (i === eventDates[j] && currMonth === eventMonths[j]) {
                     isEvent = "active";
                 } else if (i === date.getDate() && currMonth === date.getMonth() && currYear === date.getFullYear()) {
                     isEvent = "today";
                 }
             }
-            liTag += `<li class="${isEvent}">${i}</li>`;
+            liTag += `<li class="${isEvent}">${i}<a href="/friends"></a></li>`;
 
         }
         for (let i = lastDayofMonth; i < 6; i++) { // creating li of next month first days

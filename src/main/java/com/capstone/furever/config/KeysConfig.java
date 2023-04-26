@@ -10,4 +10,6 @@ public class KeysConfig {
     @Value("${keys.mapbox}")
     public String mapbox;
 
+    @Value("tp21z3C9")
+    public String talkjs;
 }

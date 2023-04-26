@@ -106,26 +106,10 @@
 
 </div>
 <!--keys-->
-<!--<script src="/js/keys.js "></script>-->
+<script src="/js/keys.js" type="text/javascript"></script>
 <script th:src="@{/js/fileStack-event.js}" type="module"></script>
 
-<script>
-    const closeButton = document.getElementById('close');
-    const modal = document.getElementById('ai-assistant');
-    const ai = document.getElementById('ai');
-
-    closeButton.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    const aiLink = document.getElementById('ai');
-    const modal1 = document.getElementById('ai-assistant');
-
-    aiLink.addEventListener('click', () => {
-        modal1.style.display = 'block';
-    });
-</script>
-
+<script src="/js/event/edit.js"></script>
 
 </body>
 </html>
