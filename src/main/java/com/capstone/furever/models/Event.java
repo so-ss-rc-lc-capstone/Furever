@@ -41,6 +41,7 @@ public class Event {
 
 
     //Event like connection
+
     @JsonIgnore
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EventsLike> eventLikes = new ArrayList<>();
