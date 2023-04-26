@@ -93,6 +93,10 @@ header .current-date{
     color: #ffa;
 }
 
+.days li.dDay{
+    color: black;
+}
+
 .days li::before{
     position: absolute;
     content: "";
@@ -114,6 +118,16 @@ header .current-date{
 }
 .days li.active:hover::before{
     background: #351c75;
+}
+
+.days li.dDay::before{
+    background: #FFF936;
+    color: black;
+}
+
+.days li.dDay:hover::before{
+    background: #D15C00;
+    color: white;
 }
 
 .days li.today::before{
