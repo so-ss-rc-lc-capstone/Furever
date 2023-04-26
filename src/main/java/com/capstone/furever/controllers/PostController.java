@@ -102,6 +102,26 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    @PostMapping("/comment/{id}/create-show")
+    public String createCommentShow(@ModelAttribute Comments comments, @PathVariable Long id) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = usersDao.findById(currentUser.getId());
+        Post post = postDao.findById(id).get();
+
+        post.getComments().add(comments);
+
+        System.out.println("THE POST" + post);
+        System.out.println("Current id of logged in:" + userData);
+        comments.setUser(userData);
+        comments.setPost(post);
+        comments.setCreated_at(LocalDateTime.now());
+
+        Comments comment = new Comments(comments);
+        commentDao.save(comment);
+        return "redirect:/posts/{id}/show";
+    }
+
+
 
     //Form Model Binding
     @GetMapping("/posts/create")
