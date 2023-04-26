@@ -1,25 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Post</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet"/>
-    <link href="/Users/randychu/Desktop/Software Dev Projects/project-pet/src/main/resources/static/css/searchbar.css"
-          rel="stylesheet"/>
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-    <link href='https://css.gg/css' rel='stylesheet'>
-
-    <!--Mapbox-->
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet'/>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-    <!--direction stuff-->
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.js"></script>
-    <link rel="stylesheet"
-          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.1/mapbox-gl-directions.css"
-          type="text/css">
-
+<head th:replace="partials/header :: head">
+    <title>View Posts</title>
 </head>
 
 <body>
@@ -52,37 +34,35 @@
     </div>
 
     <div class="flex flex-col w-full h-full bg-gray rounded-lg">
-            <!--                    th:text="${#temporals.format(event.created_at, 'dd-MMM-yyyy h:mm a')}-->
-            <!--Name Date body-->
-            <div id="name-body" class = "mt-[20px]">
-                <div class="w-full ml-5 flex justify-center items-center">
-                    <div class="flex w-[90%]">
-                        <img class="w-[80px] h-[80px] mt-[26px] ml-7 rounded-full shadow-md"
-                             th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
-                             th:src="${post.user.profilePhoto}" alt="Profile image"/>
+        <div id="name-body" class = "mt-[20px]">
+            <div class="w-full ml-5 flex justify-center items-center">
+                <div class="flex w-[90%]">
+                    <img class="w-[80px] h-[80px] mt-[26px] ml-7 rounded-full shadow-md"
+                         th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
+                         th:src="${post.user.profilePhoto}" alt="Profile image"/>
 
-                        <img class="w-[80px] h-[80px] mt-[26px] ml-7 rounded-full shadow-md"
-                             th:if="${#strings.isEmpty(post.user.profilePhoto)}"
-                             th:src="@{/img/profile.jpeg}"
-                             alt="Default profile image"/>
+                    <img class="w-[80px] h-[80px] mt-[26px] ml-7 rounded-full shadow-md"
+                         th:if="${#strings.isEmpty(post.user.profilePhoto)}"
+                         th:src="@{/img/profile.jpeg}"
+                         alt="Default profile image"/>
 
-                        <div class = "flex flex-col w-full mt-[1.5em] ml-5">
+                    <div class = "flex flex-col w-full mt-[1.5em] ml-5">
                         <h1 class="font-bold text-[25px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
                         <h3 class = "text-blue-400">@ <span th:text="${post.user.username}"></span></h3>
                         <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
                         <div class="w-5/6 pb-5 pt-[5px] ml-[2px] pr-[15px] text-[25px]" th:text="${post.body}"></div>
-                        </div>
-
                     </div>
 
                 </div>
-                <div class="w-full flex justify-center items-center">
-                    <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
-                    <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full flex  mb-5">
-                        <span class = "w-full flex justify-center items-center"><img th:src="${post.image}" class=" w-[70%] xl:w-[50%] mt-[5px] rounded-lg"></span>
-                    </div>
+
+            </div>
+            <div class="w-full flex justify-center items-center">
+                <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
+                <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full flex  mb-5">
+                    <span class = "w-full flex justify-center items-center"><img th:src="${post.image}" class=" w-[70%] xl:w-[50%] mt-[5px] rounded-lg"></span>
                 </div>
             </div>
+        </div>
 
 
         <div class="w-full h-[60px] pb-3 border-b border-gray-300 flex flex-row justify-around ">
@@ -91,7 +71,7 @@
                 <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"></path>
                 </svg>
-                    <button><span th:text="${post.comments.size}" class="ml-1 mr-1"></span>Comments</button>
+                <button><span th:text="${post.comments.size}" class="ml-1 mr-1"></span>Comments</button>
             </div>
 
             <form th:action="@{'/posts/' + ${post.id} + '/like'}" method="post">
@@ -152,7 +132,6 @@
                      th:if="${#strings.isEmpty(comment.user.profilePhoto)}"
                      th:src="@{/img/profile.jpeg}"
                      alt="Default profile image"/></div>
-            <!--                        9:05 AM ﹒ 15 Mar 2023-->
             <div id="comment-body" class="mt-[20px] pl-[1.2em] w-2/3">
                 <div class="pt-2 pb-4 pr-3">
 
@@ -170,14 +149,8 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
-
-    </div>
-
+</div>
 
 <script src="/js/posts/comment-show.js"></script>
 

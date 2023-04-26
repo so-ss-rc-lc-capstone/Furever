@@ -75,7 +75,6 @@ public class PostController {
         List<Comments> comments = post.getComments();
         Collections.reverse(comments);
         List<User> users = usersDao.findAll();
-
         model.addAttribute("comments", new Comments());
         model.addAttribute("user", userData);
         model.addAttribute("post", post);
@@ -88,7 +87,6 @@ public class PostController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = usersDao.findById(currentUser.getId());
         Post post = postDao.findById(id).get();
-
         post.getComments().add(comments);
 
         System.out.println("THE POST" + post);
