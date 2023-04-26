@@ -152,7 +152,6 @@
                     <option value="formal">Formal</option>
                     <option value="informal">Informal</option>
                     <option value="funny">Funny</option>
-                    <option value="descriptive">Descriptive</option>
                 </select>
 
 
@@ -179,7 +178,7 @@
                             description</label>
                         <textarea id="ai-description" rows="5"
                                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                  placeholder= "List examples out: poodle, refreshments, meetup."></textarea>
+                                  placeholder= "List examples out: went to park with my dog, met friend, ate lunch."></textarea>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -287,37 +286,61 @@
     <div class="w-full mt-[8em]">
         <!--Posts bar-->
         <!-- User POSTS -->
-        <div class="bg-white border w-full h-[135px] p-3 border-gray-200 rounded-lg shadow dark:border-gray-700">
-            <div class="flex flex-row">
+        <div class="bg-white border w-full p-3 border-gray-200 rounded-lg mb-6 shadow dark:border-gray-700">
+            <div class="flex flex-col">
+                <div class="flex flex-row">
                 <div class="flex justify-center">
-                    <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                    <img class="w-[55px] h-[55px] mt-[60px] ml-7 rounded-full shadow-md"
                           th:if="${not #strings.isEmpty(user.profilePhoto)}"
                           th:src="${user.profilePhoto}"
                           alt="Profile image"/>
-                    <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+                    <img class="w-[55px] h-[55px] mt-[60px] ml-7 rounded-full shadow-md"
                          th:if="${#strings.isEmpty(user.profilePhoto)}"
                          th:src="@{/img/profile.jpeg}"
                          alt="Default profile image"/>
                 </div>
 
                 <form th:action="@{/posts/create}" th:method="POST" th:object="${post}" class="w-full">
-                    <div id="ai" class=" ml-[80px] text-blue-600 hover:cursor-pointer">Use Ai Assistant</div>
 
-<!--                    <label for="message" class="sr-only">Your message</label>-->
+                    <div class="flex w-full justify-center-center">
+                    <div class="ml-[1em]"> <span class = "font-bold text-2xl">Posts</span> <span class="text-[15px] text-gray-400"> - Share Something</span></div>
+                    </div>
+
                     <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
-                        <button id="post-photoBtn" type="button" class="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                            <img id="post-thumbnail" height="80" width="80">
-                        </button>
-                       <span><input id="post-photo-input" name="image" type="hidden"></span>
+                            <span><input id="post-photo-input" name="image" type="hidden"></span>
 
-                        <textarea id="chat" name="body" rows="1" class=" resize-none  mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Your message..."></textarea>
+                            <textarea id="chat" name="body" rows="1" class="text-[15px] resize-none h-[90px] p-2.5 w-[90%] text-sm text-gray-900 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 " placeholder="Whats on your mind?"></textarea>
 
-                        <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
-                            <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
-                            <span class="sr-only">Send message</span>
-                        </button>
+                            <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+                                <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+                                <span class="sr-only">Send message</span>
+                            </button>
                     </div>
                 </form>
+
+                </div>
+
+                <div class="flex w-full justify-evenly">
+                    <div  id="post-photoBtn" class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+                        <button type="button" class="flex items-center justify-center text-[20px] w-[40px] h-[40px] justify-center text-black dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                            <i class="ri-image-2-fill w-[40px]"></i>
+                        </button>
+                        <h3 class="text-gray-400 text-[13px]">Image/Video</h3>
+                    </div>
+
+                    <div id="ai" class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+                    <image th:src="@{/img/ai-icon2.png}" class="w-[40px] hover:cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"></image>
+                        <h3 class="text-gray-400 text-[13px]">Ai Assistance</h3>
+                    </div>
+                </div>
+
+                <div class ="w-full flex justify-center items-center"> <img id="post-thumbnail" class="h-[60%] hidden rounded-lg w-[70%]">
+
+                </div>
+
+
+
+
             </div>
         </div>
 
@@ -340,16 +363,19 @@
 
                     <!--                    th:text="${#temporals.format(event.created_at, 'dd-MMM-yyyy h:mm a')}-->
                         <!--Name Date body-->
-                        <div id="name-body" class = "mt-[20px]">
+                        <div id="name-body" class = "mt-[20px] w-full">
                             <div class="ml-5">
                                 <h1 class="font-bold text-[22px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
                                 <h3 class = "text-blue-400 mt-1"><a th:href="@{/user/{id}(id=${post.user.id})}"> @ <span th:text="${post.user.username}"></span></a></h3>
-                                <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'dd-MMM-yyyy')}"></span></h3>
-                                <span><img th:src="${post.image}" height="100" width="100"></span>
-                                <div class="w-full pb-5 pt-[5px] ml-[2px] text-[18px]" th:text="${post.body}">
+                                <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
 
-
+                                <div class="w-full pb-3 mt-1 pt-[5px] pr-[40px] ml-[2px] text-[18px]" th:text="${post.body}">
                                 </div>
+
+                                    <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
+                                    <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full mb-5">
+                                        <span><img th:src="${post.image}" class=" w-[90%] lg:w-[85%] mt-[5px] h-[25em] rounded-lg"></span>
+                                    </div>
 
                             </div>
                         </div>
@@ -365,19 +391,21 @@
                         <button><span th:text="${post.comments.size}" class="ml-1 mr-1"></span>Comments</button>
                         </form>
                     </div>
+
                     <!--                    Like functionality-->
-                    <form th:action="@{'/posts/' + ${post.id} + '/like'}" method="post">
-                        <button type="submit">
+                        <div class="flex items-center">
                             <div class="flex flex-row justify-center items-center hover:text-red-500 hover:cursor-pointer transition-all">
                                 <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
                                      th:classappend="${post.hasLiked(#authentication.principal.id) ? 'text-red-500 fill-red-500' : ''}">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
                                 </svg>
-                                <span class="ml-1 mr-1" th:text="${post.likes.size}"></span>
-                                <h3>Likes</h3>
+                                <form th:action="@{'/posts/' + ${post.id} + '/like'}" method="post">
+                                <button><span class="ml-1 mr-1" th:text="${post.likes.size}"></span>Likes</button>
+
+                                </form>
                             </div>
-                        </button>
-                    </form>
+                        </div>
+
                 </div>
 
 
@@ -439,7 +467,9 @@
                                 <h3 class="mt-1 text-[8px] text-gray-400"><span th:text="${#temporals.format(comment.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(comment.created_at, 'dd-MMM-yyyy')}"></span></h3>
                             </div>
                         </div>
-                        <div class="w-full pt-2 h-auto text-[12px]" th:text="${comment.content}"></div>
+
+                        <div class="w-full pt-2 h-auto text-[14px]" th:text="${comment.content}"></div>
+
                     </div>
                 </div>
             </div>
@@ -486,7 +516,8 @@
                                                      class="flex items-center">
 
                                                     <img class="w-10 h-10 rounded-full cursor-pointer"
-                                                         th:src="${user.profilePhoto}" alt="user-image">
+                                                         th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
+                                                         alt="user-image">
                                                     <div class="ml-3 flex-col font-medium dark:text-white">
                                                         <div class="text-base font-normal text-gray-900 "><span
                                                                 th:text="${user.first_name}"
@@ -577,7 +608,8 @@
                                                      class="flex items-center">
 
                                                     <img class="w-10 h-10 rounded-full cursor-pointer"
-                                                         th:src="${user.profilePhoto}" alt="user-image">
+                                                         th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
+                                                         alt="user-image">
                                                     <div class="ml-3 flex-col font-medium dark:text-white">
                                                         <div class="text-sm text-gray-500 dark:text-gray-400">@<span
                                                                 th:text="${user.username}"
@@ -677,10 +709,7 @@
 
 
     const mood = document.getElementById('mood');
-    const moodParse = mood.value;
-    const description = document.getElementById('description');
-    let descriptionParse = description.value; // data would go here
-    //button
+    const description = document.getElementById('chat');
     const generate = document.getElementById('generate');
     let responseData;
 
@@ -692,7 +721,7 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "prompt": "Re-write me a "+ mood + "description for a dog event use the following content to write the summary:" + description,
+                "prompt": "Write me a "+ mood + "tweet use the following content to write the summary:" + description,
                 "engine": "text-davinci-002",
                 "maxTokens": 200
             })
@@ -718,7 +747,7 @@
             description.value = responseData.substring(1, responseData.length - 1);
         }, 3000);
         console.log(responseData)
-        modal.style.display = 'none';
+        modal1.style.display = 'none';
 
 
     });
