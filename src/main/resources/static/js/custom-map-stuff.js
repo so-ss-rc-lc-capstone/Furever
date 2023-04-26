@@ -2,7 +2,7 @@
 //Function to get all the event locations
 
 function allEvents() {
-    fetch('http://localhost:8080/api/allevents', {
+    fetch(`${window.location.protocol}//${window.location.host}/api/allevents`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -69,7 +69,7 @@ function allEvents() {
 let localLocations = async function () {
     let withinFiftyMilesIds = [];
     try {
-        const response = await fetch('http://localhost:8080/api/allevents', {
+        const response = await fetch(`${window.location.protocol}//${window.location.host}/api/allevents`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
