@@ -9,4 +9,6 @@ public class KeysConfig {
     public String fileStack;
     @Value("${keys.mapbox}")
     public String mapbox;
+    @Value("tp21z3C9")
+    public String talkjs;
 }

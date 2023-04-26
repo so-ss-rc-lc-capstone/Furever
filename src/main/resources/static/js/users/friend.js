@@ -49,7 +49,7 @@
                     });
 
                     window.talkSession = new Talk.Session({
-                        appId: 'tp21z3C9',
+                        appId: keys.talkjs,
                         me: me,
                     });
                     var other = new Talk.User({
