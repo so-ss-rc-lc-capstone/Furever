@@ -3,7 +3,7 @@
 
 <head>
 
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Friends</title>
     <!--  Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -43,6 +43,8 @@
 <body class="bg-gray-100 ">
 
 
+
+
 <nav class="bg-white w-full border-b-2 border-gray-200 dark:bg-gray-900 fixed top-0 left-0" style="z-index: 9999;">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="/" class="flex items-center">
@@ -50,22 +52,7 @@
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Furever</span>
         </a>
         <div class="flex md:order-2">
-            <div class="relative hidden md:block">
 
-                <!--Hamburger-->
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Search icon</span>
-                </div>
-                <input type="text" id="search"
-                       class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Search...">
-            </div>
 
             <button data-collapse-toggle="navbar-search" type="button"
                     class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -147,14 +134,12 @@
 </nav>
 
 
-<div class="flex w-screen h-screen  w-[38em]">
+<div class="flex w-screen h-screen w-[38em]">
 
-
-    <aside id="logo-sidebar"
-           class="fixed top-0 left-0  border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white"
-           aria-label="Sidebar" style="z-index: 9998">
-        <div class="h-full w-64 px-3 pb-4 bg-white mt-[7em]">
-
+<section class="hidden md:flex w-[22em] h-screen relative">
+    <aside id="logo-sidebar" class="fixed top-0 left-0 border-r-2 col-start-1 col-span-1 hidden md:flex w-[17em] h-screen bg-white"
+           aria-label="Sidebar" style="z-index: 99">
+        <div class="h-full w-full px-3 pb-4 bg-white mt-[7em]">
             <ul class="space-y-2">
                 <li>
                     <div class="w-full max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
@@ -182,75 +167,86 @@
                         </button>
                     </form>
                 </li>
-
                 <li>
-
-                    <a href="/profile"
+                    <a href="/events/create"
                        class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-person-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                             viewBox="0 0 16 16">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-                        </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/posts"
-                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
-                             viewBox="0 0 16 16">
-                            <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
-                            <path fill-rule="evenodd"
-                                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
-                        </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">My Feed</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/friends"
-                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-people-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                             viewBox="0 0 16 16">
-                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                        </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/events"
-                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white bi bi-calendar4-event"
                              viewBox="0 0 16 16">
                             <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
                             <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
                         </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Create Event</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/friends"
+                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-people-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                             viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Chatting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile/edit"
+                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 16 16" >
+                            <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href=""
+                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                        </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Contact Us</span>
                     </a>
                 </li>
             </ul>
         </div>
     </aside>
+</section>
+
+
+
     <!--- Feed -->
     <div class="w-screen h-screen">
         <!--Filter bar-->
-        <div class="mt-[6em] flex flex-row justify-end w-full h-full flex-row no-wrap">
-            <div class="w-2/4 sm:w-2/4 md:w-1/4 lg:w-1/4">
+        <div class="mt-[6em] flex flex-col-reverse md:flex-row justify-end w-full h-full">
+
+            <div class="md:w-[45%] w-full h-full">
                 <section class="w-full h-full p-4 bg-white border border-gray-200 rounded-lg shadow ">
-                    <div class="mb-5 text-xl font-semibold font-normal text-gray-900 ">My Friends</div>
+
+                    <h1 class = "text-3xl font-extrabold mb-3">Chats</h1>
+                    <div class="relative">
+                        <!--Hamburger-->
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                      clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Search icon</span>
+                        </div>
+                        <input type="text" id="search"
+                               class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               placeholder="Follow a friend..">
+                    </div>
+                    <div class="mb-5 text-[15px] mt-4 text-gray-400 ">My Friends</div>
 
 
                     <ul id="loggedUser" role="list" th:title="${#authentication.principal.id}">
 
                         <div th:each="user : ${followedUsers}">
                             <div th:if="${user.id} != ${#authentication.principal.id}">
-                                <li th:title="${user.id}" class="friend-card group/item hover:bg-slate-100 ">
+                                <li th:title="${user.id}" class="friend-card group/item hover:cursor-pointer ">
 
                                     <div class="flex flex-col space-x-4 mb-5 ">
                                         <div class="flex items-center justify-between px-3">
@@ -306,12 +302,27 @@
                                                 </div>
                                             </div>
 
-                                            <button type="button" th:id="${user.id}"
-                                                    class="all-users flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible">
-                                                <ion-icon
-                                                        class="group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 self-end"
-                                                        name="chevron-forward-outline"></ion-icon>
+
+                                            <div class = "flex">
+                                                <form th:action="@{/user/{id}(id=${user.id})}" th:method="get" class="flex items-center justify-center">
+                                            <button class="hover:cursor-pointer" type="submit">
+                                                <div class="flex justify-center items-center w-[40px]">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-300 hover:text-gray-500 transition duration-300  bi-person-circle" viewBox="0 0 16 16">
+                                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                                    </svg>
+                                                </div>
                                             </button>
+                                                </form>
+
+                                                <button type="button" th:id="${user.id}"
+                                                        class="all-users hover:cursor-pointer flex justify-center items-center w-[40px]">
+                                                    <svg name="chevron-forward-outline" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-fill transition duration-300 text-gray-300 hover:text-gray-500"  viewBox="0 0 16 16">
+                                                        <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
+                                                    </svg>
+                                                </button>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -321,14 +332,15 @@
                     </ul>
                 </section>
             </div>
-            <div class="w-2/4 px-3">
-                <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
 
+            <div id="talkjs" class=" md:flex w-full md:w-2/4 md:px-3">
+                <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
 
                     <div class="container">
                         <!-- container element in which TalkJS will display a chat UI -->
-                        <div id="talkjs-container" class="flex flex-col justify-center items-center"
-                             style="width: 90%; margin: 30px; height: 500px">
+                        <div id="talkjs-container" class="flex flex-col justify-center w-full items-center"
+                             style="width: 90%; margin: 30px; height: 800px">
+
                             <div class="load-row">
                                 <span></span>
                                 <span></span>
@@ -361,12 +373,15 @@
                     </div>
                 </section>
             </div>
+
+
         </div>
     </div>
 </div>
 
 
 <script>
+
     (
         async function () {
             const response = await fetch('http://localhost:8080/api/alluser', {
