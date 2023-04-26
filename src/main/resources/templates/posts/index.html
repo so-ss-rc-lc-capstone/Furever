@@ -329,14 +329,25 @@
                         <h3 class="text-gray-400 text-[13px]">Image/Video</h3>
                     </div>
 
-                    <div id="ai" class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+                    <div id="ai" class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 "
+                         data-popover-target="popover-chat">
                     <image th:src="@{/img/ai-icon2.png}" class="w-[40px] hover:cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"></image>
                         <h3 class="text-gray-400 text-[13px]">Ai Assistance</h3>
                     </div>
+                    <div data-popover id="popover-chat" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+                        <div class="grid grid-cols-5">
+                            <div class="col-span-3 p-3">
+                                <div class="space-y-2">
+                                    <h3 class="font-semibold text-gray-900 dark:text-white">Try our Chat GPT!</h3>
+                                    <p>You can generate your post with simple keywords with Chat GPT!</p>
+                                </div>
+                            </div>
+                            <img th:src="@{/img/chat-gif-high.gif}" class="h-full col-span-2" alt="Italy map" />
+                        </div>
+                        <div data-popper-arrow></div>
+                    </div>
                 </div>
-
                 <div class ="w-full flex justify-center items-center"> <img id="post-thumbnail" class="h-[60%] hidden rounded-lg w-[70%]">
-
                 </div>
 
 
