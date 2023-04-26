@@ -5,6 +5,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../../static/js/hover1.js"></script>
 
+    <style>
+        .hidden {
+            display: none !important;
+        }
+    </style>
+
 </head>
 <div th:fragment="navbar-home">
 
@@ -112,41 +118,108 @@
                 <img th:src="@{/img/logofurever.png}" class="h-[50px] mr-3" alt="Furever-logo">
 
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Furever</span>
+
             </a>
 
             <ul class="flex p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li sec:authorize="isAuthenticated()">
+                <li class="nav-link" sec:authorize="isAuthenticated()">
                     <a href="/"
                        class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                        aria-current="page">
                         Home</a>
                 </li>
-                <li sec:authorize="isAuthenticated()">
+
+                <li class="nav-link" sec:authorize="isAuthenticated()">
                     <a href="/about"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                        About</a>
+                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                       onMouseOver="this.querySelector('.ping-icon').style.display = 'none'">About</a>
                 </li>
-                <li sec:authorize="isAuthenticated()">
+
+                <li class="nav-link" sec:authorize="isAuthenticated()">
                     <a href="/posts"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                        Posts</a>
+                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                       onMouseOver="this.querySelector('.ping-icon').style.display = 'none'">
+                        Posts
+                    </a>
                 </li>
-                <li sec:authorize="isAuthenticated()">
+
+                <li class="nav-link" sec:authorize="isAuthenticated()">
                     <a href="/events"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                        Events</a>
+                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                       onMouseOver="this.querySelector('.ping-icon').style.display = 'none'">Events</a>
+
                 </li>
-                <li sec:authorize="isAuthenticated()">
-                    <a href="/profile"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                        Profile</a>
-                <li sec:authorize="isAuthenticated()">
-                    <a href="/friends"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                        Friends</a>
+
+                <li class="nav-link flex flex-row" sec:authorize="isAuthenticated()" >
+                    <div class="relative flex" onMouseOver="this.querySelector('.ping-icon').classList.add('hidden'); localStorage.setItem('pingIconHidden', true)"
+                         onMouseLeave="localStorage.removeItem('pingIconHidden')">
+                        <a href="/profile" class="flex-row">
+                            Profile
+                        </a>
+                        <span class="ping-icon relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-300"></span>
+                        </span>
+                    </div>
                 </li>
+
+
+<!--                <li class="nav-link" sec:authorize="isAuthenticated()">-->
+<!--                    <div class="relative">-->
+
+<!--                    <a href="/friends"-->
+<!--                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"-->
+<!--                       onMouseOver="this.querySelector('.ping-icon').style.display = 'none'">Friends</a>-->
+<!--                        <div class="ping-icon absolute top-0 right-0 -mr-2 mt-1 w-2 h-2 rounded-full bg-green-300 animate-ping"></div>-->
+<!--                        <div class="ping-icon absolute top-0 right-0 -mr-2 mt-1 w-2 h-2 rounded-full bg-green-300"></div>-->
+<!--                    </div>-->
+<!--                </li>-->
+
+<!--                <li class="nav-link" sec:authorize="isAuthenticated()">-->
+<!--                    <div class="relative">-->
+<!--                        <a href="/friends"-->
+<!--                           class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"-->
+<!--                           onMouseOver="if (!this.dataset.pingHidden) { this.querySelector('.ping-icon').style.display = 'none'; this.dataset.pingHidden = true; }">-->
+<!--                            Friends-->
+<!--                        </a>-->
+<!--                        <div class="ping-icon absolute top-0 right-0 -mr-2 mt-1 w-2 h-2 rounded-full bg-green-300 animate-ping"></div>-->
+<!--                        <div class="ping-icon absolute top-0 right-0 -mr-2 mt-1 w-2 h-2 rounded-full bg-green-300"></div>-->
+<!--                    </div>-->
+<!--                </li>-->
+
+
+<!--                <li class="nav-link" sec:authorize="isAuthenticated()">-->
+<!--                    <div class="relative">-->
+<!--                        <a href="/friends"-->
+<!--                           class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"-->
+<!--                           onMouseOver="this.querySelector('.ping-icon').classList.add('hidden'); localStorage.setItem('pingIconHidden', true)"-->
+<!--                           onMouseLeave="localStorage.removeItem('pingIconHidden')">-->
+<!--                            Friends-->
+<!--                        </a>-->
+<!--                        <div class="ping-icon absolute top-0 right-0 -mr-2 mt-1 w-2 h-2 rounded-full bg-green-300 animate-ping"></div>-->
+<!--                        <div class="ping-icon absolute top-0 right-0 -mr-2 mt-1 w-2 h-2 rounded-full bg-green-300"></div>-->
+<!--                    </div>-->
+<!--                </li>-->
+
+
+                <li class="nav-link flex flex-row" sec:authorize="isAuthenticated()">
+                    <div class="relative flex" onMouseOver="this.querySelector('.ping-icon').classList.add('hidden'); localStorage.setItem('pingIconHidden', true)"
+                         onMouseLeave="localStorage.removeItem('pingIconHidden')">
+                        <a href="/profile" class="flex-row">Profile</a>
+                        <span class="ping-icon relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-300 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-300"></span>
+                        </span>
+                    </div>
+                </li>
+
+
+
+
+
                 <!--                <li>-->
-                <!--                    <a href="/posts/create" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">-->
+                <!--                    <a href="/posts/create" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                       onMouseOver="this.querySelector('.ping-icon').style.display = 'none'">-->
                 <!--                        Create post</a>-->
                 <!--                </li>-->
             </ul>

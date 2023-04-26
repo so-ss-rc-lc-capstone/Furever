@@ -595,6 +595,25 @@
         }
     }
 
+
+
+    const pingIcon = document.querySelector('.nav-link div > .ping-icon');
+
+        // Check if the ping icon should be hidden on page load
+    const pingIconHidden = localStorage.getItem('pingIconHidden');
+    if (pingIconHidden) {
+        pingIcon.forEach(icon => icon.classList.add('hidden'));
+    }
+
+        // Add event listener to hide ping icon on hover and set local storage item
+    const link = document.querySelector('.nav-link div a');
+    link.addEventListener('mouseover', () => {
+        pingIcon.forEach(icon => icon.classList.add('hidden'));
+        localStorage.setItem('pingIconHidden', true);
+    });
+
+
+
 </script>
 
 </body>
