@@ -16,8 +16,9 @@ public class KeysController {
                 keys = {
                         filestack: "%s",
                         mapbox: "%s",
+                        talkjs: "%s",
                 }
-                """, keys.fileStack, keys.mapbox);
+                """, keys.fileStack, keys.mapbox, keys.talkjs);
         return theKeys;
 
     }
