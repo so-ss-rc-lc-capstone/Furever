@@ -377,9 +377,6 @@
                                         <span><img th:src="${post.image}" class=" w-[90%] lg:w-[85%] mt-[5px] h-[25em] rounded-lg"></span>
                                     </div>
 
-
-
-
                             </div>
                         </div>
                 </div>
@@ -519,7 +516,8 @@
                                                      class="flex items-center">
 
                                                     <img class="w-10 h-10 rounded-full cursor-pointer"
-                                                         th:src="${user.profilePhoto}" alt="user-image">
+                                                         th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
+                                                         alt="user-image">
                                                     <div class="ml-3 flex-col font-medium dark:text-white">
                                                         <div class="text-base font-normal text-gray-900 "><span
                                                                 th:text="${user.first_name}"
@@ -610,7 +608,8 @@
                                                      class="flex items-center">
 
                                                     <img class="w-10 h-10 rounded-full cursor-pointer"
-                                                         th:src="${user.profilePhoto}" alt="user-image">
+                                                         th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
+                                                         alt="user-image">
                                                     <div class="ml-3 flex-col font-medium dark:text-white">
                                                         <div class="text-sm text-gray-500 dark:text-gray-400">@<span
                                                                 th:text="${user.username}"
