@@ -1,30 +1,22 @@
 <!-- User POSTS -->
 
-<!--<div class="card-div flex flex-col mt-[4em] justify-between border w-full h-[30em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700"-->
-<!--     th:each="event : ${events}" th:title="${event.id}"-->
-<!--     th:style="'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">-->
 <div class="card-div flex flex-col mt-[4em] justify-between border w-full h-[30em] mb-5 pb-5 border-gray-200 rounded-lg shadow dark:border-gray-700"
      th:each="event : ${events}" th:title="${event.id}"
      th:style="${event.eventPhoto == null or event.eventPhoto == ''} ? 'background-image:url(\'/img/event-img.jpg\'); background-size:cover; background-position:center;' : 'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
-    <!-- card content here -->
-<!--</div>-->
-
-
 
     <div class=" w-full mt-[10px] h-[3em]">
         <div class="w-full flex items-center justify-between">
 
-
             <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">
                 <button id="color-toggle" type="submit"
-                        class="bg-white w-[150px] duration-75 h-[45px] ml-[4em] text-black font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        class="bg-white w-[150px] duration-75 h-[45px] ml-[4em] text-black font-medium rounded-lg text-sm px-5 py-2.5 text-center border-gray-100 border-2 shadow-lg"
                         th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'bg-white text-black' : ''}">
                     <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Attending' : 'Participate'}"></span>
                 </button>
             </form>
 
             <div class="w-full flex justify-end  mr-[4em]" th:if="${event.user.id} == ${#authentication.principal.id}">
-                <button th:id="dropdownDefaultButton + ${event.id}" th:data-dropdown-toggle="dropdown + ${event.id}" class="text-black rounded-full bg-white hover:bg-gray-200 px-4 py-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                <button th:id="dropdownDefaultButton + ${event.id}" th:data-dropdown-toggle="dropdown + ${event.id}" class="text-black rounded-full bg-white hover:bg-gray-300 px-4 py-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 border-gray-100 border-2 shadow-lg" type="button">
                     <i class="ri-edit-box-line"></i>
                 </button>
                 <!-- Dropdown menu -->
@@ -37,7 +29,7 @@
                         </li>
                         <li>
                             <form th:action="@{/events/{id}/delete(id=${event.id})}" method="get" onsubmit="return confirmDelete();">
-                                <button type="submit" class="delete-btn block flex w-full px-4 py-2 text-red-500 hover:text-red-400 dark:hover:bg-gray-600 dark:hover:text-white">Delete</button>
+                                <button type="submit" class="delete-btn block flex w-full px-4 py-2 text-red-500 hover:text-red-400 dark:hover:bg-gray-600 dark:hover:text-white" >Delete</button>
                             </form>
                         </li>
                     </ul>
@@ -45,19 +37,21 @@
             </div>
 
             <div th:if="${event.user.id} != ${#authentication.principal.id}">
-                <form th:action="@{/events/{id}/like(id=${event.id})}" method="post">
+                <form th:action="@{/events/{id}/like(id=${event.id})}" method="post" >
                     <button type="submit"
-                            class="flex items-center mr-[4em] justify-center text-white h-12 w-12 bg-white hover:bg-gray-100 font-medium rounded-full text-sm text-center inline-flex items-center dark:bg-blue-600">
-                        <svg class="black w-5" fill="none" stroke="black" stroke-width="1.5" viewBox="0 0 24 24"
-                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            class="flex items-center mr-[4em] justify-center text-white h-12 w-12 bg-white hover:bg-gray-300 font-medium rounded-full text-sm text-center inline-flex items-center dark:bg-blue-600 border-gray-100 border-2 shadow-lg">
+                        <svg class="w-5" fill="none" stroke="black" stroke-width="1.5" viewBox="0 0 24 24"
+                             th:classappend="${event.hasLikedEvent(#authentication.principal.id) ? ' text-red-500 fill-red-500' : ''}"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
-                            <p th:text="${event.eventLikes.size}"></p>
                         </svg>
+                        <p th:text="${event.eventLikes.size}" style="color: black;"></p>
                     </button>
-
                 </form>
             </div>
+
+
 
         </div>
     </div>
@@ -149,12 +143,5 @@
 
     </div>
 </div>
-<script>
-    function confirmDelete() {
-        if (confirm("Are you sure you want to delete this event?")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+<script src="/js/event/event-card.js">
 </script>

@@ -11,6 +11,10 @@
         aside {
             display: none !important;
         }
+        .aside-container {
+            display: none !important;
+        }
+
     }
 
     #nav-mobile {
@@ -46,283 +50,90 @@
 <nav th:replace="partials/navbar :: navbar-search"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 <nav th:include="event/participants-modal"></nav>
-<div class="flex items-center justify-center w-full  lg:w-[35em] xl:w-[55em]">
-    <aside id="logo-sidebar"
-           class="fixed top-0 left-0  border-r-2 col-start-1 col-span-1 hidden md:flex w-[10em] md:w-[15em] h-screen bg-white"
-           aria-label="Sidebar" style="z-index: 99">
-        <div class="h-full w-64 px-3 pb-4 bg-white mt-[7em]">
-            <ul class="space-y-2">
-                <li>
-                    <div class="w-full max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
-                        <div class="flex flex-col items-center justify-center mt-1">
-                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                                 th:if="${not #strings.isEmpty(user.profilePhoto)}"
-                                 th:src="${user.profilePhoto}"
-                                 alt="Profile image"/>
-                            <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
-                                 th:if="${#strings.isEmpty(user.profilePhoto)}"
-                                 th:src="@{/img/profile.jpeg}"
-                                 alt="Default profile image"/>
-                            <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">Welcome,
-                                <span th:text="${#authentication.principal.username}"/>!</h5>
-                            <span class="text-sm text-gray-500 dark:text-gray-400"></span>
-                        </div>
-                    </div>
-                </li>
 
-                <li class="flex w-full items-center justify-center p-3 border-b-2 pb-5 text-gray-900 dark:text-white ">
-                    <form th:action="${'/logout'}" th:method="post">
-                        <button type="submit"
-                                class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 ">
-                            Logout
-                        </button>
-                    </form>
-                </li>
-                <li>
-                    <a href="/profile"
-                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-person-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                             viewBox="0 0 16 16">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-                        </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/posts"
-                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
-                             viewBox="0 0 16 16">
-                            <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
-                            <path fill-rule="evenodd"
-                                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
-                        </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">My Feed</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/friends"
-                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-people-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                             viewBox="0 0 16 16">
-                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-                        </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/events"
-                       class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white bi bi-calendar4-event"
-                             viewBox="0 0 16 16">
-                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
-                            <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                        </svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </aside>
-
-    <aside class="fixed top-0 right-0 mr-2 justify-items-center hidden md:flex w-[15em]"
-           aria-label="Sidebar">
-        <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <div class="w-full flex flex-row items-center justify-between mb-4">
-                <div class="w-full flex flex-col justify-center">
-                    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-                        <ul class="flex flex-row -mb-px text-sm font-medium text-center" id="myTab"
-                            data-tabs-toggle="#myTabContent" role="tablist">
-                            <li class="w-1/2 mr-2" role="presentation">
-                                <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab"
-                                        data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
-                                        aria-selected="false">Followers
-                                </button>
-                            </li>
-                            <li class="w-1/2 mr-2" role="presentation">
-                                <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                        id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
-                                        aria-controls="dashboard" aria-selected="false">All
-                                </button>
-                            </li>
-
-                        </ul>
-                    </div>
-                    <div id="myTabContent">
-                        <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
-                             aria-labelledby="profile-tab">
-                            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-
-                                <!--          <div th:each="user : ${users}">-->
-                                <div th:each="user : ${followedUsers}">
-
-                                    <div th:if="${user.id} != ${#authentication.principal.id}">
-                                        <li class="py-2 group/item hover:bg-slate-100 ">
-                                            <div class="flex flex-col space-x-4 ">
-                                                <div class="flex items-center justify-between px-3">
-                                                    <div th:data-dropdown-toggle="${user.id}"
-                                                         data-dropdown-placement="bottom-start" type="button"
-                                                         class="flex items-center">
-
-                                                        <img class="w-10 h-10 rounded-full cursor-pointer"
-                                                             th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
-                                                             alt="user-image">
-
-                                                        <div class="ml-3 flex-col font-medium dark:text-white">
-                                                            <div class="text-base font-normal text-gray-900 "><span
-                                                                    th:text="${user.first_name}"
-                                                                    th:href="@{|/user/${user.id}|}"></span><span
-                                                                    th:text="${user.last_name}"
-                                                                    th:href="@{|/user/${user.id}|}"></span></div>
-                                                            <div class="text-sm text-gray-500 dark:text-gray-400">@<span
-                                                                    th:text="${user.username}"
-                                                                    th:href="@{|/user/${user.id}|}"></span></div>
-                                                        </div>
-                                                        <div th:id="${user.id}"
-                                                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                                                <div class="text-base font-normal text-gray-900 "><span
-                                                                        th:text="${user.first_name } "></span> <span
-                                                                        th:text="${user.last_name}"></span></div>
-                                                                <div class="text-sm text-gray-500 dark:text-gray-400">
-                                                                    <span th:text="${user.email}"></span></div>
-
-                                                            </div>
-                                                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                                                aria-labelledby="avatarButton">
-                                                                <li>
-                                                                    <a th:href="@{|/user/${user.id}|}"
-                                                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                                                        Profile</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="/friends"
-                                                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
-                                                                </li>
-                                                            </ul>
-                                                            <div class="py-1">
-
-                                                                <form th:action="@{/users/{id}/follow(id=${user.id})}"
-                                                                      th:name="followFromEvent" th:method="post"
-                                                                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                                    <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
-                                                                            type="submit"></button>
-                                                                </form>
-                                                                <!--                          <a id="followButton" th:text="${user.followingUsers.contains(user) ? 'Unfollow' : 'Follow'}"-->
-                                                                <!--                             th:onclick="${user.followingUsers.contains(user) ? '@{/users/'+ user.id + '/follow}' : '@{/users/'+ user.id + '/follow}'}"-->
-                                                                <!--                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"></a>-->
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible "
-                                                       th:href="@{|/user/${user.id}|}">
-
-                                                        <div class="hover:cursor-pointer group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500">
-                                                            <svg fill="currentColor" class="h-5" viewBox="0 0 24 24"
-                                                                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                                <path clip-rule="evenodd" fill-rule="evenodd"
-                                                                      d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z">
-                                                                </path>
-                                                            </svg>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </div>
-                                </div>
-                            </ul>
-                        </div>
-
-                        <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
-                             aria-labelledby="dashboard-tab">
-                            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                                <!--          <div th:each="user : ${users}">-->
-                                <div th:each="user : ${usersNotFollowing}">
-
-                                    <div th:if="${user.id} != ${#authentication.principal.id}">
-
-                                        <li class="py-2 group/item hover:bg-slate-100 ">
-
-                                            <div class="flex flex-col space-x-4 ">
-                                                <div class="flex items-center justify-between px-3">
-                                                    <div th:data-dropdown-toggle="${user.email}"
-                                                         data-dropdown-placement="bottom-start" type="button"
-                                                         class="flex items-center">
-
-                                                        <img class="w-10 h-10 rounded-full cursor-pointer"
-                                                             th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
-                                                             alt="user-image">
-
-                                                        <div class="ml-3 flex-col font-medium dark:text-white">
-                                                            <div class="text-sm text-gray-500 dark:text-gray-400">@<span
-                                                                    th:text="${user.username}"
-                                                                    th:href="@{|/user/${user.id}|}">
-                                                            </span>
-                                                            </div>
-                                                        </div>
-                                                        <div th:id="${user.email}"
-                                                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                                                <div class="text-base font-normal text-gray-900 "><span
-                                                                        th:text="${user.first_name } "></span> <span
-                                                                        th:text="${user.last_name}"></span>
-                                                                </div>
-                                                                <div class="text-sm text-gray-500 dark:text-gray-400">
-
-                                                                    <span th:text="${user.email}"></span>
-                                                                </div>
-
-                                                            </div>
-                                                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                                                aria-labelledby="avatarButton">
-                                                                <li>
-                                                                    <a th:href="@{|/user/${user.id}|}"
-                                                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                                                        Profile</a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#"
-                                                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-
-                                                    <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible ">
-                                                        <form th:action="@{/users/{id}/follow(id=${user.id})}"
-                                                              th:name="followFromEvent" th:method="post"
-                                                              class="block px-4 py-2 text-sm text-gray-200 dark:text-gray-600 dark:hover:text-white">
-                                                            <button class="items-center justify-center hover:cursor-pointer group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 "
-                                                                    type="submit">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                     height="16" fill="currentColor"
-                                                                     class="bi bi-person-fill-add" viewBox="0 0 16 16">
-                                                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                                                                    <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
-                                                                </svg>
-                                                            </button>
-                                                        </form>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </div>
-                                </div>
-                            </ul>
-                        </div>
+<section class="aside-container hidden md:flex w-[13em] bg-blue-300 xl:w-[17em] h-screen relative">
+    <aside id="logo-sidebar" class="fixed top-0 left-0 border-r-2 col-start-1 col-span-1 hidden md:flex w-[13em] xl:w-[15em] h-screen bg-white"
+                               aria-label="Sidebar" style="z-index: 99">
+    <div class="h-full w-64 px-3 pb-4 bg-white mt-[7em]">
+        <ul class="space-y-2">
+            <li>
+                <div class="w-full max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
+                    <div class="flex flex-col items-center justify-center mt-1">
+                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                             th:if="${not #strings.isEmpty(user.profilePhoto)}"
+                             th:src="${user.profilePhoto}"
+                             alt="Profile image"/>
+                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                             th:if="${#strings.isEmpty(user.profilePhoto)}"
+                             th:src="@{/img/profile.jpeg}"
+                             alt="Default profile image"/>
+                        <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">Welcome,
+                            <span th:text="${#authentication.principal.username}"/>!</h5>
+                        <span class="text-sm text-gray-500 dark:text-gray-400"></span>
                     </div>
                 </div>
-            </div>
-        </div>
-    </aside>
+            </li>
 
+            <li class="flex w-full items-center justify-center p-3 border-b-2 pb-5 text-gray-900 dark:text-white ">
+                <form th:action="${'/logout'}" th:method="post">
+                    <button type="submit"
+                            class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 ">
+                        Logout
+                    </button>
+                </form>
+            </li>
+            <li>
+                <a href="/profile"
+                   class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-person-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                         viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="/posts"
+                   class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
+                         viewBox="0 0 16 16">
+                        <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
+                        <path fill-rule="evenodd"
+                              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">My Feed</span>
+                </a>
+            </li>
+            <li>
+                <a href="/friends"
+                   class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-people-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                         viewBox="0 0 16 16">
+                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
+                </a>
+            </li>
+            <li>
+                <a href="/events"
+                   class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white bi bi-calendar4-event"
+                         viewBox="0 0 16 16">
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
+                        <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</aside></section>
+
+<div id="feed-container" class="flex items-center md:ml-[3em] xl:ml-[5em] justify-center w-full ">
     <!--- Feed -->
     <div class="w-full ">
         <!--Filter bar-->
@@ -387,42 +198,206 @@
         </div>
     </div>
 
-
-
 </div>
 
+<section class="aside-container hidden md:flex xl:w-[25em] h-screen relative">
+    <aside class="fixed top-0 justify-items-center ml-5 hidden md:flex w-[15em]"
+                                  aria-label="Sidebar">
+    <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="w-full flex flex-row items-center justify-between mb-4">
+            <div class="w-full flex flex-col justify-center">
+                <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-row -mb-px text-sm font-medium text-center" id="myTab"
+                        data-tabs-toggle="#myTabContent" role="tablist">
+                        <li class="w-1/2 mr-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab"
+                                    data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                    aria-selected="false">Followers
+                            </button>
+                        </li>
+                        <li class="w-1/2 mr-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                    id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
+                                    aria-controls="dashboard" aria-selected="false">All
+                            </button>
+                        </li>
+
+                    </ul>
+                </div>
+                <div id="myTabContent">
+                    <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
+                         aria-labelledby="profile-tab">
+                        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+
+                            <!--          <div th:each="user : ${users}">-->
+                            <div th:each="user : ${followedUsers}">
+
+                                <div th:if="${user.id} != ${#authentication.principal.id}">
+                                    <li class="py-2 group/item hover:bg-slate-100 ">
+                                        <div class="flex flex-col space-x-4 ">
+                                            <div class="flex items-center justify-between px-3">
+                                                <div th:data-dropdown-toggle="${user.id}"
+                                                     data-dropdown-placement="bottom-start" type="button"
+                                                     class="flex items-center">
+
+                                                    <img class="w-10 h-10 rounded-full cursor-pointer"
+                                                         th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
+                                                         alt="user-image">
+
+                                                    <div class="ml-3 flex-col font-medium dark:text-white">
+                                                        <div class="text-base font-normal text-gray-900 "><span
+                                                                th:text="${user.first_name}"
+                                                                th:href="@{|/user/${user.id}|}"></span><span
+                                                                th:text="${user.last_name}"
+                                                                th:href="@{|/user/${user.id}|}"></span></div>
+                                                        <div class="text-sm text-gray-500 dark:text-gray-400">@<span
+                                                                th:text="${user.username}"
+                                                                th:href="@{|/user/${user.id}|}"></span></div>
+                                                    </div>
+                                                    <div th:id="${user.id}"
+                                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                                            <div class="text-base font-normal text-gray-900 "><span
+                                                                    th:text="${user.first_name } "></span> <span
+                                                                    th:text="${user.last_name}"></span></div>
+                                                            <div class="text-sm text-gray-500 dark:text-gray-400">
+                                                                <span th:text="${user.email}"></span></div>
+
+                                                        </div>
+                                                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                                            aria-labelledby="avatarButton">
+                                                            <li>
+                                                                <a th:href="@{|/user/${user.id}|}"
+                                                                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
+                                                                    Profile</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/friends"
+                                                                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="py-1">
+
+                                                            <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                                  th:name="followFromEvent" th:method="post"
+                                                                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
+                                                                        type="submit"></button>
+                                                            </form>
+                                                            <!--                          <a id="followButton" th:text="${user.followingUsers.contains(user) ? 'Unfollow' : 'Follow'}"-->
+                                                            <!--                             th:onclick="${user.followingUsers.contains(user) ? '@{/users/'+ user.id + '/follow}' : '@{/users/'+ user.id + '/follow}'}"-->
+                                                            <!--                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"></a>-->
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible "
+                                                   th:href="@{|/user/${user.id}|}">
+
+                                                    <div class="hover:cursor-pointer group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500">
+                                                        <svg fill="currentColor" class="h-5" viewBox="0 0 24 24"
+                                                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                            <path clip-rule="evenodd" fill-rule="evenodd"
+                                                                  d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z">
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+
+                    <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel"
+                         aria-labelledby="dashboard-tab">
+                        <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <!--          <div th:each="user : ${users}">-->
+                            <div th:each="user : ${usersNotFollowing}">
+
+                                <div th:if="${user.id} != ${#authentication.principal.id}">
+
+                                    <li class="py-2 group/item hover:bg-slate-100 ">
+
+                                        <div class="flex flex-col space-x-4 ">
+                                            <div class="flex items-center justify-between px-3">
+                                                <div th:data-dropdown-toggle="${user.email}"
+                                                     data-dropdown-placement="bottom-start" type="button"
+                                                     class="flex items-center">
+
+                                                    <img class="w-10 h-10 rounded-full cursor-pointer"
+                                                         th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
+                                                         alt="user-image">
+
+                                                    <div class="ml-3 flex-col font-medium dark:text-white">
+                                                        <div class="text-sm text-gray-500 dark:text-gray-400">@<span
+                                                                th:text="${user.username}"
+                                                                th:href="@{|/user/${user.id}|}">
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div th:id="${user.email}"
+                                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                                            <div class="text-base font-normal text-gray-900 "><span
+                                                                    th:text="${user.first_name } "></span> <span
+                                                                    th:text="${user.last_name}"></span>
+                                                            </div>
+                                                            <div class="text-sm text-gray-500 dark:text-gray-400">
+
+                                                                <span th:text="${user.email}"></span>
+                                                            </div>
+
+                                                        </div>
+                                                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                                            aria-labelledby="avatarButton">
+                                                            <li>
+                                                                <a th:href="@{|/user/${user.id}|}"
+                                                                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
+                                                                    Profile</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#"
+                                                                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible ">
+                                                    <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                          th:name="followFromEvent" th:method="post"
+                                                          class="block px-4 py-2 text-sm text-gray-200 dark:text-gray-600 dark:hover:text-white">
+                                                        <button class="items-center justify-center hover:cursor-pointer group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500 "
+                                                                type="submit">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                 height="16" fill="currentColor"
+                                                                 class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                                                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                                                <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+</section>
+
 <!-- minified snippet to load TalkJS without delaying your page -->
-<script>
-    (function (t, a, l, k, j, s) {
-        s = a.createElement('script');
-        s.async = 1;
-        s.src = "https://cdn.talkjs.com/talk.js";
-        a.head.appendChild(s)
-        ;k = t.Promise;
-        t.Talk = {
-            v: 3, ready: {
-                then: function (f) {
-                    if (k) return new k(function (r, e) {
-                        l.push([f, r, e])
-                    });
-                    l
-                        .push([f])
-                }, catch: function () {
-                    return k && new k()
-                }, c: l
-            }
-        };
-    })(window, document, []);
-
-    const dropdownMenu = document.querySelector(".dropdown-menu");
-    const dropdownButton = document.querySelector(".dropdown-toggle");
-
-    dropdownButton.addEventListener("click", () => {
-        dropdownMenu.classList.toggle("hidden");
-    });
-
-
-</script>
+<script src="/js/event/event-index.js"></script>
 
 <script src="/js/event-feed.js"></script>
 <!--utils doc-->
