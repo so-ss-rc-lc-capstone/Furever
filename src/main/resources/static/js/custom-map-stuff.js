@@ -1,4 +1,3 @@
-
 //Function to get all the event locations
 
 function allEvents() {
@@ -10,14 +9,12 @@ function allEvents() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log("allEvents data:", data); //log to see if data is coming through
             const event = data.map(event => ({
                 id: event.id,
                 title: event.title,
                 name: event.location_name,
                 address: event.location_address
             }));
-            console.log("allEvents event:", event); //log to see if event is coming through
 
             mapboxgl.accessToken = keys.mapbox;
             let map = new mapboxgl.Map({
@@ -26,7 +23,6 @@ function allEvents() {
                 zoom: 3,
                 center: [-98.4916, 45.4252]
             });
-            console.log("allEvents map:", map); //log to see if map is coming through
 
             // Get the user's current position
             navigator.geolocation.getCurrentPosition(position => {
@@ -34,12 +30,10 @@ function allEvents() {
                 let userPosition = [position.coords.longitude, position.coords.latitude];
                 map.setCenter(userPosition);
                 map.setZoom(3);
-                console.log("allEvents userPosition:", userPosition); //log to see if userPosition is coming through
                 try {
                     event.forEach(function (event) {
                         geocode(event.address, keys.mapbox).then(function (result) {
                             let eventPosition = [result[0], result[1]];
-                            console.log("allEvents eventPosition:", eventPosition); //log to see if eventPosition is coming through
 
                             let marker = new mapboxgl.Marker()
                                 .setLngLat(eventPosition)
@@ -66,14 +60,13 @@ function allEvents() {
 let localLocations = async function () {
     let withinFiftyMilesIds = [];
     try {
-        console.log('Fetching events data from API...');
         const response = await fetch(`${window.location.protocol}//${window.location.host}/api/allevents`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             }
         });
-        console.log('Received events data from API.');
+
         const data = await response.json();
         const events = data.map(event => ({
             id: event.id,
@@ -82,7 +75,6 @@ let localLocations = async function () {
             address: event.location_address
         }));
 
-        console.log('Initializing Mapbox...');
         mapboxgl.accessToken = keys.mapbox;
         let map = new mapboxgl.Map({
             container: 'map',
@@ -91,7 +83,6 @@ let localLocations = async function () {
             center: [-98.4916, 29.4252]
         });
 
-        console.log('Getting user position...');
         // Get the user's current position
         let userPosition = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(position => {
@@ -99,12 +90,10 @@ let localLocations = async function () {
             }, reject);
         });
 
-        console.log('Updating map center to user position...');
         // Update the map's center to the user's position
         map.setCenter(userPosition);
         map.setZoom(10);
 
-        console.log('Looping through events to display markers...');
         await Promise.all(events.map(async function (event) {
             const result = await geocode(event.address, keys.mapbox);
             // Calculate distance between user location and event location
@@ -112,7 +101,6 @@ let localLocations = async function () {
             let distance = getDistance(userPosition, eventPosition);
 
             if (distance <= 50) { // Display event marker only if within 50 miles
-                console.log(`Displaying marker for event ${event.id}...`);
                 let marker = new mapboxgl.Marker()
                     .setLngLat(eventPosition)
                     .addTo(map);
@@ -126,7 +114,6 @@ let localLocations = async function () {
     } catch (error) {
         console.error(error);
     }
-    console.log('Returning list of events within 50 miles...');
     return withinFiftyMilesIds;
 };
 
@@ -159,11 +146,9 @@ async function localIdComparison() {
     let eventCards = document.querySelectorAll(".card-div");
     eventCards.forEach(function (card) {
         if (!eventIds.includes(parseInt(card.title))) {
-            console.log("not included");
             card.style.display = "none";
-        }else{
-            console.log("included");
-            card.style.display = "block";
+        } else {
+            card.style.display = "flex";
         }
     });
 }
@@ -177,7 +162,7 @@ function allIdcomparison() {
         if (!eventIds.includes(parseInt(card.title))) {
             card.style.display = "none";
         } else {
-            card.style.display = "block";
+            card.style.display = "flex";
         }
     });
 }
@@ -209,11 +194,12 @@ listBtn.addEventListener("click", function () {
         if (selectedValue === 'local') {
             localIdComparison();
             map.style.display = "none";
-            card.style.display = "block";
+            card.style.display = "flex";
+
         } else if (selectedValue === 'all') {
             allEvents();
             map.style.display = "none";
-            card.style.display = "block";
+            card.style.display = "flex";
         }
     });
 });
@@ -227,23 +213,22 @@ mapButton.addEventListener("click", function () {
     eventCards.forEach(function (card) {
         if (selectedValue === 'all') {
             allEvents();
-            map.style.display = "block";
+            map.style.display = "flex";
             card.style.display = "none";
         } else if (selectedValue === 'local') {
             localLocations();
-            map.style.display = "block";
+            map.style.display = "flex";
             card.style.display = "none";
         }
     });
 });
 
 
-
 const spinnerEl = document.getElementById('spinner');
 const backgroundEl = document.getElementById('loading-background');
 
 
-map.on('load', ()=> {
+map.on('load', () => {
     loadingSpinner(false);
 
     map.addSource('addr', {
@@ -253,21 +238,21 @@ map.on('load', ()=> {
     });
 });
 
-function addLayerSpinner(){
+function addLayerSpinner() {
     loadingSpinner(true);
     map.addLayer({
         id: 'test',
         source: 'addr',
-        'source-layer':'openaddresses',
+        'source-layer': 'openaddresses',
         type: 'circle',
         paint: {
-            'circle-color':'pink'
+            'circle-color': 'pink'
         }
     });
     map.on('render', stopSpinner);
 }
 
-function stopSpinner (e) {
+function stopSpinner(e) {
     if (e.target && e.target.loaded()) {
         loadingSpinner(false);
         map.off('render', stopSpinner)
