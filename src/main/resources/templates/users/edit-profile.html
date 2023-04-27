@@ -6,6 +6,7 @@
 
 <body>
 <nav th:replace="partials/navbar :: navbar-search"></nav>
+<nav th:replace="partials/navbar :: navbar-mobile"></nav>
 
 
 <form th:method="POST" th:action="@{/profile/edit}" th:object="${user}">
@@ -147,7 +148,6 @@
                         </div>
                     </div>
                 </div>
-                <nav th:replace="partials/navbar :: navbar-mobile"></nav>
             </div>
 
         </div>
