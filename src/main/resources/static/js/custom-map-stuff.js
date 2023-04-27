@@ -26,12 +26,6 @@ function allEvents() {
                 center: [-98.4916, 45.4252]
             });
 
-
-
-
-
-
-
             // Get the user's current position
             navigator.geolocation.getCurrentPosition(position => {
                 // Update the map's center to the user's position
