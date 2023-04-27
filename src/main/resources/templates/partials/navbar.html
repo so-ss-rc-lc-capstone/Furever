@@ -102,230 +102,80 @@
     <div class="my-4 invisible">space</div>
 </div>
 
-<div th:fragment="navbar" class="hidden md:flex">
-    <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a class="flex items-center">
-                <img th:src="@{/img/logofurever.png}" class="h-[50px] mr-3" alt="Furever-logo">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Furever</span>
-            </a>
-            <ul class="flex p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li sec:authorize="isAuthenticated()">
-                    <a href="/"
-                       class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                       aria-current="page">
-                        Home</a>
-                </li>
-                <li sec:authorize="isAuthenticated()">
-                    <a href="/about"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                        About</a>
-                </li>
-                <li sec:authorize="isAuthenticated()">
-                    <a href="/posts"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                       data-popover-target="popover-posts">
-                        Posts</a>
-                    <div data-popover id="popover-posts" role="tooltip"
-                         class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-                        <div class="grid grid-cols-5">
-                            <div class="col-span-3 p-3">
-                                <div class="space-y-2">
-                                    <h3 class="font-semibold text-gray-900 dark:text-white">Share your posts!</h3>
-                                    <p>Share your stories or questions with other people! You can post some pictures of
-                                        your loved ones!</p>
-                                    <a href="/posts"
-                                       class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
-                                        see posts!
-                                        <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
-                                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                  clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <img th:src="@{/img/post-image2.png}" class="h-full col-span-2" alt="Italy map"/>
-                        </div>
-                        <div data-popper-arrow></div>
-                    </div>
-                </li>
-                <li sec:authorize="isAuthenticated()">
-                    <a href="/events"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                       data-popover-target="popover-events">
-                        Events</a>
-                    <div data-popover id="popover-events" role="tooltip"
-                         class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-                        <div class="grid grid-cols-5">
-                            <div class="col-span-3 p-3">
-                                <div class="space-y-2">
-                                    <h3 class="font-semibold text-gray-900 dark:text-white">Join events!</h3>
-                                    <p>You can participate other events or you can create one! Enjoy the gathering with
-                                        your loved ones!</p>
-                                    <a href="/posts"
-                                       class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
-                                        see events!
-                                        <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
-                                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                  clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <img th:src="@{/img/event-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
-                        </div>
-                        <div data-popper-arrow></div>
-                    </div>
-                </li>
-                <li sec:authorize="isAuthenticated()">
-                    <a href="/profile"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                       data-popover-target="popover-profile">
-                        Profile</a>
-                    <div data-popover id="popover-profile" role="tooltip"
-                         class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-                        <div class="grid grid-cols-5">
-                            <div class="col-span-3 p-3">
-                                <div class="space-y-2">
-                                    <h3 class="font-semibold text-gray-900 dark:text-white">Manage your profile!</h3>
-                                    <p>You can edit your profile or add more detail about yourself! You can easily track
-                                        your posts and events as well!</p>
-                                    <a href="/posts"
-                                       class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
-                                        view profile!
-                                        <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
-                                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                  clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <img th:src="@{/img/profile-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
-                        </div>
-                        <div data-popper-arrow></div>
-                    </div>
-                <li sec:authorize="isAuthenticated()">
-                    <a href="/friends"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                       data-popover-target="popover-friend">
-                        Friends</a>
-                    <div data-popover id="popover-friend" role="tooltip"
-                         class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-                        <div class="grid grid-cols-5">
-                            <div class="col-span-3 p-3">
-                                <div class="space-y-2">
-                                    <h3 class="font-semibold text-gray-900 dark:text-white">Let's have some chats!</h3>
-                                    <p>You can chat with your following friends! Chatting is always fun!</p>
-                                    <a href="/posts"
-                                       class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
-                                        chat!
-                                        <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
-                                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                  clip-rule="evenodd"></path>
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                            <img th:src="@{/img/friend-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
-                        </div>
-                        <div data-popper-arrow></div>
-                    </div>
-                </li>
-            </ul>
-
-            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li sec:authorize="!isAuthenticated()">
-                    <a href="/register"
-                       class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                       aria-current="page">
-                        Register</a>
-                </li>
-                <li sec:authorize="!isAuthenticated()">
-                    <a href="/login"
-                       class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                        Login</a>
-                </li>
-                <li sec:authorize="isAuthenticated()">
-                    <form th:action="${'/logout'}" th:method="post">
-                        <button type="submit"
-                                class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                            Logout
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="my-4 invisible">space</div>
-</div>
 
 <nav th:fragment="navbar-search"
-     class="hidden md:block bg-white dark:bg-gray-900 fixed w-full top-0 left-0 border-b border-gray-200 dark:border-gray-600"
+     class="hidden md:block bg-white dark:bg-gray-900 fixed w-full top-0 left-0 dark:border-gray-600"
      style="z-index: 998">
-    <div class="w-full flex flex-wrap items-center justify-between p-4">
-        <a class="flex items-center">
-            <img th:src="@{/img/logofurever.png}" class="h-[50px] mr-3" alt="Furever-logo">
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Furever</span>
-        </a>
-        <ul id="nav-menu"
-            class="hidden flex p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li sec:authorize="isAuthenticated()">
-                <a href="/"
-                   class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                   aria-current="page">
-                    Home</a>
-            </li>
-            <li sec:authorize="isAuthenticated()">
-                <a href="/about"
-                   class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    About</a>
-            </li>
-            <li sec:authorize="isAuthenticated()">
-                <a href="/posts"
-                   class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    Posts</a>
-            </li>
-            <li sec:authorize="isAuthenticated()">
-                <a href="/events"
-                   class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    Events</a>
-            </li>
-            <li sec:authorize="isAuthenticated()">
-                <a href="/profile"
-                   class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    Profile</a>
-            <li sec:authorize="isAuthenticated()">
-                <a href="/friends"
-                   class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                    Friends</a>
-            </li>
-        </ul>
+    <div class="w-full flex flex-wrap justify-between p-4">
+        <div class="flex w-full justify-between">
+                <div class="flex">
+                <a class="flex items-center">
+                    <img th:src="@{/img/logofurever.png}" class="h-[50px] mr-3" alt="Furever-logo">
 
-        <div class="h-full w-[56px] rounded-full shadow-md border-1 border-black" id="search"
-             style="box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; transition: width .5s cubic-bezier(.9, 0, .3, .9)">
-            <form action="" class="search relative w-full h-[50px] p-[10px]" id="search-bar">
-                <input type="search" placeholder="Look for a user" id="search-input"
-                       class="search__input border-none ml-1 font-sm rounded-full h-full"
-                       style="opacity:0; pointer-events: none; transition: opacity 0.7s;">
-                <div class="search__button absolute w-[45px] h-[45px] rounded-full bg-black top-0 bottom-0 right-[5px] cursor-pointer m-auto grid items-center "
-                     id="search-button" style="transition: transform .6s cubic-bezier(.9, 0 , .3, .9)">
-                    <i id="search-icon"
-                       class="ri-search-2-line search__icon flex ml-2.5 justify-center absolute items-center text-[1.6rem]"
-                       style="color:white;"></i>
-                    <i id="close"
-                       class="ri-close-line search__close flex ml-2.5 justify-center opacity-0 absolute items-center text-[1.6rem]"
-                       style="color:white;"></i>
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Furever</span>
+                </a>
+
+                        <div class="h-full w-[56px] rounded-full shadow-md ml-[15px] border-1 border-black" id="search"
+                             style="box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; transition: width .5s cubic-bezier(.9, 0, .3, .9)">
+                            <form action="" class="search relative w-full h-[50px] p-[10px]" id="search-bar">
+                                <input type="search" placeholder="Look for a user" id="search-input"
+                                       class="search__input border-none ml-1 font-sm rounded-full w-full h-full"
+                                       style="opacity:0; pointer-events: none; transition: opacity 0.7s;">
+
+                                <div class="search__button absolute w-[45px] h-[45px] rounded-full bg-blue-600 top-0 bottom-0 right-[5px] cursor-pointer m-auto grid items-center "
+                                     id="search-button" style="transition: transform .6s cubic-bezier(.9, 0 , .3, .9)">
+                                    <i id="search-icon"
+                                       class="ri-search-2-line search__icon flex ml-2.5 justify-center absolute items-center text-[1.6rem]"
+                                       style="color:white;"></i>
+                                    <i id="close"
+                                       class="ri-close-line search__close flex ml-2.5 justify-center opacity-0 absolute items-center text-[1.6rem]"
+                                       style="color:white;"></i>
+                                </div>
+
+                            </form>
+                        </div>
                 </div>
-            </form>
+
+        <div class="flex w-1/2 justify-end">
+
+                    <a href="/events/create" class="flex items-center justify-center p-3 mr-5 text-white rounded-lg dark:text-white bg-blue-600 hover:bg-blue-400 ">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
+                                     viewBox="0 0 16 16">
+                                    <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
+                                </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Create Event</span>
+
+                    </a>
+
+
+            <button data-dropdown-toggle="dropdown-nav" type="button" class="w-[50px] h-[50px] flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-gear-fill flex-shrink-0 w-6 h-6 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 " viewBox="0 0 16 16" >
+                    <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                </svg>
+
+            </button>
+
+
+            <div id="dropdown-nav" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                    <li>
+                        <a href="/profile/edit" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile Settings</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+
         </div>
+
+    </div>
+
     </div>
 </nav>
 

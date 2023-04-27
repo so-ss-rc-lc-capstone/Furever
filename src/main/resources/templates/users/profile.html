@@ -8,8 +8,10 @@
 <link rel="stylesheet" href="/css/calendar2.css">
 
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+
+<nav th:replace="partials/navbar :: navbar-search"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile"></nav>
+<aside th:replace="partials/Aside :: aside-nav"></aside>
 
 <div th:fragment="participation-modal" id="defaultModal" tabindex="-1" aria-hidden="true"
      class="fixed top-0 left-0 right-0 bottom-0 z-50 hidden flex items-center justify-center flex-col" onclick="hideModal()">
@@ -42,8 +44,8 @@
     </div>
 </div>
 
-
-<div class="w-full h-screen">
+<section class = "w-full flex justify-end">
+<div class="w-full md:w-[85%] h-screen">
     <div class="h-2/5 relative"
          style="background-image: url('https://imgtr.ee/images/2023/04/11/n5rU7.jpg'); background-position: center; background-size: cover;">
 
@@ -296,6 +298,7 @@
     </div>
 
 </div>
+</section>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
