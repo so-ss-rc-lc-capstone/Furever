@@ -35,11 +35,6 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/matrix")
-    public String returnMatrixPage(){
-        return "matrix";
-    }
-
 
     @GetMapping("/about")
     public String returnAboutPage(){

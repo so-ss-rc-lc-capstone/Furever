@@ -163,7 +163,8 @@ public class PostController {
     }
 
 
-    @GetMapping("/posts/{n}/delete")
+    @PostMapping("/posts/{n}/delete")
+
     public String deletePost(@PathVariable long n) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findById(n).get();
