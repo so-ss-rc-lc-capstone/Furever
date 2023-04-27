@@ -1,6 +1,6 @@
 (
     async function () {
-        const response = await fetch('http://localhost:8080/api/alluser', {
+        const response = await fetch(`${window.location.protocol}//${window.location.host}/api/alluser`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
