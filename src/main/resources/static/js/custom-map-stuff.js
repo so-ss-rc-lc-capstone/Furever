@@ -213,11 +213,11 @@ mapButton.addEventListener("click", function () {
     eventCards.forEach(function (card) {
         if (selectedValue === 'all') {
             allEvents();
-            map.style.display = "block";
+            map.style.display = "flex";
             card.style.display = "none";
         } else if (selectedValue === 'local') {
             localLocations();
-            map.style.display = "block";
+            map.style.display = "flex";
             card.style.display = "none";
         }
     });
