@@ -67,13 +67,29 @@ public class UserController {
         return "users/register";
     }
 
+//    @PostMapping("/register")
+//    public String registerUser(@ModelAttribute User user) {
+//        String hashedPw = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+//        user.setPassword(hashedPw);
+//        userDao.save(user);
+//        return "users/login";
+//    }
+
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user) {
+    public String registerUser(@ModelAttribute("user") User user, Model model) {
+        // Check if username is already taken
+        boolean usernameTaken = userDao.existsByUsername(user.getUsername());
+        if (usernameTaken) {
+            // Add message to model
+            model.addAttribute("usernameTakenMessage", "Username already taken");
+            return "users/register";
+        }
         String hashedPw = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashedPw);
         userDao.save(user);
         return "users/login";
     }
+
 
 
     @GetMapping("/user/{id}/posts")
@@ -155,8 +171,8 @@ public class UserController {
 
 
         List<Pet> petData = petsDao.findAll();
-
         User userData = userDao.findById(id);
+
         List<User> followedUsers = userData.getFollowedUsers();
         List<Long> followedUsersId = new ArrayList<>();
         for (User followedUser : followedUsers) {
@@ -164,6 +180,7 @@ public class UserController {
             System.out.println("[followedUsers ID]:" + followedUser.getId());
             followedUsersId.add(followedUser.getId());
         }
+
         List<Event> eventsData = eventDao.findAll();
         List<Event> userEvents = new ArrayList<>();
 
