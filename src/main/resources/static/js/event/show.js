@@ -21,7 +21,7 @@ eventButtons.forEach(function(eventButton) {
         console.log(eventId);
 
         // Fetch participants for the selected event
-        fetch('http://localhost:8080/events/' + eventId + '/participants', {
+        fetch(`${window.location.protocol}//${window.location.host}/events/${eventId}/participants`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
