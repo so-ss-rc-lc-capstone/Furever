@@ -18,10 +18,12 @@
                    th:src="@{/img/profile.jpeg}"
                    alt="Default profile image"/>
 
-              <div class="flex ml-3 flex-col">
+              <div class="flex ml-3 items-start justify-center flex-col">
                 <h5 class="text-[18px] font-bold text-gray-900 dark:text-white">
-                  <span th:text="${user.first_name}"/> <span th:text="${user.last_name}"/></h5>
-                <h5 class="text-[13px] font-bold text-gray-400 dark:text-white">
+                  <span class="text-[15px] font-bold mb-1"
+                        th:text="${#strings.isEmpty(user.first_name) ? 'New User' : user.first_name + (user.last_name != null ? ' ' + user.last_name : '')}"></span>
+                </h5>
+                <h5 class="text-[13px] text-start font-bold text-gray-400 dark:text-white">
                   @<span th:text="${user.username}"/></h5>
               </div>
             </div>
@@ -105,9 +107,9 @@
   </div>
 </aside>
 
-<aside th:fragment="friends-aside" class="fixed top-0 mr-3 mt-3 right-0 justify-items-center ml-5 hidden md:flex w-[15em]"
+<aside th:fragment="friends-aside" class="fixed top-0 mr-3 mt-3 right-0 justify-items-center  ml-5 hidden md:flex w-[15em]"
        aria-label="Sidebar">
-  <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white border  border-gray-200 rounded-lg shadow-xl dark:bg-gray-800 dark:border-gray-700">
     <div class="w-full flex flex-row items-center justify-between mb-4">
       <div class="w-full flex flex-col justify-center">
         <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
