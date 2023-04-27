@@ -67,7 +67,7 @@ allBtns.forEach(event => {
         console.log("clicked");
         // Get the event ID from the "data-event-id" attribute of the button
         let eventId = event.getAttribute("data-event-id");
-        console.log(eventId);
+        console.log("this =>" + eventId);
 
         // Fetch participants for the selected event
         fetch('http://localhost:8080/events/' + eventId + '/participants', {
@@ -83,7 +83,7 @@ allBtns.forEach(event => {
                 return res.json();
             })
             .then(data => {
-                console.log(data);
+                console.log("data"+ data);
                 let viewParticipants = JSON.stringify(data);
                 getAllParticipants(viewParticipants);
             })

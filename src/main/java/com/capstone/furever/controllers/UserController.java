@@ -47,7 +47,6 @@ public class UserController {
         List<Pet> pets = petsDao.findAll();
         List<Post> posts = postDao.findAll();
         List<Event> events = eventDao.findAll(); // or however you fetch the events
-
         model.addAttribute("comments", comments);
         model.addAttribute("events", events);
         model.addAttribute("user", userData);
@@ -167,6 +166,10 @@ public class UserController {
     @GetMapping("/user/{id}")
     public String findPetById(@PathVariable long id, Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData1 = userDao.findById(currentUser.getId());
+
+
+
         List<Pet> petData = petsDao.findAll();
 
         User userData = userDao.findById(id);
@@ -186,12 +189,16 @@ public class UserController {
                 userEvents.add(event);
             }
         }
-
+        model.addAttribute("loggedInUser", userData1);
+        System.out.println("userData1: " + userData1.getFirst_name());
+        model.addAttribute("followedUsers", followedUsers);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("followedUsersId", followedUsersId);
         model.addAttribute("user", userData);
         model.addAttribute("pets", petData);
         model.addAttribute("events", userEvents);
+
+
         return "users/user-show";
     }
 
