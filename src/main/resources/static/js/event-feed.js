@@ -123,7 +123,7 @@ eventButtons.forEach(button => {
         console.log(eventId);
 
         // Fetch participants for the selected event
-        fetch(`${window.location.protocol}//${window.location.host}` + eventId + '/participants', {
+        fetch(`${window.location.protocol}//${window.location.host}/events/${eventId}/participants`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -178,9 +178,6 @@ function getAllParticipants(data){
                         </div>
                      </a>
                     </div>
-                   
-                   
-                   
                   </div>
                 </div>
               </div>

@@ -10,12 +10,16 @@
 <nav th:replace="partials/navbar :: navbar-search"></nav>
 <nav th:include="event/participants-modal"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile-other"></nav>
+
+
+
 <div class="w-full h-screen">
-    <div class="w-full relative flex items-start justify-center"
+    <div class="w-full h-[50%] mt-[2em] relative flex items-start justify-center"
          th:style="'background-image:url(\'' + ${event.eventPhoto != null and event.eventPhoto != '' ? event.eventPhoto : '/img/event-img.jpg'} + '\'); background-size:cover; background-position:center;'">
         <div class="absolute top-20 left-2 bg-white w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-gray-200 hover:cursor-pointer"
              onclick="window.history.back()"><i class="ri-arrow-left-line font-[30px]"></i></div>
-        <div class="flex w-[50em] relative h-full rounded-xl bg-white shadow-md" style="transform: translateY(70%);">
+
+        <div class="flex w-[50em] h-[80%] relative rounded-xl bg-white shadow-md" style="transform: translateY(70%);">
             <div class="absolute top-[-60px] left-[25px] h-[80px] w-[80px] rounded-xl bg-white shadow-lg">
                 <div class="h-1/4 bg-red-600 rounded-t-lg"></div>
                 <div class="h-3/4 flex justify-center items-center text-3xl font-bold"><span
@@ -108,7 +112,7 @@
 
     <!--More Details/Mapbox-->
     <div class="w-full h-full flex mt-5 justify-center">
-        <div class="w-[50em] mt-[18em] h-full ">
+        <div class="w-[50em] mt-[12em] h-full ">
             <div class="w-full flex justify-between">
                 <a href="#" id="view-participants-btn" class="view-participants-btn hover:cursor-pointer"
                    data-modal-target="defaultModal"
