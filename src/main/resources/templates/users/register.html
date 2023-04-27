@@ -22,6 +22,8 @@
             <input  th:field="*{email}" type="text" id="input-group-1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email@example.com">
         </div>
         <label for="website-admin" class="block mb-2 text-sm font-medium text-gray-900 ">Username</label>
+        <span th:if="${usernameTakenMessage}" class="text-red-500 ml-2">
+        <span th:text="${usernameTakenMessage}"></span>
         <div class="flex mb-6">
 
             <input th:field="*{username}" type="text" id="website-admin" class="rounded-none rounded-r-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="username">
