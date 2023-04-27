@@ -68,13 +68,29 @@ public class UserController {
         return "users/register";
     }
 
+//    @PostMapping("/register")
+//    public String registerUser(@ModelAttribute User user) {
+//        String hashedPw = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+//        user.setPassword(hashedPw);
+//        userDao.save(user);
+//        return "users/login";
+//    }
+
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute User user) {
+    public String registerUser(@ModelAttribute("user") User user, Model model) {
+        // Check if username is already taken
+        boolean usernameTaken = userDao.existsByUsername(user.getUsername());
+        if (usernameTaken) {
+            // Add message to model
+            model.addAttribute("usernameTakenMessage", "Username already taken");
+            return "users/register";
+        }
         String hashedPw = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
         user.setPassword(hashedPw);
         userDao.save(user);
         return "users/login";
     }
+
 
 
     @GetMapping("/user/{id}/posts")
