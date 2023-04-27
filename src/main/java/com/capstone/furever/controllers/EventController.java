@@ -19,7 +19,6 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-
 public class EventController {
     private final EventRepository eventsDao;
     private final UserRepository usersDao;
@@ -35,14 +34,14 @@ public class EventController {
 
     }
 
-//    When the below url entered, navigates to create-event.html
+    //    When the below url entered, navigates to create-event.html
     @GetMapping("/events/create")
     public String eventForm(Model model) {
         model.addAttribute("event", new Event());
         return "event/create-event";
     }
 
-//    Cotroller send the event information to the database and redirect to events page
+    //    Cotroller send the event information to the database and redirect to events page
     @PostMapping("/events/create")
     public String createEvent(@ModelAttribute Event event) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -145,7 +144,6 @@ public class EventController {
         return "event/show";
     }
 
-
     @GetMapping("events/{id}/delete")
     public String deleteEvent(@PathVariable long id) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -177,7 +175,6 @@ public class EventController {
         }
         return "redirect:/profile";
     }
-
 
     //    Event participation Mapping method
     @PostMapping("/events/{id}/participate")
