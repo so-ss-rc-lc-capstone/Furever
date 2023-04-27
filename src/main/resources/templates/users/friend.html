@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head th:replace="partials/header :: head">
     <title>Friends</title>
     <!--  Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -34,6 +32,7 @@
     </script>
     <script src="https://cdn.talkjs.com/talk.js"></script>
     <link rel="stylesheet" href="/css/loading.css">
+
 </head>
 
 <body class="bg-gray-100 ">
@@ -63,11 +62,6 @@
         <!--    Hamburger dropdown-->
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
             <div class="relative mt-3 md:hidden">
-                <!--        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">-->
-                <!--          <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>-->
-                <!--        </div>-->
-                <!--        <input type="text" id="search-navbar" class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search...">-->
-
                 <ul class=" divide-y divide-gray-200 dark:divide-gray-700">
                     <li>
                         <a href="/profile"
@@ -316,6 +310,7 @@
 
                                             </div>
                                         </div>
+
                                     </div>
                                 </li>
                             </div>
@@ -325,57 +320,59 @@
                 </section>
             </div>
 
+
             <div id="talkjs" class=" md:flex w-full md:w-2/4 md:px-3">
                 <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
 
-                    <div class="container">
+                    <div class="container w-full h-screen">
                         <!-- container element in which TalkJS will display a chat UI -->
-                        <div id="talkjs-container" class="flex flex-col justify-center w-full items-center"
+
+                        <div id="talkjs-container" class="flex flex-col justify-center w-full items-center object-contain"
                              style="width: 90%; margin: 30px; height: 800px">
 
-                            <div class="load-row">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                            <div aria-label="Orange and tan hamster running in a metal wheel" role="img"
-                                 class="wheel-and-hamster">
-                                <div class="wheel"></div>
-                                <div class="hamster">
-                                    <div class="hamster__body">
-                                        <div class="hamster__head">
-                                            <div class="hamster__ear"></div>
-                                            <div class="hamster__eye"></div>
-                                            <div class="hamster__nose"></div>
-                                        </div>
-                                        <div class="hamster__limb hamster__limb--fr"></div>
-                                        <div class="hamster__limb hamster__limb--fl"></div>
-                                        <div class="hamster__limb hamster__limb--br"></div>
-                                        <div class="hamster__limb hamster__limb--bl"></div>
-                                        <div class="hamster__tail"></div>
-                                    </div>
+                            <div class="relative">
+                                <div class="load-row">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
                                 </div>
-                                <div class="spoke"></div>
+                                <div aria-label="Orange and tan hamster running in a metal wheel" role="img"
+                                     class="wheel-and-hamster">
+                                    <div class="wheel"></div>
+                                    <div class="hamster">
+                                        <div class="hamster__body">
+                                            <div class="hamster__head">
+                                                <div class="hamster__ear"></div>
+                                                <div class="hamster__eye"></div>
+                                                <div class="hamster__nose"></div>
+                                            </div>
+                                            <div class="hamster__limb hamster__limb--fr"></div>
+                                            <div class="hamster__limb hamster__limb--fl"></div>
+                                            <div class="hamster__limb hamster__limb--br"></div>
+                                            <div class="hamster__limb hamster__limb--bl"></div>
+                                            <div class="hamster__tail"></div>
+                                        </div>
+                                    </div>
+                                    <div class="spoke"></div>
+                                </div>
+                                <h2 class="text-[15px] mb-3 mt-1 text-center md:text-end  text-gray-500 rounded-lg dark:text-white">
+                                    Try click ' <span class="text-black"> > </span>' to start chatting!
+                                </h2>
                             </div>
-                            <h2 class="text-[15px] mb-3 mt-1 text-center md:text-end  text-gray-500 rounded-lg dark:text-white">
-                                Try click ' <span class="text-black"> > </span>' to start chatting!
-                            </h2>
                         </div>
                     </div>
                 </section>
             </div>
-
-
         </div>
     </div>
 </div>
 
 
+
 <!--<script src="/js/keys.js" type="text/javascript"></script>-->
 <script src="/js/users/friend.js"></script>
 <script src="../../static/js/event-feed.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 </body>
 </html>
 

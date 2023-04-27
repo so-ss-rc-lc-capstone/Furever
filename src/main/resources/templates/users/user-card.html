@@ -1,23 +1,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="partials/header :: head"></head>-->
-
-<!--<body>-->
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
-
-
 
 <div class="flex justify-center" th:fragment="userList" >
-  <div class="flex flex-row justify-start items-center">
-<!--    <h3 class="mb-1 text-xl font-medium text-gray-900">Other Users</h3>-->
-
-  </div>
-
 
   <div class="flex flex-row align-middle">
     <div th:each="user : ${users}" class="w-48" >
-
-
-
         <div class=" max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div class="flex justify-end px-4 pt-4">
             <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
@@ -41,17 +27,9 @@
           </div>
           <a th:href="@{|/user/${user.id}|}" class="flex flex-col items-center pb-10">
             <img th:href="@{|/user/${user.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg" th:src="${user.profilePhoto}" alt="user-image"/>
-
-<!--            <img class="block mx-auto h-24 rounded-full sm:mx-0 sm:shrink-0" src="/img/profile.jpeg" alt="Woman's Face">-->
-
             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><span th:text="${user.username}" th:href="@{|/user/${user.id}|}"></span></h5>
-
-
           </a>
         </div>
     </div>
   </div>
 </div>
-
-<!--</body>-->
-<!--</html>-->

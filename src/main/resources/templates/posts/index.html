@@ -1,3 +1,4 @@
+
     <!DOCTYPE html>
 
     <html xmlns:th="http://www.thymeleaf.org">
@@ -6,101 +7,7 @@
         <title>Posts</title>
     </head>
     <!--</head>-->
-
-    <style>
-
-        #comment-body, #name-body {
-            max-width: 100%;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            text-overflow: ellipsis;
-        }
-
-
-        @media (max-width: 1095px) {
-            aside {
-                display: none !important;
-            }
-        }
-
-
-        #nav-mobile {
-            position: fixed;
-            bottom: 2rem;
-            left: 0;
-            right: 0;
-            width: 328px;
-            height: 72px;
-            box-shadow: 0 8px 32px hsla(231, 44%, 45%, .2);
-            margin: 0 auto;
-            padding: 1.5rem .5rem;
-            border-radius: .65rem;
-            overflow: hidden;
-        }
-
-        .nav__list {
-            display: flex;
-            justify-content: center;
-            column-gap: 2rem;
-        }
-
-        .nav__link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #comment-body, #name-body {
-            max-width: 100%;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            text-overflow: ellipsis;
-        }
-
-
-        @media (max-width: 1095px) {
-            aside {
-                display: none !important;
-            }
-        }
-
-
-        .like-container {
-            display: inline-block;
-            position: relative;
-
-        }
-
-        .like-icon {
-            height: 20px;
-            width: 20px;
-            transition: transform 0.4s ease-in-out, fill 0.2s ease-in-out, stroke 0.2s ease-in-out;
-            stroke: currentColor;
-            stroke-width: 1.5;
-            fill: none;
-        }
-
-        .like-container.clicked .like-icon {
-            transform: translateY(-10%) scale(1);
-            fill: red;
-            stroke: red;
-        }
-
-
-        .like-container.clicked h3 {
-            color: red;
-        }
-
-        .like-container:hover:not(.clicked) h3 {
-            color: red;
-        }
-
-        .like-container:hover:not(.clicked) .like-icon path {
-            stroke: red;
-        }
-
-
-    </style>
+    <link rel="stylesheet" href="/css/posts-index.css"/>
 
     <body class="flex justify-center bg-gray-100">
     <nav th:replace="partials/navbar :: navbar-search"></nav>
@@ -140,120 +47,122 @@
 
                         <span class="sr-only">Close modal</span>
                     </div>
+                </div>
+                <div class="flex items-center space-x-4">
+
+                    <button id="generate" type="submit"
+                            class="text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        Generate Description
+                    </button>
 
                 </div>
-                <!-- Modal body -->
-                <form action="#">
-                    <div class="grid gap-4 mb-4 sm:grid-cols-2">
-                        <div class="sm:col-span-2">
-                            <label for="ai-description"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provide a brief
-                                description</label>
-                            <textarea id="ai-description" rows="5"
-                                      class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                      placeholder= "List examples out: went to park with my dog, met friend, ate lunch."></textarea>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-4">
-
-                        <button id="generate" type="submit"
-                                class="text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                            Generate Description
-                        </button>
-
-                    </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!--Posts main container-->
-    <div class="flex items-center justify-center w-full lg:w-[35em] xl:w-[45em]">
-        <!--Left Aside-->
-        <aside th:replace="partials/Aside :: aside-nav"></aside>
+<!--Posts main container-->
+<div class="flex items-center justify-center w-full lg:w-[35em] xl:w-[45em]">
+    <!--Left Aside-->
+    <aside th:replace="partials/Aside :: aside-nav"></aside>
 
-        <div class="w-full mt-[8em]">
-            <!--Posts create bar-->
-            <div class="bg-white border w-full p-3 border-gray-200 rounded-lg mb-6 shadow dark:border-gray-700">
-                <div class="flex flex-col">
-                    <div class="flex flex-row">
-                        <div class="flex justify-center">
-                            <img class="w-[55px] h-[55px] mt-[60px] ml-7 rounded-full shadow-md"
-                                 th:if="${not #strings.isEmpty(user.profilePhoto)}"
-                                 th:src="${user.profilePhoto}"
-                                 alt="Profile image"/>
-                            <img class="w-[55px] h-[55px] mt-[60px] ml-7 rounded-full shadow-md"
-                                 th:if="${#strings.isEmpty(user.profilePhoto)}"
-                                 th:src="@{/img/profile.jpeg}"
-                                 alt="Default profile image"/>
-                        </div>
 
-                        <form th:action="@{/posts/create}" th:method="POST" th:object="${post}" class="w-full">
-                            <div class="flex w-full justify-center-center">
-                                <div class="ml-[1em]">
-                                    <span class = "font-bold text-2xl">Posts</span>
-                                    <span class="text-[15px] text-gray-400"> - Share Something</span>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
-                                <span><input id="post-photo-input" name="image" type="hidden"></span>
-                                <textarea id="chat" name="body" rows="1" class="text-[15px] resize-none h-[90px] p-2.5 w-[90%] text-sm text-gray-900 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 " placeholder="Whats on your mind?"></textarea>
-                                <button type="submit" class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
-                                    <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
-                                    <span class="sr-only">Send message</span>
-                                </button>
-                            </div>
-                        </form>
-
+    <div class="w-full mt-[8em]">
+        <!-- User POSTS -->
+        <div class="bg-white border w-full p-3 border-gray-200 rounded-lg mb-6 shadow dark:border-gray-700">
+            <div class="flex flex-col">
+                <div class="flex flex-row">
+                    <div class="flex justify-center">
+                        <img class="w-[55px] h-[55px] mt-[60px] ml-7 rounded-full shadow-md"
+                             th:if="${not #strings.isEmpty(user.profilePhoto)}"
+                             th:src="${user.profilePhoto}"
+                             alt="Profile image"/>
+                        <img class="w-[55px] h-[55px] mt-[60px] ml-7 rounded-full shadow-md"
+                             th:if="${#strings.isEmpty(user.profilePhoto)}"
+                             th:src="@{/img/profile.jpeg}"
+                             alt="Default profile image"/>
                     </div>
 
-                    <div class="flex w-full justify-evenly">
-                        <div  id="post-photoBtn" class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
-                            <button type="button" class="flex items-center justify-center text-[20px] w-[40px] h-[40px] justify-center text-black dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                                <i class="ri-image-2-fill w-[40px]"></i>
+                    <form th:action="@{/posts/create}" th:method="POST" th:object="${post}" class="w-full">
+
+                        <div class="flex w-full justify-center-center">
+                            <div class="ml-[1em]"><span class="font-bold text-2xl">Posts</span> <span
+                                    class="text-[15px] text-gray-400"> - Share Something</span></div>
+                        </div>
+
+                        <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
+                            <span><input id="post-photo-input" name="image" type="hidden"></span>
+
+                            <textarea id="chat" name="body" rows="1"
+                                      class="text-[15px] resize-none h-[90px] p-2.5 w-[90%] text-sm text-gray-900 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 "
+                                      placeholder="Whats on your mind?"></textarea>
+
+                            <button type="submit"
+                                    class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+                                <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor"
+                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                                </svg>
+                                <span class="sr-only">Send message</span>
                             </button>
-                            <h3 class="text-gray-400 text-[13px]">Image/Video</h3>
                         </div>
-
-                        <div id="ai" class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 "
-                             data-popover-target="popover-chat">
-                            <image th:src="@{/img/ai-icon2.png}" class="w-[40px] hover:cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"></image>
-                            <h3 class="text-gray-400 text-[13px]">Ai Assistance</h3>
-                        </div>
-                        <div data-popover id="popover-chat" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-                            <div class="grid grid-cols-5">
-                                <div class="col-span-3 p-3">
-                                    <div class="space-y-2">
-                                        <h3 class="font-semibold text-gray-900 dark:text-white">Try our Chat GPT!</h3>
-                                        <p>You can generate your post with simple keywords with Chat GPT!</p>
-                                    </div>
-                                </div>
-                                <img th:src="@{/img/chat-gif-high.gif}" class="h-full col-span-2" alt="Italy map" />
-                            </div>
-                            <div data-popper-arrow></div>
-                        </div>
-                    </div>
-                    <div class ="w-full flex justify-center items-center"> <img id="post-thumbnail" class="h-[60%] hidden rounded-lg w-[70%]">
-                    </div>
-
+                    </form>
                 </div>
+
+                <div class="flex w-full justify-evenly">
+                    <div id="post-photoBtn"
+                         class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+                        <button type="button"
+                                class="flex items-center justify-center text-[20px] w-[40px] h-[40px] justify-center text-black dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                            <i class="ri-image-2-fill w-[40px]"></i>
+                        </button>
+                        <h3 class="text-gray-400 text-[13px]">Image/Video</h3>
+                    </div>
+
+                    <div id="ai"
+                         class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 "
+                         data-popover-target="popover-chat">
+                        <image th:src="@{/img/ai-icon2.png}"
+                               class="w-[40px] hover:cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"></image>
+                        <h3 class="text-gray-400 text-[13px]">Ai Assistance</h3>
+                    </div>
+                    <div data-popover id="popover-chat" role="tooltip"
+                         class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+                        <div class="grid grid-cols-5">
+                            <div class="col-span-3 p-3">
+                                <div class="space-y-2">
+                                    <h3 class="font-semibold text-gray-900 dark:text-white">Try our Chat GPT!</h3>
+                                    <p>You can generate your post with simple keywords with Chat GPT!</p>
+                                </div>
+                            </div>
+                            <img th:src="@{/img/chat-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
+                        </div>
+                        <div data-popper-arrow></div>
+                    </div>
+                </div>
+                <div class="w-full flex justify-center items-center"><img id="post-thumbnail"
+                                                                          class="h-[60%] hidden rounded-lg w-[70%]">
+                </div>
+
+
             </div>
-
-            <!--Posts-->
-            <div th:replace="partials/posts:: posts"></div>
-
         </div>
+
+
+        <!--Posts-->
+        <div th:replace="partials/posts :: posts"></div>
+        <!--Friends Aside-->
+        <aside th:replace="partials/Aside :: friends-aside"></aside>
     </div>
-
-    <!--Friends Aside-->
-    <aside th:replace="partials/Aside :: friends-aside"></aside>
+</div>
 
 
-<script src="/js/posts/post-index.js"></script>
-<!--<script src="/js/keys.js" type="text/javascript"></script>-->
-<script src="/js/event-feed.js"></script>
-<script th:src="@{/js/filestack-post.js}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+
+        <script src="/js/posts/post-index.js"></script>
+        <!--<script src="/js/keys.js" type="text/javascript"></script>-->
+        <script src="/js/event-feed.js"></script>
+        <script th:src="@{/js/filestack-post.js}"></script>
+        <script src="/js/posts/post-delete.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 </body>
 </html>
