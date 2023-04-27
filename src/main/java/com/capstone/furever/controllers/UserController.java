@@ -190,6 +190,7 @@ public class UserController {
                 userEvents.add(event);
             }
         }
+
         model.addAttribute("loggedInUser", userData1);
         System.out.println("userData1: " + userData1.getFirst_name());
         model.addAttribute("followedUsers", followedUsers);
