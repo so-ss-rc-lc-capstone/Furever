@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns="http://www.w3.org/1999/html">
+
 <head th:replace="partials/header :: head">
     <meta charset="UTF-8">
     <title>All Events</title>
 </head>
+
 <style>
     @media (max-width: 1095px) {
         aside {
@@ -49,59 +51,59 @@
 <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 <nav th:include="event/participants-modal"></nav>
 
-<section class="aside-container hidden md:flex w-[13em] bg-blue-300 xl:w-[17em] h-screen relative">
-    <aside id="logo-sidebar" class="fixed top-0 left-0 border-r-2 col-start-1 col-span-1 hidden md:flex w-[13em] xl:w-[15em] h-screen bg-white"
+<section class="aside-container hidden md:flex w-[20em] xl:w-[28.5em] h-screen relative">
+    <aside id="logo-sidebar" class="fixed top-0 left-0 border-r-2 col-start-1 col-span-1 hidden md:flex w-[16em] xl:w-[17em] h-screen bg-white"
                                aria-label="Sidebar" style="z-index: 99">
-    <div class="h-full w-64 px-3 pb-4 bg-white mt-[7em]">
+    <div class="h-full w-full px-3 pb-4 bg-white mt-[7em]">
         <ul class="space-y-2">
-            <li>
-                <div class="w-full max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
-                    <div class="flex flex-col items-center justify-center mt-1">
-                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+            <li class="mb-[3em]">
+                <div class="w-full max-w-sm bg-white flex justify-center items-center dark:bg-gray-800 dark:border-gray-700">
+                    <div class="flex flex-col w-[90%] justify-center items-center p-5 bg-gray-100 rounded-xl h-[150px]">
+                        <div class = "flex ">
+                        <img class="w-[50px] h-[50px] mb-3 rounded-full shadow-lg"
                              th:if="${not #strings.isEmpty(user.profilePhoto)}"
                              th:src="${user.profilePhoto}"
                              alt="Profile image"/>
-                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                        <img class="w-[15px] h-[15px] rounded-full shadow-lg"
                              th:if="${#strings.isEmpty(user.profilePhoto)}"
                              th:src="@{/img/profile.jpeg}"
                              alt="Default profile image"/>
-                        <h5 class="mb-1 text-center text-xl font-medium text-gray-900 dark:text-white">Welcome,
-                            <span th:text="${#authentication.principal.username}"/>!</h5>
-                        <span class="text-sm text-gray-500 dark:text-gray-400"></span>
+
+                        <div class="flex ml-3 flex-col">
+                            <h5 class="text-[18px] font-bold text-gray-900 dark:text-white">
+                                <span th:text="${user.first_name}"/> <span th:text="${user.last_name}"/></h5>
+                            <h5 class="text-[13px] font-bold text-gray-400 dark:text-white">
+                                @<span th:text="${user.username}"/></h5>
+                        </div>
+                        </div>
+
+                        <div class="w-full flex justify-evenly">
+                            <div class="flex flex-col">
+                                <h2 class="text-center font-bold" th:text="${user.followedUsers.size()}"></h2>
+                                <h5 class="text-center text-gray-400">Followers</h5>
+                            </div>
+
+                            <div class="flex flex-col">
+                                <h2 class="text-center font-bold" th:text="${user.posts.size()}"></h2>
+                                <h5 class="text-center text-gray-400">Posts</h5>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </li>
 
-            <li class="flex w-full items-center justify-center p-3 border-b-2 pb-5 text-gray-900 dark:text-white ">
-                <form th:action="${'/logout'}" th:method="post">
-                    <button type="submit"
-                            class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 ">
-                        Logout
-                    </button>
-                </form>
-            </li>
             <li>
-                <a href="/profile"
-                   class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="/events/create"
+                   class="flex items-center p-3 pl-14 text-white rounded-lg dark:text-white bg-blue-600 hover:bg-blue-400 dark:hover:bg-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-person-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                         viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-                    </svg>
-                    <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
-                </a>
-            </li>
-            <li>
-                <a href="/posts"
-                   class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
+                         class="flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
                          viewBox="0 0 16 16">
                         <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
                         <path fill-rule="evenodd"
                               d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
                     </svg>
-                    <span class="flex-1 ml-3 whitespace-nowrap">My Feed</span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Create Event</span>
                 </a>
             </li>
             <li>
@@ -112,72 +114,84 @@
                          viewBox="0 0 16 16">
                         <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
                     </svg>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Chatting</span>
+                </a>
+            </li>
+            <li>
+                <a href="/profile/edit"
+                   class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 16 16" >
+                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Account Settings</span>
                 </a>
             </li>
             <li>
                 <a href="/events"
                    class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white bi bi-calendar4-event"
-                         viewBox="0 0 16 16">
-                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
-                        <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 16 16">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
                     </svg>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Contact Us</span>
                 </a>
             </li>
+            <li class="flex w-full items-center justify-center p-3  pb-5 text-gray-900 dark:text-white ">
+                <form th:action="${'/logout'}" th:method="post">
+                    <button type="submit"
+                            class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 ">
+                        Logout
+                    </button>
+                </form>
+            </li>
+
         </ul>
     </div>
 </aside></section>
 
-<div id="feed-container" class="flex items-center md:ml-[3em] xl:ml-[5em] justify-center w-full ">
+
+<div id="feed-container" class="flex items-center justify-center w-full ">
     <!--- Feed -->
-    <div class="w-full ">
+    <div class="w-full md:w-[70%]">
         <!--Filter bar-->
         <div class=" mt-[3em] md:mt-[8em]">
             <section class="dark:bg-gray-900 w-full h-[5em] flex items-center">
 
                 <div class="w-full">
                     <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
-                        <div class="w-full flex justify-between items-center">
-                            <h1 class="text-2xl p-3 ml-2 font-extrabold dark:text-white">Events<small
+                        <div class="w-full flex justify-between items-center p-4">
+                            <h1 class="text-2xl w-full md:w-[15em] p-3 ml-2 font-extrabold dark:text-white">Discover Events<small
                                     class="ml-3 text-sm font-semibold text-gray-500 dark:text-gray-400"
                                     th:text="${events.size()}"></small> <span
                                     class="text-sm font-semibold text-gray-500 dark:text-gray-400">results</span></h1>
-                            <button type="button"
-                                    class="text-white w-1/3 mr-4 bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                <a href="/events/create">Create Event</a></button>
+
+                            <div class="flex justify-center md:justify-end md:items-center md:w-[200px] space-x-3 ">
+                                <div class=" w-[160px] md:w-[150px]">
+                                    <ul class=" w-full flex text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow dark:divide-gray-700 dark:text-gray-400">
+
+                                        <li class="w-full toggle-btn">
+                                            <a id="listing-btn"
+                                               class="toggle-btn inline-block w-full border-l border-t border-b border-gray-300 p-2.5 text-gray-900 bg-gray-200 rounded-l-lg dark:bg-gray-700 dark:text-white"
+                                               aria-current="page">Listing</a>
+                                        </li>
+                                        <li class="w-full toggle-btn">
+                                            <a id="map-btn"
+                                               class="toggle-btn inline-block w-full border border-gray-300 p-2.5 rounded-r-lg hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Map</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <select id="filter"
+                                        class="bg-white ml-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block md:w-[100px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                    <option  id="all" value="all">All</option>
+                                    <option id="local" value="local">Local</option>
+
+                                </select>
+
+                            </div>
+
                         </div>
-                        <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700">
                         <div class="flex flex-col items-center justify-end p-4 space-y-3 md:flex-row md:space-y-0 md:space-x-4">
 
-                            <div class="flex flex-col items-stretch justify-end flex-shrink-0 w-full space-y-2 md:w-auto md:flex-row md:space-y-0 md:items-center md:space-x-3">
-
-                                <div class="flex justify-end md:items-center w-full space-x-3 md:w-auto">
-                                    <div class="flex justify-center items-center">
-                                        <ul class=" text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
-                                            <li class="w-full toggle-btn">
-                                                <a id="listing-btn"
-                                                   class="toggle-btn inline-block w-full border-l border-t border-b border-gray-300 p-2.5 text-gray-900 bg-gray-200 rounded-l-lg dark:bg-gray-700 dark:text-white"
-                                                   aria-current="page">Listing</a>
-                                            </li>
-                                            <li class="w-full toggle-btn">
-                                                <a id="map-btn"
-                                                   class="toggle-btn inline-block w-full border border-gray-300 p-2.5 rounded-r-lg hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Map</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <select id="filter"
-                                            class="bg-white ml-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block md:w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                        <option  id="all" value="all">All</option>
-                                        <option id="local" value="local">Local</option>
-
-                                    </select>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -223,7 +237,7 @@
                     </ul>
                 </div>
                 <div id="myTabContent">
-                    <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel"
+                    <div class="hidden rounded-lg" id="profile" role="tabpanel"
                          aria-labelledby="profile-tab">
                         <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
 
@@ -231,7 +245,7 @@
                             <div th:each="user : ${followedUsers}">
 
                                 <div th:if="${user.id} != ${#authentication.principal.id}">
-                                    <li class="py-2 group/item hover:bg-slate-100 ">
+                                    <li class="py-2 group/item">
                                         <div class="flex flex-col space-x-4 ">
                                             <div class="flex items-center justify-between px-3">
                                                 <div th:data-dropdown-toggle="${user.id}"
@@ -266,19 +280,19 @@
                                                             aria-labelledby="avatarButton">
                                                             <li>
                                                                 <a th:href="@{|/user/${user.id}|}"
-                                                                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
+                                                                   class="block px-4 py-2 dark:hover:text-white">View
                                                                     Profile</a>
                                                             </li>
                                                             <li>
                                                                 <a href="/friends"
-                                                                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
+                                                                   class="block px-4 py-2 dark:hover:text-white">Message</a>
                                                             </li>
                                                         </ul>
                                                         <div class="py-1">
 
                                                             <form th:action="@{/users/{id}/follow(id=${user.id})}"
                                                                   th:name="followFromEvent" th:method="post"
-                                                                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                  class="block px-4 py-2 text-sm text-gray-700">
                                                                 <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
                                                                         type="submit"></button>
                                                             </form>
@@ -290,17 +304,16 @@
                                                     </div>
                                                 </div>
 
-                                                <a class="flex flex-row justify-self-end items-center group/edit invisible hover:bg-slate-200 group-hover/item:visible "
+                                                <a class="flex flex-row justify-self-end items-center  "
                                                    th:href="@{|/user/${user.id}|}">
 
                                                     <div class="hover:cursor-pointer group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500">
-                                                        <svg fill="currentColor" class="h-5" viewBox="0 0 24 24"
-                                                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                            <path clip-rule="evenodd" fill-rule="evenodd"
-                                                                  d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z">
-                                                            </path>
-                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-300 hover:text-gray-500 transition duration-300  bi-person-circle" viewBox="0 0 16 16">
+                                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                                    </svg>
                                                     </div>
+
                                                 </a>
                                             </div>
                                         </div>
@@ -393,7 +406,7 @@
     </div>
 </aside>
 </section>
-
+<!--<script src="/js/keys.js" type="text/javascript"></script>-->
 <!-- minified snippet to load TalkJS without delaying your page -->
 <script src="/js/event/event-index.js"></script>
 

@@ -19,7 +19,8 @@
                     <div class="h-1/4 flex">
                         <div class="w-1/4 h-full flex items-center">
                             <div class="w-[140px] h-[140px] relative flex justify-center items-center shadow-lg bg-white rounded-full">
-                                <span><img id="user-thumbnail" class="w-[130px] h-[130px] absolute top-[5px] left-[4px] right-0 bottom-0 rounded-full"></span>
+                                <span><img id="user-thumbnail"
+                                           class="w-[130px] h-[130px] absolute top-[5px] left-[4px] right-0 bottom-0 rounded-full"></span>
                                 <img class="w-[130px] h-[130px] rounded-full shadow-xl"
                                      th:if="${not #strings.isEmpty(user.profilePhoto)}"
                                      th:src="${user.profilePhoto}"
@@ -28,15 +29,20 @@
                                      th:unless="${not #strings.isEmpty(user.profilePhoto)}"
                                      th:src="@{/img/profile.jpeg}"
                                      alt="Default profile image"/>
-                                <button id="uploadUser" type="button" class="absolute flex items-center bg-blue-400 hover:bg-blue-500 hover:mouse-pointer justify-center h-[30px] w-[30px] rounded-full right-0 bottom-5"><i class="bi bi-pencil text-white"></i></button>
-                                <input th:field="*{profilePhoto}" class="hidden user-image block w-1/2 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="user-input" name="profilePhoto" type="text">
+                                <button id="uploadUser" type="button"
+                                        class="absolute flex items-center bg-blue-400 hover:bg-blue-500 hover:mouse-pointer justify-center h-[30px] w-[30px] rounded-full right-0 bottom-5">
+                                    <i class="bi bi-pencil text-white"></i></button>
+                                <input th:field="*{profilePhoto}"
+                                       class="hidden user-image block w-1/2 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                       id="user-input" name="profilePhoto" type="text">
                             </div>
                         </div>
 
                         <div class="w-full flex justify-between items-center">
                             <div class="w-4/5 h-full flex flex-col justify-center">
                                 <div class="w-3/4 flex items-center">
-                                    <span class="text-2xl font-bold mb-1" th:text="${#strings.isEmpty(user.first_name) ? 'New User' : user.first_name + (user.last_name != null ? ' ' + user.last_name : '')}"></span>
+                                    <span class="text-2xl font-bold mb-1"
+                                          th:text="${#strings.isEmpty(user.first_name) ? 'New User' : user.first_name + (user.last_name != null ? ' ' + user.last_name : '')}"></span>
                                 </div>
 
                                 <div class="text-[15px] flex mb-3 mt-1 text-center md:text-end"
@@ -53,13 +59,15 @@
                             </div>
 
                             <div class="w-1/5">
-                                <form  th:action="@{/profile/delete}" method="get" id="deleteForm">
-                                    <button type="submit" class="block flex p-3 border hover:cursor-pointer border-red-100 hover:bg-red-100 rounded-lg text-red-500 hover:text-red-600 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">Delete Profile</button>
+                                <form th:action="@{/profile/delete}" method="get" id="deleteForm">
+                                    <button type="submit"
+                                            class="block flex p-3 border hover:cursor-pointer border-red-100 hover:bg-red-100 rounded-lg text-red-500 hover:text-red-600 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">
+                                        Delete Profile
+                                    </button>
                                 </form>
                             </div>
 
                         </div>
-
 
 
                     </div>
@@ -67,44 +75,57 @@
 
                         <div class="input-group flex flex-col mb-3">
                             <label for="username" class="text-gray-500 mb-2">Username</label>
-                            <input th:field="*{username}" class="h-[40px] text-center form-control border rounded-lg" type="text" name="username" id="username" placeholder="Enter username" required>
+                            <input th:field="*{username}" class="h-[40px] text-center form-control border rounded-lg"
+                                   type="text" name="username" id="username" placeholder="Enter username" required>
                         </div>
                         <div class="input-group flex flex-col mb-3">
                             <label for="phone_number" class="text-gray-500 mb-2">Phone Number</label>
-                            <input th:field="*{phone_number}" class=" h-[40px] text-center form-control border rounded-lg" type="tel" name="phone_number" id="phone_number" placeholder="555-444-1234" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                            <input th:field="*{phone_number}"
+                                   class=" h-[40px] text-center form-control border rounded-lg" type="tel"
+                                   name="phone_number" id="phone_number" placeholder="555-444-1234"
+                                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                         </div>
 
                         <div class="input-group flex flex-col mb-3">
                             <label for="first_name" class=" text-gray-500 mb-2">First Name</label>
-                            <input th:field="*{first_name}" class=" h-[40px] text-center form-control border rounded-lg" type="text" name="first_name" id="first_name" placeholder="Enter first Name" required>
+                            <input th:field="*{first_name}" class=" h-[40px] text-center form-control border rounded-lg"
+                                   type="text" name="first_name" id="first_name" placeholder="Enter first Name"
+                                   required>
                         </div>
 
                         <div class="input-group flex flex-col mb-3">
                             <label for="last_name" class="text-gray-500 mb-2">Last Name</label>
-                            <input th:field="*{last_name}" class="h-[40px] text-center form-control border rounded-lg" type="text" name="last_name" id="last_name" placeholder="Enter last Name" required>
+                            <input th:field="*{last_name}" class="h-[40px] text-center form-control border rounded-lg"
+                                   type="text" name="last_name" id="last_name" placeholder="Enter last Name" required>
                         </div>
 
                         <div class="input-group flex flex-col mb-3">
                             <label for="address" class="mb-2 text-gray-500">Location</label>
-                            <input th:field="*{address}" class="h-[40px] text-center form-control border rounded-lg" type="text" name="address" id="address" placeholder="Eg. San Antonio, Texas">
+                            <input th:field="*{address}" class="h-[40px] text-center form-control border rounded-lg"
+                                   type="text" name="address" id="address" placeholder="Eg. San Antonio, Texas">
                         </div>
                         <div class="input-group flex flex-col mb-3">
                             <label for="email" class="text-gray-500 mb-2">Email</label>
-                            <input th:field="*{email}" class="h-[40px] text-center form-control border rounded-lg" type="email" name="email" id="email" placeholder="Enter email">
+                            <input th:field="*{email}" class="h-[40px] text-center form-control border rounded-lg"
+                                   type="email" name="email" id="email" placeholder="Enter email">
                         </div>
                         <div class="input-group flex flex-col mb-3">
                             <label for="initialPassword" class="text-gray-500 mb-2">Password</label>
-                            <input th:field="*{password}" class="h-[40px] text-center form-control border rounded-lg" type="password" name="initialPassword" id="initialPassword" placeholder="Enter password">
+                            <input th:field="*{password}" class="h-[40px] text-center form-control border rounded-lg"
+                                   type="password" name="initialPassword" id="initialPassword"
+                                   placeholder="Enter password">
                         </div>
 
                         <div class="form-check mb-3">
                             <label class="text-gray-500 mb-2">Gender</label>
                             <div class="form-check-inline">
-                                <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="male" value="M">
+                                <input th:field="*{gender}" class="form-check-input" type="radio" name="gender"
+                                       id="male" value="M">
                                 <label class="form-check-label" for="male">M</label>
                             </div>
                             <div class="form-check-inline">
-                                <input th:field="*{gender}" class="form-check-input" type="radio" name="gender" id="female" value="F">
+                                <input th:field="*{gender}" class="form-check-input" type="radio" name="gender"
+                                       id="female" value="F">
                                 <label class="form-check-label" for="female">F</label>
                             </div>
                         </div>
@@ -112,24 +133,32 @@
                         <div class="mt-5 flex w-full col-span-2 flex-col">
                             <div class="w-full flex flex-col">
                                 <label for="bio" class="text-gray-500 mb-2">Enter your Bio</label>
-                                <textarea th:field="*{bio}" type="text" name="bio" id="bio" class = " w-full h-[80px] p-1 rounded-lg resize-none border-2 w-2/3" placeholder="Write a short biography about yourself"></textarea>
+                                <textarea th:field="*{bio}" type="text" name="bio" id="bio"
+                                          class=" w-full h-[80px] p-1 rounded-lg resize-none border-2 w-2/3"
+                                          placeholder="Write a short biography about yourself"></textarea>
                             </div>
                             <div class="flex justify-between mt-5">
                                 <a href="/profile" class="text-blue-600">Go back</a>
-                                <button type="submit" class="py-2.5 mb-[10em] px-5 mr-2 mb-2 text-sm shadow-lg font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-gray-200 hover:bg-blue-400 focus:z-10 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Submit Changes</button>
+                                <button type="submit"
+                                        class="py-2.5 mb-[10em] px-5 mr-2 mb-2 text-sm shadow-lg font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-gray-200 hover:bg-blue-400 focus:z-10 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                    Submit Changes
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <nav th:replace="partials/navbar :: navbar-mobile"></nav>
             </div>
+
         </div>
     </div>
 </form>
 
 
 <!--keys-->
-<script src="/js/keys.js "></script>
+
+<!--<script src="/js/keys.js" type="text/javascript"></script>-->
+
 <script th:src="@{/js/fileStack-user.js}" type="module"></script>
 <script src="/js/users/edit-profile.js"></script>
 
