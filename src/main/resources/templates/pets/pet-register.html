@@ -7,8 +7,8 @@
 </head>
 
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
-
+<nav th:replace="partials/navbar :: navbar-search"></nav>
+<aside th:replace="partials/Aside :: aside-nav"></aside>
 
 <div class="w-full h-full flex justify-center items-center">
   <div class="row d-flex mt-[3em] justify-content-center">
@@ -70,8 +70,6 @@
         <h3 class="text-blue-600 flex justify-center"><a href="/profile" class="mt-2">Go Back</a></h3>
       </div>
     </form>
-    <nav th:replace="partials/navbar :: navbar-mobile"></nav>
-
   </div>
 </div>
 

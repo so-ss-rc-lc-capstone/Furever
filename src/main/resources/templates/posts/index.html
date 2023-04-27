@@ -66,17 +66,17 @@
     <aside th:replace="partials/Aside :: aside-nav"></aside>
 
 
-    <div class="w-full mt-[8em]">
+    <div class="w-full mt-[7em]">
         <!-- User POSTS -->
         <div class="bg-white border w-full p-3 border-gray-200 rounded-lg mb-6 shadow dark:border-gray-700">
             <div class="flex flex-col">
                 <div class="flex flex-row">
                     <div class="flex justify-center">
-                        <img class="w-[55px] h-[55px] mt-[60px] ml-7 rounded-full shadow-md"
+                        <img class="w-[55px] h-[55px] mt-[45px] ml-7 mr-2 rounded-full shadow-md"
                              th:if="${not #strings.isEmpty(user.profilePhoto)}"
                              th:src="${user.profilePhoto}"
                              alt="Profile image"/>
-                        <img class="w-[55px] h-[55px] mt-[60px] ml-7 rounded-full shadow-md"
+                        <img class="w-[55px] h-[55px] mt-[45px] ml-7 mr-2 rounded-full shadow-md"
                              th:if="${#strings.isEmpty(user.profilePhoto)}"
                              th:src="@{/img/profile.jpeg}"
                              alt="Default profile image"/>
@@ -93,7 +93,7 @@
                             <span><input id="post-photo-input" name="image" type="hidden"></span>
 
                             <textarea id="chat" name="body" rows="1"
-                                      class="text-[15px] resize-none h-[90px] p-2.5 w-[90%] text-sm text-gray-900 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 "
+                                      class="text-[15px] h-[60px] resize-none p-2.5 w-[90%] text-sm text-gray-900 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 "
                                       placeholder="Whats on your mind?"></textarea>
 
                             <button type="submit"
@@ -108,9 +108,9 @@
                     </form>
                 </div>
 
-                <div class="flex w-full justify-evenly">
+                <div class="flex w-full mt-2 justify-evenly">
                     <div id="post-photoBtn"
-                         class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+                         class="flex items-center justify-center w-[140px] h-[35px] rounded-lg border border-gray-300 p-1 cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
                         <button type="button"
                                 class="flex items-center justify-center text-[20px] w-[40px] h-[40px] justify-center text-black dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                             <i class="ri-image-2-fill w-[40px]"></i>
@@ -119,7 +119,7 @@
                     </div>
 
                     <div id="ai"
-                         class="flex items-center justify-center w-[25%] rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 "
+                         class="flex items-center justify-center w-[140px] h-[35px] border border-gray-300 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 "
                          data-popover-target="popover-chat">
                         <image th:src="@{/img/ai-icon2.png}"
                                class="w-[40px] hover:cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"></image>
