@@ -100,7 +100,7 @@
   </div>
 </aside>
 
-<aside th:fragment="friends-aside" class="fixed top-0 mr-3 mt-6 right-0 justify-items-center ml-5 hidden md:flex w-[15em]"
+<aside th:fragment="friends-aside" class="fixed top-0 mr-3 mt-3 right-0 justify-items-center ml-5 hidden md:flex w-[15em]"
        aria-label="Sidebar">
   <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <div class="w-full flex flex-row items-center justify-between mb-4">
@@ -183,10 +183,6 @@
                                 <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
                                         type="submit"></button>
                               </form>
-                              <!--                          <a id="followButton" th:text="${user.followingUsers.contains(user) ? 'Unfollow' : 'Follow'}"-->
-                              <!--                             th:onclick="${user.followingUsers.contains(user) ? '@{/users/'+ user.id + '/follow}' : '@{/users/'+ user.id + '/follow}'}"-->
-                              <!--                          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"></a>-->
-
                             </div>
                           </div>
                         </div>

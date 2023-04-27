@@ -104,10 +104,11 @@
 
 
 <nav th:fragment="navbar-search"
-     class="hidden md:block bg-white dark:bg-gray-900 fixed w-full top-0 left-0 border-b border-gray-200 dark:border-gray-600"
+     class="hidden md:block bg-white dark:bg-gray-900 fixed w-full top-0 left-0 dark:border-gray-600"
      style="z-index: 998">
     <div class="w-full flex flex-wrap justify-between p-4">
-        <div class="flex w-1/2 ">
+        <div class="flex w-full justify-between">
+                <div class="flex">
                 <a class="flex items-center">
                     <img th:src="@{/img/logofurever.png}" class="h-[50px] mr-3" alt="Furever-logo">
 
@@ -133,22 +134,23 @@
 
                             </form>
                         </div>
+                </div>
 
         <div class="flex w-1/2 justify-end">
-            <a href="/events/create">
-            <div class="flex items-center justify-center p-3 mr-5 text-white rounded-lg dark:text-white bg-blue-600 hover:bg-blue-400 ">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
-                             viewBox="0 0 16 16">
-                            <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
-                            <path fill-rule="evenodd"
-                                  d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
-                        </svg>
+                    <a href="/events/create" class="flex items-center justify-center p-3 mr-5 text-white rounded-lg dark:text-white bg-blue-600 hover:bg-blue-400 ">
 
-                <span class="flex-1 ml-3 whitespace-nowrap">Create Event</span>
-            </div>
-            </a>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
+                                     viewBox="0 0 16 16">
+                                    <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
+                                    <path fill-rule="evenodd"
+                                          d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
+                                </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Create Event</span>
+
+                    </a>
+
 
             <button data-dropdown-toggle="dropdown-nav" type="button" class="w-[50px] h-[50px] flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
 
@@ -157,6 +159,7 @@
                 </svg>
 
             </button>
+
 
             <div id="dropdown-nav" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
@@ -169,12 +172,11 @@
                 </ul>
             </div>
 
-
-
         </div>
 
     </div>
 
+    </div>
 </nav>
 
 <nav th:fragment="navbar-mobile" class=" fixed bottom-[2em] md:hidden right-0 left-0 p-3 bg-white m-auto rounded-full w-[500px] h-[100px]" style= "box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
