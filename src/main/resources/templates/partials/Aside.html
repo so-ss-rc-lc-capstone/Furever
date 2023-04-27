@@ -100,6 +100,8 @@
   </div>
 </aside>
 
+
+
 <aside th:fragment="friends-aside" class="fixed top-0 mr-3 mt-3 right-0 justify-items-center ml-5 hidden md:flex w-[15em]"
        aria-label="Sidebar">
   <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -134,7 +136,7 @@
                 <div th:if="${user.id} != ${#authentication.principal.id}">
                   <li class="py-2 group/item">
                     <div class="flex flex-col space-x-4 ">
-                      <div class="flex items-center justify-between px-3">
+                      <div class="flex items-center px-3 justify-between">
                         <div th:data-dropdown-toggle="${user.id}"
                              data-dropdown-placement="bottom-start" type="button"
                              class="flex items-center">
@@ -183,6 +185,7 @@
                                 <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
                                         type="submit"></button>
                               </form>
+
                             </div>
                           </div>
                         </div>
@@ -196,7 +199,6 @@
                               <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                             </svg>
                           </div>
-
                         </a>
                       </div>
                     </div>

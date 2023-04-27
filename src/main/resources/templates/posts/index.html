@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/posts-index.css"/>
 
     <body class="flex justify-center bg-gray-100">
-    <nav th:replace="partials/navbar :: navbar-search"></nav>
+    <nav th:replace="partials/navbar :: navbar"></nav>
     <nav th:replace="partials/navbar :: navbar-mobile"></nav>
     <nav th:include="event/participants-modal"></nav>
 
@@ -35,8 +35,7 @@
                     </select>
 
 
-                    <div
-                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    <div class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                             data-modal-toggle="updateProductModal">
                         <svg id="close-icon" aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                              xmlns="http://www.w3.org/2000/svg">
