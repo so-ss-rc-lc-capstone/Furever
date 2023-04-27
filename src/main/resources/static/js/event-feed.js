@@ -178,9 +178,6 @@ function getAllParticipants(data){
                         </div>
                      </a>
                     </div>
-                   
-                   
-                   
                   </div>
                 </div>
               </div>
