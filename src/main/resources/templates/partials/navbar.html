@@ -276,6 +276,57 @@
     <div class="my-4 invisible">space</div>
 </div>
 
+
+
+<nav th:fragment="navbar-search"
+     class="hidden md:block bg-white dark:bg-gray-900 fixed w-full top-0 left-0 dark:border-gray-600"
+     style="z-index: 998">
+    <div class="w-full flex flex-wrap justify-between p-4">
+        <div class="flex w-full justify-between">
+            <div class="flex">
+                <a class="flex items-center">
+                    <img th:src="@{/img/logofurever.png}" class="h-[50px] mr-3" alt="Furever-logo">
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Furever</span>
+                </a>
+                <div class="h-full w-[56px] rounded-full shadow-md ml-[15px] border-1 border-black" id="search"
+                     style="box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; transition: width .5s cubic-bezier(.9, 0, .3, .9)">
+                    <form action="" class="search relative w-full h-[50px] p-[10px]" id="search-bar">
+                        <input type="search" placeholder="Look for a user" id="search-input"
+                               class="search__input border-none ml-1 font-sm rounded-full w-full h-full"
+                               style="opacity:0; pointer-events: none; transition: opacity 0.7s;">
+                        <div class="search__button absolute w-[45px] h-[45px] rounded-full bg-blue-600 top-0 bottom-0 right-[5px] cursor-pointer m-auto grid items-center "
+                             id="search-button" style="transition: transform .6s cubic-bezier(.9, 0 , .3, .9)">
+                            <i id="search-icon"
+                               class="ri-search-2-line search__icon flex ml-2.5 justify-center absolute items-center text-[1.6rem]"
+                               style="color:white;"></i>
+                            <i id="close"
+                               class="ri-close-line search__close flex ml-2.5 justify-center opacity-0 absolute items-center text-[1.6rem]"
+                               style="color:white;"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="flex w-1/2 justify-end">
+                <a href="/events/create" class="flex items-center justify-center p-3 mr-5 text-white rounded-lg dark:text-white bg-blue-600 hover:bg-blue-400 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
+                         viewBox="0 0 16 16">
+                        <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
+                        <path fill-rule="evenodd"
+                              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Create Event</span>
+                </a>
+                <button data-dropdown-toggle="dropdown-nav" type="button" class="w-[50px] h-[50px] flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-gear-fill flex-shrink-0 w-6 h-6 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 " viewBox="0 0 16 16" >
+                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
 <nav th:fragment="navbar-mobile" class=" fixed bottom-[2em] md:hidden right-0 left-0 p-3 bg-white m-auto rounded-full w-[500px] h-[100px]" style= "box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
 
     <ul class="nav__list h-full">
