@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/posts-index.css"/>
 
     <body class="flex justify-center bg-gray-100">
-    <nav th:replace="partials/navbar :: navbar-search"></nav>
+    <nav th:replace="partials/navbar :: navbar"></nav>
     <nav th:replace="partials/navbar :: navbar-mobile"></nav>
     <nav th:include="event/participants-modal"></nav>
 
@@ -35,8 +35,7 @@
                     </select>
 
 
-                    <div
-                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    <div class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                             data-modal-toggle="updateProductModal">
                         <svg id="close-icon" aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                              xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +44,7 @@
                                   clip-rule="evenodd"></path>
                         </svg>
 
-                        <span class="sr-only">Close modal</span>
+                        <span class="sr-only">Close Modal</span>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -103,7 +102,7 @@
                                      viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
                                 </svg>
-                                <span class="sr-only">Send message</span>
+                                <span class="sr-only">Send Message</span>
                             </button>
                         </div>
                     </form>
@@ -131,7 +130,7 @@
                         <div class="grid grid-cols-5">
                             <div class="col-span-3 p-3">
                                 <div class="space-y-2">
-                                    <h3 class="font-semibold text-gray-900 dark:text-white">Try our Chat GPT!</h3>
+                                    <h3 class="font-semibold text-gray-900 dark:text-white">Try Our Chat GPT!</h3>
                                     <p>You can generate your post with simple keywords with Chat GPT!</p>
                                 </div>
                             </div>

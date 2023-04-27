@@ -118,6 +118,7 @@
                                 <span th:text="${#strings.isEmpty(event.user.first_name) ? event.user.username : event.user.first_name}"></span>
                             </div>
                             <div class="text-[10px] text-gray-500 dark:text-gray-400"
+
                             ><h4>Created at <span class="text-[10px] text-gray-500 dark:text-gray-400"
                                                   th:text="${#temporals.format(event.created_at, 'MMMM dd, yyyy')}"></span>
                             </h4></div>

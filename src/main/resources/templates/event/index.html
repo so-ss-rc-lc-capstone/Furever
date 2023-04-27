@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/css/event-index.css"/>
 
 <body class="flex justify-center bg-gray-100">
-<nav th:replace="partials/navbar :: navbar-search"></nav>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 <nav th:include="event/participants-modal"></nav>
 
@@ -35,7 +35,7 @@
                             <h1 class="text-2xl w-full md:w-[15em] p-3 ml-2 font-extrabold dark:text-white">Discover Events<small
                                     class="ml-3 text-sm font-semibold text-gray-500 dark:text-gray-400"
                                     th:text="${events.size()}"></small> <span
-                                    class="text-sm font-semibold text-gray-500 dark:text-gray-400">results</span></h1>
+                                    class="text-sm font-semibold text-gray-500 dark:text-gray-400">Results</span></h1>
 
 
                             <div class="flex justify-center md:justify-end md:items-center md:w-[200px] space-x-3 ">
@@ -85,7 +85,7 @@
 
 <section class="aside-container hidden md:flex w-[18em] h-screen relative">
     <aside th:replace="partials/Aside :: friends-aside"></aside>
-    
+
 </section>
 <!--<script src="/js/keys.js" type="text/javascript"></script>-->
 <!-- minified snippet to load TalkJS without delaying your page -->
