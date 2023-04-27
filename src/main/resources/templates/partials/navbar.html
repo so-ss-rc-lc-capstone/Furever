@@ -1,11 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head th:fragment="head">
-    <link rel="stylesheet" href="/css/hover1.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../../static/js/hover1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
-</head>
+
+<div th:fragment="navbar-home">
 
 <div th:fragment="navbar-home">
     <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
@@ -107,6 +101,7 @@
     </nav>
     <div class="my-4 invisible">space</div>
 </div>
+
 <div th:fragment="navbar" class="hidden md:flex">
     <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -333,9 +328,9 @@
         </div>
     </div>
 </nav>
-<nav th:fragment="navbar-mobile"
-     class=" fixed bottom-[2em] md:hidden right-0 left-0 p-3 bg-white m-auto rounded-full w-[500px] h-[100px]"
-     style="box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
+
+<nav th:fragment="navbar-mobile" class=" fixed bottom-[2em] md:hidden right-0 left-0 p-3 bg-white m-auto rounded-full w-[500px] h-[100px]" style= "box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
+
     <ul class="nav__list h-full">
         <a href="/events"
            class="nav__link h-full flex justify-center items-center w-[80px] rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">

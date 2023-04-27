@@ -2,8 +2,10 @@ package com.capstone.furever.controllers;
 
 import com.capstone.furever.models.Event;
 import com.capstone.furever.models.EventParticipation;
+import com.capstone.furever.models.Post;
 import com.capstone.furever.models.User;
 import com.capstone.furever.repositories.EventRepository;
+import com.capstone.furever.repositories.PostRepository;
 import com.capstone.furever.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,10 +24,13 @@ public class EventController {
     private final UserRepository usersDao;
     private final EventService eventService;
 
-    public EventController(EventRepository eventsDao, UserRepository usersDao, EventService eventService) {
+    private final PostRepository postDao;
+
+    public EventController(EventRepository eventsDao, UserRepository usersDao, EventService eventService, PostRepository postDao) {
         this.eventsDao = eventsDao;
         this.usersDao = usersDao;
         this.eventService = eventService;
+        this.postDao = postDao;
 
     }
 
@@ -68,7 +73,6 @@ public class EventController {
     public String allEvents(Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = usersDao.findById(currentUser.getId());
-
         List<User> followedUsers = userData.getFollowedUsers();
         List<User> users = usersDao.findAll();
         List<Event> events = eventsDao.findAll();

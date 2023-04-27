@@ -1,0 +1,35 @@
+@media (max-width: 1095px) {
+    aside {
+        display: none !important;
+    }
+    .aside-container {
+        display: none !important;
+    }
+
+}
+
+#nav-mobile {
+    position: fixed;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    width: 328px;
+    height: 72px;
+    box-shadow: 0 8px 32px hsla(231, 44%, 45%, .2);
+    margin: 0 auto;
+    padding: 1.5rem .5rem;
+    border-radius: .65rem;
+    overflow: hidden;
+}
+
+.nav__list {
+    display: flex;
+    justify-content: center;
+    column-gap: 2rem;
+}
+
+.nav__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

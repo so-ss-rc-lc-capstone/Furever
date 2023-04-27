@@ -1,0 +1,122 @@
+<div th:fragment="posts"  th:each="post : ${posts}" class = "bg-white rounded-t-lg mt-2">
+  <div class="w-full border-2 rounded-t-lg shadow dark:border-gray-700" >
+
+    <div class="flex">
+      <div class="flex justify-center">
+        <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+             th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
+             th:src="${post.user.profilePhoto}" alt="Profile image"/>
+
+        <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
+             th:if="${#strings.isEmpty(post.user.profilePhoto)}"
+             th:src="@{/img/profile.jpeg}"
+             alt="Default profile image"/>
+      </div>
+      <!--Name Date body-->
+      <div id="name-body" class = "mt-[20px] w-full">
+        <div class="ml-5">
+          <h1 class="font-bold text-[22px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
+          <h3 class = "text-blue-400 mt-1"><a th:href="@{/user/{id}(id=${post.user.id})}"> @ <span th:text="${post.user.username}"></span></a></h3>
+          <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
+
+          <div class="w-full pb-3 mt-1 pt-[5px] pr-[70px] ml-[2px] text-[18px]" th:text="${post.body}">
+          </div>
+
+          <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
+          <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full mb-5">
+            <span><img th:src="${post.image}" class=" w-[90%] lg:w-[85%] mt-[5px] h-[25em] rounded-lg"></span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="w-full h-[30px] pb-3 border-b border-gray-300 flex flex-row justify-around ">
+
+      <div class="flex flex-row justify-center items-center hover:text-blue-500 hover:cursor-pointer transition-all">
+        <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"></path>
+        </svg>
+        <form th:action="@{/posts/{id}/show (id=${post.id})}" method="get">
+          <input type="hidden" name="event" th:value="${post.id}"/>
+          <button><span th:text="${post.comments.size}" class="ml-1 mr-1"></span>Comments</button>
+        </form>
+      </div>
+
+      <form th:action="@{'/posts/' + ${post.id} + '/like'}" method="post">
+        <button type="submit">
+          <div class="flex flex-row justify-center items-center hover:text-red-500 hover:cursor-pointer transition-all">
+            <svg fill="none" class="h-[20px] w-[20px] flex justify-center"
+                 stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                 th:classappend="${post.hasLiked(#authentication.principal.id) ? 'text-red-500 fill-red-500' : ''}">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"></path>
+            </svg>
+            <span class="ml-1 mr-1" th:text="${post.likes.size}"></span>
+            <h3>Likes</h3>
+          </div>
+        </button>
+      </form>
+
+    </div>
+
+    <!-- Comment on posts-->
+    <div class="flex items-center">
+      <div class="w-1/9 h-full">
+        <div class="flex h-full items-center justify-center">
+          <img class="w-[55px] h-[55px] ml-[36px] rounded-full shadow-md"
+               th:if="${not #strings.isEmpty(user.profilePhoto)}"
+               th:src="${user.profilePhoto}" alt="Profile image"/>
+          <img class="w-[55px] h-[55px] ml-[36px] rounded-full shadow-md"
+               th:if="${#strings.isEmpty(user.profilePhoto)}"
+               th:src="@{/img/profile.jpeg}"
+               alt="Default profile image"/>
+        </div>
+      </div>
+
+      <div class="w-full pt-2 pb-2 h-full flex">
+        <form class="w-full" th:action="@{/comment/{id}/create(id=${post.id})}" th:method="POST" th:object="${comments}">
+
+          <label for="comment" class="sr-only">Your message</label>
+          <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
+
+            <textarea id="comment" name = "content" rows="1" class="resize-none h-[60px] mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
+
+            <button type="submit"  class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
+              <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+              <span class="sr-only">Send message</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--Comment reply body-->
+  <div th:each="comment, i : ${post.comments}" th:if="${i.index < 3}" class="w-full h-full flex bg-white border-l-2 border-r-2 border-b-2 shadow dark:border-gray-700">
+    <div class="flex ml-[5px] justify-center">
+      <img class="w-[40px] h-[40px] mt-[26px] ml-7 rounded-full shadow-md"
+           th:if="${not #strings.isEmpty(comment.user.profilePhoto)}"
+           th:src="${comment.user.profilePhoto}"
+           alt="Profile image"/>
+      <img class="w-[40px] h-[40px] mt-[26px] ml-7 rounded-full shadow-md"
+           th:if="${#strings.isEmpty(comment.user.profilePhoto)}"
+           th:src="@{/img/profile.jpeg}"
+           alt="Default profile image"/></div>
+    <div id="comment-body" class="mt-[20px] pl-[1.2em] w-3/4">
+      <div class="pt-2 pb-4 pr-3">
+
+        <div class="flex flex-row">
+          <div class="flex flex-col">
+            <h1 class="font-bold text-[16px]"><span th:text="${comment.user.first_name}"></span> <span th:text="${comment.user.last_name}"></span></h1>
+            <h3 class = "text-blue-400 mt-1 text-[13px]"><a th:href="@{/user/{id}(id=${comment.user.id})}">@ <span th:text="${comment.user.username}"></span></a></h3>
+
+            <h3 class="mt-1 text-[8px] text-gray-400"><span th:text="${#temporals.format(comment.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(comment.created_at, 'dd-MMM-yyyy')}"></span></h3>
+          </div>
+        </div>
+
+        <div class="w-full pt-2 h-auto text-[14px]" th:text="${comment.content}"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
