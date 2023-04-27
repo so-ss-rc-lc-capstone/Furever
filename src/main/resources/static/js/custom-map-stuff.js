@@ -2,72 +2,78 @@
 //Function to get all the event locations
 
 function allEvents() {
-        fetch(`${window.location.protocol}//${window.location.host}/api/allevents`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
+    fetch(`${window.location.protocol}//${window.location.host}/api/allevents`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("allEvents data:", data); //log to see if data is coming through
+            const event = data.map(event => ({
+                id: event.id,
+                title: event.title,
+                name: event.location_name,
+                address: event.location_address
+            }));
+            console.log("allEvents event:", event); //log to see if event is coming through
+
+            mapboxgl.accessToken = keys.mapbox;
+            let map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/dark-v11',
+                zoom: 3,
+                center: [-98.4916, 45.4252]
+            });
+            console.log("allEvents map:", map); //log to see if map is coming through
+
+            // Get the user's current position
+            navigator.geolocation.getCurrentPosition(position => {
+                // Update the map's center to the user's position
+                let userPosition = [position.coords.longitude, position.coords.latitude];
+                map.setCenter(userPosition);
+                map.setZoom(3);
+                console.log("allEvents userPosition:", userPosition); //log to see if userPosition is coming through
+                try {
+                    event.forEach(function (event) {
+                        geocode(event.address, keys.mapbox).then(function (result) {
+                            let eventPosition = [result[0], result[1]];
+                            console.log("allEvents eventPosition:", eventPosition); //log to see if eventPosition is coming through
+
+                            let marker = new mapboxgl.Marker()
+                                .setLngLat(eventPosition)
+                                .addTo(map);
+
+                            let eventPopup = new mapboxgl.Popup()
+                                .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
+                            marker.setPopup(eventPopup);
+                        });
+                    });
+                } catch (error) {
+                    console.error("allEvents error:", error); //log to see if there's any error
+                }
+            });
+
+            function deg2rad(deg) {
+                return deg * (Math.PI / 180)
             }
         })
-            .then(response => response.json())
-
-            .then(data => {
-                const event = data.map(event => ({
-                    id: event.id,
-                    title: event.title,
-                    name: event.location_name,
-                    address: event.location_address
-                }));
-
-                mapboxgl.accessToken = keys.mapbox;
-                let map = new mapboxgl.Map({
-                    container: 'map',
-                    style: 'mapbox://styles/mapbox/dark-v11',
-                    zoom: 3,
-                    center: [-98.4916, 45.4252]
-                });
-
-                // Get the user's current position
-                navigator.geolocation.getCurrentPosition(position => {
-                    // Update the map's center to the user's position
-                    let userPosition = [position.coords.longitude, position.coords.latitude];
-                    map.setCenter(userPosition);
-                    map.setZoom(3);
-                    try {
-                        event.forEach(function (event) {
-                            geocode(event.address, keys.mapbox).then(function (result) {
-                                let eventPosition = [result[0], result[1]];
-
-                                let marker = new mapboxgl.Marker()
-                                    .setLngLat(eventPosition)
-                                    .addTo(map);
-
-                                let eventPopup = new mapboxgl.Popup()
-                                    .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
-                                marker.setPopup(eventPopup);
-                            });
-                        });
-                    }catch(error){
-                        console.error(error);
-                    }
-                });
-
-                function deg2rad(deg) {
-                    return deg * (Math.PI / 180)
-                }
-            })
-        .catch(error => console.error(error));
+        .catch(error => console.error("allEvents error:", error)); //log to see if there's any error
 }
 
 // ==========> Events within 50 miles radius <=================
 let localLocations = async function () {
     let withinFiftyMilesIds = [];
     try {
+        console.log('Fetching events data from API...');
         const response = await fetch(`${window.location.protocol}//${window.location.host}/api/allevents`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
             }
         });
+        console.log('Received events data from API.');
         const data = await response.json();
         const events = data.map(event => ({
             id: event.id,
@@ -76,6 +82,7 @@ let localLocations = async function () {
             address: event.location_address
         }));
 
+        console.log('Initializing Mapbox...');
         mapboxgl.accessToken = keys.mapbox;
         let map = new mapboxgl.Map({
             container: 'map',
@@ -84,17 +91,20 @@ let localLocations = async function () {
             center: [-98.4916, 29.4252]
         });
 
-
+        console.log('Getting user position...');
         // Get the user's current position
         let userPosition = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(position => {
                 resolve([position.coords.longitude, position.coords.latitude]);
             }, reject);
         });
+
+        console.log('Updating map center to user position...');
         // Update the map's center to the user's position
         map.setCenter(userPosition);
         map.setZoom(10);
 
+        console.log('Looping through events to display markers...');
         await Promise.all(events.map(async function (event) {
             const result = await geocode(event.address, keys.mapbox);
             // Calculate distance between user location and event location
@@ -102,6 +112,7 @@ let localLocations = async function () {
             let distance = getDistance(userPosition, eventPosition);
 
             if (distance <= 50) { // Display event marker only if within 50 miles
+                console.log(`Displaying marker for event ${event.id}...`);
                 let marker = new mapboxgl.Marker()
                     .setLngLat(eventPosition)
                     .addTo(map);
@@ -115,8 +126,10 @@ let localLocations = async function () {
     } catch (error) {
         console.error(error);
     }
+    console.log('Returning list of events within 50 miles...');
     return withinFiftyMilesIds;
 };
+
 
 function getDistance(coord1, coord2) {
     const R = 3958.8; // Earth's radius in miles

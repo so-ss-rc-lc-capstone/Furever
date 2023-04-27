@@ -12,16 +12,16 @@
 
 <div class="w-full h-full flex justify-center items-center">
   <div class="row d-flex mt-[3em] justify-content-center">
-    <h1 class="text-3xl text-gray-900 mb-6">Edit your pet info</h1>
+    <h1 class="text-3xl text-gray-900 mb-6">Edit Your Pet Info</h1>
 
 
     <form th:method="POST" th:action="@{/pets/{id}/edit(id=${pet.id})}" th:object="${pet}" class="d-flex justify-content-center">
       <div class="mb-6">
-        <label for="petname" class="block mb-2 text-sm font-medium text-gray-900">Pet name:</label>
+        <label for="petname" class="block mb-2 text-sm font-medium text-gray-900">Pet Name:</label>
         <input th:field="*{petname}" type="text" name="petname" id="petname" placeholder="Enter name of your pet" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       </div>
       <div class="mb-6">
-        <label for="dateOfBirth" class="block text-sm font-medium text-gray-900">Date of Birth:</label><br>
+        <label for="dateOfBirth" class="block text-sm font-medium text-gray-900">Date Of Birth:</label><br>
         <input th:field="*{dateOfBirth}" type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Enter Date of Birth" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       </div>
       <div class="grid gap-6 mb-6 md:grid-cols-2">
