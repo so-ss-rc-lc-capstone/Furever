@@ -30,6 +30,7 @@
         </div>
       </div>
     </div>
+
     <div class="w-full h-[30px] pb-3 border-b border-gray-300 flex flex-row justify-around ">
 
       <div class="flex flex-row justify-center items-center hover:text-blue-500 hover:cursor-pointer transition-all">
@@ -41,6 +42,7 @@
           <button><span th:text="${post.comments.size}" class="ml-1 mr-1"></span>Comments</button>
         </form>
       </div>
+
 
       <form th:action="@{'/posts/' + ${post.id} + '/like'}" method="post">
         <button type="submit">
@@ -60,18 +62,19 @@
 
     </div>
 
+
     <!-- Comment on posts-->
     <div class="flex items-center">
       <div class="w-1/9 h-full">
-        <div class="flex h-full items-center justify-center">
-          <img class="w-[55px] h-[55px] ml-[36px] rounded-full shadow-md"
-               th:if="${not #strings.isEmpty(user.profilePhoto)}"
-               th:src="${user.profilePhoto}" alt="Profile image"/>
-          <img class="w-[55px] h-[55px] ml-[36px] rounded-full shadow-md"
-               th:if="${#strings.isEmpty(user.profilePhoto)}"
-               th:src="@{/img/profile.jpeg}"
-               alt="Default profile image"/>
-        </div>
+          <div class="flex h-full items-center justify-center">
+            <img class="w-[55px] h-[55px] ml-[36px] rounded-full shadow-md"
+                 th:if="${not #strings.isEmpty(user.profilePhoto)}"
+                 th:src="${user.profilePhoto}" alt="Profile image"/>
+            <img class="w-[55px] h-[55px] ml-[36px] rounded-full shadow-md"
+                 th:if="${#strings.isEmpty(user.profilePhoto)}"
+                 th:src="@{/img/profile.jpeg}"
+                 alt="Default profile image"/>
+          </div>
       </div>
 
       <div class="w-full pt-2 pb-2 h-full flex">
