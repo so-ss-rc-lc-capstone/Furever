@@ -42,7 +42,7 @@ const toggleSearch = (search, button) => {
             searchResults.innerHTML = '';
             return;
         }
-        fetch(`http://localhost:8080/api/alluser?search=${searchTerm}`)
+        fetch(`${window.location.protocol}//${window.location.host}/api/alluser?search=${searchTerm}`)
             .then((response) => response.json())
             .then((data) => {
                 // Filter the data by username and first_name + last_name
@@ -123,7 +123,7 @@ eventButtons.forEach(button => {
         console.log(eventId);
 
         // Fetch participants for the selected event
-        fetch('http://localhost:8080/events/' + eventId + '/participants', {
+        fetch(`${window.location.protocol}//${window.location.host}` + eventId + '/participants', {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
