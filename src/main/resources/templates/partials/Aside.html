@@ -3,7 +3,8 @@
 <aside th:fragment="aside-nav" id="logo-sidebar" class="fixed top-0 left-0 border-r-2 col-start-1 col-span-1 hidden md:flex w-[16em] xl:w-[17em] h-screen bg-white"
        aria-label="Sidebar" style="z-index: 99">
   <div class="h-full w-full px-3 pb-4 bg-white mt-[7em]">
-    <ul class="space-y-2">
+    <div class=" w-full">
+    <ul class="space-y-2 w-full">
       <li class="mb-[3em]">
         <div class="w-full max-w-sm bg-white flex justify-center items-center dark:bg-gray-800 dark:border-gray-700">
           <div class="flex flex-col w-[90%] justify-center items-center p-5 bg-gray-100 rounded-xl h-[150px]">
@@ -84,8 +85,11 @@
           <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
         </a>
       </li>
+    </ul>
+      </div>
 
-      <li class="flex w-full items-center justify-center p-3  pb-5 text-gray-900 dark:text-white ">
+      <div>
+      <li class="flex w-full mt-[22em] items-center justify-center p-3  pb-5 text-gray-900 dark:text-white ">
         <form th:action="${'/logout'}" th:method="post">
           <button type="submit"
                   class="py-2.5 px-5 w-full mr-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:text-red-400 ">
@@ -96,7 +100,8 @@
           </button>
         </form>
       </li>
-    </ul>
+      </div>
+
   </div>
 </aside>
 
