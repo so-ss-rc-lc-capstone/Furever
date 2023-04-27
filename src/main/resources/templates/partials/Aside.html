@@ -12,7 +12,7 @@
                    th:if="${not #strings.isEmpty(user.profilePhoto)}"
                    th:src="${user.profilePhoto}"
                    alt="Profile image"/>
-              <img class="w-[15px] h-[15px] rounded-full shadow-lg"
+              <img class="w-[50px] h-[50px] mb-3 rounded-full shadow-lg"
                    th:if="${#strings.isEmpty(user.profilePhoto)}"
                    th:src="@{/img/profile.jpeg}"
                    alt="Default profile image"/>
