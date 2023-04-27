@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials/header :: head">
     <title>
-        Login page
+        Log-in Page
     </title>
 </head>
 <link rel="stylesheet" href="/css/login.css"/>
@@ -17,10 +17,10 @@
 
         <div class="login__forms">
             <form th:action="@{/login}"  th:method="POST" class="login__registre" id="login-in">
-                <h1 class="login__title">Sign in to your account</h1>
+                <h1 class="login__title">Sign-In To Your Account</h1>
 
                 <div th:if="${param.error}">
-                            Invalid Username and Password.
+                            Invalid Username And Password.
                           </div>
                 <div class="login__box">
 
@@ -37,7 +37,7 @@
                 </div>
 
                 <div >
-                    <span class="login__account">Don't have an Account ?</span>
+                    <span class="login__account">Don't Have An Account?</span>
                     <span class="login__signin" id="sign-up">Sign Up</span>
                 </div>
             </form>
@@ -62,11 +62,11 @@
                 </div>
 
                 <div class="w-full flex justify-center items-center">
-                    <button class="login__button w-[10em]">Sign up</button>
+                    <button class="login__button w-[10em]">Sign Up</button>
                 </div>
 
                 <div>
-                    <span class="login__account">Already have an Account ?</span>
+                    <span class="login__account">Already Have An Account ?</span>
                     <span class="login__signup" id="sign-in">Sign In</span>
                 </div>
 

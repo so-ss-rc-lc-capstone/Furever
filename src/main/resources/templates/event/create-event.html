@@ -17,7 +17,7 @@
                     Ai Assistant
                 </h3>
                 <label for="mood" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
-                    option</label>
+                    Option</label>
                 <select id="mood"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option selected>Choose a Mood</option>
@@ -35,7 +35,7 @@
                               d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                               clip-rule="evenodd"></path>
                     </svg>
-                    <span class="sr-only">Close modal</span>
+                    <span class="sr-only">Close Modal</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -43,8 +43,8 @@
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div class="sm:col-span-2">
                         <label for="ai-description"
-                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provide a brief
-                            description</label>
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provide a Brief
+                            Description</label>
                         <textarea id="ai-description" rows="5"
                                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                   placeholder="List examples out: poodle, refreshments, meetup."></textarea>
@@ -63,7 +63,7 @@
 
 <div class="w-full h-screen flex justify-center items-center">
     <form th:object="${event}" th:method="post" th:action="@{/events/create}">
-        <h1 class="text-3xl mb-10">Create an Event</h1>
+        <h1 class="text-3xl mb-10">Create An Event</h1>
         <div class="grid gap-4 mb-4 sm:grid-cols-2">
             <div>
                 <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
@@ -81,7 +81,7 @@
             </div>
             <div>
                 <label for="event_DateAndTime" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date
-                    and Time</label>
+                    And Time</label>
                 <input name="event_DateAndTime" type="datetime-local" id="event_DateAndTime"
                        th:field="*{event_DateAndTime}"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -103,13 +103,13 @@
                           placeholder="Write a description of the event here..."></textarea>
             </div>
         </div>
-        <label for="photo-input" class="block text-sm font-medium text-gray-900 dark:text-white mb-3">Upload a photo for
-            your event</label>
+        <label for="photo-input" class="block text-sm font-medium text-gray-900 dark:text-white mb-3">Upload a Photo For
+            Your Event</label>
         <span><img id="thumbnail" alt="thumbnail" height="100" width="100"></span>
         <div class="flex mb-5">
             <button id="upload-btn" type="button"
                     class=" border border-gray-300 rounded-lg hover:bg-gray-100 bg-gray-200 p-2 text-blue-600 font-bold text-[10px]">
-                Click to upload photo
+                Click To Upload Photo
             </button>
             <div>
                 <input class="block w-1/2 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
