@@ -171,8 +171,8 @@ public class UserController {
 
 
         List<Pet> petData = petsDao.findAll();
-
         User userData = userDao.findById(id);
+
         List<User> followedUsers = userData.getFollowedUsers();
         List<Long> followedUsersId = new ArrayList<>();
         for (User followedUser : followedUsers) {
@@ -180,6 +180,7 @@ public class UserController {
             System.out.println("[followedUsers ID]:" + followedUser.getId());
             followedUsersId.add(followedUser.getId());
         }
+
         List<Event> eventsData = eventDao.findAll();
         List<Event> userEvents = new ArrayList<>();
 
@@ -189,6 +190,7 @@ public class UserController {
                 userEvents.add(event);
             }
         }
+
         model.addAttribute("loggedInUser", userData1);
         System.out.println("userData1: " + userData1.getFirst_name());
         model.addAttribute("followedUsers", followedUsers);
