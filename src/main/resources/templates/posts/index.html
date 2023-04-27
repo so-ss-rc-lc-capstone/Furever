@@ -383,7 +383,7 @@
                                 <div class="w-full pb-3 mt-1 pt-[5px] pr-[40px] ml-[2px] text-[18px]" th:text="${post.body}">
                                 </div>
 
-                                    <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
+                                    <div th:if="${post.image == null or post.image == ''}" style="display: none"></div>
                                     <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full mb-5">
                                         <span><img th:src="${post.image}" class=" w-[90%] lg:w-[85%] mt-[5px] h-[25em] rounded-lg"></span>
                                     </div>
@@ -702,10 +702,7 @@
 <script src="/js/keys.js" type="text/javascript"></script>
 <script src="/js/event-feed.js"></script>
 <script th:src="@{/js/filestack-post.js}"></script>
-<script src="/js/posts/post-delete.js">
-
-
-
+<script src="/js/posts/post-delete.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 
 

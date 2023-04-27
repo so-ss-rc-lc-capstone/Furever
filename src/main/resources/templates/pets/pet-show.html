@@ -53,12 +53,9 @@
                             </button>
                         </form>
                     </div>
-
                 </div>
             </div>
-
         </div>
-
     </div>
     <div class="w-2/3 h-1/2 grid grid-cols-1 md:mt-[1em] md:grid-cols-3 gap-4">
         <div class="h-full md:h-1/3 flex flex-col justify-center items-center border-2 border-gray-400 rounded-lg">
@@ -78,67 +75,6 @@
         </div>
 
         <nav th:replace="partials/navbar :: navbar-mobile"></nav>
-
-
-    </div>
-
-
-    <!--<div class="flex justify-center w-full" th:fragment="petCard" >-->
-
-
-    <!--  <div class="flex flex-row align-middle w-1/2">-->
-
-
-    <!--        <div class=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-full">-->
-    <!--          <div class="flex justify-end px-4 pt-4">-->
-    <!--            <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">-->
-    <!--              <span class="sr-only">Open dropdown</span>-->
-    <!--              <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>-->
-    <!--            </button>-->
-    <!--            &lt;!&ndash; Dropdown menu &ndash;&gt;-->
-    <!--            <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">-->
-    <!--              <ul class="py-2" aria-labelledby="dropdownButton">-->
-    <!--                <li>-->
-    <!--                  <a th:href="@{|/pets/${pet.id}|}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Detail</a>-->
-    <!--                </li>-->
-    <!--                <li>-->
-    <!--                  <a th:action="@{/pets/{id}/edit(id=${pet.id})}" th:method="get" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>-->
-    <!--                </li>-->
-    <!--                <li>-->
-    <!--                  <a th:action="@{/pets/{id}/delete(id=${pet.id})}" th:method="get" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>-->
-    <!--                </li>-->
-    <!--              </ul>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--          <a th:href="@{|/pets/${pet.id}|}" class="flex flex-col items-center pb-10">-->
-    <!--            <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://nationaltoday.com/wp-content/uploads/2021/06/International-Corgi-Day-1.jpg" alt="Pet image"/>-->
-    <!--            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Name: <span th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"></span></h5>-->
-    <!--            <span class="text-sm text-gray-500 dark:text-gray-400">Breed: <span th:text="${pet.breed.breed_name}"></span></span>-->
-    <!--            <span class="text-sm text-gray-500 dark:text-gray-400">Owner: <span th:text="${pet.dateOfBirth}"></span></span>-->
-    <!--            <span class="text-sm text-gray-500 dark:text-gray-400">Owner: <span th:text="${pet.gender}"></span></span>-->
-    <!--            <span class="text-sm text-gray-500 dark:text-gray-400">Owner: <span th:text="${pet.user.first_name}"></span></span>-->
-
-    <!--            <div th:if="${pet.user.id} == ${#authentication.principal.id}" class="flex mt-4 space-x-3 md:mt-6">-->
-
-    <!--              <form th:action="@{/pets/{id}/edit(id=${pet.id})}" th:method="get">-->
-    <!--                <input type="hidden" name="edit_id" th:value="${pet.id}" />-->
-    <!--                <button type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</button>-->
-    <!--              </form>-->
-
-    <!--              <form th:action="@{/pets/{id}/delete(id=${pet.id})}" th:method="get">-->
-    <!--                <input type="hidden" name="delete_id" th:value="${pet.id}" />-->
-    <!--                <button type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-red-600 rounded-lg hover:bg-red-500">Delete</button>-->
-    <!--              </form>-->
-    <!--            </div>-->
-    <!--          </a>-->
-    <!--        </div>-->
-
-    <!--  </div>-->
-
-    <!--</div>-->
-
-
-    <div>
     </div>
 </div>
 
