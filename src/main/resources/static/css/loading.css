@@ -72,6 +72,7 @@
     width: 12em;
     height: 12em;
     font-size: 14px;
+    z-index: 1;
 }
 
 .wheel,

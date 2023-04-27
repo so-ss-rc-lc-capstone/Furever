@@ -3,42 +3,10 @@
 
 <head th:replace="partials/header :: head">
     <title>Friends</title>
-    <!--  Jquery-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet"/>
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
-    <script>
-        (function (t, a, l, k, j, s) {
-            s = a.createElement('script');
-            s.async = 1;
-            s.src = "https://cdn.talkjs.com/talk.js";
-            a.head.appendChild(s)
-            ;k = t.Promise;
-            t.Talk = {
-                v: 2, ready: {
-                    then: function (f) {
-                        if (k) return new k(function (r, e) {
-                            l.push([f, r, e])
-                        });
-                        l
-                            .push([f])
-                    }, catch: function () {
-                        return k && new k()
-                    }, c: l
-                }
-            };
-        })(window, document, []);
-    </script>
-    <script src="https://cdn.talkjs.com/talk.js"></script>
-    <link rel="stylesheet" href="/css/loading.css">
-
 </head>
 
 <body class="bg-gray-100 ">
-
-<nav th:replace="partials/navbar :: navbar-search"></nav>
-
+<nav th:replace="partials/navbar :: navbar"></nav>
 <div class="flex w-screen h-screen w-[38em]">
 
 <section class="hidden md:flex w-[22em] h-screen relative">
@@ -155,7 +123,7 @@
 
                                     <div class="flex flex-col space-x-4 mb-5 ">
                                         <div class="flex items-center justify-between px-3">
-                                            <div th:data-dropdown-toggle="${user.email}"
+                                            <div th:data-dropdown-toggle="drop+${user.id}"
                                                  data-dropdown-placement="bottom-start" type="button"
                                                  class="flex items-center">
 
@@ -174,7 +142,7 @@
                                                 </div>
 
 
-                                                <div th:id="${user.email}"
+                                                <div th:id="drop+${user.id}"
                                                      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                                                     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                                                         <div class="text-base font-normal text-gray-900 "><span
@@ -191,11 +159,8 @@
                                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
                                                                 Profile</a>
                                                         </li>
-                                                        <li>
-                                                            <a href="#"
-                                                               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
-                                                        </li>
                                                     </ul>
+
                                                     <div class="py-1">
                                                         <form th:action="@{/users/{id}/follow(id=${user.id})}"
                                                               th:method="post"
@@ -226,7 +191,6 @@
                                                         <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
                                                     </svg>
                                                 </button>
-
                                             </div>
                                         </div>
 
