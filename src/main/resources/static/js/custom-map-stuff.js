@@ -2,62 +2,61 @@
 //Function to get all the event locations
 
 function allEvents() {
-    fetch(`${window.location.protocol}//${window.location.host}/api/allevents`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        }
-    })
-        .then(response => response.json())
-
-        .then(data => {
-            const event = data.map(event => ({
-                id: event.id,
-                title: event.title,
-                name: event.location_name,
-                address: event.location_address
-            }));
-
-            mapboxgl.accessToken = keys.mapbox;
-            let map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/dark-v11',
-                zoom: 3,
-                center: [-98.4916, 45.4252]
-            });
-
-            // Get the user's current position
-            navigator.geolocation.getCurrentPosition(position => {
-                // Update the map's center to the user's position
-                let userPosition = [position.coords.longitude, position.coords.latitude];
-                map.setCenter(userPosition);
-                map.setZoom(3);
-                event.forEach(function (event) {
-                    geocode(event.address, keys.mapbox).then(function (result) {
-                        let eventPosition = [result[0], result[1]];
-
-                        let marker = new mapboxgl.Marker()
-                            .setLngLat(eventPosition)
-                            .addTo(map);
-
-                        let eventPopup = new mapboxgl.Popup()
-                            .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
-
-                        marker.setPopup(eventPopup);
-                    });
-                });
-            });
-
-            function deg2rad(deg) {
-                return deg * (Math.PI / 180)
+        fetch(`${window.location.protocol}//${window.location.host}/api/allevents`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
             }
-
         })
+            .then(response => response.json())
+
+            .then(data => {
+                const event = data.map(event => ({
+                    id: event.id,
+                    title: event.title,
+                    name: event.location_name,
+                    address: event.location_address
+                }));
+
+                mapboxgl.accessToken = keys.mapbox;
+                let map = new mapboxgl.Map({
+                    container: 'map',
+                    style: 'mapbox://styles/mapbox/dark-v11',
+                    zoom: 3,
+                    center: [-98.4916, 45.4252]
+                });
+
+                // Get the user's current position
+                navigator.geolocation.getCurrentPosition(position => {
+                    // Update the map's center to the user's position
+                    let userPosition = [position.coords.longitude, position.coords.latitude];
+                    map.setCenter(userPosition);
+                    map.setZoom(3);
+                    try {
+                        event.forEach(function (event) {
+                            geocode(event.address, keys.mapbox).then(function (result) {
+                                let eventPosition = [result[0], result[1]];
+
+                                let marker = new mapboxgl.Marker()
+                                    .setLngLat(eventPosition)
+                                    .addTo(map);
+
+                                let eventPopup = new mapboxgl.Popup()
+                                    .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
+                                marker.setPopup(eventPopup);
+                            });
+                        });
+                    }catch(error){
+                        console.error(error);
+                    }
+                });
+
+                function deg2rad(deg) {
+                    return deg * (Math.PI / 180)
+                }
+            })
         .catch(error => console.error(error));
 }
-
-
-
 
 // ==========> Events within 50 miles radius <=================
 let localLocations = async function () {
@@ -84,8 +83,6 @@ let localLocations = async function () {
             zoom: 10,
             center: [-98.4916, 29.4252]
         });
-
-
 
 
         // Get the user's current position
@@ -263,6 +260,7 @@ function stopSpinner (e) {
         map.off('render', stopSpinner)
     }
 }
+
 function loadingSpinner(on) {
     if (on) {
         spinnerEl.classList.add('loading');
