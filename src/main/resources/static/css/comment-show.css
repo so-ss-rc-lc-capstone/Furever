@@ -1,0 +1,13 @@
+#comment-body, #name-body {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    text-overflow: ellipsis;
+}
+
+
+@media (max-width: 1095px) {
+    aside {
+        display: none !important;
+    }
+}
