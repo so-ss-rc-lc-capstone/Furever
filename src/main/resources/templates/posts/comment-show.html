@@ -7,13 +7,16 @@
 <body>
 
 <nav th:replace="partials/navbar :: navbar-search"></nav>
+<nav th:replace="partials/Aside :: aside-nav"></nav>
 
-<div class="flex flex-col h-screen w-full justify-center items-center">
+<section class="w-full flex justify-end">
 
-    <div class="flex w-full justify-start mb-16 pt-5 items-center">
+    <div class="hidden md:flex md:w-[23em]"></div>
+<div class="flex flex-col w-full h-screen ">
+    <div class="flex w-full justify-start mb-16 md:mt-[5em] pt-5 items-center">
         <button class="mx-4 text-blue-500 hover:text-blue-600" onclick="window.history.back()">Go Back</button>
         <div class="flex-1 text-center">
-            <h1 class="text-3xl font-bold mr-[2em]">Message</h1>
+            <h1 class="text-3xl font-bold mr-[2em]">Post</h1>
         </div>
     </div>
 
@@ -135,7 +138,7 @@
         </div>
     </div>
 </div>
-
+</section>
 <script src="/js/posts/comment-show.js"></script>
 
 </body>
