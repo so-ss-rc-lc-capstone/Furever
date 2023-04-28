@@ -6,22 +6,30 @@
     </title>
 </head>
 <link rel="stylesheet" href="/css/calendar2.css">
+<link rel="stylesheet" href="/css/profile.css"/>
 
 <body>
 
-<nav th:replace="partials/navbar :: navbar-search"></nav>
+<nav th:replace="partials/navbar :: navbar-search-profile"></nav>
 
-<nav th:replace="partials/navbar :: navbar-mobile"></nav>
-<aside th:replace="partials/Aside :: aside-nav"></aside>
+<nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 <nav th:include="event/participants-modal"></nav>
 
 
-<section class = "w-full flex justify-end">
-<div class="w-full mt-[5em] md:w-[85%] h-screen">
-    <div class="h-2/5 relative"
-         style="background-image: url('https://imgtr.ee/images/2023/04/11/n5rU7.jpg'); background-position: center; background-size: cover;">
 
+<section class = "w-full">
+
+<div class="w-full mt-[4em] md:mt-[5em] h-screen flex justify-end">
+
+    <section class="aside-container hidden md:w-[17em] md:flex w-full h-screen relative">
+        <aside th:replace="partials/Aside :: aside-nav"></aside>
+    </section>
+
+<div class ="w-full">
+    <div class="h-2/5"
+         style="background-image: url('https://imgtr.ee/images/2023/04/11/n5rU7.jpg'); background-position: center; background-size: cover;">
     </div>
+
     <div class="flex justify-center">
 
         <div class="w-full md:w-4/5 flex flex-col justify-between bg-white">
@@ -270,6 +278,7 @@
 
     </div>
 
+</div>
 </div>
 </section>
 

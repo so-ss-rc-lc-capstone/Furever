@@ -3,7 +3,6 @@
 
 <head th:replace="partials/header :: head">
     <title>Friends</title>
-
     <script>
         (function (t, a, l, k, j, s) {
             s = a.createElement('script');
@@ -26,17 +25,18 @@
             };
         })(window, document, []);
     </script>
-
 </head>
+<link rel="stylesheet" href="/css/profile.css"/>
+
 
 <body class="bg-gray-100 ">
-<nav th:replace="partials/navbar :: navbar-search"></nav>
-
+<nav th:replace="partials/navbar :: navbar-search-friends"></nav>
+<nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
 
 <div class="flex w-screen h-screen w-[38em]">
 
-<section class="hidden md:flex w-[22em] h-screen relative">
+<section class="aside-container hidden md:flex w-[22em] h-screen relative">
 <aside th:replace="partials/Aside :: aside-nav"></aside>
 </section>
 
@@ -44,15 +44,15 @@
 
     <!--- Feed -->
     <div class="w-screen h-screen">
-        <!--Filter bar-->
         <div class="mt-0 md:mt-[7em] flex flex-col-reverse md:flex-row justify-end w-full h-full">
 
-            <div class="md:w-[50%] w-full h-full">
-                <section class="w-full h-full p-4 bg-white border border-gray-200 rounded-lg shadow ">
-
+            <div class="md:w-[50%] w-full">
+                <section class="w-full h-screen p-4 bg-white border border-gray-200 rounded-lg shadow ">
                     <h1 class = "text-3xl font-extrabold mb-3">Chats</h1>
+
+                    <!--Search Bar-->
                     <div class="relative">
-                        <!--Hamburger-->
+
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -66,17 +66,19 @@
                                class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                placeholder="Follow a friend..">
                     </div>
-                    <div class="mb-5 text-[15px] mt-4 text-gray-400 ">My Friends</div>
 
+                    <div class="flex">
 
+                    <div class="w-1/2 h-screen">
+                        <h2 class="mb-5 text-[15px] mt-4 text-gray-400 ">Following</h2>
                     <ul id="loggedUser" role="list" th:title="${#authentication.principal.id}">
 
-                        <div th:each="user : ${followedUsers}">
+                        <div class ="pr-2" th:each="user : ${followedUsers}">
                             <div th:if="${user.id} != ${#authentication.principal.id}">
                                 <li th:title="${user.id}" class="friend-card group/item hover:cursor-pointer ">
 
                                     <div class="flex flex-col space-x-4 mb-5 ">
-                                        <div class="flex items-center justify-between px-3">
+                                        <div class="flex items-center justify-between">
                                             <div th:data-dropdown-toggle="drop+${user.id}"
                                                  data-dropdown-placement="bottom-start" type="button"
                                                  class="flex items-center">
@@ -154,16 +156,97 @@
                             <hr class="w-full h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">
                         </div>
                     </ul>
+                    </div>
+
+                        <div class="w-1/2 border-l pl-2 h-screen border-gray-200">
+                                <h2 class="mb-5 text-[15px] mt-4 text-gray-400 ">All</h2>
+                            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <!--          <div th:each="user : ${users}">-->
+                                <div th:each="user : ${usersNotFollowing}">
+
+                                    <div th:if="${user.id} != ${#authentication.principal.id}">
+
+                                        <li class="py-2 group/item ">
+
+                                            <div class="flex flex-col space-x-4 ">
+                                                <div class="flex items-center justify-between px-3">
+                                                    <div th:data-dropdown-toggle="${user.email}"
+                                                         data-dropdown-placement="bottom-start" type="button"
+                                                         class="flex items-center">
+
+                                                        <img class="w-10 h-10 rounded-full cursor-pointer"
+                                                             th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
+                                                             alt="user-image">
+
+                                                        <div class="ml-3 flex-col font-medium dark:text-white">
+                                                            <div class="text-sm text-gray-500 dark:text-gray-400">@<span
+                                                                    th:text="${user.username}"
+                                                                    th:href="@{|/user/${user.id}|}">
+                                                            </span>
+                                                            </div>
+                                                        </div>
+                                                        <div th:id="${user.email}"
+                                                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                                            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                                                <div class="text-base font-normal text-gray-900 "><span
+                                                                        th:text="${user.first_name } "></span> <span
+                                                                        th:text="${user.last_name}"></span>
+                                                                </div>
+                                                                <div class="text-sm text-gray-500 dark:text-gray-400">
+
+                                                                    <span th:text="${user.email}"></span>
+                                                                </div>
+
+                                                            </div>
+                                                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                                                aria-labelledby="avatarButton">
+                                                                <li>
+                                                                    <a th:href="@{|/user/${user.id}|}"
+                                                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
+                                                                        Profile</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#"
+                                                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <a class="flex flex-row justify-self-end items-center group/edit group-hover/item:visible ">
+                                                        <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                              th:name="followFromEvent" th:method="post"
+                                                              class="block px-4 py-2 text-sm text-gray-200 ">
+                                                            <button class="items-center justify-center hover:cursor-pointer"
+                                                                    type="submit">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="19"
+                                                                     height="19" fill="currentColor"
+                                                                     class="bi bi-person-fill-add text-gray-300 transition duration-300 hover:text-gray-500" viewBox="0 0 16 16">
+                                                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                                                    <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                                                                </svg>
+                                                            </button>
+                                                        </form>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                </div>
+                            </ul>
+
+
+                        </div>
+                    </div>
+
                 </section>
             </div>
 
 
-            <div id="talkjs" class=" md:flex w-full md:w-2/4 md:px-3">
+            <div id="talkjs" class=" md:flex w-full h-full md:w-2/4 md:px-3">
                 <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
-
                     <div class="container w-full h-screen">
                         <!-- container element in which TalkJS will display a chat UI -->
-
                         <div id="talkjs-container" class="flex flex-col justify-center w-full items-center object-contain"
                              style="width: 90%; margin: 30px; height: 800px">
 
@@ -194,6 +277,7 @@
                     </div>
                 </section>
             </div>
+
         </div>
     </div>
 </div>
