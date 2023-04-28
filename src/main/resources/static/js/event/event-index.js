@@ -21,9 +21,3 @@
     };
 })(window, document, []);
 
-const dropdownMenu = document.querySelector(".dropdown-menu");
-const dropdownButton = document.querySelector(".dropdown-toggle");
-
-dropdownButton.addEventListener("click", () => {
-    dropdownMenu.classList.toggle("hidden");
-});
