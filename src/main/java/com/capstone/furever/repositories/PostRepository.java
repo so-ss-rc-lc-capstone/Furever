@@ -9,7 +9,4 @@ import com.capstone.furever.models.Comments;
 
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-    @Modifying
-    @Query("DELETE FROM Comments comment WHERE comment.post.id = :post_id")
-    void deleteCommentsByPostId(@Param("post_id") Long post_id);
 }
