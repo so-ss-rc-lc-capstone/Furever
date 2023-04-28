@@ -1,6 +1,6 @@
 <!-- User Events -->
 
-<div class="card-div flex flex-col mt-[4em] justify-between border w-full h-[30em] mb-5 pb-5 border-gray-200 rounded-lg shadow-xl dark:border-gray-700"
+<div class="card-div flex flex-col mt-[1em] justify-between border w-full h-[30em] mb-5 pb-5 border-gray-200 rounded-lg shadow-xl dark:border-gray-700"
      th:each="event : ${events}" th:title="${event.id}"
      th:style="${event.eventPhoto == null or event.eventPhoto == ''} ? 'background-image:url(\'/img/event-img.jpg\'); background-size:cover; background-position:center;' : 'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
     <div class=" w-full mt-[10px] h-[3em]">

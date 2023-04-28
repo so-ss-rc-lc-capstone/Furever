@@ -9,8 +9,8 @@
     <!--</head>-->
     <link rel="stylesheet" href="/css/posts-index.css"/>
 
-    <body class="flex justify-center bg-gray-100">
-    <nav th:replace="partials/navbar :: navbar-search"></nav>
+    <body class="flex relative justify-center bg-gray-100">
+    <nav th:replace="partials/navbar :: navbar-search-posts"></nav>
     <nav th:replace="partials/navbar :: navbar-mobile"></nav>
     <nav th:include="event/participants-modal"></nav>
 
@@ -80,30 +80,35 @@
     <aside th:replace="partials/Aside :: aside-nav"></aside>
 
 
-    <div class="w-full mt-[7em]">
+    <div class="w-full mt-[6em] md:mt-[7em]">
         <!-- User POSTS -->
         <div class="bg-white border w-full p-3 border-gray-200 rounded-lg mb-6 shadow dark:border-gray-700">
             <div class="flex flex-col">
                 <div class="flex flex-row">
                     <div class="flex justify-center">
-                        <img class="w-[55px] h-[55px] mt-[45px] ml-7 mr-2 rounded-full shadow-md"
+                        <a href="/profile">
+                        <img class="w-[55px] h-[55px] mt-[43px] ml-5 mr-3 rounded-full shadow-md"
                              th:if="${not #strings.isEmpty(user.profilePhoto)}"
                              th:src="${user.profilePhoto}"
                              alt="Profile image"/>
-                        <img class="w-[55px] h-[55px] mt-[45px] ml-7 mr-2 rounded-full shadow-md"
+                        </a>
+                        <a href="/profile">
+                        <img class="w-[55px] h-[55px] mt-[43px] ml-5 mr-3 rounded-full shadow-md"
                              th:if="${#strings.isEmpty(user.profilePhoto)}"
                              th:src="@{/img/profile.jpeg}"
                              alt="Default profile image"/>
+                        </a>
+
                     </div>
 
                     <form th:action="@{/posts/create}" th:method="POST" th:object="${post}" class="w-full">
 
-                        <div class="flex w-full justify-center-center">
-                            <div class="ml-[1em]"><span class="font-bold text-2xl">Posts</span> <span
+                        <div class="flex w-full hidden md:flex justify-center-center">
+                            <div class="ml-[1em]"><span class=" font-bold text-2xl"><a href="#">Posts</a></span> <span
                                     class="text-[15px] text-gray-400"> - Share Something</span></div>
                         </div>
 
-                        <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
+                        <div class="flex items-center mt-[37px] md:mt-0 px-3 py-2 rounded-lg dark:bg-gray-700">
                             <span><input id="post-photo-input" name="image" type="hidden"></span>
 
                             <textarea id="user-post" name="body" rows="1"
@@ -169,12 +174,12 @@
 </div>
 
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
         <script src="/js/posts/post-index.js"></script>
         <script th:src="@{/js/filestack-post.js}"></script>
         <script src="/js/event-feed.js"></script>
         <!--<script src="/js/keys.js" type="text/javascript"></script>-->
         <script src="/js/posts/post-delete.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
-</body>
+
+    </body>
 </html>
