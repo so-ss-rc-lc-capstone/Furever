@@ -11,12 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
@@ -47,8 +50,18 @@ public class UserController {
         List<Pet> pets = petsDao.findAll();
         List<Post> posts = postDao.findAll();
         List<Event> events = eventDao.findAll(); // or however you fetch the events
+
+        List<Event> participatingEvents = new ArrayList<>();
+
+        for(int i =0; i< events.size(); i++){
+            if(events.get(i).hasParticipated(userData)){
+                participatingEvents.add(events.get(i));
+            }
+        }
+        model.addAttribute("events", participatingEvents);
+
+
         model.addAttribute("comments", comments);
-        model.addAttribute("events", events);
         model.addAttribute("user", userData);
         model.addAttribute("users", users);
         model.addAttribute("pets", pets);
@@ -166,37 +179,58 @@ public class UserController {
     @GetMapping("/user/{id}")
     public String findPetById(@PathVariable long id, Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User userData1 = userDao.findById(currentUser.getId());
+        User currentUserData = userDao.findById(currentUser.getId());
+        User userData = userDao.findById(id);
 
 
+        List<Event> events = eventDao.findAll();
+        List<Event> participatingEvents = new ArrayList<>();
+
+        List<Comments> comments = commentDao.findAll();
+        List<Comments> userComment = new ArrayList<>();
 
         List<Pet> petData = petsDao.findAll();
-
-        User userData = userDao.findById(id);
         List<User> followedUsers = userData.getFollowedUsers();
         List<Long> followedUsersId = new ArrayList<>();
+
+        List<Post> posts = postDao.findAll();
+        List<Post> userPost = new ArrayList<>();
+
+
         for (User followedUser : followedUsers) {
             System.out.println("[followedUsers]:" + followedUser.getUsername());
             System.out.println("[followedUsers ID]:" + followedUser.getId());
             followedUsersId.add(followedUser.getId());
         }
-        List<Event> eventsData = eventDao.findAll();
-        List<Event> userEvents = new ArrayList<>();
 
         // Filter events in which the user is participating
-        for (Event event : eventsData) {
-            if (event.hasParticipated(userData)) {
-                userEvents.add(event);
+
+        for(int i =0; i< events.size(); i++){
+            if(events.get(i).hasParticipated(userData)){
+                participatingEvents.add(events.get(i));
             }
         }
-        model.addAttribute("loggedInUser", userData1);
-        System.out.println("userData1: " + userData1.getFirst_name());
+
+        for(Post post: posts) {
+            if(post.getUser().hasPosts(userData) ) {
+                userPost.add(post);
+            }
+        }
+        System.out.println("[userPost] = "+userPost);
+
+
+
+        model.addAttribute("comments", comments);
+
+        model.addAttribute("events", participatingEvents);
+        model.addAttribute("posts", userPost);
+        model.addAttribute("loggedInUser", currentUserData);
+        System.out.println("userData1: " + currentUserData.getFirst_name());
         model.addAttribute("followedUsers", followedUsers);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("followedUsersId", followedUsersId);
         model.addAttribute("user", userData);
         model.addAttribute("pets", petData);
-        model.addAttribute("events", userEvents);
 
 
         return "users/user-show";

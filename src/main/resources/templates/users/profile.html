@@ -92,10 +92,7 @@
                             <div class="w-2/3 h-[5em] mb-[4em] md:mb-0 text-[20px] text-center md:text-start md:block"
                                  th:text="${user.bio}" style="overflow-wrap: break-word;">
                             </div>
-
-
                         </div>
-
                     </div>
 
 
@@ -260,7 +257,9 @@
                         <!--Render Photos or events-->
                         <div class="w-full hidden h-screen grid grid-cols-1" id="events-container"
                              style="overflow: auto;">
-<!--                            <div th:if="${event.hasParticipated(user.id)}" th:include="event/event-card.html"></div>-->
+                            <div th:include="event/event-card.html"></div>
+
+<!--                            <div th:if="${participatingId.contains(#authentication.principal.id)}" th:include="event/event-card.html"></div>-->
 
                         </div>
                     </div>

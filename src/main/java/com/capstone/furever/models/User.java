@@ -76,6 +76,8 @@ public class User {
     @ManyToMany(mappedBy = "followedUsers")
     private List<User> followingUsers;
 
+
+
     public long getId() {
         return id;
     }
@@ -227,7 +229,24 @@ public class User {
         this.followingUsers = followingUsers;
     }
 
-    //Many to many constructors and setters and getters above
+
+
+    public List<Comments> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comments> comments) {
+        this.comments = comments;
+    }
+
+    public boolean hasCommented(User user) {
+        return comments.stream().anyMatch(comments -> comments.getUser().equals(user));
+    }
+
+    public boolean hasPosts(User user) {
+        return posts.stream().anyMatch(posts -> posts.getUser().equals(user));
+    }
+
 
     @Override
     public String toString() {
