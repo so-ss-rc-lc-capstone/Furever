@@ -2,6 +2,7 @@ package com.capstone.furever.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Event {
     @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
     @Column(nullable = false)
     private LocalDateTime event_DateAndTime;
     @Column(nullable = false)
@@ -131,18 +133,7 @@ public class Event {
         this.eventPhoto = eventPhoto;
     }
 
-    @Override
-    public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", location_name='" + location_name + '\'' +
-                ", description='" + description + '\'' +
-                ", event_DateAndTime=" + event_DateAndTime +
-                ", location_address='" + location_address + '\'' +
-                ", created_at=" + created_at +
-                '}';
-    }
+
 
     // Added for participants modal
     public List<User> getAttendees() {
@@ -197,5 +188,22 @@ public class Event {
 
     public int getEventLikeCount() {
         return eventLikes.size();
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", location_name='" + location_name + '\'' +
+                ", description='" + description + '\'' +
+                ", event_DateAndTime=" + event_DateAndTime +
+                ", location_address='" + location_address + '\'' +
+                ", created_at=" + created_at +
+                ", eventPhoto='" + eventPhoto + '\'' +
+                ", user=" + user +
+                ", participations=" + participations +
+                ", eventLikes=" + eventLikes +
+                '}';
     }
 }
