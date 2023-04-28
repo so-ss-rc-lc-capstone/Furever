@@ -89,13 +89,13 @@
                 <div class="flex flex-row">
                     <div class="flex justify-center">
                         <a href="/profile">
-                        <img class="w-[55px] h-[55px] mt-[45px] ml-7 mr-2 rounded-full shadow-md"
+                        <img class="w-[55px] h-[55px] mt-[43px] ml-5 mr-3 rounded-full shadow-md"
                              th:if="${not #strings.isEmpty(user.profilePhoto)}"
                              th:src="${user.profilePhoto}"
                              alt="Profile image"/>
                         </a>
                         <a href="/profile">
-                        <img class="w-[55px] h-[55px] mt-[45px] ml-7 mr-2 rounded-full shadow-md"
+                        <img class="w-[55px] h-[55px] mt-[43px] ml-5 mr-3 rounded-full shadow-md"
                              th:if="${#strings.isEmpty(user.profilePhoto)}"
                              th:src="@{/img/profile.jpeg}"
                              alt="Default profile image"/>
