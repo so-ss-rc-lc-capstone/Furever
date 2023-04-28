@@ -141,8 +141,8 @@
                     <span class="flex-1 ml-3 whitespace-nowrap">Create Event</span>
                 </a>
 
-                <button data-dropdown-toggle="dropdown-nav" type="button" class="w-[50px] h-[50px] flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-gear-fill flex-shrink-0 w-6 h-6 text-gray-900 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 " viewBox="0 0 16 16" >
+                <button data-dropdown-toggle="dropdown-nav" type="button" class="w-[50px] h-[50px] hover:text-gray-800 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-gear-fill flex-shrink-0 w-6 h-6 text-gray-500  transition duration-75 dark:text-gray-400" viewBox="0 0 16 16" >
                         <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
                     </svg>
                 </button>
@@ -161,10 +161,10 @@
 
 
                     <form th:action="${'/logout'}" th:method="post">
-                        <button type="submit" class="w-[50px] h-[50px] ml-2 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-arrow-left text-red-500 mr-1" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-                                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                        <button type="submit" class="w-[50px] h-[50px] ml-2 flex hover:text-gray-800 items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                             </svg>
                         </button>
                     </form>
@@ -175,47 +175,209 @@
     </div>
 </nav>
 
-<nav th:fragment="navbar-mobile" class=" fixed bottom-[2em] md:hidden right-0 left-0 p-3 bg-white m-auto rounded-full w-[500px] h-[100px]" style= "box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
+
+
+
+<nav th:fragment="navbar-mobile" id="mobile" class="fixed hidden flex justify-center items-center bottom-0 right-0 left-0 p-3 bg-white m-auto rounded-t-lg w-full h-[100px]" style= "box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
 
     <ul class="nav__list h-full">
         <a href="/events"
-           class="nav__link h-full flex justify-center items-center w-[80px] rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
-            <i class="ri-home-5-line"></i>
+           class="nav__link h-full flex justify-center items-center w-[60px] rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 " viewBox="0 0 16 16">
+                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
+                <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+            </svg>
         </a>
-        <a href="/profile"
-           class="nav__link h-full w-[80px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
-            <i class="ri-profile-line"></i>
+        <a href="/posts"
+           class="nav__link h-full w-[60px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75" viewBox="0 0 16 16">
+                <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+            </svg>
         </a>
         <a href="/friends"
-           class="nav__link h-full w-[80px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
-            <i class="ri-team-line"></i>
+           class="nav__link h-full w-[60px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-people-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                 viewBox="0 0 16 16">
+                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+            </svg>
         </a>
         <a href="/logout"
-           class="nav__link h-full w-[80px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
-            <i class="ri-logout-box-r-line"></i>
+           class="nav__link h-full w-[60px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+            </svg>
         </a>
     </ul>
 </nav>
 
-<nav th:fragment="navbar-mobile-other"
-     class=" fixed bottom-[2em] md:hidden right-0 left-0 p-3 bg-white m-auto rounded-full w-[500px] h-[100px]"
-     style="box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
-    <ul class="nav__list h-full">
-        <a href="/events"
-           class="nav__link h-full flex justify-center items-center w-[80px] rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
-            <i class="ri-home-5-line"></i>
-        </a>
-        <a href="/profile"
-           class="nav__link h-full w-[80px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
-            <i class="ri-profile-line"></i>
-        </a>
-        <a href="/friends"
-           class="nav__link h-full w-[80px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
-            <i class="ri-team-line"></i>
-        </a>
-        <a href="/logout"
-           class="nav__link h-full w-[80px] justify-center items-center rounded-lg active-link hover:bg-gray-100 transition duration-500 transform hover:-translate-y-1 hover:scale-110">
-            <i class="ri-logout-box-r-line"></i>
-        </a>
-    </ul>
+
+<nav th:fragment="navbar-search-posts"
+     class=" bg-white dark:bg-gray-900 shadow-md fixed w-full top-0 left-0 dark:border-gray-600"
+     style="z-index: 998">
+    <div class="w-full flex flex-wrap justify-between p-4">
+        <div class="flex w-full justify-between">
+            <div class="flex">
+                <a class="flex hidden md:flex items-center">
+                    <img th:src="@{/img/logofurever.png}" class="h-[50px] mr-3" alt="Furever-logo">
+                    <span class="self-center text-2xl  font-semibold whitespace-nowrap dark:text-white">Furever</span>
+                </a>
+                <a href="/profile">
+                <img class="w-10 h-10 md:hidden rounded-full cursor-pointer"
+                     th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
+                     alt="user-image">
+                </a>
+                <!--Search bar-->
+                <div class="h-full w-[56px] hidden md:flex rounded-full shadow-md ml-[15px] border-1 border-black" id="search"
+                     style="box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; transition: width .5s cubic-bezier(.9, 0, .3, .9)">
+                    <form action="" class="search relative w-full h-[50px] p-[10px]" id="search-bar">
+                        <input type="search" placeholder="Look for a user" id="search-input"
+                               class="search__input border-none ml-1 font-sm rounded-full w-full h-full"
+                               style="opacity:0; pointer-events: none; transition: opacity 0.7s;">
+                        <div class="search__button absolute w-[45px] h-[45px] rounded-full bg-blue-600 top-0 bottom-0 right-[5px] cursor-pointer m-auto grid items-center "
+                             id="search-button" style="transition: transform .6s cubic-bezier(.9, 0 , .3, .9)">
+                            <i id="search-icon"
+                               class="ri-search-2-line search__icon flex ml-2.5 justify-center absolute items-center text-[1.6rem]"
+                               style="color:white;"></i>
+                            <i id="close"
+                               class="ri-close-line search__close flex ml-2.5 justify-center opacity-0 absolute items-center text-[1.6rem]"
+                               style="color:white;"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <h2 class="text-3xl md:hidden font-bold"><a href="#">Posts</a></h2>
+
+            <div class="flex md:w-1/2 md:justify-end">
+                <!---Create Event button-->
+                <a href="/events/create" class="flex hidden md:flex items-center justify-center p-3 mr-4 text-white rounded-lg dark:text-white bg-blue-600 hover:bg-blue-400 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
+                         viewBox="0 0 16 16">
+                        <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
+                        <path fill-rule="evenodd"
+                              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Create Event</span>
+                </a>
+
+                <button data-dropdown-toggle="dropdown-nav" type="button" class="w-[50px] h-[50px] hover:text-gray-800 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-gear-fill flex-shrink-0 w-6 h-6 text-gray-500  transition duration-75 dark:text-gray-400" viewBox="0 0 16 16" >
+                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                    </svg>
+                </button>
+
+                <div id="dropdown-nav" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                        <li>
+                            <a href="/profile/edit" class="block px-4 py-2 hover:text-blue-400 dark:hover:text-white">Profile Settings</a>
+                        </li>
+                        <li>
+                            <a href="/contact" class="block px-4 py-2 hover:text-blue-400 dark:hover:text-white">Contact Us!</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+                <form th:action="${'/logout'}" th:method="post">
+                    <button type="submit" class="w-[50px] h-[50px] hidden md:flex ml-2 flex hover:text-gray-800 items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                        </svg>
+                    </button>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<nav th:fragment="navbar-search-show-posts"
+     class=" bg-white dark:bg-gray-900 shadow-md fixed w-full top-0 left-0 dark:border-gray-600"
+     style="z-index: 998">
+    <div class="w-full flex flex-wrap justify-between p-4">
+        <div class="flex w-full justify-between">
+            <div class="flex">
+                <a class="flex hidden md:flex items-center">
+                    <img th:src="@{/img/logofurever.png}" class="h-[50px] mr-3" alt="Furever-logo">
+                    <span class="self-center text-2xl  font-semibold whitespace-nowrap dark:text-white">Furever</span>
+                </a>
+                <button class="md:hidden" onclick="window.history.back()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left flex-shrink-0 w-6 h-6 text-blue-500  transition duration-75" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    </svg>
+                </button>
+                <!--Search bar-->
+                <div class="h-full w-[56px] hidden md:flex rounded-full shadow-md ml-[15px] border-1 border-black" id="search"
+                     style="box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; transition: width .5s cubic-bezier(.9, 0, .3, .9)">
+                    <form action="" class="search relative w-full h-[50px] p-[10px]" id="search-bar">
+                        <input type="search" placeholder="Look for a user" id="search-input"
+                               class="search__input border-none ml-1 font-sm rounded-full w-full h-full"
+                               style="opacity:0; pointer-events: none; transition: opacity 0.7s;">
+                        <div class="search__button absolute w-[45px] h-[45px] rounded-full bg-blue-600 top-0 bottom-0 right-[5px] cursor-pointer m-auto grid items-center "
+                             id="search-button" style="transition: transform .6s cubic-bezier(.9, 0 , .3, .9)">
+                            <i id="search-icon"
+                               class="ri-search-2-line search__icon flex ml-2.5 justify-center absolute items-center text-[1.6rem]"
+                               style="color:white;"></i>
+                            <i id="close"
+                               class="ri-close-line search__close flex ml-2.5 justify-center opacity-0 absolute items-center text-[1.6rem]"
+                               style="color:white;"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <h2 class="text-3xl md:hidden font-bold"><a href="#">Posts</a></h2>
+
+            <div class="flex md:w-1/2 md:justify-end">
+                <!---Create Event button-->
+                <a href="/events/create" class="flex hidden md:flex items-center justify-center p-3 mr-4 text-white rounded-lg dark:text-white bg-blue-600 hover:bg-blue-400 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white  bi bi-postcard-heart"
+                         viewBox="0 0 16 16">
+                        <path d="M8 4.5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7Zm3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622ZM2.5 5a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Z"/>
+                        <path fill-rule="evenodd"
+                              d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H2Z"/>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Create Event</span>
+                </a>
+
+                <button data-dropdown-toggle="dropdown-nav" type="button" class="w-[50px] h-[50px] hover:text-gray-800 flex items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-gear-fill flex-shrink-0 w-6 h-6 text-gray-500  transition duration-75 dark:text-gray-400" viewBox="0 0 16 16" >
+                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                    </svg>
+                </button>
+
+                <div id="dropdown-nav" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                        <li>
+                            <a href="/profile/edit" class="block px-4 py-2 hover:text-blue-400 dark:hover:text-white">Profile Settings</a>
+                        </li>
+                        <li>
+                            <a href="/contact" class="block px-4 py-2 hover:text-blue-400 dark:hover:text-white">Contact Us!</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+                <form th:action="${'/logout'}" th:method="post">
+                    <button type="submit" class="w-[50px] h-[50px] hidden md:flex ml-2 flex hover:text-gray-800 items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300 hover:cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                        </svg>
+                    </button>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
 </nav>

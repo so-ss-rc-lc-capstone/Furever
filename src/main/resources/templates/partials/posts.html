@@ -1,38 +1,47 @@
-<div th:fragment="posts"  th:each="post : ${posts}" class = "bg-white rounded-t-lg mt-2">
+<div th:fragment="posts"  th:each="post : ${posts}" class = "relative bg-white rounded-t-lg mt-2">
   <div class="w-full border-2 rounded-t-lg shadow dark:border-gray-700" >
 
 
 
     <div class="flex">
-      <div class="flex justify-center">
-        <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
-             th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
-             th:src="${post.user.profilePhoto}" alt="Profile image"/>
 
-        <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
-             th:if="${#strings.isEmpty(post.user.profilePhoto)}"
-             th:src="@{/img/profile.jpeg}"
-             alt="Default profile image"/>
-      </div>
+
       <!--Name Date body-->
-      <div id="name-body" class = "mt-[20px] w-full">
-        <div class="ml-5">
-          <h1 class="font-bold text-[22px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
-          <h3 class = "text-blue-400"><a th:href="@{/user/{id}(id=${post.user.id})}"> @ <span th:text="${post.user.username}"></span></a></h3>
-          <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
+      <div id="name-body" class = "mt-[20px]">
+        <div class="w-full ml-1 flex justify-start items-center">
+          <div class="flex w-[90%]">
+            <a th:href="@{/user/{id}(id=${post.user.id})}">
+            <img class="w-[60px] h-[60px] mt-[26px] rounded-full shadow-md"
+                 th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
+                 th:src="${post.user.profilePhoto}" alt="Profile image"/>
+            </a>
+            <a th:href="@{/user/{id}(id=${post.user.id})}">
+            <img class="w-[60px] h-[60px] mt-[26px] ml-[34px] rounded-full shadow-md"
+                 th:if="${#strings.isEmpty(post.user.profilePhoto)}"
+                 th:src="@{/img/profile.jpeg}"
+                 alt="Default profile image"/>
+              </a>
 
-          <div class="w-full pb-3 mt-1 pt-[5px] pr-[70px] ml-[2px] text-[18px]" th:text="${post.body}">
-          </div>
+            <div class = "flex flex-col w-full mt-[1.5em] ml-[34px]">
+              <h1 class="font-bold text-[18px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
+              <h3 class = "text-blue-400"><a th:href="@{/user/{id}(id=${post.user.id})}">@ <span th:text="${post.user.username}"></span></a></h3>
+              <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
+              <div class="w-full pb-5 pt-[5px] ml-[2px] pr-[10px] text-[16px]" th:text="${post.body}"></div>
+            </div>
 
-          <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
-          <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full mb-5">
-            <span><img th:src="${post.image}" class=" w-[90%] lg:w-[85%] mt-[5px] h-[25em] rounded-lg"></span>
           </div>
 
         </div>
+        <div class="w-full flex justify-center items-center">
+          <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
+          <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full flex  mb-5">
+            <span class = "w-full flex justify-center items-center md:justify-evenly">
+              <img th:src="${post.image}" class="w-full md:w-[70%] mt-[5px] md:rounded-lg"></span>
+          </div>
+        </div>
       </div>
       <!--delete-->
-      <div th:if="${post.user.id} == ${#authentication.principal.id}">
+      <div class="absolute right-0 top-0" th:if="${post.user.id} == ${#authentication.principal.id}">
         <form th:action="@{'/posts/' + ${post.id} + '/delete'}" method="post" onsubmit="return confirmDelete();">
           <button type="submit">
             <div class="p-3 flex flex-row justify-center items-center text-gray-500 hover:text-red-500 hover:cursor-pointer transition-all ">
@@ -45,7 +54,7 @@
       </div>
     </div>
 
-    <div class="w-full h-[30px] pb-3 border-b border-gray-300 flex flex-row justify-around ">
+    <div class="w-full h-[30px] pb-3 mt-5 border-b border-gray-300 flex flex-row justify-around ">
 
       <div class="flex flex-row justify-center items-center hover:text-blue-500 hover:cursor-pointer transition-all">
         <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -81,10 +90,10 @@
     <div class="flex items-center">
       <div class="w-1/9 h-full">
           <div class="flex h-full items-center justify-center">
-            <img class="w-[55px] h-[55px] ml-[36px] rounded-full shadow-md"
+            <img class="w-[60px] h-[60px] ml-[36px] rounded-full shadow-md"
                  th:if="${not #strings.isEmpty(user.profilePhoto)}"
                  th:src="${user.profilePhoto}" alt="Profile image"/>
-            <img class="w-[55px] h-[55px] ml-[36px] rounded-full shadow-md"
+            <img class="w-[60px] h-[6-px] ml-[36px] rounded-full shadow-md"
                  th:if="${#strings.isEmpty(user.profilePhoto)}"
                  th:src="@{/img/profile.jpeg}"
                  alt="Default profile image"/>
@@ -111,11 +120,11 @@
   <!--Comment reply body-->
   <div th:each="comment, i : ${post.comments}" th:if="${i.index < 3}" class="w-full h-full flex bg-white border-l-2 border-r-2 border-b-2 shadow dark:border-gray-700">
     <div class="flex ml-[5px] justify-center">
-      <img class="w-[40px] h-[40px] mt-[26px] ml-7 rounded-full shadow-md"
+      <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
            th:if="${not #strings.isEmpty(comment.user.profilePhoto)}"
            th:src="${comment.user.profilePhoto}"
            alt="Profile image"/>
-      <img class="w-[40px] h-[40px] mt-[26px] ml-7 rounded-full shadow-md"
+      <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
            th:if="${#strings.isEmpty(comment.user.profilePhoto)}"
            th:src="@{/img/profile.jpeg}"
            alt="Default profile image"/></div>
@@ -127,7 +136,7 @@
             <h1 class="font-bold text-[16px]"><span th:text="${comment.user.first_name}"></span> <span th:text="${comment.user.last_name}"></span></h1>
             <h3 class = "text-blue-400 mt-1 text-[13px]"><a th:href="@{/user/{id}(id=${comment.user.id})}">@ <span th:text="${comment.user.username}"></span></a></h3>
 
-            <h3 class="mt-1 text-[8px] text-gray-400"><span th:text="${#temporals.format(comment.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(comment.created_at, 'dd-MMM-yyyy')}"></span></h3>
+            <h3 class="mt-1 text-[9px] text-gray-400"><span th:text="${#temporals.format(comment.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(comment.created_at, 'MMMM dd, yyyy')}"></span></h3>
           </div>
         </div>
 
