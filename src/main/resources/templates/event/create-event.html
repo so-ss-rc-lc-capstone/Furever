@@ -27,7 +27,7 @@
                     <option value="funny">Funny</option>
                     <option value="descriptive">Descriptive</option>
                 </select>
-                <button type="button" id="close"
+                <button type="button" id="close-btn"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                         data-modal-toggle="updateProductModal">
                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -41,7 +41,6 @@
             </div>
             <!-- Modal body -->
             <form action="#">
-
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div class="sm:col-span-2">
                         <label for="ai-description"
@@ -49,12 +48,12 @@
                             Description</label>
                         <textarea id="ai-description" rows="5"
                                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                  placeholder="List examples out: poodle, refreshments, meetup."></textarea>
+                                  placeholder="A brief details of your event ..."></textarea>
                     </div>
                 </div>
 
                 <div class="flex items-center space-x-4">
-                    <button id="generate" type="submit"
+                    <button id="generate" type="button"
                             class="text-white bg-blue-600 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                         Generate Description
                     </button>
@@ -99,7 +98,7 @@
             <div class="sm:col-span-2">
                 <div class="flex items-center mb-2">
                     <label for="description" class="block mr-3 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                    <div id="ai" class="text-blue-600 hover:cursor-pointer">Use Ai Assistant</div>
+                    <div id="use-ai" class="text-blue-600 hover:cursor-pointer">Use Ai Assistant</div>
                 </div>
                 <textarea id="description" name="description" rows="4"
                           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -141,7 +140,10 @@
 <!--keys-->
 <!--<script src="/js/keys.js" type="text/javascript"></script>-->
 <script th:src="@{/js/filestack-event.js}"></script>
+
+<script th:src="@{/js/event/create-event.js}"></script>
+
 <script src="/js/event-feed.js"></script>
-<script src="/js/event/create-event.js"></script>
+
 </body>
 </html>

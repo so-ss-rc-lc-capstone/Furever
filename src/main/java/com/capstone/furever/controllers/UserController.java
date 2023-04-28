@@ -77,30 +77,32 @@ public class UserController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "users/register";
+        return "users/login";
     }
-
-//    @PostMapping("/register")
-//    public String registerUser(@ModelAttribute User user) {
-//        String hashedPw = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-//        user.setPassword(hashedPw);
-//        userDao.save(user);
-//        return "users/login";
-//    }
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") User user, Model model) {
         // Check if username is already taken
-        boolean usernameTaken = userDao.existsByUsername(user.getUsername());
-        if (usernameTaken) {
-            // Add message to model
-            model.addAttribute("usernameTakenMessage", "Username already taken");
-            return "users/register";
+        try{
+            boolean usernameTaken = userDao.existsByUsername(user.getUsername());
+            System.out.println(usernameTaken);
+            if (usernameTaken || user.getUsername().isEmpty()) {
+                // Add message to model
+                model.addAttribute("usernameTaken", "Username already taken or empty :( Sign-up again!");
+                return "users/login";
+            }else{
+                String hashedPw = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+                user.setPassword(hashedPw);
+                userDao.save(user);
+                model.addAttribute("success", "Successfully Signed-Up! :)");
+                return "users/login";
+            }
+        }catch (Exception e) {
+            // Handle the exception
+            e.printStackTrace();
+            model.addAttribute("errorMessage", "An error occurred. Please try again later.");
+            return "error";
         }
-        String hashedPw = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-        user.setPassword(hashedPw);
-        userDao.save(user);
-        return "users/login";
     }
 
 
@@ -190,6 +192,7 @@ public class UserController {
         List<Comments> userComment = new ArrayList<>();
 
         List<Pet> petData = petsDao.findAll();
+
         List<User> followedUsers = userData.getFollowedUsers();
         List<Long> followedUsersId = new ArrayList<>();
 
@@ -202,6 +205,7 @@ public class UserController {
             System.out.println("[followedUsers ID]:" + followedUser.getId());
             followedUsersId.add(followedUser.getId());
         }
+
 
         // Filter events in which the user is participating
 
@@ -226,6 +230,7 @@ public class UserController {
         model.addAttribute("posts", userPost);
         model.addAttribute("loggedInUser", currentUserData);
         System.out.println("userData1: " + currentUserData.getFirst_name());
+
         model.addAttribute("followedUsers", followedUsers);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("followedUsersId", followedUsersId);

@@ -17,7 +17,7 @@
         <div class="login__forms">
             <form th:action="@{/login}"  th:method="POST" class="login__registre" id="login-in">
                 <h1 class="login__title">Sign-In To Your Account</h1>
-
+                <span th:text="${success}"></span>
                 <div th:if="${param.error}">
                             Invalid Username And Password.
                           </div>
@@ -26,6 +26,7 @@
                     <i class='bx bx-user login__icon'></i>
                     <input type="text" name="username" id="username" placeholder="Username" class="login__input">
                 </div>
+                <div th:text="${usernameTaken}"></div>
                 <div class="login__box">
                     <i class='bx bx-lock-alt login__icon'></i>
                     <input type="password" name="password" id="password"  placeholder="Password" class="login__input">
@@ -49,7 +50,7 @@
                     <i class='bx bx-user login__icon'></i>
                     <input type="text" name="username" id="website-admin" placeholder="Username" class="login__input">
                 </div>
-
+                <div th:text="${usernameTaken}"></div>
                 <div class="login__box">
                     <i class='bx bx-at login__icon'></i>
                     <input type="text" name="email"  id="input-group-1" placeholder="Email" class="login__input">

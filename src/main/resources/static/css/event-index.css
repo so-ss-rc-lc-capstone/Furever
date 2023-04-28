@@ -5,8 +5,12 @@
     .aside-container {
         display: none !important;
     }
+    #mobile{
+        display: flex !important;
+    }
 
 }
+
 
 #nav-mobile {
     position: fixed;
