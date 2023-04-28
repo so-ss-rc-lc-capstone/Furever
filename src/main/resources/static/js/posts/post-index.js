@@ -42,7 +42,7 @@ async function generateUserPost(choosenMood, WrittenDescription) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "prompt": "Re-write me a " + choosenMood + "description for a dog event use the following content to write the summary:" + WrittenDescription,
+                "prompt": "Re-write me a " + choosenMood + "description for my social media post. Use the following content to write the summary:" + WrittenDescription,
                 "engine": "text-davinci-002",
                 "maxTokens": 200
             })
