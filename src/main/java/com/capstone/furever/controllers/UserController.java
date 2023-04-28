@@ -90,8 +90,6 @@ public class UserController {
             model.addAttribute("errorMessage", "An error occurred. Please try again later.");
             return "error";
         }
-
-
     }
 
 

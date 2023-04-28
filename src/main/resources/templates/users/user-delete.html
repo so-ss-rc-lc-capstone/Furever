@@ -1,15 +1,13 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <head th:replace="partials/header :: head">
+    <!--    <head th:replace="partials/header :: head">-->
+    <head>
         <title>
             Delete Profile
         </title>
     </head>
 
 <body>
-
-<nav th:replace="partials/navbar :: navbar"></nav>
-<nav th:replace="partials/navbar :: navbar-mobile-other"></nav>
 
 
 <div class="w-screen h-screen flex items-center justify-items-center ">
@@ -26,9 +24,14 @@
                 Confirm Delete
             </button>
         </form>
+        <form th:action="@{/profile}" method="get">
+            <button type="submit"
+                    class="block flex p-3 border hover:cursor-pointer border-red-100 hover:bg-red-100 rounded-lg text-red-500 hover:text-red-600 dark:hover:bg-gray-600 dark:hover:text-white dropdown-item">
+                Cancel
+            </button>
+        </form>
     </div>
 </div>
-
-
 </body>
 </html>
+
