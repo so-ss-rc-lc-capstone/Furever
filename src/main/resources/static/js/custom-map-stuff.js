@@ -11,10 +11,14 @@ function allEvents() {
         .then(data => {
             const event = data.map(event => ({
                 id: event.id,
+                image: event.eventPhoto,
                 title: event.title,
+                time: event.event_DateAndTime,
                 name: event.location_name,
                 address: event.location_address
             }));
+
+            console.log(event)
 
             mapboxgl.accessToken = keys.mapbox;
             let map = new mapboxgl.Map({
@@ -26,12 +30,15 @@ function allEvents() {
 
             // Get the user's current position
             navigator.geolocation.getCurrentPosition(position => {
+
                 // Update the map's center to the user's position
                 let userPosition = [position.coords.longitude, position.coords.latitude];
                 map.setCenter(userPosition);
                 map.setZoom(3);
                 try {
                     event.forEach(function (event) {
+
+
                         geocode(event.address, keys.mapbox).then(function (result) {
                             let eventPosition = [result[0], result[1]];
 
@@ -40,7 +47,23 @@ function allEvents() {
                                 .addTo(map);
 
                             let eventPopup = new mapboxgl.Popup()
-                                .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
+                                .setHTML(`<div class="h-[160px] w-[150px] p-1">
+                                        <div class="w-full h-2/4">
+                                        <img src="${event.image}" class = "w-full h-full rounded lg" alt="event image">
+                                        </div>
+                                        
+                                        <div class="h-2/4">
+                                        
+                                        <h2 class="font-bold text-[15px]">
+                                        <a href="/events/${event.id}/find">${event.title}</a>
+                                        </h2>
+                                        <p>${event.address}</p>
+                                        
+                                        <h3 class="text-[12px] text-blue-400 hover:cursor-pointer"><a href="/events/${event.id}/find">See Details</a></h3>
+                                        </div>
+                                     
+                                        </div>`)
+
                             marker.setPopup(eventPopup);
                         });
                     });
@@ -70,7 +93,9 @@ let localLocations = async function () {
         const data = await response.json();
         const events = data.map(event => ({
             id: event.id,
+            image: event.eventPhoto,
             title: event.title,
+            time: event.event_DateAndTime,
             name: event.location_name,
             address: event.location_address
         }));
