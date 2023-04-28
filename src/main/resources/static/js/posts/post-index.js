@@ -10,67 +10,61 @@
 
 
 
-const closeButton = document.getElementById('close-icon');
-const aiLink = document.getElementById('ai');
-const modal1 = document.getElementById('ai-assistant');
+//AI link is being initiated here
+const postAILink = $('#post-ai');
+const postAIModal = $('#post-ai-assistant');
 
-closeButton.addEventListener('click', () => {
-    modal1.style.display = 'none';
+
+//on click open up the AI assistant
+postAILink.on('click', () => {
+    postAIModal.css('display', 'block');
 });
 
-aiLink.addEventListener('click', () => {
-    modal1.style.display = 'block';
+const postMood = $('#post-mood');
+const postDescription = $('#ai-post-description');
+
+
+//the close button closes AI assistant on click
+let closePostAI = $('#close-icon');
+
+closePostAI.on('click', () => {
+    postAIModal.css('display', 'none');
 });
 
-// add event listener to close modal when clicking outside of it
-window.addEventListener('click', (event) => {
-    if (event.target == modal1) {
-        modal1.style.display = 'none';
+//Generate button
+
+//Fetching AI API
+async function generateUserPost(choosenMood, WrittenDescription) {
+    try {
+        const response = await fetch('https://open-api.herokuapp.com/generate-text', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "prompt": "Re-write me a " + choosenMood + "description for a dog event use the following content to write the summary:" + WrittenDescription,
+                "engine": "text-davinci-002",
+                "maxTokens": 200
+            })
+        });
+        const data = await response.json();
+        const responseData = JSON.stringify(data);
+        console.log('here =>', responseData);
+        return responseData;
+    } catch (error) {
+        console.error(error);
     }
-});
-
-
-
-const mood = document.getElementById('mood');
-const description = document.getElementById('chat');
-const generate = document.getElementById('generate');
-let responseData;
-
-//GPT
-function generateText(mood , description) {
-    fetch('https://open-api.herokuapp.com/generate-text', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "prompt": "Write me a "+ mood + "tweet use the following content to write the summary:" + description,
-            "engine": "text-davinci-002",
-            "maxTokens": 200
-        })
-    })
-        .then(response => response.json())
-        .then(data =>  {
-            responseData =  JSON.stringify(data)
-            console.log('here =>',responseData)
-        })
-        .catch(error => console.error(error));
 }
 
-generate.addEventListener('click', () => {
-
-    const aiDescription = document.getElementById('ai-description').value;
-    const selectedOption = mood.options[mood.selectedIndex];
-    const selectedValue = selectedOption.value;
-    console.log(aiDescription)
-    console.log(selectedValue)
-
-    generateText(selectedValue, aiDescription);
-    setTimeout(function () {
-        description.value = responseData.substring(1, responseData.length - 1);
-    }, 3000);
-    console.log(responseData)
-    modal1.style.display = 'none';
-
-
+//Running the Fetch function with some details
+const generatePost = $('#post-generate');
+generatePost.on('click', async () => {
+    const postMoodParse = postMood.val();
+    const postDescriptionParse = postDescription.val();
+    const responseData = await generateUserPost(postMoodParse, postDescriptionParse);
+    const userPost = $('#user-post');
+    userPost.val(responseData.substring(1, responseData.length - 1));
+    postAIModal.css('display', 'none');
 });
+
+
