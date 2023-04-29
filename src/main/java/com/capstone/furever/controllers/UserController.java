@@ -59,8 +59,10 @@ public class UserController {
                 participatingEvents.add(events.get(i));
             }
         }
-        model.addAttribute("events", participatingEvents);
 
+        model.addAttribute("pageName", "Profile Page");
+
+        model.addAttribute("events", participatingEvents);
         model.addAttribute("currentUser", userData);
         model.addAttribute("comments", comments);
         model.addAttribute("user", userData);
