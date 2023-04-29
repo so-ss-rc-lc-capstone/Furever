@@ -1,0 +1,17 @@
+#ai-assistant {
+    /* Set initial opacity to 1 for the fade-in effect */
+    opacity: 1;
+    transition: opacity 0.7s ease-in-out;
+}
+
+.event-modal {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s ease-in-out;
+}
+
+#ai-assistant.event-modal {
+    /* Set opacity to 0 and pointer-events to none to hide the modal */
+    opacity: 0;
+    pointer-events: none;
+}
