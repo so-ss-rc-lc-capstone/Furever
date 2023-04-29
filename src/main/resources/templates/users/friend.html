@@ -31,6 +31,7 @@
 
 <body class="bg-gray-100 dark:text-white dark:bg-gray-800">
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
+<!--<nav th:replace="partials/navbar :: navbar-search-friends"></nav>-->
 <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
 <div class="flex w-screen h-screen w-[38em]">
@@ -41,32 +42,32 @@
 
     <!--- Feed -->
     <div class="w-screen relative h-screen">
-        <div class="mt-[5.5em] md:mt-[6em]">
+        <div class="mt-[5.5em] md:mt-[6em] mb-[5.5em] md:mb-[6em]">
 
             <div class="w-full">
                 <section id="chat-width"
                          class="w-[98%] h-full p-4 pb-0 bg-white dark:text-white dark:bg-gray-800 rounded-lg shadow ">
 
                     <div class="flex">
-                        <h1 class="text-3xl font-extrabold mb-3">Chats</h1>
+                        <h1 class="text-3xl font-extrabold mb-5">Chats</h1>
 
                         <!--Search Bar-->
                         <div class=" flex justify-end w-full ml-5">
 
-                            <div class="h-full w-[56px] rounded-full shadow-md ml-[15px] border-1 border-black"
-                                 id="search"
+                            <div class="h-full w-[56px] rounded-full shadow-md ml-[15px] border-1 border-black "
+                                 id="search-friend"
                                  style="box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; transition: width .5s cubic-bezier(.9, 0, .3, .9)">
-                                <form action="" class="search relative w-full h-[50px] p-[10px]" id="search-bar">
-                                    <input type="search" placeholder="Look for a user" id="search-input"
+                                <form action="" class="search relative w-full h-[50px] p-[10px]" id="search-bar-friend">
+                                    <input type="search" placeholder="Look for a user" id="search-input-friend"
                                            class="search__input border-none ml-1 font-sm rounded-full w-full h-full"
                                            style="opacity:0; pointer-events: none; transition: opacity 0.7s;">
                                     <div class="search__button absolute w-[45px] h-[45px] rounded-full bg-blue-600 top-0 bottom-0 right-[5px] cursor-pointer m-auto grid items-center "
-                                         id="search-button"
+                                         id="search-button-friend"
                                          style="transition: transform .6s cubic-bezier(.9, 0 , .3, .9)">
                                         <i id="search-icon"
                                            class="ri-search-2-line search__icon flex ml-2.5 justify-center absolute items-center text-[1.6rem]"
                                            style="color:white;"></i>
-                                        <i id="close"
+                                        <i id="close-friend"
                                            class="ri-close-line search__close flex ml-2.5 justify-center opacity-0 absolute items-center text-[1.6rem]"
                                            style="color:white;"></i>
                                     </div>
@@ -439,23 +440,15 @@
                                                                         </button>
                                                                     </form>
                                                                 </li>
-
                                                             </ul>
                                                         </div>
-
-
                                                     </div>
-
-
                                                 </div>
                                             </li>
                                         </div>
                                     </div>
                                 </ul>
-
-
                             </div>
-
                         </div>
                     </div>
                 </section>
@@ -512,7 +505,7 @@
 
 <!--<script src="/js/keys.js" type="text/javascript"></script>-->
 <script src="/js/users/friend.js"></script>
-<script src="../../static/js/event-feed.js"></script>
+<!--<script src="../../static/js/event-feed.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 
 </body>
