@@ -49,9 +49,8 @@ function allEvents() {
                             let eventPopup = new mapboxgl.Popup()
                                 .setHTML(`<div class="h-[160px] w-[150px] p-1">
                                         <div class="w-full h-2/4">
-                                        <img src="${event.image}" class = "w-full h-full rounded lg" alt="event image">
-                                        </div>
-                                        
+                                        <img src="${event.image ? event.image : '/img/event-img.jpg'}" class="w-full h-full rounded lg" alt="event image">
+                                           </div>
                                         <div class="h-2/4">
                                         
                                         <h2 class="font-bold text-[15px]">
@@ -131,7 +130,21 @@ let localLocations = async function () {
                     .addTo(map);
 
                 let eventPopup = new mapboxgl.Popup()
-                    .setHTML(`<h2><a href="/events/${event.id}/find?event=${event.id}">${event.title}</a></h2><h3><a href="/events/${event.id}/find?event=${event.id}">${event.name}</a></h3><p>Address: ${event.address}</p>`)
+                    .setHTML(`<div class="h-[160px] w-[150px] p-1">
+                                        <div class="w-full h-2/4">
+                                        <img src="${event.image ? event.image : '/img/event-img.jpg'}" class="w-full h-full rounded lg" alt="event image">
+                                           </div>
+                                        <div class="h-2/4">
+                                        
+                                        <h2 class="font-bold text-[15px]">
+                                        <a href="/events/${event.id}/find">${event.title}</a>
+                                        </h2>
+                                        <p>${event.address}</p>
+                                        
+                                        <h3 class="text-[12px] text-blue-400 hover:cursor-pointer"><a href="/events/${event.id}/find">See Details</a></h3>
+                                        </div>
+                                     
+                                        </div>`)
                 withinFiftyMilesIds.push(event.id);
                 marker.setPopup(eventPopup);
             }
