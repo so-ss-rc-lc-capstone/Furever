@@ -7,6 +7,7 @@ import com.capstone.furever.models.User;
 import com.capstone.furever.repositories.EventRepository;
 import com.capstone.furever.repositories.PostRepository;
 import com.capstone.furever.repositories.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -180,7 +181,7 @@ public class EventController {
 
     //    Event participation Mapping method
     @PostMapping("/events/{id}/participate")
-    public String participateEvent(@PathVariable Long id, Principal principal) {
+    public String participateEvent(@PathVariable Long id, Principal principal, Model model, HttpServletRequest request) {
         User user = usersDao.findByUsername(principal.getName());
         Event event = eventsDao.findById(id).get();
         if (event.hasParticipated(user)) {
@@ -188,7 +189,8 @@ public class EventController {
         } else {
             eventService.incrementParticipations(id, user);
         }
-        return "redirect:/events";
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
 
     //Event Likes below
