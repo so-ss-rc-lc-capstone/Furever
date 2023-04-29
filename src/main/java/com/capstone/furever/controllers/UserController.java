@@ -6,6 +6,7 @@ import com.capstone.furever.repositories.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -148,27 +149,23 @@ public class UserController {
 
     }
 
-    @GetMapping("/profile/delete")
-    public String showDeletePage(Model model) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User userData = userDao.findById(currentUser.getId());
-        if (currentUser.getId() == userData.getId()) {
-            model.addAttribute("user", userData);
-            return "users/user-delete";
-        } else {
-            return "users/login";
-        }
-    }
 
-    @PostMapping("/profile/delete")
-    public String deleteUser() {
+    @PostMapping("/profile/{id}/delete")
+    public String deleteUser(@PathVariable Long id) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
-        if (currentUser.getId() == userData.getId()) {
-            userDao.deleteById(currentUser.getId());
+        try{
+            if(userData.getId() == id){
+                userDao.deleteById(id);
+            }else{
+                return "error/500";
+            }
+        }catch(Exception e){
+
         }
         return "users/login";
     }
+
 
     @GetMapping("/user/card")
     public String getPetIndexPage(Model model) {
