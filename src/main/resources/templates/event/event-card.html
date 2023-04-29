@@ -3,16 +3,19 @@
 <div class="card-div flex flex-col mt-[1em] justify-between border w-full h-[30em] mb-5 pb-5 border-gray-200 md:rounded-lg shadow-xl dark:border-gray-700 "
      th:each="event : ${events}" th:title="${event.id}"
      th:style="${event.eventPhoto == null or event.eventPhoto == ''} ? 'background-image:url(\'/img/event-img.jpg\'); background-size:cover; background-position:center;' : 'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
+
     <div class=" w-full mt-[10px] h-[3em]">
-        <div class="w-full flex items-center justify-between">
+        <div class="flex justify-center items-center">
+        <div class=" w-[95%] md:w-[80%] justify-between flex">
+
             <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">
                 <button id="color-toggle" type="submit"
-                        class="w-[150px] duration-75 h-[45px] ml-[4em] font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
+                        class="w-[150px] duration-75 h-[45px] font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
                         th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'bg-blue-600 text-white  hover:bg-blue-700': 'bg-white text-black border-gray-200 border hover:bg-gray-200' }">
                     <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Participating' : 'Participate'}"></span>
                 </button>
             </form>
-            <div class="w-full flex justify-end  mr-[4em]" th:if="${event.user.id} == ${#authentication.principal.id}">
+            <div class="flex" th:if="${event.user.id} == ${#authentication.principal.id}">
                 <button th:id="dropdownDefaultButton + ${event.id}" th:data-dropdown-toggle="dropdown + ${event.id}"
                         class="text-black rounded-full bg-white hover:bg-gray-300 px-4 py-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-600 dark:focus:ring-blue-800 border-gray-100 border-2 shadow-lg"
                         type="button">
@@ -57,6 +60,7 @@
                     </button>
                 </form>
             </div>
+        </div>
         </div>
     </div>
 

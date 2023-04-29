@@ -3,7 +3,9 @@ module.exports = {
   // content: ["./src/main/resources/templates/posts/*{}"],
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {colors: {
+        'regal-blue': '#243c5a',
+      },},
   },
   plugins: [],
 }

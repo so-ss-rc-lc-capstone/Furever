@@ -1,6 +1,19 @@
 
 
 
+if (currentPage.indexOf("/events") !== -1) {
+    // Update the page title
+    document.getElementById("page-title").innerHTML = "Events";
+} else if (currentPage.indexOf("/profile") !== -1) {
+    // Update the page title
+    document.getElementById("page-title").innerHTML = "Profile";
+} else if (currentPage.indexOf("/messaging") !== -1) {
+    // Update the page title
+    document.getElementById("page-title").innerHTML = "Messaging";
+} else if (currentPage.indexOf("/posts") !== -1) {
+    // Update the page title
+    document.getElementById("page-title").innerHTML = "Posts";}
+
 
 (function(t,a,l,k,j,s){
     s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)

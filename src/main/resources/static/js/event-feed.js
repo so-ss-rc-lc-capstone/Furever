@@ -1,5 +1,7 @@
 
 
+// Get the current page URL
+
 
 //Search Bar Toggle
 
