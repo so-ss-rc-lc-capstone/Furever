@@ -1,6 +1,6 @@
 <!-- User Events -->
 
-<div class="card-div flex flex-col mt-[1em] justify-between border w-full h-[30em] mb-5 pb-5 border-gray-200 md:rounded-lg shadow-xl dark:border-gray-700"
+<div class="card-div flex flex-col mt-[1em] justify-between border w-full h-[30em] mb-5 pb-5 border-gray-200 md:rounded-lg shadow-xl dark:border-gray-700 "
      th:each="event : ${events}" th:title="${event.id}"
      th:style="${event.eventPhoto == null or event.eventPhoto == ''} ? 'background-image:url(\'/img/event-img.jpg\'); background-size:cover; background-position:center;' : 'background-image:url(\'' + ${event.eventPhoto} + '\'); background-size:cover; background-position:center;'">
     <div class=" w-full mt-[10px] h-[3em]">
@@ -62,17 +62,17 @@
 
     <div class=" flex justify-center items-center w-full h-[10em]">
         <!--Event Description-->
-        <div class="w-full md:w-5/6 h-[11em] bg-white md:rounded-xl">
+        <div class="w-full md:w-5/6 h-[11em] bg-white dark:text-white dark:bg-gray-800 md:rounded-xl">
             <div class="flex flex-row w-full h-2/3 justify-between">
                 <div class="w-2/3">
                     <div class="w-full">
                         <h2 class="text-2xl font-bold pl-5 pt-3" th:text="${event.title}"></h2>
                         <div class="text-sm pl-5 pb-3">
-                            <div class="text-[14px]"><span
+                            <div class="text-[14px] dark:text-gray-400"><span
                                     th:text="${#temporals.format(event.event_DateAndTime, 'EEEE, MMMM dd, yyyy')}">
                             </span> At <span th:text="${#temporals.format(event.event_DateAndTime, 'h:mm a')}"></span>
                             </div>
-                            <p class="text-[10px]  text-gray-500 flex"><span>
+                            <p class="text-[10px]  text-gray-500 dark:text-gray-400 flex"><span>
                                 <svg fill="none" class="h-[13px] mt-1 mr-1"
                                      stroke="currentColor" stroke-width="1.5"
                                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -129,7 +129,7 @@
                         <form th:action="@{/events/{id}/find (id=${event.id})}" method="get">
                             <input type="hidden" name="event" th:value="${event.id}"/>
                             <button type="submit"
-                                    class=" border border-gray-300 text-gray-800 hover:bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 mr-3 dark:hover:bg-blue-700 ">
+                                    class=" border border-gray-300 text-gray-800 hover:bg-gray-100  font-medium rounded-lg text-sm px-5 py-2.5 mr-3 dark:text-gray-300 dark:bg-gray-800 dark:hover:text-white dark:hover:bg-blue-700 ">
 
                                 See Details
                             </button>

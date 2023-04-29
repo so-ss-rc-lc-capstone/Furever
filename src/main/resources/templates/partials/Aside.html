@@ -1,13 +1,13 @@
 
 
-<aside th:fragment="aside-nav" id="logo-sidebar" class="fixed top-0 left-0 border-r-2 col-start-1 col-span-1 hidden md:flex w-[16em] xl:w-[17em] h-screen bg-white"
+<aside th:fragment="aside-nav" id="logo-sidebar" class="fixed top-0 left-0 col-start-1 col-span-1 hidden md:flex w-[16em] xl:w-[17em] h-screen bg-white dark:text-white dark:bg-gray-800"
        aria-label="Sidebar" style="z-index: 99">
-  <div class="h-full w-full px-3 pb-4 bg-white mt-[7em]">
-    <div class=" w-full">
+  <div class="h-full w-full px-3 pb-4 bg-white dark:bg-gray-800  mt-[7em]">
+    <div class="w-full">
     <ul class="space-y-2 w-full">
       <li class="mb-[3em]">
-        <div class="w-full max-w-sm bg-white flex justify-center items-center dark:bg-gray-800 dark:border-gray-700">
-          <div class="flex flex-col w-[90%] justify-center items-center p-5 bg-gray-100 rounded-xl h-[150px]">
+        <div class="w-full max-w-sm bg-white flex justify-center items-center dark:bg-gray-800">
+          <div class="flex flex-col w-[90%] justify-center items-center p-5 bg-gray-100 dark:text-white dark:bg-gray-700 rounded-xl h-[150px]">
             <div class = "flex ">
               <img class="w-[50px] h-[50px] mb-3 rounded-full shadow-lg"
                    th:if="${not #strings.isEmpty(user.profilePhoto)}"
@@ -339,8 +339,8 @@
                                th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
                                alt="user-image">
 
-                          <div class="ml-3 flex-col font-medium dark:text-white">
-                            <div class="text-base font-normal text-gray-900 "><span
+                          <div class="ml-3 flex-col font-medium">
+                            <div class="text-base font-normal text-gray-900 dark:text-white"><span
                                     th:text="${user.first_name}"
                                     th:href="@{|/user/${user.id}|}"></span><span
                                     th:text="${user.last_name}"
@@ -352,7 +352,7 @@
                           <div th:id="${user.id}"
                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                             <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                              <div class="text-base font-normal text-gray-900 "><span
+                              <div class="text-base font-normal text-gray-900 dark:text-white"><span
                                       th:text="${user.first_name } "></span> <span
                                       th:text="${user.last_name}"></span></div>
                               <div class="text-sm text-gray-500 dark:text-gray-400">
@@ -375,7 +375,7 @@
 
                               <form th:action="@{/users/{id}/follow(id=${user.id})}"
                                     th:name="followFromEvent" th:method="post"
-                                    class="block px-4 py-2 text-sm text-gray-700">
+                                    class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:text-white">
                                 <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
                                         type="submit"></button>
                               </form>
