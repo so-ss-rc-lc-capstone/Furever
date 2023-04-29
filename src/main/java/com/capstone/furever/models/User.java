@@ -243,6 +243,10 @@ public class User {
         this.followingUsers = followingUsers;
     }
 
+    public boolean isFollowing(User user) {
+        return followingUsers.stream().anyMatch(users -> getFollowingUsers().contains(user));
+    }
+
 
 
     public List<Comments> getComments() {
