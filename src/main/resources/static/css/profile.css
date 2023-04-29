@@ -57,3 +57,65 @@
     bottom: 0;
 }
 
+
+
+/*!* Dark mode styles *!*/
+/*.talk-light {*/
+/*    --color-text-primary: #fff;*/
+/*    --color-background-primary: #1c1c1c;*/
+/*    --color-background-secondary: #2d2d2d;*/
+/*    --color-background-tertiary: #383838;*/
+/*    --color-border-primary: #444444;*/
+/*    --color-border-secondary: #555555;*/
+/*    --color-link: #4ca6ff;*/
+/*}*/
+
+/*!* Apply dark mode styles *!*/
+/*.talk-light .talk-container {*/
+/*    background-color: var(--color-background-primary);*/
+/*    color: var(--color-text-primary);*/
+/*}*/
+
+/*.talk-light .talk-header,*/
+/*.talk-light .talk-footer {*/
+/*    background-color: var(--color-background-secondary);*/
+/*    border-color: var(--color-border-primary);*/
+/*}*/
+
+/*.talk-light .talk-messages {*/
+/*    background-color: var(--color-background-tertiary);*/
+/*}*/
+
+/*.talk-light .talk-input {*/
+/*    border-color: var(--color-border-secondary);*/
+/*}*/
+
+/*.talk-light .talk-link {*/
+/*    color: var(--color-link);*/
+/*}*/
+
+
+/* Dark mode styles */
+.talk-light .talk-container,
+.talk-light .talk-container * {
+    background-color: #2d2d2d !important;
+    color: #fff !important;
+}
+
+.talk-light .talk-header,
+.talk-light .talk-footer {
+    background-color: #1c1c1c !important;
+}
+
+.talk-light .talk-messages {
+    background-color: #383838 !important;
+}
+
+.talk-light .talk-input,
+.talk-light .talk-footer {
+    border-color: #444444 !important;
+}
+
+
+
+
