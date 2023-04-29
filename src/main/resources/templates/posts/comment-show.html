@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="comment-show.html"/>
 <link rel="stylesheet" href="/css/profile.css"/>
 
-<body>
+<body class="dark:text-white dark:bg-gray-800">
 
-<nav th:replace="partials/navbar :: navbar-search-show-posts"></nav>
+<nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:replace="partials/Aside :: aside-nav"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
@@ -50,7 +50,7 @@
         </div>
 
 
-        <div class="w-full h-[60px] pb-3 border-b border-gray-300 flex flex-row justify-around ">
+        <div class="w-full h-[60px] pb-3 border-b border-gray-300 flex flex-row justify-around items-center ">
 
             <div class="flex flex-row justify-center  h-[50px] w-[12em] rounded-md items-center hover:text-blue-500 hover:cursor-pointer transition-all">
                 <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -73,8 +73,8 @@
             </form>
         </div>
 
-        <div class="flex items-center border-b-2">
-            <div class="w-1/9 h-full">
+        <div class="flex w-full items-center border-b-2">
+            <div class="w-1/9 h-full mr-3">
                 <div class="flex h-full items-center justify-center">
                     <img class="w-[55px] h-[55px] ml-[30px] md:ml-[100px] rounded-full shadow-md"
                          th:if="${not #strings.isEmpty(user.profilePhoto)}"
@@ -88,20 +88,20 @@
             </div>
 
             <div class="w-full pt-2 pb-2 h-full flex">
-                <form class="w-full" th:action="@{/comment/{id}/create-show(id=${post.id})}" th:method="POST" th:object="${comments}">
-                    <label for="comment" class="sr-only">Your message</label>
-                    <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
+                <form class="w-full" th:action="@{/comment/{id}/create(id=${post.id})}" th:method="POST" th:object="${comments}">
 
-                        <textarea id="comment" name="content" rows="1" class="resize-none h-[60px] mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
+                    <label for="comment" class="sr-only">Your Message</label>
+                    <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-800">
+
+                    <textarea id="comment" name ="content" rows="1"
+                      class="resize-none h-[60px] mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
 
                         <button type="submit"  class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
                             <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
                             <span class="sr-only">Send Message</span>
                         </button>
-
                     </div>
                 </form>
-
             </div>
 
         </div>

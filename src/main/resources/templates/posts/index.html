@@ -9,7 +9,7 @@
     <!--</head>-->
     <link rel="stylesheet" href="/css/posts-index.css"/>
 
-    <body class="flex relative justify-center bg-gray-100">
+    <body class="flex relative justify-center bg-gray-100 dark:text-white dark:bg-gray-700">
     <nav th:replace="partials/navbar :: navbar-search-events"></nav>
     <nav th:replace="partials/navbar :: navbar-mobile"></nav>
     <nav th:include="event/participants-modal"></nav>
@@ -82,7 +82,7 @@
 
     <div class="w-full mt-[6em] md:mt-[7em]">
         <!-- User POSTS -->
-        <div class="bg-white border w-full p-3 border-gray-200 rounded-lg mb-6 shadow dark:border-gray-700">
+        <div class=" border w-full p-3 rounded-lg mb-6 shadow bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <div class="flex flex-col">
                 <div class="flex flex-row">
                     <div class="flex justify-center">
@@ -98,19 +98,18 @@
                              th:src="@{/img/profile.jpeg}"
                              alt="Default profile image"/>
                         </a>
-
                     </div>
 
                     <form th:action="@{/posts/create}" th:method="POST" th:object="${post}" class="w-full">
 
-                        <div class="flex w-full hidden md:flex justify-center-center">
-                            <div class="ml-[1em]"><span class=" font-bold text-2xl"><a href="#">Posts</a></span> <span
-                                    class="text-[15px] text-gray-400"> - Share Something</span></div>
+                        <div class="flex w-full hidden md:flex  justify-center-center">
+                            <div class="ml-[1em] mb-1"><span class=" font-bold text-2xl"><a>Posts</a></span>
+                                <span class="text-[15px] text-gray-400"> - Share Something</span>
+                            </div>
                         </div>
 
-                        <div class="flex items-center mt-[37px] md:mt-0 px-3 py-2 rounded-lg dark:bg-gray-700">
+                        <div class="flex items-center mt-[37px] md:mt-0 px-3 py-2 rounded-lg dark:bg-gray-800">
                             <span><input id="post-photo-input" name="image" type="hidden"></span>
-
                             <textarea id="user-post" name="body" rows="1"
                                       class="text-[15px] h-[60px] resize-none p-2.5 w-[90%] text-sm text-gray-900 rounded-lg border border-gray-300 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 "
                                       placeholder="Whats on your mind?"></textarea>
@@ -129,7 +128,7 @@
 
                 <div class="flex w-full mt-2 justify-evenly">
                     <div id="post-photoBtn"
-                         class="flex items-center justify-center w-[140px] h-[35px] rounded-lg border border-gray-300 p-1 cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+                         class="flex items-center justify-center w-[140px] h-[35px] rounded-lg border border-gray-300 dark:border-gray-500 p-1 cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
                         <button type="button"
                                 class="flex items-center justify-center text-[20px] w-[40px] h-[40px] justify-center text-black dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
                             <i class="ri-image-2-fill w-[40px]"></i>
@@ -138,7 +137,7 @@
                     </div>
 
                     <div id="post-ai"
-                         class="flex items-center justify-center w-[140px] h-[35px] border border-gray-300 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 "
+                         class="flex items-center justify-center w-[140px] h-[35px] border border-gray-300 dark:border-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 "
                          data-popover-target="popover-chat">
                         <image th:src="@{/img/ai-icon2.png}"
                                class="w-[40px] hover:cursor-pointer transition duration-500 ease-in-out transform hover:scale-110"></image>

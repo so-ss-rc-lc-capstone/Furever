@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/calendar2.css">
 <link rel="stylesheet" href="/css/profile.css"/>
 
-<body>
+<body class="bg-white dark:text-white dark:bg-gray-800">
 
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 
@@ -25,14 +25,14 @@
         <aside th:replace="partials/Aside :: aside-nav"></aside>
     </section>
 
-<div class ="w-full">
+<div class ="w-full bg-white dark:text-white dark:bg-gray-800">
     <div class="h-2/5"
          style="background-image: url('https://imgtr.ee/images/2023/04/11/n5rU7.jpg'); background-position: center; background-size: cover;">
     </div>
 
     <div class="flex justify-center">
 
-        <div class="w-full md:w-4/5 flex flex-col justify-between bg-white">
+        <div class="w-full md:w-4/5 flex flex-col justify-between ">
             <div class="h-[20px] w-full flex justify-center md:justify-start " style="transform: translateY(-700%)">
                 <div class="w-[17em] h-[17em] flex flex-col justify-center rounded-full items-center md:items-start">
                     <div class="w-[200px] h-[200px] relative flex justify-center items-center bg-white rounded-full">
@@ -82,9 +82,9 @@
                                 <span class="text-gray-500 text-[15px]" th:text="${user.address}"></span>
                             </div>
 
-                            <h2 class="text-gray-800 text-[15px] mb-2"> @<span class="text-black"
+                            <h2 class="text-gray-800 dark:text-gray-400 text-[15px] mb-2"> @<span class="text-black dark:text-gray-400"
                                                                                th:text="${user.username}"></span> <span
-                                    class="text-[15px] font-bold text-gray-500">﹒</span> <span
+                                    class="text-[15px] font-bold text-gray-500 dark:text-gray-200">﹒</span> <span
                                     th:text="${user.email}"></span></h2>
 
                             <div class="flex w-full justify-evenly md:justify-start"
@@ -110,16 +110,16 @@
 
                             <!--calendar section-->
                         <div class="calendar-container ml-[50px] w-[50em] h-[30em]" style="z-index: 10;">
-                            <div class="wrapper w-full">
+                            <div class="wrapper w-full bg-[#fff] dark:bg-gray-700">
                                 <header>
                                     <p class="current-date"></p>
-                                    <div class="icons">
+                                    <div class="icons text-[#878787] hover:text-[#f2f2f2]">
                                         <span id="prev" class="material-symbols-rounded"><</span>
                                         <span id="next" class="material-symbols-rounded">></span>
                                     </div>
                                 </header>
                                 <div class="calendar">
-                                    <ul class="weeks">
+                                    <ul class="weeks text-[#333] dark:text-gray-200">
                                         <li>Sun</li>
                                         <li>Mon</li>
                                         <li>Tue</li>
@@ -138,7 +138,7 @@
                     </a>
                 </div>
                 <!--Pets-->
-                <div class="w-full flex mt-[3em] flex-col justify-center items-center md:justify-start md:items-start">
+                <div class="w-full flex mt-[3em] flex-col justify-center items-center md:justify-start md:items-start ">
                     <div class="flex md:justify-start md:items-start">
                         <h2 class="font-bold mb-2 ml-7 md:ml-0 mr-2">My Pets</h2>
                         <form th:action="@{/pets/register}" method="get">
@@ -156,7 +156,7 @@
 
                     <!--Events-->
 
-                    <div class="flex flex-col w-full h-screen mt-5  justify-center">
+                    <div class="flex flex-col w-full h-screen mt-5  justify-center bg-white dark:text-white dark:bg-gray-800">
                         <div class=" w-full">
                             <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
                                 <li class="w-full">
@@ -179,7 +179,7 @@
                         <!--Render Posts-->
                         <div class="w-full h-screen grid grid-cols-1" id="posts-container" style="overflow: auto;">
                             <div th:each="post : ${posts}" th:if="${post.user.id == user.id}"
-                                 class="bg-white rounded-t-lg mt-2">
+                                 class="rounded-t-lg mt-2 ">
                                 <div class="w-full rounded-t-lg dark:border-gray-700">
 
                                     <div class="flex">

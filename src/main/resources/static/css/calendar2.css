@@ -20,7 +20,7 @@
 
 .wrapper{
     width: 450px;
-    background: #fff;
+    /*background: #fff;*/
     border-radius: 10px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.12);
 }
@@ -38,7 +38,7 @@ header .icons span{
     width: 38px;
     margin: 0 1px;
     cursor: pointer;
-    color: #878787;
+    /*color: #878787;*/
     text-align: center;
     line-height: 38px;
     font-size: 1.9rem;
@@ -49,7 +49,7 @@ header .icons span{
     margin-right: -10px;
 }
 header .icons span:hover{
-    background: #f2f2f2;
+    /*background: #f2f2f2;*/
 }
 header .current-date{
     font-size: 1.45rem;
@@ -68,7 +68,7 @@ header .current-date{
     margin-bottom: 20px;
 }
 .calendar li{
-    color: #333;
+    /*color: #333;*/
     width: calc(100% / 7);
     font-size: 1.07rem;
 }

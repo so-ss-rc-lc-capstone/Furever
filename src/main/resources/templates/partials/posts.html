@@ -1,9 +1,7 @@
 <div th:fragment="posts"  th:each="post : ${posts}" class = "relative bg-white rounded-t-lg mt-2">
-  <div class="w-full border-2 rounded-t-lg shadow dark:border-gray-700" >
-
+  <div class="w-full border-2 rounded-t-lg shadow dark:bg-gray-800 dark:border-gray-700" >
 
     <div>
-
       <!--Name Date body-->
       <div id="name-body" class = "mt-[20px]">
         <div class="w-full ml-1">
@@ -42,7 +40,7 @@
       <div class="absolute right-0 top-0" th:if="${post.user.id} == ${#authentication.principal.id}">
         <form th:action="@{'/posts/' + ${post.id} + '/delete'}" method="post" onsubmit="return confirmDelete();">
           <button type="submit">
-            <div class="p-3 flex flex-row justify-center items-center text-gray-500 hover:text-red-500 hover:cursor-pointer transition-all ">
+            <div class="p-3 flex flex-row justify-center items-center text-gray-500 dark:text-gray-200 hover:text-red-500 hover:cursor-pointer transition-all ">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
               </svg>
@@ -52,7 +50,7 @@
       </div>
     </div>
 
-    <div class="w-full h-[30px] pb-3 mt-5 border-b border-gray-300 flex flex-row justify-around ">
+    <div class="w-full h-[30px] pb-3 mt-5 border-b border-gray-300 dark:border-gray-700 flex flex-row justify-around ">
 
       <div class="flex flex-row justify-center items-center hover:text-blue-500 hover:cursor-pointer transition-all">
         <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -102,9 +100,10 @@
         <form class="w-full" th:action="@{/comment/{id}/create(id=${post.id})}" th:method="POST" th:object="${comments}">
 
           <label for="comment" class="sr-only">Your Message</label>
-          <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-700">
+          <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-800">
 
-            <textarea id="comment" name = "content" rows="1" class="resize-none h-[60px] mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
+            <textarea id="comment" name ="content" rows="1"
+                      class="resize-none h-[60px] mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
 
             <button type="submit"  class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
               <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
@@ -116,7 +115,7 @@
     </div>
   </div>
   <!--Comment reply body-->
-  <div th:each="comment, i : ${post.comments}" th:if="${i.index < 3}" class="w-full h-full flex bg-white border-l-2 border-r-2 border-b-2 shadow dark:border-gray-700">
+  <div th:each="comment, i : ${post.comments}" th:if="${i.index < 3}" class="w-full h-full flex bg-white border-l-2 border-r-2 border-b-2 shadow dark:bg-gray-800 dark:border-gray-700">
     <div class="flex ml-[5px] justify-center">
       <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
            th:if="${not #strings.isEmpty(comment.user.profilePhoto)}"

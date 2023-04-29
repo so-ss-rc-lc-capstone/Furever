@@ -74,6 +74,7 @@ public class PostController {
 
         List<Comments> comments = post.getComments();
         Collections.reverse(comments);
+
         List<User> users = usersDao.findAll();
         model.addAttribute("comments", new Comments());
         model.addAttribute("user", userData);
