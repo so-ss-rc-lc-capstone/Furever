@@ -104,6 +104,8 @@ public class EventController {
 
         Event event = eventsDao.findById(id).get(); // Getting data from the database first
         Long eventId = event.getUser().getId();
+
+
         if (currentUserId == eventId) {
             model.addAttribute("event", event);
             return "event/edit";

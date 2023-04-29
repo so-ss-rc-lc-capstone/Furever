@@ -164,13 +164,14 @@ public class PostController {
 
 
     @PostMapping("/posts/{n}/delete")
-
     public String deletePost(@PathVariable long n) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findById(n).get();
-        if (user.getId() == post.getUser().getId()) {
+        if(user.getId() == post.getUser().getId()){
             postDao.deleteById(n);
         }
+        System.out.println(user.getId());
+        System.out.println(post.getUser().getId());
         return "redirect:/posts";
     }
 

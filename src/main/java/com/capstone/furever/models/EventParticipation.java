@@ -43,4 +43,14 @@ public class EventParticipation {
     public void setEvent(Event event) {
         this.event = event;
     }
+
+
+    @Override
+    public String toString() {
+        return "EventParticipation{" +
+                "id=" + id +
+                ", user_id=" + user.getId() +
+                ", event_id=" + event.getId() +
+                '}';
+    }
 }
