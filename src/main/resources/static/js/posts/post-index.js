@@ -17,7 +17,7 @@ const postAIModal = $('#post-ai-assistant');
 
 //on click open up the AI assistant
 postAILink.on('click', () => {
-    postAIModal.css('display', 'block');
+    postAIModal.fadeIn(1000);
 });
 
 const postMood = $('#post-mood');
@@ -28,7 +28,7 @@ const postDescription = $('#ai-post-description');
 let closePostAI = $('#close-icon');
 
 closePostAI.on('click', () => {
-    postAIModal.css('display', 'none');
+    postAIModal.fadeOut(1000);
 });
 
 //Generate button
@@ -64,7 +64,7 @@ generatePost.on('click', async () => {
     const responseData = await generateUserPost(postMoodParse, postDescriptionParse);
     const userPost = $('#user-post');
     userPost.val(responseData.substring(1, responseData.length - 1));
-    postAIModal.css('display', 'none');
+    postAIModal.fadeOut(1000);
 });
 
 
