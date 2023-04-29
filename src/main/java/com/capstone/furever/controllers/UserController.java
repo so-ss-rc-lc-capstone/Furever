@@ -241,7 +241,6 @@ public class UserController {
     public String followUser(@PathVariable Long id, Model model, HttpServletRequest request) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUserData = userDao.findById(currentUser.getId());
-        model.addAttribute("currentUserData", currentUserData);
 
         User user = userDao.findById(id).get();
 
@@ -254,6 +253,7 @@ public class UserController {
         }
         userDao.save(currentUserData);
 
+        model.addAttribute("currentUserData", currentUserData);
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
     }
