@@ -101,6 +101,7 @@ public class SecurityConfiguration {
 
 
                         "/users/{id}/follow",
+                        "/users/{id}/follow-search",
                         "/following",
                         "/users/{id}/unfollow",
 
