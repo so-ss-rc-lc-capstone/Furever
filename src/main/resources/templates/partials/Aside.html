@@ -1,13 +1,13 @@
 
 
-<aside th:fragment="aside-nav" id="logo-sidebar" class="fixed top-0 left-0 col-start-1 col-span-1 hidden md:flex w-[16em] xl:w-[17em] h-screen bg-white dark:text-white dark:bg-gray-800"
+<aside th:fragment="aside-nav" id="logo-sidebar" class="fixed top-0 left-0 col-start-1 col-span-1 hidden md:flex w-[16em] xl:w-[17em] h-screen bg-white border-r dark:border-[#292d38] dark:bg-[#1e1f24] dark:text-white"
        aria-label="Sidebar" style="z-index: 99">
-  <div class="h-full w-full px-3 pb-4 bg-white dark:bg-gray-800  mt-[7em]">
+  <div class="h-full w-full px-3 pb-4 bg-white  dark:bg-[#1e1f24] mt-[7em]">
     <div class="w-full">
       <ul class="space-y-2 w-full">
         <li class="mb-[3em]">
-          <div class="w-full max-w-sm bg-white flex justify-center items-center dark:bg-gray-800">
-            <div class="flex flex-col w-[90%] justify-center items-center p-5 bg-gray-100 dark:text-white dark:bg-gray-700 rounded-xl h-[150px]">
+          <div class="w-full max-w-sm flex justify-center items-center">
+            <div class="flex flex-col w-[90%] justify-center items-center p-5 bg-gray-100 dark:text-white dark:bg-[#26272d] rounded-xl h-[150px]">
               <div class = "flex ">
                 <img class="w-[50px] h-[50px] mb-3 rounded-full shadow-lg"
                      th:if="${not #strings.isEmpty(user.profilePhoto)}"
@@ -46,7 +46,7 @@
 
         <li>
           <a href="/profile"
-             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#26272d]"
              data-popover-placement="right"
              data-popover-target="popover-profile">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75" viewBox="0 0 16 16">
@@ -56,7 +56,7 @@
             <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
           </a>
           <div data-popover id="popover-profile" role="tooltip"
-               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border dark:border-[#292d38] rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-[#1e1f24]">
             <div class="grid grid-cols-5">
               <div class="col-span-3 p-3">
                 <div class="space-y-2">
@@ -83,7 +83,7 @@
 
         <li>
           <a href="/posts"
-             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#26272d]"
              data-popover-placement="right"
              data-popover-target="popover-posts">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75" viewBox="0 0 16 16">
@@ -92,8 +92,7 @@
             <span class="flex-1 ml-3 whitespace-nowrap">Feed</span>
           </a>
           <div data-popover id="popover-posts" role="tooltip"
-               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-            <div class="grid grid-cols-5">
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border dark:border-[#292d38] rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-[#1e1f24]">            <div class="grid grid-cols-5">
               <div class="col-span-3 p-3">
                 <div class="space-y-2">
                   <h3 class="font-semibold text-gray-900 dark:text-white">Share your posts!</h3>
@@ -119,7 +118,7 @@
 
         <li>
           <a href="/events"
-             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#26272d]"
              data-popover-placement="right"
              data-popover-target="popover-events">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 " viewBox="0 0 16 16">
@@ -129,8 +128,7 @@
             <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
           </a>
           <div data-popover id="popover-events" role="tooltip"
-               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-            <div class="grid grid-cols-5">
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border dark:border-[#292d38] rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-[#1e1f24]">            <div class="grid grid-cols-5">
               <div class="col-span-3 p-3">
                 <div class="space-y-2">
                   <h3 class="font-semibold text-gray-900 dark:text-white">Join events!</h3>
@@ -156,7 +154,7 @@
 
         <li>
           <a href="/friends"
-             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#26272d]"
              data-popover-placement="right"
              data-popover-target="popover-friend">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -167,8 +165,7 @@
             <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
           </a>
           <div data-popover id="popover-friend" role="tooltip"
-               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-            <div class="grid grid-cols-5">
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border dark:border-[#292d38] rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-[#1e1f24]">            <div class="grid grid-cols-5">
               <div class="col-span-3 p-3">
                 <div class="space-y-2">
                   <h3 class="font-semibold text-gray-900 dark:text-white">Let's have some chats!</h3>
@@ -392,16 +389,16 @@
 
 
 <aside th:fragment="friends-aside" class="fixed top-0 mr-3 mt-3 right-0 justify-items-center ml-5 hidden md:flex w-[15em]">
-  <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <div class="w-full max-w-md p-3 mt-[103px] h-1/2 bg-white dark:bg-[#1e1f24] border border-gray-200 rounded-lg shadow dark:border-[#292d38]">
     <div class="w-full flex flex-row items-center justify-between mb-4">
       <div class="w-full flex flex-col justify-center">
         <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
           <ul class="flex flex-row -mb-px text-sm font-medium text-center" id="myTab"
               data-tabs-toggle="#myTabContent" role="tablist">
             <li class="w-1/2 mr-2" role="presentation">
-              <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab"
+              <button class="inline-block p-4 border-b-2 text-[#2a86ff] rounded-t-lg" id="profile-tab"
                       data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
-                      aria-selected="false">Followers
+                      aria-selected="false"><span class="text-[#2a86ff]">Followers</span>
               </button>
             </li>
             <li class="w-1/2 mr-2" role="presentation">
@@ -417,7 +414,7 @@
         <div id="myTabContent">
           <div class="hidden rounded-lg" id="profile" role="tabpanel"
                aria-labelledby="profile-tab">
-            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+            <ul role="list">
               <div th:each="user : ${followedUsers}">
 
                 <div th:if="${user.id} != ${#authentication.principal.id}">
@@ -497,7 +494,7 @@
 
           <div class="hidden rounded-lg" id="dashboard" role="tabpanel"
                aria-labelledby="dashboard-tab">
-            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+            <ul role="list">
               <!--          <div th:each="user : ${users}">-->
               <div th:each="user : ${usersNotFollowing}">
 

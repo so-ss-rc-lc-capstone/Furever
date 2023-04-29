@@ -5,22 +5,32 @@
     <title>Furever</title>
   </head>
 <link rel="stylesheet" href="/css/home.css"/>
-<body class="dark:bg-rgb-7-7-7">
-<nav th:replace="partials/navbar :: navbar-home"></nav>
+    <link rel="stylesheet" href="/css/darkmode.css"/>
 
-<div id="pagewrapper" >
+    <body class="bg-white dark:dark:bg-[#17181c] relative">
+
+    <a href="/login" class="start-button fixed bottom-0 left-[5em] inline-flex px-5 py-3 ml-5 mt-5 text-base font-medium bg-blue-600 transition-all hover:bg-blue-700 text-center text-white rounded-full shadow-xl" style="z-index: 2;">
+        Get Started
+        <svg class="w-5 h-5 ml-2 mt-[2px] -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    </a>
+
+
+
+    <nav th:replace="partials/navbar :: navbar-home"></nav>
+
+<div id="pagewrapper">
     <div id="blob"></div>
     <div id="blur"></div>
-    <section id="home" class="h-full">
-        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+    <section id="home" class="h-full mt-[2em] ">
+        <div class="grid relative max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
              <div class="mr-auto mt-[2em] w-full flex items-center flex-col justify-center place-self-center text-center md:flex md:flex-col md:justify-center lg:col-span-7">
-                <h1 class="landing hiddens max-w-2xl mb-4 text-center lg:text-start text-6xl font-extrabold tracking-tight leading-none  dark:text-white">Connecting Pet Owners - Made Easy<span class="text-blue-600">.</span></h1>
-                <p class="landing hiddens max-w-2xl mb-6 text-center md:justify-center md:items-center md:text-center lg:text-start font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                <h1 class="landing hiddens max-w-2xl mb-4 text-center lg:text-start text-6xl font-extrabold tracking-tight leading-none dark:text-white">Connecting Pet Owners - Made Easy<span class="text-blue-600">.</span></h1>
+                <p class="landing hiddens max-w-2xl mb-6 text-center md:justify-center md:items-center md:text-center lg:text-start font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-200">
                     Discover exciting new opportunities to bond with your pet and connect with other pet owners in your area.
                 </p>
 
-                 <div class="w-full landing hiddens flex justify-center flex-col-reverse lg:flex-row items-center lg:justify-start">
-                        <a href="/login" class=" inline-flex px-5 py-3 ml-5 mt-5 text-base font-medium  bg-blue-600 transition-all hover:bg-blue-700 text-center text-white rounded-full shadow-xl">
+                 <div class=" w-full landing hiddens flex justify-center flex-col-reverse lg:flex-row items-center lg:justify-start">
+                        <a href="/login" id="start" class="inline-flex px-5 py-3 ml-5 mt-5 text-base font-medium  bg-blue-600 transition-all hover:bg-blue-700 text-center text-white rounded-full shadow-xl">
                             Get Started
                             <svg class="w-5 h-5 ml-2 mt-[2px] -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         </a>
@@ -34,7 +44,7 @@
                                   th:unless="${not #strings.isEmpty(user.profilePhoto)}"
                                   th:src="@{/img/profile.jpeg}" alt="Default profile image"/>
                          </a>
-                         <div class="landing hiddens text-start text-[12px] text-gray-500 ">
+                         <div class="landing hiddens text-start text-[12px] dark:text-gray-200 text-gray-900 ">
                              <p class ="ml-[30px] pt-1"> + <span th:text="${users.size}"></span> people <br> are participating right now</p>
                          </div>
 
@@ -42,14 +52,15 @@
                  </div>
             </div>
             <div class="hidden-right flex items-center justify-center mt-5 lg:items-start lg:justify-start lg:mt-0 lg:col-span-5 lg:flex">
-                <div class="image-container h-[400px] w-[400px] mt-7 lg:h-[500px] lg:w-[500px] rounded-2xl bg-blue-600">
-                    <img class="rounded-2xl" th:src="@{/img/hero-images.jpg}" alt="dogs" style="width: 100%; height: 100%; object-fit: cover;">
+                <div class="image-container md:ml-6 h-[400px] w-[400px] mt-7 lg:h-[500px] lg:w-[500px] rounded-2xl">
+                    <img id="tilting-image" class="rounded-2xl" th:src="@{/img/hero-images.jpg}" alt="dogs" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
+
         </div>
         <div class="w-full">
-            <section class="flex dark:bg-gray-900 mb-[2em]">
-                <div class=" lg:py-16 mt-[10em] mx-auto max-w-screen-xl px-4">
+            <section class="flex mb-[2em]">
+                <div class=" lg:py-16 mt-[10em] mx-auto w-full px-4">
                     <h2 class="mb-2 hidden-up lg:mb-8 text-1xl font-bold tracking-tight leading-tight text-center text-gray-900 dark:text-white md:text-1xl">Furever is behind the world's biggest pet friendly companies</h2>
                     <div class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 lg:grid-cols-4 dark:text-gray-400">
                         <a class="sponsor hiddens flex items-center" href="https://cdnlogo.com/logo/petsmart_37639.html"><img class="w-[15em] h-[13em]" src="https://cdn.cdnlogo.com/logos/p/47/petsmart.svg"></a>
@@ -67,9 +78,9 @@
     <section class=" h-screen mt-[4em]">
         <div class="flex hidden-up flex-col mb-[5em] justify-center items-center">
                 <h1 class="mb-4 mt-[3em] text-5xl text-center font-extrabold leading-none tracking-tight text-gray-900 dark:text-white">Providing The Best  <br>  Service To Help Pet Owners Connect<span class="text-blue-600">.</span></h1>
-                <p class="mb-6 text-lg font-normal text-center text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">We focus on bringing people together for stronger communities and meaningful connections.</p>
+                <p class="mb-6 text-lg font-normal text-center text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-200">We focus on bringing people together for stronger communities and meaningful connections.</p>
             </div>
-                <div class="w-full  flex mt-10 justify-center items-center">
+                <div class="w-full flex mt-10 justify-center items-center">
                         <div id="image-track" data-mouse-down-at="0" data-prev-percentage="0">
                             <img class="image hiddens rounded-lg" th:src="@{/img/cover9.jpg}" src="" draggable="false" />
                             <img class="image hiddens rounded-lg" th:src="@{/img/dogpark.jpg}" src="" draggable="false" />
@@ -84,29 +95,32 @@
     </section>
 
     <!--Features-->
-    <section class="hidden-up  mt-[9em] w-full dark:bg-gray-900">
+    <section class="hidden-up mt-[9em] w-full">
         <div class="py-8 flex justify-center items-center px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-            <div class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
+            <div class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-200">
                 <h2 class="mb-4 text-5xl tracking-tight text-center font-extrabold text-gray-900 dark:text-white">Connect Through <br> Our Socialization Features<span class="text-blue-600">.</span></h2>
             </div>
         </div>
     </section>
 
-    <section id="features" class="hiddens dark:bg-gray-900">
+    <section id="features" class="hiddens relative">
+
+        <div class="blue-square fixed right-0 top-[14em] bg-blue-600" style="z-index: 1;"></div>
+
         <div  class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
-            <img class="w-full dark:hidden rounded-lg" th:src="@{/img/laptop.jpg}" alt="dashboard image">
+            <img class="w-full rounded-lg" th:src="@{/img/laptop.jpg}" alt="dashboard image">
             <div class="mt-4 md:mt-0">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Plan Events And Create Social Media Posts with AI Assistance<span class="text-blue-600">.</span></h2>
-                <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Our technology automates many of the repetitive and time-consuming tasks involved in these processes, freeing up your time to focus on what really matters - creating engaging content and hosting memorable events.</p>
+                <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-200">Our technology automates many of the repetitive and time-consuming tasks involved in these processes, freeing up your time to focus on what really matters - creating engaging content and hosting memorable events.</p>
             </div>
         </div>
     </section>
 
-    <section class="hidden-right dark:bg-gray-900">
+    <section class="hidden-right">
         <div class="gap-16 flex flex-col-reverse items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
             <div class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Paw-Some Local Event Discovery With Personalized Calendar<span class="text-blue-600">.</span></h2>
-                <p class="mb-4">Explore the vibrant world of pet-friendly events in your area with Furever. Our personalized calendar feature ensures you never miss a chance to connect with fellow pet owners and enjoy the best of what your community has to offer.</p>
+                <p class="mb-4 dark:text-gray-200">Explore the vibrant world of pet-friendly events in your area with Furever. Our personalized calendar feature ensures you never miss a chance to connect with fellow pet owners and enjoy the best of what your community has to offer.</p>
             </div>
             <div class="grid grid-cols-2 gap-4 mt-8">
                 <img class="w-full rounded-lg" th:src="@{/img/event1.jpg}" alt="planning">
@@ -115,23 +129,23 @@
         </div>
     </section>
 
-    <section class="hiddens dark:bg-gray-900">
+    <section class="hiddens ">
         <div class="gap-8 items-center  py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
             <img class="w-full rounded-lg" th:src="@{/img/dogmeetup.jpg}">
 
             <div class="mt-4 md:mt-0">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"> Your All-In-One Pet Social Network<span class="text-blue-600">.</span></h2>
-                <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">A social platform where you can connect with other pet owners in your area, share photos and stories about your pets, and even arrange playdates.</p>
+                <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-200">A social platform where you can connect with other pet owners in your area, share photos and stories about your pets, and even arrange playdates.</p>
             </div>
         </div>
     </section>
 
 <!--About us-->
-    <section id="about" class=" mt-[6em] dark:bg-gray-900">
+    <section id="about" class=" mt-[6em]">
         <div  class="py-8 px-4  mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
             <div class="mx-auto hidden-up max-w-screen-sm text-center mb-8 lg:mb-16">
                 <h2 class="mb-4 text-5xl  tracking-tight font-extrabold text-gray-900 dark:text-white">Meet Our Team<span class="text-blue-600">.</span></h2>
-                <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Meet the dedicated and passionate team behind Furever, committed to creating a thriving community of pet owners. </p>
+                <p class="font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-200">Meet the dedicated and passionate team behind Furever, committed to creating a thriving community of pet owners. </p>
             </div>
 
             <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
@@ -164,6 +178,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="about hidden-right items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/sofia-mcguire.png" alt="Sofia Avatar">
@@ -256,11 +271,11 @@
     </section>
 
     <!-- Testimonials -->
-    <section id="testimonials" class="hiddens dark:bg-gray-900">
+    <section id="testimonials" class="hiddens">
         <div class="py-8 mt-[6em] px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
             <div class="mx-auto max-w-screen-sm">
                 <h2 class="mb-4 text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">Testimonials<span class="text-blue-600">.</span></h2>
-                <p class="mb-8 font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">See for yourself how Furever has simplified the management of pets, enhanced socialization, and provided an all-in-one solution for all your pet-related needs.</p>
+                <p class="mb-8 font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-200">See for yourself how Furever has simplified the management of pets, enhanced socialization, and provided an all-in-one solution for all your pet-related needs.</p>
             </div>
             <div class="grid mb-8 lg:mb-12 lg:grid-cols-2">
                 <figure class="flex flex-col justify-center items-center p-8 text-center border-b border-gray-200 md:p-12 lg:border-r dark:bg-gray-800 dark:border-gray-700">
@@ -321,7 +336,7 @@
         </div>
     </section>
     <!--FAQ-->
-    <section id ="faq" class="hidden-right mt-[6em] dark:bg-gray-900">
+    <section id ="faq" class="hidden-right mt-[6em]">
         <div class="py-8 px-4 mx-auto flex flex-col justify-center items-center max-w-screen-xl sm:py-16 lg:px-6">
             <h2 class="mb-8 text-5xl tracking-tight font-extrabold text-gray-900 dark:text-white">Frequently Asked Questions<span class="text-blue-600">.</span></h2>
             <div class="grid pt-8 text-left border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">
@@ -391,24 +406,24 @@
         </div>
     </section>
     <!--Contact info-->
-    <section id="contact" class="bg-white hiddens dark:bg-gray-900">
+    <section id="contact" class="hiddens">
         <div  class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contact Us</h2>
-            <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Let us know.</p>
+            <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-200 sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Let us know.</p>
             <form action="#" class="space-y-8">
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your Email</label>
-                    <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required>
+                    <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-700 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required>
                 </div>
                 <div>
                     <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subject</label>
-                    <input type="text" id="subject" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Let us know how we can help you" required>
+                    <input type="text" id="subject" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-700 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Let us know how we can help you" required>
                 </div>
                 <div class="sm:col-span-2">
                     <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your Message</label>
-                    <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
+                    <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-700 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
                 </div>
-                <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Send message</button>
+                <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-full bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-blue-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Send message</button>
             </form>
         </div>
     </section>

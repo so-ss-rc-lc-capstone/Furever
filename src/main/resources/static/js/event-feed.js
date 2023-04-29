@@ -112,12 +112,16 @@ const mapBtn = document.getElementById('map-btn');
 
 mapBtn.addEventListener('click', () => {
     mapBtn.classList.add('bg-gray-200');
+    mapBtn.classList.add('dark:bg-gray-700');
     listingBtn.classList.remove('bg-gray-200');
+    listingBtn.classList.remove('dark:bg-gray-700');
 });
 
 listingBtn.addEventListener('click', () => {
     listingBtn.classList.add('bg-gray-200');
+    listingBtn.classList.add('dark:bg-gray-700');
     mapBtn.classList.remove('bg-gray-200');
+    mapBtn.classList.remove('dark:bg-gray-700');
 });
 
 
