@@ -6,13 +6,12 @@
     </title>
 </head>
 
-<body>
+<body class="dark:text-white dark:bg-gray-800">
 
 
-<nav th:replace="partials/navbar :: navbar-search"></nav>
+<nav th:replace="partials/navbar :: navbar-search-events"></nav>
 
 <nav th:replace="partials/navbar :: navbar-mobile"></nav>
-
 <aside th:replace="partials/Aside :: aside-user-show"></aside>
 
 
@@ -57,7 +56,7 @@
         </div>
         <div class="flex justify-center">
 
-            <div class="w-full md:w-4/5 flex flex-col justify-between bg-white">
+            <div class="w-full md:w-4/5 flex flex-col justify-between bg-white dark:text-white dark:bg-gray-800">
                 <div class="h-[20px] w-full flex justify-center md:justify-start " style="transform: translateY(-700%)">
                     <div class="w-[17em] h-[17em] flex flex-col justify-center rounded-full items-center md:items-start">
                         <div class="w-[200px] h-[200px] relative flex justify-center items-center bg-white rounded-full">
@@ -93,8 +92,8 @@
                         <div class="w-full md:w-3/5 flex justify-center items-center md:justify-start md:items-start">
                             <div class="w-full flex items-center flex-col md:items-start md:justify-end">
 
-<span class="text-3xl font-bold mb-1"
-      th:text="${#strings.isEmpty(user.first_name) ? 'New User' : user.first_name + (user.last_name != null ? ' ' + user.last_name : '')}"></span>
+                                <span class="text-3xl font-bold mb-1"
+                                      th:text="${#strings.isEmpty(user.first_name) ? 'New User' : user.first_name + (user.last_name != null ? ' ' + user.last_name : '')}"></span>
 
                                 <div class="text-[20px] flex mb-2 mt-1 text-center md:text-end"
                                      th:if="${not #strings.isEmpty(user.address)}">
@@ -108,11 +107,10 @@
                                     <span class="text-gray-500 text-[15px]" th:text="${user.address}"></span>
                                 </div>
 
-                                <h2 class="text-gray-800 text-[15px] mb-2"> @<span class="text-black"
-                                                                                   th:text="${user.username}"></span>
-                                    <span
-                                            class="text-[15px] font-bold text-gray-500">﹒</span> <span
-                                            th:text="${user.email}"></span></h2>
+                                <h2 class="text-gray-800 dark:text-gray-400 text-[15px] mb-2"> @<span class="text-black dark:text-gray-400"
+                                                                                                      th:text="${user.username}"></span> <span
+                                        class="text-[15px] font-bold text-gray-500 dark:text-gray-200">﹒</span> <span
+                                        th:text="${user.email}"></span></h2>
 
                                 <div class="flex w-full justify-evenly md:justify-start"
                                      th:if="${user.id} != ${#authentication.principal.id}">
@@ -170,8 +168,8 @@
                             <!--Render Posts-->
                             <div class="w-full h-screen grid grid-cols-1" id="posts-container" style="overflow: auto;">
                                 <div th:each="post : ${posts}"
-                                     class="bg-white rounded-t-lg mt-2">
-                                    <div class="w-full rounded-t-lg dark:border-gray-700">
+                                     class="bg-white dark:bg-gray-800 rounded-t-lg mt-2">
+                                    <div class="w-full rounded-t-lg dark:bg-gray-800 dark:border-gray-700">
 
                                         <div class="flex">
                                             <div class="flex justify-center">

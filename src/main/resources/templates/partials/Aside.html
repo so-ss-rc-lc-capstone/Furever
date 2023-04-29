@@ -1,213 +1,208 @@
 
 
-<aside th:fragment="aside-nav" id="logo-sidebar" class="fixed top-0 left-0 border-r-2 col-start-1 col-span-1 hidden md:flex w-[16em] xl:w-[17em] h-screen bg-white"
+<aside th:fragment="aside-nav" id="logo-sidebar" class="fixed top-0 left-0 col-start-1 col-span-1 hidden md:flex w-[16em] xl:w-[17em] h-screen bg-white dark:text-white dark:bg-gray-800"
        aria-label="Sidebar" style="z-index: 99">
-  <div class="h-full w-full px-3 pb-4 bg-white mt-[7em]">
-    <div class=" w-full">
-    <ul class="space-y-2 w-full">
-      <li class="mb-[3em]">
-        <div class="w-full max-w-sm bg-white flex justify-center items-center dark:bg-gray-800 dark:border-gray-700">
-          <div class="flex flex-col w-[90%] justify-center items-center p-5 bg-gray-100 rounded-xl h-[150px]">
-            <div class = "flex ">
-              <img class="w-[50px] h-[50px] mb-3 rounded-full shadow-lg"
-                   th:if="${not #strings.isEmpty(user.profilePhoto)}"
-                   th:src="${user.profilePhoto}"
-                   alt="Profile image"/>
-              <img class="w-[50px] h-[50px] mb-3 rounded-full shadow-lg"
-                   th:if="${#strings.isEmpty(user.profilePhoto)}"
-                   th:src="@{/img/profile.jpeg}"
-                   alt="Default profile image"/>
+  <div class="h-full w-full px-3 pb-4 bg-white dark:bg-gray-800  mt-[7em]">
+    <div class="w-full">
+      <ul class="space-y-2 w-full">
+        <li class="mb-[3em]">
+          <div class="w-full max-w-sm bg-white flex justify-center items-center dark:bg-gray-800">
+            <div class="flex flex-col w-[90%] justify-center items-center p-5 bg-gray-100 dark:text-white dark:bg-gray-700 rounded-xl h-[150px]">
+              <div class = "flex ">
+                <img class="w-[50px] h-[50px] mb-3 rounded-full shadow-lg"
+                     th:if="${not #strings.isEmpty(user.profilePhoto)}"
+                     th:src="${user.profilePhoto}"
+                     alt="Profile image"/>
+                <img class="w-[50px] h-[50px] mb-3 rounded-full shadow-lg"
+                     th:if="${#strings.isEmpty(user.profilePhoto)}"
+                     th:src="@{/img/profile.jpeg}"
+                     alt="Default profile image"/>
 
-              <div class="flex ml-3 items-start justify-center flex-col">
-                <h5 class="text-[18px] font-bold text-gray-900 dark:text-white">
+                <div class="flex ml-3 items-start justify-center flex-col">
+                  <h5 class="text-[18px] font-bold text-gray-900 dark:text-white">
                   <span class="text-[15px] font-bold mb-1"
                         th:text="${#strings.isEmpty(user.first_name) ? 'New User' : user.first_name + (user.last_name != null ? ' ' + user.last_name : '')}"></span>
-                </h5>
-                <h5 class="text-[13px] text-start font-bold text-gray-400 dark:text-white">
-                  @<span th:text="${user.username}"/></h5>
-              </div>
-            </div>
-
-            <div class="w-full flex justify-evenly">
-              <div class="flex flex-col">
-                <h2 class="text-center font-bold" th:text="${user.followedUsers.size()}"></h2>
-                <h5 class="text-center text-gray-400">Followers</h5>
+                  </h5>
+                  <h5 class="text-[13px] text-start font-bold text-gray-400 dark:text-white">
+                    @<span th:text="${user.username}"/></h5>
+                </div>
               </div>
 
-              <div class="flex flex-col">
-                <h2 class="text-center font-bold" th:text="${user.posts.size()}"></h2>
-                <h5 class="text-center text-gray-400">Posts</h5>
-              </div>
+              <div class="w-full flex justify-evenly">
+                <div class="flex flex-col">
+                  <h2 class="text-center font-bold" th:text="${user.followedUsers.size()}"></h2>
+                  <h5 class="text-center text-gray-400">Followers</h5>
+                </div>
 
+                <div class="flex flex-col">
+                  <h2 class="text-center font-bold" th:text="${user.posts.size()}"></h2>
+                  <h5 class="text-center text-gray-400">Posts</h5>
+                </div>
+
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
 
-      <li>
-        <a href="/profile"
-           class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-           data-popover-placement="right"
-           data-popover-target="popover-profile">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75" viewBox="0 0 16 16">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-          </svg>
-          <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
-        </a>
-        <div data-popover id="popover-profile" role="tooltip"
-             class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-          <div class="grid grid-cols-5">
-            <div class="col-span-3 p-3">
-              <div class="space-y-2">
-                <h3 class="font-semibold text-gray-900 dark:text-white">Manage your profile!</h3>
-                <p>You can edit your profile or add more detail about yourself! You can easily track
-                  your posts and events as well!</p>
-                <a href="/posts"
-                   class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
-                  view profile!
-                  <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
-                       viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clip-rule="evenodd"></path>
-                  </svg>
-                </a>
+        <li>
+          <a href="/profile"
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             data-popover-placement="right"
+             data-popover-target="popover-profile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+            <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
+          </a>
+          <div data-popover id="popover-profile" role="tooltip"
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+            <div class="grid grid-cols-5">
+              <div class="col-span-3 p-3">
+                <div class="space-y-2">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">Manage your profile!</h3>
+                  <p>You can edit your profile or add more detail about yourself! You can easily track
+                    your posts and events as well!</p>
+                  <a href="/posts"
+                     class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
+                    view profile!
+                    <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
+                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                  </a>
+                </div>
               </div>
+              <img th:src="@{/img/profile-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
             </div>
-            <img th:src="@{/img/profile-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
+            <div data-popper-arrow></div>
           </div>
-          <div data-popper-arrow></div>
-        </div>
-      </li>
+        </li>
 
-      <li>
-        <a href="/posts"
-           class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-           data-popover-placement="right"
-           data-popover-target="popover-posts">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75" viewBox="0 0 16 16">
-            <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
-          </svg>
-          <span class="flex-1 ml-3 whitespace-nowrap">Feed</span>
-        </a>
-        <div data-popover id="popover-posts" role="tooltip"
-             class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-          <div class="grid grid-cols-5">
-            <div class="col-span-3 p-3">
-              <div class="space-y-2">
-                <h3 class="font-semibold text-gray-900 dark:text-white">Share your posts!</h3>
-                <p>Share your stories or questions with other people! You can post some pictures of
-                  your loved ones!</p>
-                <a href="/posts"
-                   class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
-                  see posts!
-                  <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
-                       viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clip-rule="evenodd"></path>
-                  </svg>
-                </a>
+        <li>
+          <a href="/posts"
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             data-popover-placement="right"
+             data-popover-target="popover-posts">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75" viewBox="0 0 16 16">
+              <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
+            </svg>
+            <span class="flex-1 ml-3 whitespace-nowrap">Feed</span>
+          </a>
+          <div data-popover id="popover-posts" role="tooltip"
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+            <div class="grid grid-cols-5">
+              <div class="col-span-3 p-3">
+                <div class="space-y-2">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">Share your posts!</h3>
+                  <p>Share your stories or questions with other people! You can post some pictures of
+                    your loved ones!</p>
+                  <a href="/posts"
+                     class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
+                    see posts!
+                    <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
+                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                  </a>
+                </div>
               </div>
+              <img th:src="@{/img/post-image2.png}" class="h-full col-span-2" alt="Italy map"/>
             </div>
-            <img th:src="@{/img/post-image2.png}" class="h-full col-span-2" alt="Italy map"/>
+            <div data-popper-arrow></div>
           </div>
-          <div data-popper-arrow></div>
-        </div>
-      </li>
+        </li>
 
-      <li>
-        <a href="/events"
-           class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-           data-popover-placement="right"
-           data-popover-target="popover-events">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 " viewBox="0 0 16 16">
-            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
-            <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-          </svg>
-          <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
-        </a>
-        <div data-popover id="popover-events" role="tooltip"
-             class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-          <div class="grid grid-cols-5">
-            <div class="col-span-3 p-3">
-              <div class="space-y-2">
-                <h3 class="font-semibold text-gray-900 dark:text-white">Join events!</h3>
-                <p>You can participate other events or you can create one! Enjoy the gathering with
-                  your loved ones!</p>
-                <a href="/posts"
-                   class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
-                  see events!
-                  <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
-                       viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clip-rule="evenodd"></path>
-                  </svg>
-                </a>
+        <li>
+          <a href="/events"
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             data-popover-placement="right"
+             data-popover-target="popover-events">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 " viewBox="0 0 16 16">
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
+              <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+            </svg>
+            <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
+          </a>
+          <div data-popover id="popover-events" role="tooltip"
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+            <div class="grid grid-cols-5">
+              <div class="col-span-3 p-3">
+                <div class="space-y-2">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">Join events!</h3>
+                  <p>You can participate other events or you can create one! Enjoy the gathering with
+                    your loved ones!</p>
+                  <a href="/posts"
+                     class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
+                    see events!
+                    <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
+                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                  </a>
+                </div>
               </div>
+              <img th:src="@{/img/event-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
             </div>
-            <img th:src="@{/img/event-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
+            <div data-popper-arrow></div>
           </div>
-          <div data-popper-arrow></div>
-        </div>
-      </li>
+        </li>
 
-      <li>
-        <a href="/friends"
-           class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-           data-popover-placement="right"
-           data-popover-target="popover-friend">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-               class="bi bi-people-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-               viewBox="0 0 16 16">
-            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
-          </svg>
-          <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
-        </a>
-        <div data-popover id="popover-friend" role="tooltip"
-             class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
-          <div class="grid grid-cols-5">
-            <div class="col-span-3 p-3">
-              <div class="space-y-2">
-                <h3 class="font-semibold text-gray-900 dark:text-white">Let's have some chats!</h3>
-                <p>You can chat with your following friends! Chatting is always fun!</p>
-                <a href="/posts"
-                   class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
-                  chat!
-                  <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
-                       viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clip-rule="evenodd"></path>
-                  </svg>
-                </a>
+        <li>
+          <a href="/friends"
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             data-popover-placement="right"
+             data-popover-target="popover-friend">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-people-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                 viewBox="0 0 16 16">
+              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+            </svg>
+            <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
+          </a>
+          <div data-popover id="popover-friend" role="tooltip"
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+            <div class="grid grid-cols-5">
+              <div class="col-span-3 p-3">
+                <div class="space-y-2">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">Let's have some chats!</h3>
+                  <p>You can chat with your following friends! Chatting is always fun!</p>
+                  <a href="/posts"
+                     class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
+                    chat!
+                    <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
+                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                  </a>
+                </div>
               </div>
+              <img th:src="@{/img/friend-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
             </div>
-            <img th:src="@{/img/friend-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
+            <div data-popper-arrow></div>
           </div>
-          <div data-popper-arrow></div>
-        </div>
-      </li>
-    </ul>
-      </div>
-
-      <div>
-
-      </div>
-
+        </li>
+      </ul>
+    </div>
   </div>
 </aside>
 
-<aside th:fragment="aside-user-show" id="logo-sidebar" class="fixed top-0 left-0 border-r-2 col-start-1 col-span-1 hidden md:flex w-[16em] xl:w-[17em] h-screen bg-white"
+<aside th:fragment="aside-user-show" id="logo-sidebar" class="fixed top-0 left-0 col-start-1 col-span-1 hidden md:flex w-[16em] xl:w-[17em] h-screen bg-white dark:text-white dark:bg-gray-800"
        aria-label="Sidebar" style="z-index: 99">
-  <div class="h-full w-full px-3 pb-4 bg-white mt-[7em]">
-    <div class=" w-full">
+  <div class="h-full w-full px-3 pb-4 bg-white dark:bg-gray-800  mt-[7em]">
+    <div class="w-full">
       <ul class="space-y-2 w-full">
         <li class="mb-[3em]">
-          <div class="w-full max-w-sm bg-white flex justify-center items-center dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex flex-col w-[90%] justify-center items-center p-5 bg-gray-100 rounded-xl h-[150px]">
+          <div class="w-full max-w-sm bg-white flex justify-center items-center dark:bg-gray-800">
+            <div class="flex flex-col w-[90%] justify-center items-center p-5 bg-gray-100 dark:text-white dark:bg-gray-700 rounded-xl h-[150px]">
               <div class = "flex ">
                 <img class="w-[50px] h-[50px] mb-3 rounded-full shadow-lg"
                      th:if="${not #strings.isEmpty(loggedInUser.profilePhoto)}"
@@ -224,7 +219,7 @@
                         th:text="${#strings.isEmpty(loggedInUser.first_name) ? 'New User' : loggedInUser.first_name + (loggedInUser.last_name != null ? ' ' + loggedInUser.last_name : '')}"></span>
                   </h5>
                   <h5 class="text-[13px] text-start font-bold text-gray-400 dark:text-white">
-                    @<span th:text=" ${loggedInUser.username}"/></h5>
+                    @<span th:text="${loggedInUser.username}"/></h5>
                 </div>
               </div>
 
@@ -246,39 +241,119 @@
 
         <li>
           <a href="/profile"
-             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             data-popover-placement="right"
+             data-popover-target="popover-profile">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75" viewBox="0 0 16 16">
               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
               <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
             </svg>
             <span class="flex-1 ml-3 whitespace-nowrap">My Profile</span>
           </a>
+          <div data-popover id="popover-profile" role="tooltip"
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+            <div class="grid grid-cols-5">
+              <div class="col-span-3 p-3">
+                <div class="space-y-2">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">Manage your profile!</h3>
+                  <p>You can edit your profile or add more detail about yourself! You can easily track
+                    your posts and events as well!</p>
+                  <a href="/posts"
+                     class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
+                    view profile!
+                    <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
+                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <img th:src="@{/img/profile-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
+            </div>
+            <div data-popper-arrow></div>
+          </div>
         </li>
 
         <li>
           <a href="/posts"
-             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             data-popover-placement="right"
+             data-popover-target="popover-posts">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75" viewBox="0 0 16 16">
               <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
             </svg>
             <span class="flex-1 ml-3 whitespace-nowrap">Feed</span>
           </a>
+          <div data-popover id="popover-posts" role="tooltip"
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+            <div class="grid grid-cols-5">
+              <div class="col-span-3 p-3">
+                <div class="space-y-2">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">Share your posts!</h3>
+                  <p>Share your stories or questions with other people! You can post some pictures of
+                    your loved ones!</p>
+                  <a href="/posts"
+                     class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
+                    see posts!
+                    <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
+                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <img th:src="@{/img/post-image2.png}" class="h-full col-span-2" alt="Italy map"/>
+            </div>
+            <div data-popper-arrow></div>
+          </div>
         </li>
 
         <li>
           <a href="/events"
-             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             data-popover-placement="right"
+             data-popover-target="popover-events">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar4-event flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 " viewBox="0 0 16 16">
               <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"/>
               <path d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
             </svg>
             <span class="flex-1 ml-3 whitespace-nowrap">Events</span>
           </a>
+          <div data-popover id="popover-events" role="tooltip"
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+            <div class="grid grid-cols-5">
+              <div class="col-span-3 p-3">
+                <div class="space-y-2">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">Join events!</h3>
+                  <p>You can participate other events or you can create one! Enjoy the gathering with
+                    your loved ones!</p>
+                  <a href="/posts"
+                     class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
+                    see events!
+                    <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
+                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <img th:src="@{/img/event-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
+            </div>
+            <div data-popper-arrow></div>
+          </div>
         </li>
 
         <li>
           <a href="/friends"
-             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+             class="flex items-center p-3 pl-14 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+             data-popover-placement="right"
+             data-popover-target="popover-friend">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                  class="bi bi-people-fill flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                  viewBox="0 0 16 16">
@@ -286,14 +361,32 @@
             </svg>
             <span class="flex-1 ml-3 whitespace-nowrap">Friends</span>
           </a>
+          <div data-popover id="popover-friend" role="tooltip"
+               class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-96 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
+            <div class="grid grid-cols-5">
+              <div class="col-span-3 p-3">
+                <div class="space-y-2">
+                  <h3 class="font-semibold text-gray-900 dark:text-white">Let's have some chats!</h3>
+                  <p>You can chat with your following friends! Chatting is always fun!</p>
+                  <a href="/posts"
+                     class="flex items-center font-medium text-blue-600 dark:text-blue-500 dark:hover:text-blue-600 hover:text-blue-700">Let's
+                    chat!
+                    <svg class="w-4 h-4 ml-1" aria-hidden="true" fill="currentColor"
+                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <img th:src="@{/img/friend-gif-high.gif}" class="h-full col-span-2" alt="Italy map"/>
+            </div>
+            <div data-popper-arrow></div>
+          </div>
         </li>
       </ul>
     </div>
-
-    <div>
-
-    </div>
-
   </div>
 </aside>
 
@@ -339,8 +432,8 @@
                                th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
                                alt="user-image">
 
-                          <div class="ml-3 flex-col font-medium dark:text-white">
-                            <div class="text-base font-normal text-gray-900 "><span
+                          <div class="ml-3 flex-col font-medium">
+                            <div class="text-base font-normal text-gray-900 dark:text-white"><span
                                     th:text="${user.first_name}"
                                     th:href="@{|/user/${user.id}|}"></span><span
                                     th:text="${user.last_name}"
@@ -352,7 +445,7 @@
                           <div th:id="${user.id}"
                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                             <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                              <div class="text-base font-normal text-gray-900 "><span
+                              <div class="text-base font-normal text-gray-900 dark:text-white"><span
                                       th:text="${user.first_name } "></span> <span
                                       th:text="${user.last_name}"></span></div>
                               <div class="text-sm text-gray-500 dark:text-gray-400">
@@ -375,7 +468,7 @@
 
                               <form th:action="@{/users/{id}/follow(id=${user.id})}"
                                     th:name="followFromEvent" th:method="post"
-                                    class="block px-4 py-2 text-sm text-gray-700">
+                                    class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-400 dark:hover:text-white">
                                 <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
                                         type="submit"></button>
                               </form>

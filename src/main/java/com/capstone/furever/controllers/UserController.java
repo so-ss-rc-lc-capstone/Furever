@@ -241,7 +241,6 @@ public class UserController {
     public String followUser(@PathVariable Long id, Model model, HttpServletRequest request) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User currentUserData = userDao.findById(currentUser.getId());
-        model.addAttribute("currentUserData", currentUserData);
 
         User user = userDao.findById(id).get();
 
@@ -254,30 +253,31 @@ public class UserController {
         }
         userDao.save(currentUserData);
 
+        model.addAttribute("currentUserData", currentUserData);
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
     }
 
-    @PostMapping("/users/{id}/follows")
-    public String followUsers(@PathVariable Long id, Model model, HttpServletRequest request) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User currentUserData = userDao.findById(currentUser.getId());
-        model.addAttribute("currentUserData", currentUserData);
-
-        User user = userDao.findById(id).get();
-
-        if (!currentUserData.getFollowedUsers().contains(user) && !user.getFollowingUsers().contains(currentUserData)) {
-            currentUserData.getFollowedUsers().add(user);
-            user.getFollowingUsers().add(currentUserData);
-        } else if (currentUserData.getFollowedUsers().contains(user)) {
-            currentUserData.getFollowedUsers().remove(user);
-            user.getFollowingUsers().remove(currentUserData);
-        }
-        userDao.save(currentUserData);
-
-        String referer = request.getHeader("Referer");
-        return "redirect:/friends";
-    }
+//    @PostMapping("/users/{id}/follows")
+//    public String followUsers(@PathVariable Long id, Model model, HttpServletRequest request) {
+//        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User currentUserData = userDao.findById(currentUser.getId());
+//        model.addAttribute("currentUserData", currentUserData);
+//
+//        User user = userDao.findById(id).get();
+//
+//        if (!currentUserData.getFollowedUsers().contains(user) && !user.getFollowingUsers().contains(currentUserData)) {
+//            currentUserData.getFollowedUsers().add(user);
+//            user.getFollowingUsers().add(currentUserData);
+//        } else if (currentUserData.getFollowedUsers().contains(user)) {
+//            currentUserData.getFollowedUsers().remove(user);
+//            user.getFollowingUsers().remove(currentUserData);
+//        }
+//        userDao.save(currentUserData);
+//
+//        String referer = request.getHeader("Referer");
+//        return "redirect:/friends";
+//    }
 
 
 
