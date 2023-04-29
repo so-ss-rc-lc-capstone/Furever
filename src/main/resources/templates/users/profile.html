@@ -132,8 +132,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                     </a>
                 </div>
@@ -155,7 +153,6 @@
                     </div>
 
                     <!--Events-->
-
                     <div class="flex flex-col w-full h-screen mt-5  justify-center bg-white dark:text-white dark:bg-gray-800">
                         <div class=" w-full">
                             <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
@@ -265,8 +262,6 @@
                              style="overflow: auto;">
                             <div th:include="event/event-card.html"></div>
 
-<!--                            <div th:if="${participatingId.contains(#authentication.principal.id)}" th:include="event/event-card.html"></div>-->
-
                         </div>
                     </div>
                 </div>
@@ -281,9 +276,13 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+<script src="/js/event-feed.js"></script>
 <script src="/js/users/profile.js"></script>
-<script src="../../static/js/event-feed.js"></script>
+<script src="/js/users/user-show.js"></script>
+<script src="/js/event/event-delete.js"></script>
 <script src="/js/users/calendar2.js"></script>
+<script src="/js/darktoggle.js"></script>
+
 
 </body>
 </html>

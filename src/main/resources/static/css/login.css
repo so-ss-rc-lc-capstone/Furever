@@ -99,8 +99,15 @@ img{
 }
 
 .login__img{
-    justify-self: center;
+    background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)), url('/img/login-img.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .login__img img{
     width: 310px;

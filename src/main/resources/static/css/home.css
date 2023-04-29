@@ -6,8 +6,8 @@ body {
 
 #blob {
     background: linear-gradient(to right, aquamarine, mediumpurple);
-    width: 500px;
-    height: 500px;
+    width: 300px;
+    height: 300px;
     position: absolute;
     left: 50%;
     right: 50%;
@@ -17,7 +17,6 @@ body {
     z-index: -1; /* set to a lower value */
 }
 
-
 #blur{
     height: 100%;
     width: 100%;
@@ -25,6 +24,50 @@ body {
     z-index: -1; /* set to a lower value */
     backdrop-filter: blur(150px);
 }
+
+/* Initially hide the button */
+.start-button {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.image-container {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+#tilting-image {
+    transition: transform 0.2s ease-out;
+}
+
+#tilting-image:hover {
+    transform: rotateY(10deg) rotateX(-10deg);
+}
+
+
+/* Add fade-in animation when the button is fixed */
+.start-button.fade-in {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Add upward animation when the button is fixed */
+.start-button.upward {
+    transform: translateY(-10px);
+}
+
+nav{
+    transition: all 0.8s ease-in-out;
+}
+
+.backdrop-blur {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+    backdrop-filter: blur(250px);
+}
+
 
 
 

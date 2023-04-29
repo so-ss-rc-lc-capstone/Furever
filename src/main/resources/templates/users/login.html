@@ -6,59 +6,60 @@
     </title>
 </head>
 <link rel="stylesheet" href="/css/login.css"/>
-<body>
-<nav th:replace="partials/navbar :: navbar-home"></nav>
-<div class="login">
-    <div class="login__content container">
-        <div class="login__img items-center">
-            <img th:src="@{/img/doggologin.png}" alt="doggo" class="h-[23em]" >
+<body class="dark:bg-gray-900">
+<nav th:replace="partials/navbar :: navbar-login"></nav>
+
+
+<div class="login justify-center items-center mt-[4em] flex">
+    <div class="login__content container ">
+        <div class="login__img items-center border border-gray-100 dark:border-none dark:bg-gray-800 shadow-2xl">
         </div>
 
-        <div class="login__forms">
-            <form th:action="@{/login}"  th:method="POST" class="login__registre" id="login-in">
-                <h1 class="login__title">Sign-In To Your Account</h1>
+        <div class="login__forms border-gray-100">
+            <form th:action="@{/login}"  th:method="POST" class="login__registre  dark:bg-gray-800  dark:shadow-xl" id="login-in">
+                <h1 class="login__title dark:text-white">Sign-In To Your Account</h1>
                 <span th:text="${success}"></span>
                 <div th:if="${param.error}">
                             Invalid Username And Password.
                           </div>
-                <div class="login__box">
-
-                    <i class='bx bx-user login__icon'></i>
-                    <input type="text" name="username" id="username" placeholder="Username" class="login__input">
+                <div class="login__box flex items-center dark:bg-gray-700">
+                    <i class="ri-user-fill text-gray-500 text-[25px]"></i>
+                    <input type="text" name="username" id="username" placeholder="Username" class="login__input text-gray-300 rounded-xl dark:bg-gray-700">
                 </div>
                 <div th:text="${usernameTaken}"></div>
-                <div class="login__box">
-                    <i class='bx bx-lock-alt login__icon'></i>
-                    <input type="password" name="password" id="password"  placeholder="Password" class="login__input">
+                <div class="login__box dark:bg-gray-700">
+                    <i class="ri-lock-fill text-gray-500 text-[25px]"></i>
+                    <input type="password" name="password" id="password"  placeholder="Password" class="login__input text-gray-300 rounded-xl dark:bg-gray-700">
                 </div>
 
                 <div class="w-full flex justify-center items-center">
                 <button class="login__button w-[10em]">Sign In</button>
                 </div>
 
-                <div >
-                    <span class="login__account">Don't Have An Account?</span>
+                <div>
+                    <span class="login__account dark:text-white">Don't Have An Account?</span>
                     <span class="login__signin" id="sign-up">Sign Up</span>
                 </div>
             </form>
 
-            <form th:action="@{/register}" th:method="POST" th:object="${user}" class="login__create none" id="login-up">
-                <h1 class="login__title">Create Account</h1>
+            <form th:action="@{/register}" th:method="POST" th:object="${user}" class="login__create none dark:bg-gray-800" id="login-up">
+                <h1 class="login__title dark:text-white">Create Account</h1>
 
 
-                <div class="login__box">
-                    <i class='bx bx-user login__icon'></i>
-                    <input type="text" name="username" id="website-admin" placeholder="Username" class="login__input">
+                <div class="login__box dark:bg-gray-700" >
+                    <i class="ri-user-fill text-gray-500 text-[25px]"></i>
+                    <input type="text" name="username" id="website-admin" placeholder="Username" class="login__input dark:bg-gray-700 text-gray-300 rounded-xl" required >
                 </div>
+
                 <div th:text="${usernameTaken}"></div>
-                <div class="login__box">
-                    <i class='bx bx-at login__icon'></i>
-                    <input type="text" name="email"  id="input-group-1" placeholder="Email" class="login__input">
+                <div class="login__box dark:bg-gray-700">
+                    <i class="ri-mail-fill text-gray-500 text-[25px]"></i>
+                    <input type="text" name="email"  id="input-group-1" placeholder="Email" class="login__input dark:bg-gray-700 text-gray-300 rounded-xl" required>
                 </div>
 
-                <div class="login__box">
-                    <i class='bx bx-lock-alt login__icon'></i>
-                    <input type="password" name="password" id="register-pass" placeholder="Password" class="login__input">
+                <div class="login__box dark:bg-gray-700">
+                    <i class="ri-lock-fill text-gray-500 text-[25px]"></i>
+                    <input type="password" name="password" id="register-pass" placeholder="Password" class="login__input dark:bg-gray-700 text-gray-300 rounded-xl" required>
                 </div>
 
                 <div class="w-full flex justify-center items-center">
@@ -66,7 +67,7 @@
                 </div>
 
                 <div>
-                    <span class="login__account">Already Have An Account ?</span>
+                    <span class="login__account dark:text-white">Already Have An Account ?</span>
                     <span class="login__signup" id="sign-in">Sign In</span>
                 </div>
 
@@ -77,7 +78,7 @@
 
 <footer th:replace="partials/footer::footer"></footer>
 
-
+<script src="/js/darktoggle.js"></script>
 <script src="/js/users/login.js"></script>
 
 </body>

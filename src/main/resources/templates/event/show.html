@@ -5,18 +5,20 @@
         Event Details
     </title>
 </head>
+<link rel="stylesheet" href="/css/posts-index.css"/>
 
 <body>
-<nav th:replace="partials/navbar :: navbar-search"></nav>
+
+<nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:include="event/participants-modal"></nav>
-<!--<nav th:replace="partials/navbar :: navbar-mobile-other"></nav>-->
+<nav th:replace="partials/navbar :: navbar-mobile"></nav>
 
 
 
 <div class="w-full h-screen">
     <div class="w-full h-[50%] mt-[2em] relative flex items-start justify-center"
          th:style="'background-image:url(\'' + ${event.eventPhoto != null and event.eventPhoto != '' ? event.eventPhoto : '/img/event-img.jpg'} + '\'); background-size:cover; background-position:center;'">
-        <div class="absolute top-20 left-2 bg-white w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-gray-200 hover:cursor-pointer"
+        <div class="absolute top-[50px] left-2 bg-white w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-gray-200 hover:cursor-pointer"
              onclick="window.history.back()"><i class="ri-arrow-left-line font-[30px]"></i></div>
 
         <div class="flex w-[50em] h-[80%] relative rounded-xl bg-white shadow-md" style="transform: translateY(70%);">
@@ -50,27 +52,27 @@
 
             <div class="w-2/5 p-6 border-l-2">
                 <div class="flex flex-row justify-between">
-                    <img class="w-[70px] h-[70px] rounded-full mr-3"
+                    <img class="w-[40px] h-[40px] md:w-[70px] md:h-[70px] rounded-full mr-1 md:mr-3"
                          th:if="${not #strings.isEmpty(event.user.profilePhoto)}"
                          th:src="${event.user.profilePhoto}"
                          alt="Profile image"/>
-                    <img class="w-[70px] h-[70px] rounded-full mr-3"
+                    <img class="w-[40px] h-[40px] md:w-[70px] md:h-[70px] rounded-full mr-1 md:mr-3"
                          th:if="${#strings.isEmpty(event.user.profilePhoto)}"
                          th:src="@{/img/profile.jpeg}"
                          alt="Default profile image"/>
                     <div class="flex ml-2 w-full flex-col">
-                        <h3 class="text-[15px] text-gray-400"> Event Hosted By</h3>
-                        <h3><span class="font-bold" th:text="${event.user.first_name}"></span> <span class="font-bold"
+                        <h3 class="md:text-[15px] text-[12px] text-gray-400"> Event Hosted By</h3>
+                        <h3><span class="font-bold text-[12px] md:text-[15px]" th:text="${event.user.first_name}"></span> <span class="font-bold md:text-15px] text-[12px]"
                                                                                                      th:text="${event.user.last_name}"></span>
                         </h3>
-                        <div class="text-blue-600 mr-1"><a th:href="@{/user/{id}(id=${event.user.id})}">@<span
+                        <div class="text-blue-600 text-[12px] md:text-[14px] mr-1"><a th:href="@{/user/{id}(id=${event.user.id})}">@<span
                                 th:text="${event.user.username}"></span></a></div>
                     </div>
 
                     <!--Edit-->
                     <div th:if="${event.user.id == #authentication.principal.id}">
                         <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                                class="text-gray-600 hover:text-gray-400 font-medium rounded-lg text-2xl text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                class="text-gray-600 ml-2 w-[35px] h-[35px] flex items-center justify-center font-medium rounded-full text-2xl text-center inline-flex items-center dark:bg-white dark:hover:bg-gray-100 dark:focus:ring-blue-800"
                                 type="button"><i class="ri-edit-box-line"></i></button>
                         <!-- Dropdown menu -->
                         <div id="dropdown"
@@ -112,7 +114,7 @@
 
     <!--More Details/Mapbox-->
     <div class="w-full h-full flex mt-5 justify-center">
-        <div class="w-[50em] mt-[12em] h-full ">
+        <div class="w-[50em] mt-[12em] h-full">
             <div class="w-full flex justify-between">
                 <a href="#" id="view-participants-btn" class="view-participants-btn hover:cursor-pointer"
                    data-modal-target="defaultModal"
@@ -121,11 +123,14 @@
                                                                           th:text="${event.participations.size}"></span>
                     </h2>
                 </a>
+
                 <div class="flex items-center">
-                    <button type="button"
-                            class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                        Attend
+                    <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">
+                    <button id="color-toggle" type="submit"
+                            class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'bg-blue-600 text-white  hover:bg-blue-700': 'bg-white text-black border-gray-200 border hover:bg-gray-200' }">
+                        <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Participating' : 'Participate'}"></span>
                     </button>
+                    </form>
                 </div>
             </div>
             <!--Avatars-->
@@ -148,6 +153,7 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+<script src="/js/title.js"></script>
 <script src="/js/event/show.js"></script>
 </body>
 </html>

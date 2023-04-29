@@ -1,0 +1,32 @@
+/* darkmode */
+
+.navbar-scrolled {
+    padding: 13px;
+    background-color: white;
+
+}
+/* Apply the custom properties to the .navbar-scrolled class in dark mode */
+.dark .navbar-scrolled {
+    padding: 13px;
+    background-color: var(--body-color);
+
+}
+/* Use custom colors in your styles */
+.dark\:bg-body {
+    background-color: var(--body-color);
+}
+
+.dark\:bg-secondary {
+    background-color: var(--secondary-color);
+}
+
+.dark\:action {
+    color: var(--action-color);
+}
+.action{
+    color: var(--action-color);
+}
+
+.dark\:border {
+    color: var(--border-color);
+}

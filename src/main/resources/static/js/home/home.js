@@ -8,9 +8,68 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+const startButton = document.querySelector(".start-button");
+
+window.addEventListener("scroll", () => {
+    const scrollPosition = window.scrollY;
+    const halfViewportHeight = window.innerHeight / 2;
+    const buttonOffsetTop = startButton.offsetTop;
+    const buttonHeight = startButton.offsetHeight;
+
+    if (scrollPosition > halfViewportHeight) {
+        startButton.style.opacity = "1";
+        startButton.style.transform = `translateY(-50px)`;
+        startButton.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+        startButton.style.position = "fixed";
+        startButton.style.bottom = "0";
+    } else {
+        startButton.style.opacity = "0";
+        startButton.style.transform = `translateY(0)`;
+        startButton.style.transition = "opacity 0.5s ease-in-out, transform 0.5s ease-in-out";
+        startButton.style.position = "fixed";
+        startButton.style.bottom = `calc(-${buttonHeight}px + 3em)`;
+    }
+});
+//tilting image//
+const img = document.getElementById('tilting-image');
+const container = document.querySelector('.image-container');
+
+const maxTilt = 10; // set the maximum tilt angle in degrees
+
+document.addEventListener('mousemove', e => {
+    const xAxis = (window.innerWidth / 2 - e.pageX) / (window.innerWidth / 2);
+    const yAxis = (window.innerHeight / 2 - e.pageY) / (window.innerHeight / 2);
+    const tiltX = Math.round(yAxis * maxTilt * 100) / 100; // round to 2 decimal places
+    const tiltY = Math.round(xAxis * maxTilt * 100) / 100; // round to 2 decimal places
+    img.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+});
+
+container.addEventListener('mouseleave', () => {
+    img.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+});
+
+
+
+//Navbar scrolling effect
+const navbar = document.getElementById('navbar');
+const navbarContent = navbar.querySelector('.navbar-content');
+
+function updateNavbar() {
+    if (window.scrollY > 0) {
+        navbar.classList.add('navbar-scrolled');
+        navbar.classList.add('bg-white');
+        navbar.classList.add('dark:bg-gray-900');
+    } else {
+        navbar.classList.remove('navbar-scrolled');
+        navbar.classList.remove('bg-white');
+        navbar.classList.remove('dark:bg-gray-900');
+    }
+}
+
+window.addEventListener('scroll', updateNavbar);
+
+
 const track = document.getElementById("image-track");
-
-
 const handleOnDown = e => track.dataset.mouseDownAt = e.clientX;
 
 const handleOnUp = () => {
