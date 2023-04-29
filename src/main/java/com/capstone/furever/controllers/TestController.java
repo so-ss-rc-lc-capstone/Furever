@@ -5,9 +5,10 @@ import com.capstone.furever.models.Event;
 import com.capstone.furever.models.User;
 import com.capstone.furever.repositories.EventRepository;
 import com.capstone.furever.repositories.UserRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

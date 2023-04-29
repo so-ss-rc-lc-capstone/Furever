@@ -8,6 +8,9 @@
     .aside-container{
         display: none !important;
     }
+    #chat-width{
+        width: 100% !important;
+    }
 
 }
 
@@ -43,3 +46,14 @@
     overflow-wrap: break-word;
     text-overflow: ellipsis;
 }
+
+#talkjs {
+    position: fixed;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+

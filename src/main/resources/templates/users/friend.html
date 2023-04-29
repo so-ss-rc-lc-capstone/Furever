@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <head th:replace="partials/header :: head">
     <title>Friends</title>
     <script>
@@ -33,7 +32,6 @@
 <nav th:replace="partials/navbar :: navbar-search-friends"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
-
 <div class="flex w-screen h-screen w-[38em]">
 
 <section class="aside-container hidden md:flex w-[22em] h-screen relative">
@@ -41,146 +39,70 @@
 </section>
 
 
-
     <!--- Feed -->
     <div class="w-screen relative h-screen">
-        <div class="mt-[4em] md:mt-[7em]">
+        <div class="mt-[5.5em] md:mt-[6em]">
 
             <div class="w-full">
-                <section class="w-full h-full p-4 bg-white border border-gray-200 rounded-lg shadow ">
-                    <h1 class = "text-3xl font-extrabold mb-3">Chats</h1>
+                <section id="chat-width" class="w-[98%] h-full p-4 pb-0 bg-white rounded-lg shadow ">
+
+                    <div class="flex">
+                        <h1 class = "text-3xl font-extrabold mb-3">Chats</h1>
 
                     <!--Search Bar-->
-                    <div class="relative">
+                    <div class=" flex justify-end w-full ml-5">
 
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="sr-only">Search Icon</span>
+                        <div class="h-full w-[56px] rounded-full shadow-md ml-[15px] border-1 border-black" id="search"
+                             style="box-shadow: 0 4px 24px hsla(222,68%,12%, .1); overflow: hidden; transition: width .5s cubic-bezier(.9, 0, .3, .9)">
+                            <form action="" class="search relative w-full h-[50px] p-[10px]" id="search-bar">
+                                <input type="search" placeholder="Look for a user" id="search-input"
+                                       class="search__input border-none ml-1 font-sm rounded-full w-full h-full"
+                                       style="opacity:0; pointer-events: none; transition: opacity 0.7s;">
+                                <div class="search__button absolute w-[45px] h-[45px] rounded-full bg-blue-600 top-0 bottom-0 right-[5px] cursor-pointer m-auto grid items-center "
+                                     id="search-button" style="transition: transform .6s cubic-bezier(.9, 0 , .3, .9)">
+                                    <i id="search-icon"
+                                       class="ri-search-2-line search__icon flex ml-2.5 justify-center absolute items-center text-[1.6rem]"
+                                       style="color:white;"></i>
+                                    <i id="close"
+                                       class="ri-close-line search__close flex ml-2.5 justify-center opacity-0 absolute items-center text-[1.6rem]"
+                                       style="color:white;"></i>
+                                </div>
+                            </form>
                         </div>
-                        <input type="text" id="search"
-                               class="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               placeholder="Follow a friend..">
+
+                    </div>
                     </div>
 
-                    <div class="flex h-full">
+                    <div class="flex flex-col h-full mt-5">
 
-                    <div class="w-1/2 h-full">
-                        <h2 class="mb-5 text-[15px] mt-4 text-gray-400 ">Following</h2>
-
-                    <ul id="loggedUser" role="list" th:title="${#authentication.principal.id}">
-
-                        <div class ="pr-2" th:each="user : ${followedUsers}">
-                            <div th:if="${user.id} != ${#authentication.principal.id}">
-                                <li th:title="${user.id}" class="friend-card group/item hover:cursor-pointer ">
-
-                                    <div class="flex flex-col space-x-4 mb-5 ">
-                                        <div class="flex items-center justify-between">
-                                            <div th:data-dropdown-toggle="drop+${user.id}"
-                                                 data-dropdown-placement="bottom-start" type="button"
-                                                 class="flex items-center">
-
-                                              <img class="w-10 h-10 rounded-full cursor-pointer"
-                                                   th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
-                                                   alt="user-image">
-                                                <div class="ml-3 flex-col font-medium dark:text-white">
-                                                    <div class="text-base font-normal text-gray-900 "><span
-                                                            th:text="${user.first_name}"
-                                                            th:href="@{|/user/${user.id}|}"></span><span
-                                                            th:text="${user.last_name}"
-                                                            th:href="@{|/user/${user.id}|}"></span></div>
-                                                    <div class="text-sm text-gray-500 dark:text-gray-400">@<span
-                                                            th:text="${user.username}"
-                                                            th:href="@{|/user/${user.id}|}"></span></div>
-                                                </div>
-
-
-                                                <div th:id="drop+${user.id}"
-                                                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                                    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                                        <div class="text-base font-normal text-gray-900 "><span
-                                                                th:text="${user.first_name } "></span> <span
-                                                                th:text="${user.last_name}"></span></div>
-                                                        <div class="text-sm text-gray-500 dark:text-gray-400"><span
-                                                                th:text="${user.email}"></span></div>
-
-                                                    </div>
-                                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                                        aria-labelledby="avatarButton">
-                                                        <li>
-                                                            <a th:href="@{|/user/${user.id}|}"
-                                                               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                                                Profile</a>
-                                                        </li>
-                                                    </ul>
-
-                                                    <div class="py-1">
-                                                        <form th:action="@{/users/{id}/follow(id=${user.id})}"
-                                                              th:method="post"
-                                                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                                            <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
-                                                                    type="submit"></button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class = "flex">
-                                                <form th:action="@{/user/{id}(id=${user.id})}" th:method="get" class="flex items-center justify-center">
-                                            <button class="hover:cursor-pointer" type="submit">
-                                                <div class="flex justify-center items-center w-[40px]">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-300 hover:text-gray-500 transition duration-300  bi-person-circle" viewBox="0 0 16 16">
-                                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                                    </svg>
-                                                </div>
-                                            </button>
-                                                </form>
-
-                                                <button type="button" th:id="${user.id}"
-                                                        class="all-users hover:cursor-pointer flex justify-center items-center w-[40px]">
-                                                    <svg name="chevron-forward-outline" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-fill transition duration-300 text-gray-300 hover:text-gray-500"  viewBox="0 0 16 16">
-                                                        <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                            <ul class="flex justify-evenly flex-wrap text-sm font-medium text-center w-full text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400">
+                                <li class="w-[50%]">
+                                    <button aria-current="page" id="follow-btn" class="w-full inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active:bg-gray-100 active:text-blue-600 dark:bg-gray-800 dark:text-blue-500">Following</button>
                                 </li>
-                            </div>
-                            <hr class="w-full h-px my-3 bg-gray-200 border-0 dark:bg-gray-700">
-                        </div>
-                    </ul>
+                                <li class="w-[50%]">
+                                    <button id="all-btn" class="w-full inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 active:bg-white active:text-black">All</button>
+                                </li>
+                            </ul>
 
-                    </div>
+                            <div>
 
+                                        <div class="w-full h-full">
 
-                        <div class="w-1/2 h-full">
-                            <h2 class="mb-5 text-[15px] mt-4 text-gray-400" >All</h2>
-                            <div id="myTabContent">
-                                <div class="hidden rounded-lg" id="profile" role="tabpanel"
-                                     aria-labelledby="profile-tab">
-                                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                                        <div th:each="user : ${followedUsers}">
+                                    <ul id="loggedUser" role="list" th:title="${#authentication.principal.id}" class="flex flex-col">
 
-                                            <div th:if="${user.id} != ${#authentication.principal.id}">
-                                                <li class="py-2 group/item">
-                                                    <div class="flex flex-col space-x-4 ">
-                                                        <div class="flex items-center px-3 justify-between">
-                                                            <div th:data-dropdown-toggle="${user.id}"
+                                        <div class ="mt-4 w-full mb-5" th:each="user : ${followedUsers}">
+                                            <div th:if="${user.id} != ${#authentication.principal.id}" class="pl-[50px] pr-[50px]">
+                                                <li th:title="${user.id}" class="friend-card group/item hover:cursor-pointer mb-5">
+
+                                                    <div class="flex flex-col space-x-4 mb-5 ">
+                                                        <div class="flex items-center justify-between">
+                                                            <div th:data-dropdown-toggle="drop+${user.id}"
                                                                  data-dropdown-placement="bottom-start" type="button"
                                                                  class="flex items-center">
 
-                                                                <img class="w-10 h-10 rounded-full cursor-pointer"
-                                                                     th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
-                                                                     alt="user-image">
-
+                                                              <img class="w-10 h-10 rounded-full cursor-pointer"
+                                                                   th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
+                                                                   alt="user-image">
                                                                 <div class="ml-3 flex-col font-medium dark:text-white">
                                                                     <div class="text-base font-normal text-gray-900 "><span
                                                                             th:text="${user.first_name}"
@@ -191,97 +113,16 @@
                                                                             th:text="${user.username}"
                                                                             th:href="@{|/user/${user.id}|}"></span></div>
                                                                 </div>
-                                                                <div th:id="${user.id}"
+
+
+                                                                <div th:id="drop+${user.id}"
                                                                      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                                                                     <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
                                                                         <div class="text-base font-normal text-gray-900 "><span
                                                                                 th:text="${user.first_name } "></span> <span
                                                                                 th:text="${user.last_name}"></span></div>
-                                                                        <div class="text-sm text-gray-500 dark:text-gray-400">
-                                                                            <span th:text="${user.email}"></span></div>
-
-                                                                    </div>
-                                                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                                                        aria-labelledby="avatarButton">
-                                                                        <li>
-                                                                            <a th:href="@{|/user/${user.id}|}"
-                                                                               class="block px-4 py-2 dark:hover:text-white">View
-                                                                                Profile</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="/friends"
-                                                                               class="block px-4 py-2 dark:hover:text-white">Message</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <div class="py-1">
-
-                                                                        <form th:action="@{/users/{id}/follow(id=${user.id})}"
-                                                                              th:name="followFromEvent" th:method="post"
-                                                                              class="block px-4 py-2 text-sm text-gray-700">
-                                                                            <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
-                                                                                    type="submit"></button>
-                                                                        </form>
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <a class="flex flex-row justify-self-end items-center  "
-                                                               th:href="@{|/user/${user.id}|}">
-
-                                                                <div class="hover:cursor-pointer">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-300 transition duration-300 hover:text-gray-500 bi-person-circle" viewBox="0 0 16 16">
-                                                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                                                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                                                                    </svg>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </div>
-
-                                <div class="hidden rounded-lg" id="dashboard" role="tabpanel"
-                                     aria-labelledby="dashboard-tab">
-                                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                                        <!--          <div th:each="user : ${users}">-->
-                                        <div th:each="user : ${usersNotFollowing}">
-
-                                            <div th:if="${user.id} != ${#authentication.principal.id}">
-
-                                                <li class="py-2 group/item ">
-
-                                                    <div class="flex flex-col space-x-4 ">
-                                                        <div class="flex items-center justify-between px-3">
-                                                            <div th:data-dropdown-toggle="${user.email}"
-                                                                 data-dropdown-placement="bottom-start" type="button"
-                                                                 class="flex items-center">
-
-                                                                <img class="w-10 h-10 rounded-full cursor-pointer"
-                                                                     th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
-                                                                     alt="user-image">
-
-                                                                <div class="ml-3 flex-col font-medium dark:text-white">
-                                                                    <div class="text-sm text-gray-500 dark:text-gray-400">@<span
-                                                                            th:text="${user.username}"
-                                                                            th:href="@{|/user/${user.id}|}">
-                                                            </span>
-                                                                    </div>
-                                                                </div>
-                                                                <div th:id="${user.email}"
-                                                                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                                                    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                                                        <div class="text-base font-normal text-gray-900 "><span
-                                                                                th:text="${user.first_name } "></span> <span
-                                                                                th:text="${user.last_name}"></span>
-                                                                        </div>
-                                                                        <div class="text-sm text-gray-500 dark:text-gray-400">
-
-                                                                            <span th:text="${user.email}"></span>
-                                                                        </div>
+                                                                        <div class="text-sm text-gray-500 dark:text-gray-400"><span
+                                                                                th:text="${user.email}"></span></div>
 
                                                                     </div>
                                                                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -291,85 +132,298 @@
                                                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
                                                                                 Profile</a>
                                                                         </li>
-                                                                        <li>
-                                                                            <a href="#"
-                                                                               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
-                                                                        </li>
                                                                     </ul>
+
+                                                                    <div class="py-1">
+                                                                        <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                                              th:method="post"
+                                                                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                            <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
+                                                                                    type="submit"></button>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
                                                             </div>
 
-                                                            <a class="flex flex-row justify-self-end items-center group/edit group-hover/item:visible ">
-                                                                <form th:action="@{/users/{id}/follow(id=${user.id})}"
-                                                                      th:name="followFromEvent" th:method="post"
-                                                                      class="block px-4 py-2 text-sm text-gray-200 ">
-                                                                    <button class="items-center justify-center hover:cursor-pointer"
-                                                                            type="submit">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="19"
-                                                                             height="19" fill="currentColor"
-                                                                             class="bi bi-person-fill-add text-gray-300 transition duration-300 hover:text-gray-500" viewBox="0 0 16 16">
-                                                                            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
-                                                                            <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
-                                                                        </svg>
-                                                                    </button>
-                                                                </form>
-                                                            </a>
+
+                                                            <div class = "hidden md:flex flex-row">
+                                                                <div class="flex items-center">
+                                                                    <a class="flex flex-row justify-self-end items-center group/edit ">
+                                                                        <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                                              th:name="followFromEvent" th:method="post"
+                                                                              class="block  text-sm text-gray-200 ">
+                                                                            <button class="flex items-center justify-center w-[40px] hover:cursor-pointer"
+                                                                                    type="submit">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-fill-dash text-gray-300 hover:text-gray-500 transition duration-300" viewBox="0 0 16 16">
+                                                                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1Zm0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                                                                    <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                                                                                </svg>
+                                                                            </button>
+                                                                        </form>
+                                                                    </a>
+                                                                </div>
+
+                                                                    <div class="hidden md:flex items-center">
+                                                                            <form th:action="@{/user/{id}(id=${user.id})}" th:method="get" class="flex items-center justify-center">
+                                                                                    <button class="hover:cursor-pointer" type="submit">
+                                                                                        <div class="flex justify-center items-center w-[40px]">
+                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-300 hover:text-gray-500 transition duration-300  bi-person-circle" viewBox="0 0 16 16">
+                                                                                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                                                                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                                                                            </svg>
+                                                                                        </div>
+                                                                                    </button>
+                                                                            </form>
+                                                                    </div>
+
+
+                                                                        <button type="button" th:id="${user.id}"
+                                                                                class="all-users hidden hover:cursor-pointer justify-center items-center w-[40px]">
+                                                                            <svg name="chevron-forward-outline" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-fill transition duration-300 text-gray-300 hover:text-gray-500"  viewBox="0 0 16 16">
+                                                                                <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
+                                                                            </svg>
+                                                                        </button>
+
+                                                                    <div class="hidden md:flex items-center">
+                                                                        <button type="button" th:id="${user.id}"
+                                                                                class="all-users hover:cursor-pointer flex justify-center items-center w-[40px]">
+                                                                            <svg name="chevron-forward-outline" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-fill transition duration-300 text-gray-300 hover:text-gray-500"  viewBox="0 0 16 16">
+                                                                                <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
+                                                                            </svg>
+                                                                        </button>
+                                                                    </div>
+
+
+                                                            </div>
+
+                                                            <div class="flex md:hidden items-center">
+                                                                <button type="button" id="dropdownFollowButton" data-dropdown-toggle="dropdown-follow"
+                                                                        class="hover:cursor-pointer flex justify-center items-center w-[40px]">
+                                                                    <svg fill="none" stroke="currentColor" class="transition duration-300 h-[30px] text-gray-400 hover:text-gray-500" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+
+                                                            <div id="dropdown-follow" class="z-10 hidden border py-2 px-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+
+
+                                                                    <li class="w-full">
+                                                                        <div class="w-full">
+                                                                        <button th:id="${user.id}" name="chevron-forward-outline" class=" flex justify-start all-users py-2 px-2 block w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Chat</button>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="w-full">
+                                                                        <div class="w-full">
+                                                                        <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                                              th:name="followFromEvent" th:method="post">
+                                                                            <button type="submit" class="flex justify-start w-full hover:bg-gray-100 py-2 px-2 dark:hover:bg-gray-600 dark:hover:text-white">Unfollow</button>
+                                                                        </form>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li class="w-full">
+                                                                        <div class="w-full">
+                                                                        <form th:action="@{/user/{id}(id=${user.id})}">
+                                                                        <button href="#" class="flex justify-start w-full hover:bg-gray-100 dark:hover:bg-gray-600 py-2 px-2 dark:hover:text-white">View Profile</button>
+                                                                        </form>
+                                                                        </div>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </div>
+
+
+
                                                         </div>
+
                                                     </div>
                                                 </li>
                                             </div>
                                         </div>
                                     </ul>
-                                </div>
+
+                                        <ul id="not-follow" class="hidden flex flex-col" role="list" th:title="${#authentication.principal.id}">
+
+                                            <div class ="pr-2 mb-4" th:each="user : ${usersNotFollowing}" >
+                                                <div th:if="${user.id} != ${#authentication.principal.id}" class="pl-[50px] pr-[50px]">
+                                                    <li th:title="${user.id}" class="friend-card group/item hover:cursor-pointer ">
+
+                                                        <div class="flex flex-col space-x-4 mb-5 ">
+                                                            <div class="flex items-center justify-between">
+                                                                <div th:data-dropdown-toggle="drop+${user.id}"
+                                                                     data-dropdown-placement="bottom-start" type="button"
+                                                                     class="flex items-center">
+
+                                                                    <img class="w-10 h-10 rounded-full cursor-pointer"
+                                                                         th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
+                                                                         alt="user-image">
+                                                                    <div class="ml-3 flex-col font-medium dark:text-white">
+                                                                        <div class="text-base font-normal text-gray-900 "><span
+                                                                                th:text="${user.first_name}"
+                                                                                th:href="@{|/user/${user.id}|}"></span><span
+                                                                                th:text="${user.last_name}"
+                                                                                th:href="@{|/user/${user.id}|}"></span></div>
+                                                                        <div class="text-sm text-gray-500 dark:text-gray-400">@<span
+                                                                                th:text="${user.username}"
+                                                                                th:href="@{|/user/${user.id}|}"></span></div>
+                                                                    </div>
+
+
+                                                                    <div th:id="drop+${user.id}"
+                                                                         class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                                                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                                                                            <div class="text-base font-normal text-gray-900 "><span
+                                                                                    th:text="${user.first_name } "></span> <span
+                                                                                    th:text="${user.last_name}"></span></div>
+                                                                            <div class="text-sm text-gray-500 dark:text-gray-400"><span
+                                                                                    th:text="${user.email}"></span></div>
+
+                                                                        </div>
+                                                                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                                                            aria-labelledby="avatarButton">
+                                                                            <li>
+                                                                                <a th:href="@{|/user/${user.id}|}"
+                                                                                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
+                                                                                    Profile</a>
+                                                                            </li>
+                                                                        </ul>
+
+                                                                        <div class="hidden md:flex py-1">
+                                                                            <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                                                  th:method="post"
+                                                                                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                                <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
+                                                                                        type="submit"></button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class = "hidden md:flex flex-row">
+                                                                    <form th:action="@{/user/{id}(id=${user.id})}" th:method="get" class="flex items-center justify-center">
+                                                                        <button class="hover:cursor-pointer" type="submit">
+                                                                            <div class="flex justify-center items-center w-[40px]">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-300 hover:text-gray-500 transition duration-300  bi-person-circle" viewBox="0 0 16 16">
+                                                                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                                                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                                                                </svg>
+                                                                            </div>
+                                                                        </button>
+                                                                    </form>
+
+
+                                                                    <button type="button" th:id="${user.id}"
+                                                                            class="all-users hidden hover:cursor-pointer justify-center items-center w-[40px]">
+                                                                        <svg name="chevron-forward-outline" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-fill transition duration-300 text-gray-300 hover:text-gray-500"  viewBox="0 0 16 16">
+                                                                            <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
+                                                                        </svg>
+                                                                    </button>
+
+                                                                    <div>
+                                                                        <a class="flex flex-row justify-self-end items-center group/edit ">
+                                                                            <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                                                  th:name="followFromEvent" th:method="post"
+                                                                                  class="block text-sm text-gray-200 ">
+                                                                                <button class="flex items-center w-[40px] justify-center hover:cursor-pointer"
+                                                                                        type="submit">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                                         height="25" fill="currentColor"
+                                                                                         class="bi bi-person-fill-add text-gray-300 transition duration-300 hover:text-gray-500" viewBox="0 0 16 16">
+                                                                                        <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                                                                        <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                                                                                    </svg>
+                                                                                </button>
+                                                                            </form>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex md:hidden items-center">
+                                                                    <button type="button" id="dropdownNotFollowButton" data-dropdown-toggle="dropdown-notfollow"
+                                                                            class="hover:cursor-pointer flex justify-center items-center w-[40px]">
+                                                                        <svg fill="none" stroke="currentColor" class="transition duration-300 h-[30px] text-gray-400 hover:text-gray-500" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path>
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+
+                                                                <div id="dropdown-notfollow" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+
+                                                                        <li>
+                                                                            <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                                                  th:name="followFromEvent" th:method="post"
+                                                                                 >
+                                                                            <button type="submit" class="flex justify-start w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Follow</button>
+                                                                            </form>
+                                                                        </li>
+                                                                        <li>
+                                                                            <form th:action="@{/user/{id}(id=${user.id})}">
+                                                                            <button type="submit" class="flex justify-start w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View Profile</button>
+                                                                            </form>
+                                                                        </li>
+
+                                                                    </ul>
+                                                                </div>
+
+
+
+                                                            </div>
+
+
+                                                        </div>
+                                                    </li>
+                                                </div>
+                                            </div>
+                                        </ul>
+
+
+                                    </div>
+
                             </div>
 
 
-                        </div>
+
+
+
                     </div>
 
                 </section>
             </div>
 
 
-            <div id="talkjs" class="absolute hidden w-[100%] h-[80%] md:px-3 left-0 right-0 bottom-0 top-[100px]" >
-                <section class="w-full h-full p-2 bg-white border border-gray-200 rounded-lg shadow ">
+            <div id="talkjs" class="absolute w-[100%] h-[100%] md:px-3 left-0 right-0 bottom-0 top-[100px]" style="display: none" >
+                <div class="w-full h-full flex justify-center items-center">
+                <section class="w-full md:w-[80%] h-[90%] relative p-2 bg-white border border-gray-200 md:rounded-lg shadow ">
+
+                    <div id="exit" class="p-3 absolute left-0 flex flex-row justify-center items-center text-gray-500 hover:text-red-500 hover:cursor-pointer transition-all ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left flex-shrink-0 w-6 h-6 text-blue-500  transition duration-75" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                        </svg>
+                    </div>
+
                     <div class="container w-full">
                         <!-- container element in which TalkJS will display a chat UI -->
-                        <div id="talkjs-container" class="flex flex-col justify-center w-full items-center object-contain"
-                             style="width: 90%; margin: 30px; height: 800px">
+                        <div id="talkjs-container" class="flex flex-col mt-[3em] justify-center h-full w-full items-center object-contain"
+                             style="width: 100%; height: 650px">
 
                             <div class="relative">
-
-                                <div aria-label="Orange and tan hamster running in a metal wheel" role="img"
-                                     class="wheel-and-hamster">
-                                    <div class="wheel"></div>
-                                    <div class="hamster">
-                                        <div class="hamster__body">
-                                            <div class="hamster__head">
-                                                <div class="hamster__ear"></div>
-                                                <div class="hamster__eye"></div>
-                                                <div class="hamster__nose"></div>
-                                            </div>
-                                            <div class="hamster__limb hamster__limb--fr"></div>
-                                            <div class="hamster__limb hamster__limb--fl"></div>
-                                            <div class="hamster__limb hamster__limb--br"></div>
-                                            <div class="hamster__limb hamster__limb--bl"></div>
-                                            <div class="hamster__tail"></div>
-                                        </div>
+                                <div class="flex items-center mt-[13em] justify-center w-full h-full dark:bg-gray-800 dark:border-gray-700">
+                                    <div role="status" class="w-full h-full flex items-center justify-center">
+                                        <svg aria-hidden="true" class="w-[50px] h-[50px] mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg>
+                                        <span class="sr-only">Loading...</span>
                                     </div>
-                                    <div class="spoke"></div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </section>
+                </div>
             </div>
 
         </div>
     </div>
 </div>
-
 
 
 <!--<script src="/js/keys.js" type="text/javascript"></script>-->
