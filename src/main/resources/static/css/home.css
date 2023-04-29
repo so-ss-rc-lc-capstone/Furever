@@ -1,3 +1,9 @@
+body {
+    font-family: "Raleway", sans-serif;
+}
+
+
+
 #blob {
     background: linear-gradient(to right, aquamarine, mediumpurple);
     width: 500px;

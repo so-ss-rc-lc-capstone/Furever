@@ -11,6 +11,10 @@
 
 }
 
+body {
+    font-family: "Raleway", sans-serif;
+}
+
 
 #nav-mobile {
     position: fixed;

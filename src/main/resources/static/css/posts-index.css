@@ -1,3 +1,8 @@
+body {
+    font-family: "Raleway", sans-serif;
+}
+
+
 #comment-body, #name-body {
     max-width: 100%;
     word-wrap: break-word;
