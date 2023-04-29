@@ -54,6 +54,8 @@
         });
 
 
+        //Search Bar Toggle
+
         const checkbox = document.getElementById('toggle-checkbox');
         const text = document.getElementById('toggle-text');
 
@@ -70,9 +72,9 @@
             document.body.appendChild(searchResults); // Append to body instead of search bar
 
             searchButton.addEventListener('click', () => {
-                searchBar.classList.toggle('w-[235px]');
+                searchBar.classList.toggle('w-[350px]');
                 close.classList.toggle('opacity-1');
-                if (searchBar.classList.contains('w-[235px]')) {
+                if (searchBar.classList.contains('w-[350px]')) {
                     searchInput.style.pointerEvents = 'initial';
                     searchInput.style.opacity = '1';
                     searchInput.style.transition = '1.4s';
@@ -84,9 +86,6 @@
                     searchResults.innerHTML = '';
                 }
             });
-
-
-
 
             searchInput.addEventListener('keyup', (e) => {
                 const searchTerm = e.target.value;
@@ -116,21 +115,29 @@
                                 const result = document.createElement('div');
                                 result.classList.add('search-result');
                                 result.innerHTML = `
-                    <div class="user-div bg-white p-3 w-[12em] h-[4.5em]" style="overflow: auto; z-index: 9999">
-                        
-                            <div class="flex items-center">
+                    <div class="bg-white dark:bg-gray-800 p-3 w-[17em] h-[4.5em]" style="overflow: auto; z-index: 9999">
+                        <div class="flex items-center justify-between">
                             <a href="/user/${user.id}">
-                               <img src="${user.profilePhoto ? user.profilePhoto : '/img/profile.jpeg'}" alt="${name}" class="profile-photo rounded-full h-10 w-10 mr-2">
-                                </a>
-                                <div>
-                                    <div class="username font-bold">@${user.username}</div>
-                                    <div class="name" th:text="${name} ? ${name} :'New User'"></div>
+                                <div class="flex items-center">
+                                    <img src="${user.profilePhoto ? user.profilePhoto : '/img/profile.jpeg'}" alt="${name}" class="profile-photo rounded-full h-10 w-10 mr-2">
+                                    <div>
+                                        <div class="username font-bold">@${user.username}</div>
+                                        <div class="name" th:text="${name} ? ${name} :'New User'"></div>
+                                    </div> 
                                 </div>
-                                <form action="/users/${user.id}/follow" name="followFromEvent" method="POST">
-                                <button type="submit">Follow</button>
-                                <div>
-                            </div>
-                      
+                            </a>
+                            <a href="/users/${user.id}/follow-search" class="flex flex-row justify-self-end items-center group/edit group-hover/item:visible ">
+                                <button class="items-center justify-center hover:cursor-pointer"
+                                        type="submit">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="19"
+                                       height="19" fill="currentColor"
+                                       class="bi bi-person-fill-add text-gray-300 transition duration-300 hover:text-gray-500" viewBox="0 0 16 16">
+                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                    <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                                  </svg>
+                                </button>
+                            </a>
+                        </div>
                     </div>
                     `;
                                 searchResults.appendChild(result);
