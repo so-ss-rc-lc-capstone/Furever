@@ -98,9 +98,10 @@ public class SecurityConfiguration {
                         "/register",
                         "/user/{id}",
                         "/user/card",
-                        "/users/{id}/follow",
+                        "/users/{id}/follows",
                         "/following",
                         "/users/{id}/unfollow",
+
 
                         "/friends",
                         "/user/{id}/show",

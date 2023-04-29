@@ -181,21 +181,18 @@ public class UserController {
     @GetMapping("/user/{id}")
     public String findPetById(@PathVariable long id, Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData1 = userDao.findById(currentUser.getId());
         User currentUserData = userDao.findById(currentUser.getId());
         User userData = userDao.findById(id);
 
 
         List<Event> events = eventDao.findAll();
         List<Event> participatingEvents = new ArrayList<>();
-
         List<Comments> comments = commentDao.findAll();
         List<Comments> userComment = new ArrayList<>();
-
         List<Pet> petData = petsDao.findAll();
-
         List<User> followedUsers = userData.getFollowedUsers();
         List<Long> followedUsersId = new ArrayList<>();
-
         List<Post> posts = postDao.findAll();
         List<Post> userPost = new ArrayList<>();
 
@@ -264,6 +261,29 @@ public class UserController {
         return "redirect:" + referer;
     }
 
+    @PostMapping("/users/{id}/follows")
+    public String followUsers(@PathVariable Long id, Model model, HttpServletRequest request) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUserData = userDao.findById(currentUser.getId());
+        model.addAttribute("currentUserData", currentUserData);
+
+        User user = userDao.findById(id).get();
+
+        if (!currentUserData.getFollowedUsers().contains(user) && !user.getFollowingUsers().contains(currentUserData)) {
+            currentUserData.getFollowedUsers().add(user);
+            user.getFollowingUsers().add(currentUserData);
+        } else if (currentUserData.getFollowedUsers().contains(user)) {
+            currentUserData.getFollowedUsers().remove(user);
+            user.getFollowingUsers().remove(currentUserData);
+        }
+        userDao.save(currentUserData);
+
+        String referer = request.getHeader("Referer");
+        return "redirect:/friends";
+    }
+
+
+
     @GetMapping("/following")
     public String followedUsers(Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -297,15 +317,26 @@ public class UserController {
     public String showFriends(Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
-
         List<User> followedUsers = userData.getFollowedUsers();
         model.addAttribute("followedUsers", followedUsers);
-
+        List<User> usersNotFollowing = new ArrayList<>();
         List<User> users = userDao.findAll();
         List<Pet> pets = petsDao.findAll();
         List<Post> posts = postDao.findAll();
         List<Event> events = eventDao.findAll(); // or however you fetch the events
 
+
+        for (int i = 0; i < users.size(); i++) {
+            System.out.println("[User]:" + users.get(i).getId());
+            if (followedUsers.contains(users.get(i))) {
+                System.out.println("[[already following!!!]]");
+            } else {
+                System.out.println("[[Not following!!!]]");
+                usersNotFollowing.add(userDao.findById(users.get(i).getId()));
+            }
+        }
+
+        model.addAttribute("usersNotFollowing", usersNotFollowing);
         model.addAttribute("events", events);
         model.addAttribute("user", userData);
         model.addAttribute("users", users);
