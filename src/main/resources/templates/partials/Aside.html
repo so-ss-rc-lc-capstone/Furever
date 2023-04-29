@@ -373,7 +373,7 @@
                             </ul>
                             <div class="py-1">
 
-                              <form th:action="@{/users/{id}/follows(id=${user.id})}"
+                              <form th:action="@{/users/{id}/follow(id=${user.id})}"
                                     th:name="followFromEvent" th:method="post"
                                     class="block px-4 py-2 text-sm text-gray-700">
                                 <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
@@ -458,7 +458,7 @@
                         </div>
 
                         <a class="flex flex-row justify-self-end items-center group/edit group-hover/item:visible ">
-                          <form th:action="@{/users/{id}/follows(id=${user.id})}"
+                          <form th:action="@{/users/{id}/follow(id=${user.id})}"
                                 th:name="followFromEvent" th:method="post"
                                 class="block px-4 py-2 text-sm text-gray-200 ">
                             <button class="items-center justify-center hover:cursor-pointer"
