@@ -61,7 +61,7 @@ public class UserController {
         }
         model.addAttribute("events", participatingEvents);
 
-
+        model.addAttribute("currentUser", userData);
         model.addAttribute("comments", comments);
         model.addAttribute("user", userData);
         model.addAttribute("users", users);
@@ -244,6 +244,7 @@ public class UserController {
 
         User user = userDao.findById(id).get();
 
+        System.out.println("[[  --- Follow button clicked! --- ]]");
         if (!currentUserData.getFollowedUsers().contains(user) && !user.getFollowingUsers().contains(currentUserData)) {
             currentUserData.getFollowedUsers().add(user);
             user.getFollowingUsers().add(currentUserData);
@@ -254,6 +255,30 @@ public class UserController {
         userDao.save(currentUserData);
 
         model.addAttribute("currentUserData", currentUserData);
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+
+
+    @GetMapping("/users/{id}/follow-search")
+    public String followUser1(@PathVariable Long id, Model model, HttpServletRequest request) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUserData = userDao.findById(currentUser.getId());
+
+        User user = userDao.findById(id).get();
+
+        System.out.println("[[  --- Follow button clicked! --- ]]");
+        if (!currentUserData.getFollowedUsers().contains(user) && !user.getFollowingUsers().contains(currentUserData)) {
+            currentUserData.getFollowedUsers().add(user);
+            user.getFollowingUsers().add(currentUserData);
+        } else if (currentUserData.getFollowedUsers().contains(user)) {
+            currentUserData.getFollowedUsers().remove(user);
+            user.getFollowingUsers().remove(currentUserData);
+        }
+        userDao.save(currentUserData);
+
+        model.addAttribute("currentUserData", currentUserData);
+//        return "redirect:/friends" ;
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
     }
@@ -305,9 +330,9 @@ public class UserController {
         for (int i = 0; i < users.size(); i++) {
             System.out.println("[User]:" + users.get(i).getId());
             if (followedUsers.contains(users.get(i))) {
-                System.out.println("[[already following!!!]]");
+//                System.out.println("[[already following!!!]]");
             } else {
-                System.out.println("[[Not following!!!]]");
+//                System.out.println("[[Not following!!!]]");
                 usersNotFollowing.add(userDao.findById(users.get(i).getId()));
             }
         }
