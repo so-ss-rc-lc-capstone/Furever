@@ -153,9 +153,7 @@
             });
 
         };
-
         toggleSearch('search', 'search-button');
-
 
 
 
@@ -167,7 +165,6 @@
         talkjsDiv.addEventListener('click', () => {
             talkjsDiv.style.display = 'none';
         });
-
 
 
         const buttons = document.querySelectorAll(".all-users");
