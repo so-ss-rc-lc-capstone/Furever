@@ -16,6 +16,7 @@
         </div>
 
         <div class="login__forms border-gray-100">
+
             <form th:action="@{/login}"  th:method="POST" class="login__registre  dark:bg-[#1e1f24] border dark:border-[#292d38] dark:shadow-xl" id="login-in">
                 <h1 class="login__title dark:text-white">Sign-In To Your Account</h1>
                 <span th:text="${success}"></span>
@@ -41,7 +42,6 @@
                     <span class="login__signin" id="sign-up">Sign Up</span>
                 </div>
             </form>
-
             <form th:action="@{/register}" th:method="POST" th:object="${user}" class="login__create border dark:border-[#292d38] dark:bg-[#1e1f24]" id="login-up">
                 <h1 class="login__title dark:text-white">Create Account</h1>
 
@@ -72,6 +72,8 @@
                 </div>
 
             </form>
+
+
         </div>
     </div>
 </div>
