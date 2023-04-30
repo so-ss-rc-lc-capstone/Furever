@@ -3,6 +3,10 @@
 // Get the current page URL
 
 
+(
+    async function () {
+
+
 //Search Bar Toggle
 
 const checkbox = document.getElementById('toggle-checkbox');
@@ -161,6 +165,7 @@ eventButtons.forEach(button => {
     });
 });
 
+
 function getAllParticipants(data){
     let viewParticipants = JSON.parse(data);
     let html = '';
@@ -209,3 +214,7 @@ function getAllParticipants(data){
     }
     participantsList.innerHTML = html;
 }
+    })();
+
+
+
