@@ -156,7 +156,6 @@
         toggleSearch('search', 'search-button');
 
 
-
         exitBtn.addEventListener('click', () => {
             talkjsDiv.style.display = 'none';
         });
