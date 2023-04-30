@@ -31,7 +31,9 @@ public class PetController {
 
     @GetMapping("/pets/register")
     public String showPetRegistrationForm(Model model) {
-
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUserData = userDao.findById(currentUser.getId());
+        model.addAttribute("user", currentUserData);
         model.addAttribute("pet", new Pet());
         System.out.println("pet model created");
 

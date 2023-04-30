@@ -246,7 +246,7 @@
     </ul>
 </nav>
 
-<nav th:fragment="navbar-mobile-events" id="mobile" class="fixed hidden bottom-0 right-0 left-0 p-3 bg-white border-2 dark:border-[#292d38] dark:bg-[#1e1f24] m-auto rounded-t-2xl w-full h-[100px]" style= "box-shadow: 0 4px 24px hsla(222,68%,12%, .1); z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
+<nav th:fragment="navbar-mobile-events" id="mobile" class="fixed hidden bottom-0 right-0 left-0 p-3 bg-white border-2 dark:border-[#292d38] dark:bg-[#1e1f24] m-auto rounded-t-2xl w-full h-[100px]" style= "box-shadow: 0 4px 24px hsla(222,68%,12%, .1); z-index: 9996; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
 
     <ul class="nav__list w-full relative h-full flex justify-center items-center md:justify-evenly">
         <a href="/profile"
@@ -268,7 +268,7 @@
             </svg>
         </a>
 
-        <a href="/events/create"
+        <a href="/events/create" style ="z-index: 999"
            class="nav__link absolute top-[-50px] h-full w-[70px] bg-[#2a86ff]
                 justify-center text-white items-center rounded-full active-link transition duration-500 transform hover:-translate-y-1 hover:scale-110">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">

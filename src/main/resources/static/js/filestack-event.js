@@ -40,6 +40,7 @@ $(document).ready(function () {
                 inputEditVal.attr('value', url);
                 thumbnail.attr('src', url);
                 showThumbnail(url);
+                thumbnail.removeClass('hidden');
             }
         }).open();
     });
