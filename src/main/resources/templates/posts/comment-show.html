@@ -3,18 +3,19 @@
 <head th:replace="partials/header :: head">
     <title>View Posts</title>
 </head>
-<link rel="stylesheet" href="comment-show.html"/>
 <link rel="stylesheet" href="/css/profile.css"/>
 
-<body class="dark:text-white dark:bg-gray-800">
+<body class="dark:text-white dark:bg-[#1e1f24]">
 
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:replace="partials/Aside :: aside-nav"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
-<section class="w-full flex justify-end">
+<section class="w-full flex justify-end mt-[3em] relative">
+    <div class="absolute top-[30px] left-2 w-[50px] h-[50px] rounded-full flex items-center justify-center hover:cursor-pointer"
+         onclick="window.history.back()"><i class="ri-arrow-left-line text-[#2a86ff] text-[30px]"></i></div>
 
-    <div class="hidden md:flex md:w-[23em]"></div>
+    <div class="aside-container mt-[2em] md:flex md:w-[20em]"></div>
 <div class="flex flex-col w-full h-screen ">
     <div class="flex w-full justify-start mb-16 md:mt-[5em] pt-5 items-center">
     <div class="flex flex-col w-full h-full bg-gray rounded-lg">
@@ -50,7 +51,7 @@
         </div>
 
 
-        <div class="w-full h-[60px] pb-3 border-b border-gray-300 flex flex-row justify-around items-center ">
+        <div class="w-full h-[60px] pb-3 border-b border-gray-300 dark:border-[#292d38] flex flex-row justify-around items-center ">
 
             <div class="flex flex-row justify-center  h-[50px] w-[12em] rounded-md items-center hover:text-blue-500 hover:cursor-pointer transition-all">
                 <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -73,7 +74,7 @@
             </form>
         </div>
 
-        <div class="flex w-full items-center border-b-2">
+        <div class="flex w-full items-center border-b dark:border-[#292d38]">
             <div class="w-1/9 h-full mr-3">
                 <div class="flex h-full items-center justify-center">
                     <img class="w-[55px] h-[55px] ml-[30px] md:ml-[100px] rounded-full shadow-md"
@@ -91,10 +92,10 @@
                 <form class="w-full" th:action="@{/comment/{id}/create(id=${post.id})}" th:method="POST" th:object="${comments}">
 
                     <label for="comment" class="sr-only">Your Message</label>
-                    <div class="flex items-center px-3 py-2 rounded-lg dark:bg-gray-800">
+                    <div class="flex items-center px-3 py-2 rounded-lg">
 
                     <textarea id="comment" name ="content" rows="1"
-                      class="resize-none h-[60px] mx-4 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
+                      class="resize-none h-[60px] mx-4 p-2.5 w-full text-sm text-gray-900 rounded-lg border dark:border-[#292d38] dark:bg-[#26272d] focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Your message..."></textarea>
 
                         <button type="submit"  class="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-gray-600">
                             <svg aria-hidden="true" class="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
