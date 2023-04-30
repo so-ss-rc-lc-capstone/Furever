@@ -18,6 +18,9 @@ body {
     #mobile{
         display: flex !important;
     }
+    #event-container{
+        width: 100% !important;
+    }
 
 }
 

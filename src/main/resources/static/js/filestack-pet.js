@@ -37,6 +37,7 @@ $(document).ready(function () {
                 petImageUpload(url);
                 petInputVal.attr('value', url);
                 petEditThumbnail.attr('src', url);
+                petThumbnail.removeClass('hidden');
             }
         }).open();
     });
