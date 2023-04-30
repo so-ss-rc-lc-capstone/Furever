@@ -109,14 +109,18 @@ const eventsContainer = document.getElementById("events-container")
 
 feedBtn.addEventListener('click', () => {
     feedBtn.classList.add('bg-gray-100');
+    feedBtn.classList.add('dark:bg-gray-700')
     eventsBtn.classList.remove('bg-gray-100');
+    eventsBtn.classList.remove('dark:bg-gray-700')
     postsContainer.style.display = 'block';
     eventsContainer.style.display = 'none';
 });
 
 eventsBtn.addEventListener('click', () => {
     eventsBtn.classList.add('bg-gray-100');
+    eventsBtn.classList.add('dark:bg-gray-700')
     feedBtn.classList.remove('bg-gray-100');
+    feedBtn.classList.remove('dark:bg-gray-700')
     postsContainer.style.display = 'none';
     eventsContainer.style.display = 'block';
 });
