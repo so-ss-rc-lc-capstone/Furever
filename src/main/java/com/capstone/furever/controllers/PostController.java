@@ -140,7 +140,7 @@ public class PostController {
         post.setUser(userData);
         post.setCreated_at(LocalDateTime.now());
         postDao.save(post);
-        emailService.prepareAndSend(post);
+//        emailService.prepareAndSend(post);
         return "redirect:/posts"; // go to controller
 
     }
