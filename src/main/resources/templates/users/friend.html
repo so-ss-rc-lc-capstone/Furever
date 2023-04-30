@@ -95,22 +95,19 @@
                                                                  th:src="${user.profilePhoto != null and user.profilePhoto != '' ? user.profilePhoto : '/img/profile.jpeg'}"
                                                                  alt="user-image">
                                                             <div class="ml-3 flex-col font-medium dark:text-white">
-                                                                <div class="text-base font-normal text-gray-900 dark:text-white "><span
-                                                                        th:text="${user.first_name}"
-                                                                        th:href="@{|/user/${user.id}|}"></span><span
-                                                                        th:text="${user.last_name}"
-                                                                        th:href="@{|/user/${user.id}|}"></span></div>
+                                                                <div class="text-base font-normal text-gray-900 dark:text-white ">
+                                                                    <span th:text="${user.first_name} +' '+ ${user.last_name}"></span>
+                                                                </div>
                                                                 <div class="text-sm text-gray-500 dark:text-gray-400">
-                                                                    @<span
-                                                                        th:text="${user.username}"
-                                                                        th:href="@{|/user/${user.id}|}"></span></div>
+                                                                    @<span th:text="${user.username}"></span>
+                                                                </div>
                                                             </div>
 
 
                                                             <div th:id="drop+${user.id}"
                                                                  class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                                                <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                                                    <div class="text-base font-normal text-gray-900 "><span
+                                                                <div class="px-4 py-3 text-sm text-gray-900 ">
+                                                                    <div class="text-base font-normal text-gray-900 dark:text-white"><span
                                                                             th:text="${user.first_name } "></span> <span
                                                                             th:text="${user.last_name}"></span></div>
                                                                     <div class="text-sm text-gray-500 dark:text-gray-400"><span
@@ -212,8 +209,8 @@
 
                                                             <div th:id="drop+${user.id}"
                                                                  class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                                                                <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                                                    <div class="text-base font-normal text-gray-900 "><span
+                                                                <div class="px-4 py-3 text-sm ">
+                                                                    <div class="text-base font-normal text-gray-900 dark:text-white "><span
                                                                             th:text="${user.first_name } "></span> <span
                                                                             th:text="${user.last_name}"></span></div>
                                                                     <div class="text-sm text-gray-500 dark:text-gray-400"><span
