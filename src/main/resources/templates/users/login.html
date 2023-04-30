@@ -42,19 +42,19 @@
                 </div>
             </form>
 
-            <form th:action="@{/register}" th:method="POST" th:object="${user}" class="login__create none border dark:border-[#292d38] dark:bg-[#1e1f24]" id="login-up">
+            <form th:action="@{/register}" th:method="POST" th:object="${user}" class="login__create border dark:border-[#292d38] dark:bg-[#1e1f24]" id="login-up">
                 <h1 class="login__title dark:text-white">Create Account</h1>
 
 
                 <div class="login__box dark:bg-gray-700" >
                     <i class="ri-user-fill text-gray-500 text-[25px]"></i>
-                    <input type="text" name="username" id="website-admin" placeholder="Username" class="login__input dark:bg-gray-700 text-gray-300 rounded-xl" required >
+                    <input type="text" name="username" id="website-admin" placeholder="Username" class="login__input dark:bg-gray-700 text-black dark:text-gray-300 rounded-xl" required >
                 </div>
 
                 <div th:text="${usernameTaken}"></div>
                 <div class="login__box dark:bg-gray-700">
                     <i class="ri-mail-fill text-gray-500 text-[25px]"></i>
-                    <input type="text" name="email"  id="input-group-1" placeholder="Email" class="login__input dark:bg-gray-700 text-gray-300 rounded-xl" required>
+                    <input type="text" name="email"  id="input-group-1" placeholder="Email" class="login__input text-black dark:bg-gray-700 text-gray-300 rounded-xl" required>
                 </div>
 
                 <div class="login__box dark:bg-gray-700">
