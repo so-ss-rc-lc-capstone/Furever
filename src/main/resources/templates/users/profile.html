@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/calendar2.css">
 <link rel="stylesheet" href="/css/profile.css"/>
 
-<body class="bg-white dark:text-white dark:bg-gray-800">
+<body class="bg-white dark:text-white dark:bg-[#17181c]">
 
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 
@@ -25,7 +25,7 @@
         <aside th:replace="partials/Aside :: aside-nav"></aside>
     </section>
 
-<div class ="w-full bg-white dark:text-white dark:bg-gray-800">
+<div class ="w-full bg-white dark:text-white dark:bg-[#17181c]">
     <div class="h-2/5"
          style="background-image: url('https://imgtr.ee/images/2023/04/11/n5rU7.jpg'); background-position: center; background-size: cover;">
     </div>
@@ -51,7 +51,7 @@
 
                             <form th:action="@{/profile/edit}" method="get">
                                 <button type="submit"
-                                        class="absolute flex items-center bg-blue-400 hover:bg-blue-500 hover:mouse-pointer justify-center h-[40px] w-[40px] rounded-full right-0 bottom-5">
+                                        class="absolute flex items-center bg-[#2a86ff] hover:bg-blue-500 hover:mouse-pointer justify-center h-[40px] w-[40px] rounded-full right-0 bottom-5">
                                     <i class="bi bi-pencil text-white"></i></button>
                             </form>
                         </div>
@@ -141,7 +141,7 @@
                         <h2 class="font-bold mb-2 ml-7 md:ml-0 mr-2">My Pets</h2>
                         <form th:action="@{/pets/register}" method="get">
                             <input type="hidden" name="edit_id"/>
-                            <button type="submit" class=" pb-2 md:pb-0 text-blue-700">
+                            <button type="submit" class=" pb-2 md:pb-0 text-[#2a86ff]">
                                 + Add
                             </button>
                         </form>
@@ -153,18 +153,18 @@
                     </div>
 
                     <!--Events-->
-                    <div class="flex flex-col w-full h-screen mt-5  justify-center bg-white dark:text-white dark:bg-gray-800">
+                    <div class="flex flex-col w-full h-screen mt-5 justify-center dark:text-white">
                         <div class=" w-full">
                             <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
                                 <li class="w-full">
                                     <button id="feed"
-                                            class="inline-block w-full p-4 text-gray-900 bg-gray-100 rounded-l-lg dark:bg-gray-700 dark:text-white"
+                                            class="inline-block w-full p-4 text-gray-900 bg-gray-100 rounded-l-lg border  dark:border-[#292d38] dark:bg-gray-700 dark:text-white"
                                             aria-current="page">Feed
                                     </button>
                                 </li>
                                 <li class="w-full">
                                     <button id="events"
-                                            class="inline-block w-full p-4 bg-white hover:text-gray-700 hover:bg-gray-50 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+                                            class="inline-block w-full p-4 hover:text-gray-700 rounded-r-xl dark:border-[#292d38] border border-l-0 hover:bg-gray-50 dark:hover:text-white dark:hover:bg-gray-700">
                                         Events
                                     </button>
                                 </li>
@@ -172,9 +172,9 @@
                         </div>
 
                         <!--Render Posts-->
-                        <div class="w-full h-screen grid grid-cols-1" id="posts-container" style="overflow: auto;">
+                        <div class="w-full h-screen grid grid-cols-1 " id="posts-container" style="overflow: auto;">
                             <div th:each="post : ${posts}" th:if="${post.user.id == user.id}"
-                                 class="rounded-t-lg mt-2 ">
+                                 class="rounded-t-lg mt-2 dark:bg-[#1e1f24] mb-3 border dark:border-[#292d38]">
                                 <div class="w-full rounded-t-lg dark:border-gray-700">
 
                                     <div class="flex">
@@ -221,7 +221,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="w-full h-[30px] pb-3 border-b border-gray-300 flex flex-row justify-around ">
+                                    <div class="w-full h-[30px] pb-3 flex flex-row justify-around ">
 
                                         <div class="flex flex-row justify-center items-center hover:text-blue-500 hover:cursor-pointer transition-all">
                                             <svg fill="none" class="h-[20px] w-[20px] flex justify-center"
@@ -276,8 +276,8 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
-<script src="/js/event-feed.js"></script>
 <script src="/js/users/profile.js"></script>
+
 <script src="/js/users/user-show.js"></script>
 <script src="/js/event/event-delete.js"></script>
 <script src="/js/users/calendar2.js"></script>

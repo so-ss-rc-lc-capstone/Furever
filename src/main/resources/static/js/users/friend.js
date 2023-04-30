@@ -38,7 +38,9 @@
         allBtn.addEventListener('click', () => {
             if (!allBtn.classList.contains('bg-gray-100') || !allBtn.classList.contains('text-blue-600')) {
                 allBtn.classList.add('bg-gray-100', 'text-blue-600');
+                allBtn.classList.add('dark:bg-[#26272d]', 'dark:text-blue-600');
                 followingBtn.classList.remove('bg-gray-100', 'text-blue-600');
+                followingBtn.classList.remove('dark:bg-[#26272d]', 'dark:text-blue-600');
                 notFollowingDiv.style.display = 'flex';
                 followersDiv.style.display = 'none';
             }
@@ -47,7 +49,9 @@
         followingBtn.addEventListener('click', () => {
             if (!followingBtn.classList.contains('bg-gray-100') || !followingBtn.classList.contains('text-blue-600')) {
                 followingBtn.classList.add('bg-gray-100', 'text-blue-600');
+                followingBtn.classList.add('dark:bg-[#26272d]', 'dark:text-blue-600');
                 allBtn.classList.remove('bg-gray-100', 'text-blue-600');
+                allBtn.classList.remove('dark:bg-[#26272d]', 'dark:text-blue-600');
                 followersDiv.style.display = 'flex';
                 notFollowingDiv.style.display = 'none';
             }

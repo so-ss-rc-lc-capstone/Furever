@@ -58,11 +58,11 @@ function updateNavbar() {
     if (window.scrollY > 0) {
         navbar.classList.add('navbar-scrolled');
         navbar.classList.add('bg-white');
-        navbar.classList.add('dark:bg-gray-900');
+        navbar.classList.add('dark:bg-[#17181c]');
     } else {
         navbar.classList.remove('navbar-scrolled');
         navbar.classList.remove('bg-white');
-        navbar.classList.remove('dark:bg-gray-900');
+        navbar.classList.remove('dark:bg-[#17181c]');
     }
 }
 
