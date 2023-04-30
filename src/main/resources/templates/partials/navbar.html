@@ -98,7 +98,7 @@
         </div>
     </nav>
 
-<nav id="navbar" th:fragment="navbar-login" class="fixed w-full z-20 top-0 left-0">
+<nav id="navbar" th:fragment="navbar-login" class="fixed w-full z-20 bg-white dark:bg-[#26272d] top-0 left-0">
     <div class="flex flex-wrap items-center justify-between p-4">
         <a class="flex items-center">
             <img th:src="@{/img/logofurever.png}" class="h-[50px] mr-3" alt="Furever-logo">
@@ -106,7 +106,7 @@
         </a>
 
 
-        <ul class="hidden lg:flex p-4 md:p-0 mt-4 font-medium md:flex-row md:space-x-8 md:mt-0 md:border-0">
+        <ul class="flex p-4 md:p-0 mt-4 font-medium md:flex-row md:space-x-8 md:mt-0 md:border-0">
             <li sec:authorize="!isAuthenticated()">
                 <a href="/login" id="login-link" data-url="/login"
                    class="block py-2 pl-3 pr-4 text-gray-900  dark:text-gray-300 hover:text-white transition-all hover:text-gray-400 duration-100 md:p-0">
@@ -233,7 +233,7 @@
     </ul>
 </nav>
 
-<nav th:fragment="navbar-mobile-events" id="mobile" class="fixed hidden bottom-0 right-0 left-0 p-3 bg-white dark:bg-[#1e1f24] m-auto rounded-t-2xl w-full h-[100px]" style= "box-shadow: 0 4px 24px hsla(222,68%,12%, .1); z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
+<nav th:fragment="navbar-mobile-events" id="mobile" class="fixed hidden bottom-0 right-0 left-0 p-3 bg-white border-2 dark:border-[#292d38] dark:bg-[#1e1f24] m-auto rounded-t-2xl w-full h-[100px]" style= "box-shadow: 0 4px 24px hsla(222,68%,12%, .1); z-index: 9999; transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;">
 
     <ul class="nav__list w-full relative h-full flex justify-center items-center md:justify-evenly">
         <a href="/events"
@@ -250,8 +250,8 @@
             </svg>
         </a>
         <a href="/events/create"
-           class="nav__link absolute top-[-50px] h-full w-[80px] bg-[#2a86ff]
- justify-center text-white items-center rounded-full active-link transition duration-500 transform hover:-translate-y-1 hover:scale-110">
+           class="nav__link absolute top-[-50px] h-full w-[70px] bg-[#2a86ff]
+                justify-center text-white items-center rounded-full active-link transition duration-500 transform hover:-translate-y-1 hover:scale-110">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">
                 <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
                 <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
