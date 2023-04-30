@@ -157,10 +157,7 @@
             });
 
         };
-
         toggleSearch('search', 'search-button');
-
-
 
 
         exitBtn.addEventListener('click', () => {
@@ -171,7 +168,6 @@
         talkjsDiv.addEventListener('click', () => {
             talkjsDiv.style.display = 'none';
         });
-
 
 
         const buttons = document.querySelectorAll(".all-users");

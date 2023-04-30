@@ -1,3 +1,7 @@
+(
+    async function () {
+
+
 const modal = document.getElementById('defaultModal');
 const closeBtn = document.getElementById('close-btn');
 const modalToggle = document.querySelectorAll('[data-modal-toggle]');
@@ -103,3 +107,5 @@ function getAllParticipants(data){
     }
     participantsList.innerHTML = html;
 }
+
+    })();

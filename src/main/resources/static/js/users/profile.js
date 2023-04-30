@@ -1,4 +1,5 @@
 
+
 const checkbox = document.getElementById('toggle-checkbox');
 const text = document.getElementById('toggle-text');
 
@@ -102,9 +103,12 @@ toggleSearch('search', 'search-button');
 
 
 
+(
+    async function () {
 
 const feedBtn = document.getElementById("feed");
 const eventsBtn = document.getElementById("events");
+
 const postsContainer = document.getElementById("posts-container");
 const eventsContainer = document.getElementById("events-container")
 
@@ -200,6 +204,8 @@ allBtns.forEach(event => {
     });
 });
 
+
+
 function getAllParticipants(data) {
     let viewParticipants = JSON.parse(data);
     let html = '';
@@ -256,3 +262,4 @@ function confirmUserDelete() {
         document.getElementById("deleteForm").submit();
     }
 }
+    })();

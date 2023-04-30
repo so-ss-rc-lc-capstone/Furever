@@ -5,6 +5,10 @@
 <head th:replace="partials/header :: head">
     <meta charset="UTF-8">
     <title>Events</title>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.js'></script>
+
+
 </head>
 <link rel="stylesheet" href="/css/darkmode.css"/>
 <link rel="stylesheet" href="/css/event-index.css"/>
@@ -23,10 +27,6 @@
     <nav th:replace="partials/Aside :: aside-nav"></nav>
 
 </section>
-
-
-
-
 <div id="feed-container" class="flex items-start justify-center w-full ">
     <!--- Feed -->
     <div class="w-full md:mt-[7.5em] md:w-[80%]">
@@ -83,7 +83,6 @@
                 <div id='map' style='width: 100%; height: 500px;' class="rounded-lg">
             </div>
             </div>
-
 <!--            -->
         </div>
     </div>

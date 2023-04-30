@@ -11,7 +11,9 @@
 
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 
-<nav th:replace="partials/navbar :: navbar-mobile"></nav>
+<nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
+
+<!--<nav th:replace="partials/navbar :: navbar-mobile"></nav>-->
 <aside th:replace="partials/Aside :: aside-user-show"></aside>
 
 
@@ -252,9 +254,7 @@
                             <!--Render Photos or events-->
                             <div class="w-full hidden h-screen grid grid-cols-1" id="events-container"
                                  style="overflow: auto;">
-                                <!-- User POSTS -->
                                 <div th:include="event/event-card.html"></div>
-
                             </div>
                         </div>
                     </div>
@@ -265,9 +265,9 @@
 </section>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+<script src="/js/event-feed.js"></script>
 <script src="/js/users/profile.js"></script>
 <script src="/js/users/user-show.js"></script>
-<script src="/js/event-feed.js"></script>
 <script src="/js/event/event-delete.js">
 </script>
 
