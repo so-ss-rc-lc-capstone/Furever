@@ -37,8 +37,6 @@ function allEvents() {
                 map.setZoom(3);
                 try {
                     event.forEach(function (event) {
-
-
                         geocode(event.address, keys.mapbox).then(function (result) {
                             let eventPosition = [result[0], result[1]];
 
@@ -176,7 +174,6 @@ function deg2rad(deg) {
     return deg * (Math.PI / 180)
 }
 
-
 //Comparing the Ids of the events within 50 miles radius.
 async function localIdComparison() {
     let eventIds = await localLocations();
@@ -242,7 +239,6 @@ listBtn.addEventListener("click", function () {
     });
 });
 
-
 // Map button shows map on click and hides the list of events
 mapButton.addEventListener("click", function () {
     let map = document.getElementById('map');
@@ -261,52 +257,5 @@ mapButton.addEventListener("click", function () {
     });
 });
 
-
-const spinnerEl = document.getElementById('spinner');
-const backgroundEl = document.getElementById('loading-background');
-
-
-map.on('load', () => {
-    loadingSpinner(false);
-
-    map.addSource('addr', {
-        type: 'vector',
-        url: 'mapbox://mollymerp.openadd'
-
-    });
-});
-
-function addLayerSpinner() {
-    loadingSpinner(true);
-    map.addLayer({
-        id: 'test',
-        source: 'addr',
-        'source-layer': 'openaddresses',
-        type: 'circle',
-        paint: {
-            'circle-color': 'pink'
-        }
-    });
-    map.on('render', stopSpinner);
-}
-
-function stopSpinner(e) {
-    if (e.target && e.target.loaded()) {
-        loadingSpinner(false);
-        map.off('render', stopSpinner)
-    }
-}
-
-function loadingSpinner(on) {
-    if (on) {
-        spinnerEl.classList.add('loading');
-        backgroundEl.classList.add('absolute');
-        backgroundEl.classList.remove('none');
-    } else {
-        spinnerEl.classList.remove('loading');
-        backgroundEl.classList.remove('absolute');
-        backgroundEl.classList.add('none');
-    }
-}
 
 
