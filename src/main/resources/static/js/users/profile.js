@@ -2,107 +2,107 @@
     async function () {
 
 
-const feedBtn = document.getElementById("feed");
-const eventsBtn = document.getElementById("events");
+        const feedBtn = document.getElementById("feed");
+        const eventsBtn = document.getElementById("events");
 
-const postsContainer = document.getElementById("posts-container");
-const eventsContainer = document.getElementById("events-container")
+        const postsContainer = document.getElementById("posts-container");
+        const eventsContainer = document.getElementById("events-container")
 
-feedBtn.addEventListener('click', () => {
-    feedBtn.classList.add('bg-gray-100');
-    eventsBtn.classList.remove('bg-gray-100');
-    postsContainer.style.display = 'block';
-    eventsContainer.style.display = 'none';
-});
+        feedBtn.addEventListener('click', () => {
+            feedBtn.classList.add('bg-gray-100');
+            eventsBtn.classList.remove('bg-gray-100');
+            postsContainer.style.display = 'block';
+            eventsContainer.style.display = 'none';
+        });
 
-eventsBtn.addEventListener('click', () => {
-    eventsBtn.classList.add('bg-gray-100');
-    feedBtn.classList.remove('bg-gray-100');
-    postsContainer.style.display = 'none';
-    eventsContainer.style.display = 'block';
-});
+        eventsBtn.addEventListener('click', () => {
+            eventsBtn.classList.add('bg-gray-100');
+            feedBtn.classList.remove('bg-gray-100');
+            postsContainer.style.display = 'none';
+            eventsContainer.style.display = 'block';
+        });
 
-const dropdownMenu = document.querySelector(".dropdown-menu");
-const dropdownButton = document.querySelector(".dropdown-toggle");
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+        const dropdownButton = document.querySelector(".dropdown-toggle");
 
-dropdownButton.addEventListener("click", () => {
-    dropdownMenu.classList.toggle("hidden");
-    document.addEventListener("click", hideDropdownMenu);
-});
+        dropdownButton.addEventListener("click", () => {
+            dropdownMenu.classList.toggle("hidden");
+            document.addEventListener("click", hideDropdownMenu);
+        });
 
-function hideDropdownMenu(event) {
-    if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-        dropdownMenu.classList.add("hidden");
-        document.removeEventListener("click", hideDropdownMenu);
-    }
-}
+        function hideDropdownMenu(event) {
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.add("hidden");
+                document.removeEventListener("click", hideDropdownMenu);
+            }
+        }
 
-const modal = document.getElementById('defaultModal');
-const closeBtn = document.getElementById('close-btn');
-const modalToggle = document.querySelectorAll('[data-modal-toggle]');
-const modalClose = document.querySelectorAll('[data-modal-hide]');
+        const modal = document.getElementById('defaultModal');
+        const closeBtn = document.getElementById('close-btn');
+        const modalToggle = document.querySelectorAll('[data-modal-toggle]');
+        const modalClose = document.querySelectorAll('[data-modal-hide]');
 
-modalToggle.forEach((toggle) => {
-    toggle.addEventListener('click', () => {
-        const target = toggle.getAttribute('data-modal-target');
-        const modalTarget = document.getElementById(target);
-        modalTarget.classList.toggle('hidden');
-    });
-});
+        modalToggle.forEach((toggle) => {
+            toggle.addEventListener('click', () => {
+                const target = toggle.getAttribute('data-modal-target');
+                const modalTarget = document.getElementById(target);
+                modalTarget.classList.toggle('hidden');
+            });
+        });
 
-modalClose.forEach((toggle) => {
-    toggle.addEventListener('click', () => {
-        const target = toggle.closest('.modal').getAttribute('id');
-        const modalTarget = document.getElementById(target);
-        modalTarget.classList.toggle('hidden');
-    });
-});
+        modalClose.forEach((toggle) => {
+            toggle.addEventListener('click', () => {
+                const target = toggle.closest('.modal').getAttribute('id');
+                const modalTarget = document.getElementById(target);
+                modalTarget.classList.toggle('hidden');
+            });
+        });
 
-function hideModal() {
-    document.getElementById("defaultModal").classList.add("hidden");
-}
+        function hideModal() {
+            document.getElementById("defaultModal").classList.add("hidden");
+        }
 
 //Modal div
-let participantsList = document.getElementById("view-participants-list");
-let allBtns = document.querySelectorAll('.pt-3.pr-3 .view-participants-btn');
+        let participantsList = document.getElementById("view-participants-list");
+        let allBtns = document.querySelectorAll('.pt-3.pr-3 .view-participants-btn');
 
-allBtns.forEach(event => {
-    event.addEventListener('click', function () {
-        participantsList.innerHTML = "";
-        console.log("clicked");
-        // Get the event ID from the "data-event-id" attribute of the button
-        let eventId = event.getAttribute("data-event-id");
-        console.log("this =>" + eventId);
+        allBtns.forEach(event => {
+            event.addEventListener('click', function () {
+                participantsList.innerHTML = "";
+                console.log("clicked");
+                // Get the event ID from the "data-event-id" attribute of the button
+                let eventId = event.getAttribute("data-event-id");
+                console.log("this =>" + eventId);
 
-        // Fetch participants for the selected event
-        fetch('http://localhost:8080/events/' + eventId + '/participants', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return res.json();
-            })
-            .then(data => {
-                console.log("data"+ data);
-                let viewParticipants = JSON.stringify(data);
-                getAllParticipants(viewParticipants);
-            })
-            .catch(error => console.error(error));
-    });
-});
+                // Fetch participants for the selected event
+                fetch('http://localhost:8080/events/' + eventId + '/participants', {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                })
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+                        return res.json();
+                    })
+                    .then(data => {
+                        console.log("data"+ data);
+                        let viewParticipants = JSON.stringify(data);
+                        getAllParticipants(viewParticipants);
+                    })
+                    .catch(error => console.error(error));
+            });
+        });
 
 
 
-function getAllParticipants(data) {
-    let viewParticipants = JSON.parse(data);
-    let html = '';
-    for (let i = 0; i < viewParticipants.length; i++) {
-        html += `<div class="flex justify-center items-center w-full flex-col">
+        function getAllParticipants(data) {
+            let viewParticipants = JSON.parse(data);
+            let html = '';
+            for (let i = 0; i < viewParticipants.length; i++) {
+                html += `<div class="flex justify-center items-center w-full flex-col">
                 <div class="flex w-full h-[6em] rounded-full" style="box-shadow: 0 4px 24px hsla(222,68%,20%, .1); overflow: hidden; transition: width .5s cubic-bezier(.9, 0, .3, .9)">
                 <div class="flex w-full">
                 <div class="flex justify-between p-3 w-full" >
@@ -136,22 +136,22 @@ function getAllParticipants(data) {
               </div>
             </div>`;
 
-    }
-    participantsList.innerHTML = html;
-}
+            }
+            participantsList.innerHTML = html;
+        }
 
 //delete
-function confirmDelete() {
-    if (confirm("Are you sure you want to delete this event?")) {
-        return true;
-    } else {
-        return false;
-    }
-}
+        function confirmDelete() {
+            if (confirm("Are you sure you want to delete this event?")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
-function confirmUserDelete() {
-    if (confirm("Are you sure you want to delete your profile?")) {
-        document.getElementById("deleteForm").submit();
-    }
-}
+        function confirmUserDelete() {
+            if (confirm("Are you sure you want to delete your profile?")) {
+                document.getElementById("deleteForm").submit();
+            }
+        }
     })();
