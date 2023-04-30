@@ -52,6 +52,7 @@ public class SecurityConfiguration {
 
                 .requestMatchers(
                         "/",
+                        "/home",
                         "/posts",
                         "/posts/{id}",
                         "/posts/index",
@@ -71,6 +72,7 @@ public class SecurityConfiguration {
                         "/img/**",
                         "/static/**",
                         "/error/**",
+                        "/sendEmail",
 
                         "/events",
                         "/events/{id}",
@@ -99,6 +101,7 @@ public class SecurityConfiguration {
                         "/user/{id}",
                         "/user/card",
 
+                        "/sendEmail",
 
                         "/users/{id}/follow",
                         "/users/{id}/follow-search",
