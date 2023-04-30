@@ -412,7 +412,7 @@
         </div>
 
         <div id="myTabContent">
-          <div class="hidden rounded-lg" id="profile" role="tabpanel"
+          <div class="hidden rounded-lg overflow-y-scroll h-[20em]" id="profile" role="tabpanel"
                aria-labelledby="profile-tab">
             <ul role="list">
               <div th:each="user : ${followedUsers}">
@@ -430,11 +430,10 @@
                                alt="user-image">
 
                           <div class="ml-3 flex-col font-medium">
-                            <div class="text-base font-normal text-gray-900 dark:text-white"><span
-                                    th:text="${user.first_name}"
-                                    th:href="@{|/user/${user.id}|}"></span><span
-                                    th:text="${user.last_name}"
-                                    th:href="@{|/user/${user.id}|}"></span></div>
+                            <div class="text-base font-normal text-gray-900 dark:text-white">
+                              <span th:text="${user.first_name } "></span>
+                              <span th:text="${user.last_name}"></span>
+                            </div>
                             <div class="text-sm text-gray-500 dark:text-gray-400">@<span
                                     th:text="${user.username}"
                                     th:href="@{|/user/${user.id}|}"></span></div>
@@ -494,7 +493,7 @@
             </ul>
           </div>
 
-          <div class="hidden rounded-lg" id="dashboard" role="tabpanel"
+          <div class="hidden rounded-lg overflow-y-scroll h-[20em]" id="dashboard" role="tabpanel"
                aria-labelledby="dashboard-tab">
             <ul role="list">
               <!--          <div th:each="user : ${users}">-->
@@ -516,17 +515,15 @@
 
                           <div class="ml-3 flex-col font-medium dark:text-white">
                             <div class="text-sm text-gray-500 dark:text-gray-400">@<span
-                                    th:text="${user.username}"
-                                    th:href="@{|/user/${user.id}|}">
-                                                            </span>
+                                    th:text="${user.username}"></span>
                             </div>
                           </div>
                           <div th:id="${user.email}"
                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                             <div class="px-4 py-3 text-sm">
-                              <div class="text-base font-normal text-gray-900 dark:text-white"><span
-                                      th:text="${user.first_name } "></span> <span
-                                      th:text="${user.last_name}"></span>
+                              <div class="text-base font-normal text-gray-900 dark:text-white">
+                                <span th:text="${user.first_name } "></span>
+                                <span th:text="${user.last_name}"></span>
                               </div>
                               <div class="text-sm text-gray-500 dark:text-gray-400">
 
