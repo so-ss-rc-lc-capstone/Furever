@@ -72,6 +72,7 @@ public class PostController {
         User userData = usersDao.findById(user.getId());
         Post post = postDao.findById(id).get();
 
+
         List<Comments> comments = post.getComments();
         Collections.reverse(comments);
 
@@ -84,8 +85,11 @@ public class PostController {
     }
 
     @PostMapping("/comment/{id}/create")
-    public String createComment(@ModelAttribute Comments comments, @PathVariable Long id) {
+    public String createComment(@ModelAttribute Comments comments, @PathVariable Long id, Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUserData = usersDao.findById(currentUser.getId());
+        model.addAttribute("user", currentUserData);
+
         User userData = usersDao.findById(currentUser.getId());
         Post post = postDao.findById(id).get();
         post.getComments().add(comments);
@@ -143,9 +147,10 @@ public class PostController {
 
     @GetMapping("/posts/{id}/edit")
     public String showEdit(@PathVariable Long id, Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Post post = postDao.findById(id).get(); // Getting data from the database first
-        if (user.getId() == post.getUser().getId()) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUserData = usersDao.findById(currentUser.getId());
+        model.addAttribute("user", currentUserData);        Post post = postDao.findById(id).get(); // Getting data from the database first
+        if (currentUser.getId() == post.getUser().getId()) {
             model.addAttribute("post", postDao.findById(id).get());
             return "posts/edit";
         } else {
@@ -178,6 +183,9 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String findPostById(@PathVariable long id, Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUserData = usersDao.findById(currentUser.getId());
+        model.addAttribute("user", currentUserData);
         Post post = postDao.findById(id).get();
         if (post.getId() == null) {
             return "posts/index";
