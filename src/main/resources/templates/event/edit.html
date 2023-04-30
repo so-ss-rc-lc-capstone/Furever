@@ -6,7 +6,7 @@
     </title>
 </head>
 
-<body class="w-full h-screen flex relative justify-center items-center">
+<body class="w-full h-screen flex relative justify-center items-center dark:text-white dark:bg-gray-800">
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 <!-- Main modal -->
@@ -38,7 +38,7 @@
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div class="sm:col-span-2">
                         <label for="ai-description"
-                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Provide a Brief
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Provide a Brief
                             Description</label>
                         <textarea id="ai-description" rows="5"
                                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -67,7 +67,7 @@
         <h1 class="text-3xl mb-10">Edit Your Event</h1>
         <div class="grid gap-4 mb-4 sm:grid-cols-2">
             <div>
-                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Event
                     Name</label>
                 <input type="text" th:field="*{title}" name="title" id="title"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -75,34 +75,34 @@
             </div>
             <div>
                 <label for="location"
-                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Location</label>
                 <input type="text" th:field="*{location_name}" name="location" id="location"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                        placeholder="Enter the location">
             </div>
             <div>
-                <label for="event_DateAndTime" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date
+                <label for="event_DateAndTime" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Date
                     And Time</label>
                 <input name="event_DateAndTime" type="datetime-local" id="event_DateAndTime"
                        th:field="*{event_DateAndTime}"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
             </div>
             <div>
-                <label for="location_address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                <label for="location_address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Address</label>
                 <input type="text" th:field="*{location_address}" name="location_address" id="location_address"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                        placeholder="Enter the location" required="">
             </div>
             <div class="sm:col-span-2">
                 <div class="flex items-center mb-2">
-                    <label for="description" class="block mr-3 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <label for="description" class="block mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">Description</label>
                     <div id="ai" class="text-blue-600 hover:cursor-pointer">Use Ai Assistant</div>
                 </div>
                 <textarea id="description" th:field="*{description}" name="description" rows="4"
                           class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
             </div>
         </div>
-        <label for="photo-edit" class="block text-sm font-medium text-gray-900 dark:text-white mb-3">Upload a Photo For
+        <label for="photo-edit" class="block text-sm font-medium text-gray-900 dark:text-gray-300 mb-3">Upload a Photo For
             Your Event</label>
         <img id="thumbnail-eventEdit" alt="thumbnail" height="100" width="100">
         <div class="flex mb-5">
@@ -110,7 +110,7 @@
                     class=" border-l border-t border-b border-gray-300 rounded-l-lg hover:bg-gray-100 bg-gray-200 p-2 text-blue-600 font-bold text-[10px]">
                 Click To Upload Photo
             </button>
-            <input class="input-edit-photo block w-2/3 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            <input class="input-edit-photo block w-2/3 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-300 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                    id="photo-edit" th:field="*{eventPhoto}" name="eventPhoto" type="text">
         </div>
         <div class="flex items-center justify-between mt-5">

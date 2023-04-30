@@ -11,7 +11,7 @@
             <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">
                 <button id="color-toggle" type="submit"
                         class="w-[150px] duration-75 h-[45px] font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
-                        th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'bg-[#2a86ff] text-white dark:text-white hover:bg-blue-800 border border-white': 'bg-white dark:bg-[#26272d] text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 border border-white' }">
+                        th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'bg-[#2a86ff] text-white dark:text-white dark:bg-blue-600 hover:bg-blue-800 border border-white': 'bg-white dark:bg-[#26272d] text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 border border-white' }">
                     <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Attending' : 'Join'}"></span>
                 </button>
             </form>

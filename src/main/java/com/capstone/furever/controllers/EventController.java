@@ -101,18 +101,19 @@ public class EventController {
     @GetMapping("/events/{id}/edit")
     public String showEdit(@PathVariable Long id, Model model) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Long currentUserId = currentUser.getId();
+        User currentUserData = usersDao.findById(currentUser.getId());
 
         Event event = eventsDao.findById(id).get(); // Getting data from the database first
         Long eventId = event.getUser().getId();
+        model.addAttribute("user", currentUserData);
 
-
-        if (currentUserId == eventId) {
+        if (currentUserData.getId() == eventId) {
             model.addAttribute("event", event);
             return "event/edit";
         } else {
             return "redirect:/events";
         }
+
     }
 
     //Edit event post method
