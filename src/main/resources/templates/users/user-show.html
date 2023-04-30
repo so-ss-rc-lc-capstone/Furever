@@ -64,16 +64,16 @@
                         <div class="w-[200px] h-[200px] relative flex justify-center items-center bg-white rounded-full">
 
                             <img class="w-[190px] h-[190px] rounded-full shadow-lg"
-                                 th:if="${not #strings.isEmpty(user.profilePhoto)}"
-                                 th:src="${user.profilePhoto}"
+                                 th:if="${not #strings.isEmpty(selectedUser.profilePhoto)}"
+                                 th:src="${selectedUser.profilePhoto}"
                                  alt="Profile image"/>
 
                             <img class="w-[190px] h-[190px] rounded-full shadow-lg"
-                                 th:unless="${not #strings.isEmpty(user.profilePhoto)}"
+                                 th:unless="${not #strings.isEmpty(selectedUser.profilePhoto)}"
                                  th:src="@{/img/profile.jpeg}"
                                  alt="Default profile image"/>
 
-                            <div th:if="${user.id} == ${#authentication.principal.id}"
+                            <div th:if="${selectedUser.id} == ${#authentication.principal.id}"
                                  class="absolute bottom-0 right-1 ">
 
                                 <form th:action="@{/profile/edit}" method="get">
@@ -95,10 +95,10 @@
                             <div class="w-full flex items-center flex-col md:items-start md:justify-end">
 
                                 <span class="text-3xl font-bold mb-1"
-                                      th:text="${#strings.isEmpty(user.first_name) ? 'New User' : user.first_name + (user.last_name != null ? ' ' + user.last_name : '')}"></span>
+                                      th:text="${#strings.isEmpty(selectedUser.first_name) ? 'New User' : selectedUser.first_name + (selectedUser.last_name != null ? ' ' + selectedUser.last_name : '')}"></span>
 
                                 <div class="text-[20px] flex mb-2 mt-1 text-center md:text-end"
-                                     th:if="${not #strings.isEmpty(user.address)}">
+                                     th:if="${not #strings.isEmpty(selectedUser.address)}">
                                     <svg fill="none" class="h-[18px] " stroke="currentColor" stroke-width="1.5"
                                          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -106,26 +106,30 @@
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                               d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
                                     </svg>
-                                    <span class="text-gray-500 text-[15px]" th:text="${user.address}"></span>
+                                    <span class="text-gray-500 text-[15px]" th:text="${selectedUser.address}"></span>
                                 </div>
 
                                 <h2 class="text-gray-800 dark:text-gray-400 text-[15px] mb-2"> @<span class="text-black dark:text-gray-400"
-                                                                                                      th:text="${user.username}"></span> <span
+                                                                                                      th:text="${selectedUser.username}"></span> <span
                                         class="text-[15px] font-bold text-gray-500 dark:text-gray-200">﹒</span> <span
-                                        th:text="${user.email}"></span></h2>
+                                        th:text="${selectedUser.email}"></span></h2>
 
                                 <div class="flex w-full justify-evenly md:justify-start"
-                                     th:if="${user.id} != ${#authentication.principal.id}">
-                                    <form th:action="@{/users/{id}/follow(id=${user.id})}" th:method="post"
+                                     th:if="${selectedUser.id} != ${#authentication.principal.id}">
+                                    <form th:action="@{/users/{id}/follow(id=${selectedUser.id})}" th:method="post"
                                           class="mb-4 mt-3 md:mr-[5em]">
-                                        <button th:text="${followedUsers.contains(user) ? 'Follow' : 'Following'}"
-                                                type="submit"
-                                                class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-black border-2 rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"></button>
+                                        <button id="color-toggle" type="submit"
+                                                class="w-[150px] duration-75 h-[45px] font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
+                                                th:classappend="${selectedUser.isFollowing(#authentication.principal.id) ?
+                                                'bg-[#2a86ff] text-white dark:text-white dark:bg-blue-600 hover:bg-blue-800 border border-white':
+                                                'border border-[#2a86ff] bg-white dark:bg-[#26272d] text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 border border-white' }">
+                                            <span th:text="${selectedUser.isFollowing(#authentication.principal.id) ? 'Following' : 'Follow'}"></span>
+                                        </button>
                                     </form>
                                 </div>
 
                                 <div class="w-2/3 h-[5em] mb-[4em] md:mb-0 text-[20px] text-center md:text-start md:block"
-                                     th:text="${user.bio}" style="overflow-wrap: break-word;">
+                                     th:text="${selectedUser.bio}" style="overflow-wrap: break-word;">
                                 </div>
 
                             </div>
@@ -141,7 +145,67 @@
                         </div>
 
                         <div class="w-full flex mb-[1em] mt-[1em] justify-center items-center md:justify-start md:items-center">
-                            <div class="mt-2" th:include="pets/pet-card :: petList">
+                            <div class="flex justify-center" th:fragment="petList" >
+
+                                <div class="flex flex-row justify-center">
+
+
+                                    <div class="flex">
+                                        <div th:each="pet : ${pets}">
+
+                                            <div th:if="${pet.user.id} == ${selectedUser.id}">
+
+                                                <div class=" max-w-sm mr-3 w-48 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                                    <div class="flex justify-end px-4 pt-4">
+                                                        <!-- Dropdown menu -->
+                                                        <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                                            <ul class="py-2" aria-labelledby="dropdownButton">
+                                                                <li>
+                                                                    <a th:href="@{|/pets/${pet.id}|}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Detail</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a th:action="@{/pets/{id}/edit(id=${pet.id})}" th:method="get" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Edit</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a th:action="@{/pets/{id}/delete(id=${pet.id})}" th:method="get" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <a th:href="@{|/pets/${pet.id}|}" class="flex flex-col items-center pb-10">
+
+                                                        <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                                                             th:if="${not #strings.isEmpty(pet.image)}"
+                                                             th:src="${pet.image}"
+                                                             alt="Pet image"/>
+                                                        <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg"
+                                                             th:unless="${not #strings.isEmpty(pet.image)}"
+                                                             th:src="@{/img/pet-profile.jpg}"
+                                                             alt="Default pet image"/>
+
+                                                        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><span th:text="${pet.petname}" th:href="@{|/pets/${pet.id}|}"></span></h5>
+                                                        <span class="text-sm text-gray-500 dark:text-gray-400"><span th:text="${pet.breed.breed_name}"></span></span>
+                                                        <span class="text-sm text-gray-500 dark:text-gray-400">Own by: <span th:text="${pet.user.first_name}"></span></span>
+
+                                                        <div th:if="${pet.user.id} == ${#authentication.principal.id}" class="flex mt-4 space-x-3 md:mt-6">
+                                                            <form th:action="@{/pets/{id}/edit(id=${pet.id})}" th:method="get">
+                                                                <input type="hidden" name="edit_id" th:value="${pet.id}" />
+                                                                <button type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</button>
+                                                            </form>
+
+                                                            <form th:action="@{/pets/{id}/delete(id=${pet.id})}" th:method="get">
+                                                                <input type="hidden" name="delete_id" th:value="${pet.id}" />
+                                                                <button type="submit" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Delete</button>
+                                                            </form>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
 
@@ -195,7 +259,7 @@
                                                             th:text="${post.user.username}"></span></a></h3>
                                                     <h3 class="text-[10px] text-gray-400 mt-1"><span
                                                             th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span>
-                                                        ﹒
+
                                                         <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span>
                                                     </h3>
 
@@ -268,8 +332,9 @@
 <script src="/js/event-feed.js"></script>
 <script src="/js/users/profile.js"></script>
 <script src="/js/users/user-show.js"></script>
-<script src="/js/event/event-delete.js">
-</script>
+<script src="/js/event/event-delete.js"></script>
+<script src="/js/title.js"></script>
+
 
 </body>
 </html>

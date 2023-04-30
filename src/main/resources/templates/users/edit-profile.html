@@ -4,8 +4,8 @@
     Edit Profile
 </head>
 
-<body>
-<nav th:replace="partials/navbar :: navbar-search"></nav>
+<body class="dark:text-white dark:bg-gray-800">
+<nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile"></nav>
 <div>
 <!---->
@@ -13,7 +13,7 @@
     <div class="w-full h-screen flex justify-center items-center">
 
         <div class="w-full md:w-2/3 h-full mt-[1em] flex justify-center">
-            <div class="flex items-center justify-center w-full md:w-4/5 flex flex-col bg-white">
+            <div class="flex items-center justify-center w-full md:w-4/5 flex flex-col bg-white dark:bg-gray-800">
                 <div class="w-full font-extrabold ml-2 md:ml-0 text-3xl mb-5">Edit Profile</div>
                 <div class="h-3/4 w-full">
 
@@ -63,50 +63,50 @@
                     <div class="h-3/4 mt-[40px] grid grid-cols-2 gap-4">
 
                         <div class="input-group flex flex-col mb-3">
-                            <label for="username" class="text-gray-500 mb-2">Username</label>
-                            <input th:field="*{username}" class="h-[40px] text-center form-control border rounded-lg"
+                            <label for="username" class="text-gray-500 dark:text-gray-400 mb-2">Username</label>
+                            <input th:field="*{username}" class="h-[40px] text-center form-control border rounded-lg dark:bg-gray-700 dark:bg-gray-700"
                                    type="text" name="username" id="username" placeholder="Enter username" required>
                         </div>
                         <div class="input-group flex flex-col mb-3">
-                            <label for="phone_number" class="text-gray-500 mb-2">Phone Number</label>
+                            <label for="phone_number" class="text-gray-500 dark:text-gray-400 mb-2">Phone Number</label>
                             <input th:field="*{phone_number}"
-                                   class=" h-[40px] text-center form-control border rounded-lg" type="tel"
+                                   class=" h-[40px] text-center form-control border rounded-lg dark:bg-gray-700" type="tel"
                                    name="phone_number" id="phone_number" placeholder="555-444-1234"
                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
                         </div>
 
                         <div class="input-group flex flex-col mb-3">
-                            <label for="first_name" class=" text-gray-500 mb-2">First Name</label>
-                            <input th:field="*{first_name}" class=" h-[40px] text-center form-control border rounded-lg"
+                            <label for="first_name" class="text-gray-500 dark:text-gray-400 mb-2">First Name</label>
+                            <input th:field="*{first_name}" class=" h-[40px] text-center form-control border rounded-lg dark:bg-gray-700"
                                    type="text" name="first_name" id="first_name" placeholder="Enter first Name"
                                    required>
                         </div>
 
                         <div class="input-group flex flex-col mb-3">
-                            <label for="last_name" class="text-gray-500 mb-2">Last Name</label>
-                            <input th:field="*{last_name}" class="h-[40px] text-center form-control border rounded-lg"
+                            <label for="last_name" class="text-gray-500 dark:text-gray-400 mb-2">Last Name</label>
+                            <input th:field="*{last_name}" class="h-[40px] text-center form-control border rounded-lg dark:bg-gray-700"
                                    type="text" name="last_name" id="last_name" placeholder="Enter last Name" required>
                         </div>
 
                         <div class="input-group flex flex-col mb-3">
-                            <label for="address" class="mb-2 text-gray-500">Location</label>
-                            <input th:field="*{address}" class="h-[40px] text-center form-control border rounded-lg"
+                            <label for="address" class="text-gray-500 dark:text-gray-400 mb-2">Location</label>
+                            <input th:field="*{address}" class="h-[40px] text-center form-control border rounded-lg dark:bg-gray-700"
                                    type="text" name="address" id="address" placeholder="Eg. San Antonio, Texas">
                         </div>
                         <div class="input-group flex flex-col mb-3">
-                            <label for="email" class="text-gray-500 mb-2">Email</label>
-                            <input th:field="*{email}" class="h-[40px] text-center form-control border rounded-lg"
+                            <label for="email" class="text-gray-500 dark:text-gray-400 mb-2">Email</label>
+                            <input th:field="*{email}" class="h-[40px] text-center form-control border rounded-lg dark:bg-gray-700"
                                    type="email" name="email" id="email" placeholder="Enter email">
                         </div>
                         <div class="input-group flex flex-col mb-3">
-                            <label for="initialPassword" class="text-gray-500 mb-2">Password</label>
-                            <input th:field="*{password}" class="h-[40px] text-center form-control border rounded-lg"
+                            <label for="initialPassword" class="text-gray-500 dark:text-gray-400 mb-2">Password</label>
+                            <input th:field="*{password}" class="h-[40px] text-center form-control border rounded-lg dark:bg-gray-700"
                                    type="password" name="initialPassword" id="initialPassword"
                                    placeholder="Enter password">
                         </div>
 
                         <div class="form-check mb-3">
-                            <label class="text-gray-500 mb-2">Gender</label>
+                            <label class="text-gray-500 dark:text-gray-400 mb-2">Gender</label>
                             <div class="form-check-inline">
                                 <input th:field="*{gender}" class="form-check-input" type="radio" name="gender"
                                        id="male" value="M">
@@ -121,9 +121,9 @@
 
                         <div class="mt-5 flex w-full col-span-2 flex-col">
                             <div class="w-full flex flex-col">
-                                <label for="bio" class="text-gray-500 mb-2">Enter Your Bio</label>
+                                <label for="bio" class="text-gray-500 dark:text-gray-400 mb-2">Enter Your Bio</label>
                                 <textarea th:field="*{bio}" type="text" name="bio" id="bio"
-                                          class=" w-full h-[80px] p-1 rounded-lg resize-none border-2 w-2/3"
+                                          class=" w-full h-[80px] p-1 rounded-lg resize-none border-2 w-2/3 dark:bg-gray-700"
                                           placeholder="Write a short biography about yourself"></textarea>
                             </div>
                             <div class="flex justify-between mt-5">

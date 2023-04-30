@@ -182,7 +182,7 @@ public class UserController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData1 = userDao.findById(currentUser.getId());
         User currentUserData = userDao.findById(currentUser.getId());
-        User userData = userDao.findById(id);
+        User selectedUserData = userDao.findById(id);
 
 
         List<Event> events = eventDao.findAll();
@@ -190,7 +190,7 @@ public class UserController {
         List<Comments> comments = commentDao.findAll();
         List<Comments> userComment = new ArrayList<>();
         List<Pet> petData = petsDao.findAll();
-        List<User> followedUsers = userData.getFollowedUsers();
+        List<User> followedUsers = selectedUserData.getFollowedUsers();
         List<Long> followedUsersId = new ArrayList<>();
         List<Post> posts = postDao.findAll();
         List<Post> userPost = new ArrayList<>();
@@ -206,13 +206,13 @@ public class UserController {
         // Filter events in which the user is participating
 
         for(int i =0; i< events.size(); i++){
-            if(events.get(i).hasParticipated(userData)){
+            if(events.get(i).hasParticipated(selectedUserData)){
                 participatingEvents.add(events.get(i));
             }
         }
 
         for(Post post: posts) {
-            if(post.getUser().hasPosts(userData) ) {
+            if(post.getUser().hasPosts(selectedUserData) ) {
                 userPost.add(post);
             }
         }
@@ -230,7 +230,8 @@ public class UserController {
         model.addAttribute("followedUsers", followedUsers);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("followedUsersId", followedUsersId);
-        model.addAttribute("user", userData);
+        model.addAttribute("user", userData1);
+        model.addAttribute("selectedUser", selectedUserData);
         model.addAttribute("pets", petData);
 
 

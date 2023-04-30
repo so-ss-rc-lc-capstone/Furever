@@ -67,7 +67,7 @@
                     <div class="w-full md:w-3/5 flex justify-center items-center md:justify-start md:items-start">
                         <div class="w-full flex items-center flex-col md:items-start md:justify-end">
 
-                            <span class="text-3xl font-bold mb-1"
+                            <span class="text-3xl font-bold mb-1 mt-5"
                                   th:text="${#strings.isEmpty(user.first_name) ? 'New User' : user.first_name + (user.last_name != null ? ' ' + user.last_name : '')}"></span>
 
                             <div class="text-[20px] flex mb-2 mt-1 text-center md:text-end"
@@ -97,14 +97,14 @@
                                 </form>
                             </div>
 
-                            <div class="w-2/3 h-[5em] mb-[4em] md:mb-0 text-[20px] text-center md:text-start md:block"
+                            <div class="w-2/3 h-[5em] mt-[1em] mb-[2em] md:mb-[4em] md:mb-0 text-[16px] text-center md:text-start md:block"
                                  th:text="${user.bio}" style="overflow-wrap: break-word;">
                             </div>
                         </div>
                     </div>
 
 
-                    <a href="/friends">
+                    <a href="/events">
                     <!--Calendar-->
                     <div class="flex w-[20em] justify-center items-center mr-[5em] md:mr-0 md:mt-0 md:justify-end">
 
@@ -276,11 +276,13 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 <script src="/js/users/profile.js"></script>
-
+<script src="/js/event-feed.js"></script>
 <script src="/js/users/user-show.js"></script>
 <script src="/js/event/event-delete.js"></script>
 <script src="/js/users/calendar2.js"></script>
 <script src="/js/darktoggle.js"></script>
+<script src="/js/title.js"></script>
+
 
 
 </body>
