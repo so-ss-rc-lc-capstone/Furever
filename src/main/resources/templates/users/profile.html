@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/calendar2.css">
 <link rel="stylesheet" href="/css/profile.css"/>
 
-<body class="bg-white dark:text-white dark:bg-[#17181c]">
+<body class="bg-white dark:text-white dark:bg-[#17181c] ">
 
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
@@ -16,7 +16,7 @@
 
 
 
-<section class = "w-full">
+<section class = "w-full ">
 
 <div class="w-full mt-[4em] md:mt-[5em] h-screen flex justify-end">
 
@@ -71,19 +71,19 @@
 
                             <div class="text-[20px] flex mb-2 mt-1 text-center md:text-end"
                                  th:if="${not #strings.isEmpty(user.address)}">
-                                <svg fill="none" class="h-[18px] " stroke="currentColor" stroke-width="1.5"
+                                <svg fill="none" class="h-[18px] text-gray-400 mr-1" stroke="currentColor" stroke-width="1.5"
                                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                           d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                           d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
                                 </svg>
-                                <span class="text-gray-500 text-[15px]" th:text="${user.address}"></span>
+                                <span class="text-gray-400 text-[15px]" th:text="${user.address}"></span>
                             </div>
 
-                            <h2 class="text-gray-800 dark:text-gray-400 text-[15px] mb-2"> @<span class="text-black dark:text-gray-400"
+                            <h2 class="text-gray-800 dark:text-gray-500 text-[15px] mb-2 "> @<span class="text-black text-gray-500"
                                                                                th:text="${user.username}"></span> <span
-                                    class="text-[15px] font-bold text-gray-500 dark:text-gray-200">﹒</span> <span
+                                    class="text-[15px] font-bold text-gray-500 dark:text-gray-500">﹒</span> <span
                                     th:text="${user.email}"></span></h2>
 
                             <div class="flex w-full justify-evenly md:justify-start"
@@ -152,7 +152,7 @@
                     </div>
 
                     <!--Events-->
-                    <div class="flex flex-col w-full h-screen mt-5 justify-center dark:text-white">
+                    <div class="flex flex-col h-screen mt-5 mb-[10em] justify-center dark:text-white">
                         <div class=" w-full">
                             <ul class=" text-sm flex font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
                                 <li class="w-1/2 md:w-full">
@@ -174,69 +174,71 @@
                         <div class="w-full h-screen grid grid-cols-1 " id="posts-container" style="overflow: auto;">
                             <div th:each="post : ${posts}" th:if="${post.user.id == user.id}"
                                  class="rounded-t-lg mt-2 dark:bg-[#1e1f24] mb-3 border dark:border-[#292d38]">
-                                <div class="w-full rounded-t-lg dark:border-gray-700">
+                                <div class="w-full rounded-t-lg shadow bg-white dark:bg-[#1e1f24]" >
 
-                                    <div class="flex">
-                                        <div class="flex justify-center">
-                                            <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
-                                                 th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
-                                                 th:src="${post.user.profilePhoto}" alt="Profile image"/>
-
-                                            <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
-                                                 th:if="${#strings.isEmpty(post.user.profilePhoto)}"
-                                                 th:src="@{/img/profile.jpeg}"
-                                                 alt="Default profile image"/>
-                                        </div>
-
-
+                                    <div>
                                         <!--Name Date body-->
-                                        <div id="name-body" class="mt-[20px] w-full">
-                                            <div class="ml-5">
-                                                <h1 class="font-bold text-[15px] mt-1"><span
-                                                        th:text="${post.user.first_name}"></span> <span
-                                                        th:text="${post.user.last_name}"></span></h1>
-                                                <h3 class="text-blue-400 mt-1 text-[12px]"><a
-                                                        th:href="@{/user/{id}(id=${post.user.id})}"> @ <span
-                                                        th:text="${post.user.username}"></span></a></h3>
-                                                <h3 class="text-[10px] text-gray-400 mt-1"><span
-                                                        th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span>
-                                                    ﹒
-                                                    <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span>
-                                                </h3>
+                                        <div id="name-body" class = "mt-[20px]">
+                                            <div class="w-full ml-1">
+                                                <div class="flex w-[90%]">
+                                                    <a th:href="@{/user/{id}(id=${post.user.id})}">
+                                                        <img class="w-[60px] h-[60px] mt-[26px] ml-[25px] rounded-full shadow-md"
+                                                             th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
+                                                             th:src="${post.user.profilePhoto}" alt="Profile image"/>
+                                                    </a>
+                                                    <a th:href="@{/user/{id}(id=${post.user.id})}">
+                                                        <img class="w-[60px] h-[60px] mt-[26px] ml-[25px] rounded-full shadow-md"
+                                                             th:if="${#strings.isEmpty(post.user.profilePhoto)}"
+                                                             th:src="@{/img/profile.jpeg}"
+                                                             alt="Default profile image"/>
+                                                    </a>
 
-                                                <div class="w-full pb-5 pt-[5px] ml-[2px] text-[16px]"
-                                                     th:text="${post.body}"></div>
+                                                    <div class = "flex flex-col w-full mt-[1.5em] ml-[40px]">
+                                                        <h1 class="font-bold text-[18px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
+                                                        <h3 class = "text-blue-400"><a th:href="@{/user/{id}(id=${post.user.id})}">@ <span th:text="${post.user.username}"></span></a></h3>
+                                                        <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
+                                                        <div class="w-full pb-5 pt-[5px] ml-[2px] pr-[10px] text-[16px]" th:text="${post.body}"></div>
+                                                    </div>
 
-                                                <!--Post Image-->
-                                                <div th:if="${post.image == null or post.image == ''}"
-                                                     style="display: hidden;"></div>
-                                                <div th:if="${post.image != null and post.image != ''}"
-                                                     style="display: block;" class="w-full mb-5">
-                                                    <div class="w-full flex justify-center items-center mb-5"><span><img
-                                                            th:src="${post.image}"
-                                                            class=" w-[40em] mt-2 h-[20em]"></span></div>
+                                                </div>
 
+                                            </div>
+                                            <div class="w-full flex justify-center items-center">
+                                                <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
+                                                <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full flex  mb-5">
+            <span class = "w-full flex justify-center items-center md:justify-evenly">
+              <img th:src="${post.image}" class="w-full md:w-[70%] mt-[5px] md:rounded-lg"></span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="w-full h-[30px] pb-3 flex flex-row justify-around ">
-
-                                        <div class="flex flex-row justify-center items-center hover:text-blue-500 hover:cursor-pointer transition-all">
-                                            <svg fill="none" class="h-[20px] w-[20px] flex justify-center"
-                                                 stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
-                                                 xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"></path>
-                                            </svg>
-                                            <form th:action="@{/posts/{id}/show (id=${post.id})}" method="get">
-                                                <input type="hidden" name="event" th:value="${post.id}"/>
-                                                <button><span th:text="${post.comments.size}" class="ml-1 mr-1"></span>Comments
+                                        <!--delete-->
+                                        <div class="absolute right-0 top-0" th:if="${post.user.id} == ${#authentication.principal.id}">
+                                            <form th:action="@{'/posts/' + ${post.id} + '/delete'}" method="post" onsubmit="return confirmDelete();">
+                                                <button type="submit">
+                                                    <div class="p-3 flex flex-row justify-center items-center text-gray-500 dark:text-gray-200 hover:text-red-500 hover:cursor-pointer transition-all ">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                        </svg>
+                                                    </div>
                                                 </button>
                                             </form>
                                         </div>
-                                        <!--                    Like functionality-->
-                                        <form th:action="@{'/posts/' + ${post.id} + '/profile-like'}" method="post">
+                                    </div>
+
+                                    <div class="w-full h-[30px] pb-3 mt-5 dark:border-gray-700 flex flex-row justify-around ">
+
+                                        <div class="flex flex-row justify-center items-center hover:text-blue-500 hover:cursor-pointer transition-all">
+                                            <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"></path>
+                                            </svg>
+                                            <form th:action="@{/posts/{id}/show (id=${post.id})}" method="get">
+                                                <input type="hidden" name="event" th:value="${post.id}"/>
+                                                <button><span th:text="${post.comments.size}" class="ml-1 mr-1"></span>Comments</button>
+                                            </form>
+                                        </div>
+
+
+                                        <form th:action="@{'/posts/' + ${post.id} + '/like'}" method="post">
                                             <button type="submit">
                                                 <div class="flex flex-row justify-center items-center hover:text-red-500 hover:cursor-pointer transition-all">
                                                     <svg fill="none" class="h-[20px] w-[20px] flex justify-center"
@@ -251,6 +253,7 @@
                                                 </div>
                                             </button>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -262,6 +265,7 @@
                             <div th:include="event/event-card.html"></div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

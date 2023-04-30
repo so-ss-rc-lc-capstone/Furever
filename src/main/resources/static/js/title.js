@@ -19,7 +19,7 @@ if (currentPageUrl.includes("profile")) {
 } else if (currentPageUrl.includes("events")) {
     // Change the h1 header to "View Posts Page"
     document.querySelector("h1").textContent = "Events";
-} else if (currentPageUrl.includes("profile/edit?")) {
+} else if (currentPageUrl.includes("pets")) {
     // Change the h1 header to "Event Details Page"
-    document.querySelector("h1").textContent = "Edit Profile";
+    document.querySelector("h1").textContent = "My Pet";
 }
