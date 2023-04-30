@@ -75,7 +75,7 @@ const toggleSearch = (search, button) => {
                                     <img src="${user.profilePhoto ? user.profilePhoto : '/img/profile.jpeg'}" alt="${name}" class="profile-photo rounded-full h-10 w-10 mr-2">
                                     <div>
                                         <div class="username font-bold">@${user.username}</div>
-                                        <div class="name" th:text="${name} ? ${name} :'New User'"></div>
+                                        <div class="name text-black dark:text-white" th:text="${name} ? ${name} :'New User'"></div>
                                     </div> 
                                 </div>
                             </a>
@@ -172,14 +172,14 @@ function getAllParticipants(data){
     if (Array.isArray(viewParticipants) && viewParticipants.length > 0) {
         for(let i = 0; i < viewParticipants.length; i++){
             html += `<div class="flex justify-center items-center w-full flex-col">
-                <div class="flex w-full h-[6em] rounded-full" style="box-shadow: 0 4px 24px hsla(222,68%,20%, .1); overflow: hidden; transition: width .5s cubic-bezier(.9, 0, .3, .9)">
+                <div class="flex w-full h-[6em] rounded-full">
                 <div class="flex w-full">
                 <div class="flex justify-between p-3 w-full" >
                   <div class="flex items-center ml-[1em]">
                   <img class="w-[50px] h-[50px] rounded-full mr-4" src="${viewParticipants[i].profilePhoto || '/img/profile.jpeg'}" alt="Profile image"/>
                   <div>
-                    <p>${viewParticipants[i].first_name ?? ''} ${viewParticipants[i].last_name ?? '' ? viewParticipants[i].last_name : ''} ${viewParticipants[i].first_name === null && viewParticipants[i].last_name === null ? 'User' : ''}</p>
-                    <p class="text-gray-400">@${viewParticipants[i].username}</p></div>
+                    <p class="text-black dark:text-white">${viewParticipants[i].first_name ?? ''} ${viewParticipants[i].last_name ?? '' ? viewParticipants[i].last_name : ''} ${viewParticipants[i].first_name === null && viewParticipants[i].last_name === null ? 'User' : ''}</p>
+                    <p class="text-blue-600">@${viewParticipants[i].username}</p></div>
                     
                     </div>
                    
