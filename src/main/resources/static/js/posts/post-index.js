@@ -1,19 +1,3 @@
-(
-    async function () {
-
-
-if (currentPage.indexOf("/events") !== -1) {
-    // Update the page title
-    document.getElementById("page-title").innerHTML = "Events";
-} else if (currentPage.indexOf("/profile") !== -1) {
-    // Update the page title
-    document.getElementById("page-title").innerHTML = "Profile";
-} else if (currentPage.indexOf("/messaging") !== -1) {
-    // Update the page title
-    document.getElementById("page-title").innerHTML = "Messaging";
-} else if (currentPage.indexOf("/posts") !== -1) {
-    // Update the page title
-    document.getElementById("page-title").innerHTML = "Posts";}
 
 
 (function(t,a,l,k,j,s){
@@ -31,7 +15,7 @@ const postAIModal = $('#post-ai-assistant');
 
 //on click open up the AI assistant
 postAILink.on('click', () => {
-    postAIModal.fadeIn(1000);
+    postAIModal.fadeIn(500);
 });
 
 const postMood = $('#post-mood');
@@ -42,7 +26,7 @@ const postDescription = $('#ai-post-description');
 let closePostAI = $('#close-icon');
 
 closePostAI.on('click', () => {
-    postAIModal.fadeOut(1000);
+    postAIModal.fadeOut(500);
 });
 
 //Generate button
@@ -81,7 +65,6 @@ generatePost.on('click', async () => {
     postAIModal.fadeOut(1000);
 });
 
-    })();
 
 
 
