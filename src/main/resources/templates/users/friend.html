@@ -10,6 +10,8 @@
 
 
 <body class="bg-gray-100 dark:text-white dark:bg-[#17181c]">
+
+
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
@@ -154,6 +156,46 @@
                                                             </a>
                                                         </div>
 
+                                                    <div class="flex flex-row">
+                                                        <div class="flex flex-row">
+                                                            <form th:action="@{/user/{id}(id=${user.id})}"
+                                                                  th:method="get"
+                                                                  class="flex items-center justify-center mr-5">
+                                                                <button class="hover:cursor-pointer" type="submit">
+                                                                    <div class="flex justify-center items-center w-[40px]">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                             width="25" height="25" fill="currentColor"
+                                                                             class="bi text-gray-300 hover:text-gray-500 transition duration-300  bi-person-circle"
+                                                                             viewBox="0 0 16 16">
+                                                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                                                            <path fill-rule="evenodd"
+                                                                                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                                                        </svg>
+                                                                    </div>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <a class="flex flex-row mr-5 justify-self-end items-center group/edit ">
+                                                                <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                                      th:name="followFromEvent" th:method="post"
+                                                                      class="block  text-sm text-gray-200 ">
+                                                                    <button class="flex items-center justify-center w-[40px] hover:cursor-pointer"
+                                                                            type="submit">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                             width="25" height="25"
+                                                                             fill="currentColor"
+                                                                             class="bi bi-person-fill-dash text-gray-300 hover:text-gray-500 transition duration-300"
+                                                                             viewBox="0 0 16 16">
+                                                                            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1Zm0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                                                            <path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"/>
+                                                                        </svg>
+                                                                    </button>
+                                                                </form>
+                                                            </a>
+                                                        </div>
+>>>>>>> 8dcbb15 (finished friends darkmode)
+
                                                         <div class="flex flex-row">
                                                             <div class="flex items-center mr-5">
                                                                 <a class="flex flex-row justify-self-end items-center group/edit ">
@@ -272,6 +314,15 @@
                                                                     </form>
                                                                 </div>
 
+<                                 <div class="flex py-1">
+                                                                <form th:action="@{/users/{id}/follow(id=${user.id})}"
+                                                                      th:method="post"
+                                                                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                                                    <button th:text="${user.getFollowedUsers().contains(user) ? 'Follow' : 'Unfollow'}"
+                                                                            type="submit"></button>
+                                                                </form>
+
+
                                                             </div>
                                                         </div>
 
@@ -377,8 +428,11 @@
 
 
 
+
 <script src="/js/title.js"></script>
 <script src="/js/users/friend.js"></script>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 
 </body>
