@@ -62,7 +62,7 @@ generatePost.on('click', async () => {
     const responseData = await generateUserPost(postMoodParse, postDescriptionParse);
     const userPost = $('#user-post');
     userPost.val(responseData.substring(1, responseData.length - 1));
-    postAIModal.fadeOut(1000);
+    postAIModal.fadeOut(500);
 });
 
 
