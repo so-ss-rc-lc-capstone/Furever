@@ -1,4 +1,4 @@
-<div th:fragment="posts"  th:each="post : ${posts}" class = "relative rounded-t-lg mt-2">
+<div th:fragment="posts"  th:each="post : ${posts}" class = "relative mb-5 rounded-t-lg mt-2">
   <div class="w-full border-2 rounded-t-lg shadow bg-white dark:bg-[#1e1f24] dark:border-[#292d38]" >
 
     <div>
@@ -137,7 +137,7 @@
           </div>
         </div>
 
-        <div class="w-full pt-2 h-auto text-[14px] pr-[15px]" th:text="${comment.content}"></div>
+        <div class="w-full pt-2 h-auto text-[14px] mb-3 pr-[15px]" th:text="${comment.content}"></div>
 
       </div>
     </div>
