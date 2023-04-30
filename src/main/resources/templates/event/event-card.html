@@ -36,6 +36,7 @@
                             </form>
                         </li>
                         <li>
+
                             <form th:action="@{/events/{id}/delete(id=${event.id})}" method="get"
                                   onsubmit="return confirmDelete();">
                                 <button type="submit"
