@@ -6,8 +6,8 @@ body {
 
 #blob {
     background: linear-gradient(to right, aquamarine, mediumpurple);
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     position: absolute;
     left: 50%;
     right: 50%;
@@ -22,7 +22,7 @@ body {
     width: 100%;
     position: absolute;
     z-index: -1; /* set to a lower value */
-    backdrop-filter: blur(150px);
+    backdrop-filter: blur(120px);
 }
 
 /* Initially hide the button */
