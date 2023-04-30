@@ -1,4 +1,5 @@
-
+(
+    async function () {
 
 
 if (currentPage.indexOf("/events") !== -1) {
@@ -79,5 +80,8 @@ generatePost.on('click', async () => {
     userPost.val(responseData.substring(1, responseData.length - 1));
     postAIModal.fadeOut(1000);
 });
+
+    })();
+
 
 

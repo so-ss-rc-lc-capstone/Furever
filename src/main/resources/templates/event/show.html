@@ -7,7 +7,7 @@
 </head>
 <link rel="stylesheet" href="/css/posts-index.css"/>
 
-<body>
+<body class="dark:text-white dark:bg-gray-800">
 
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:include="event/participants-modal"></nav>
@@ -18,12 +18,13 @@
 <div class="w-full h-screen">
     <div class="w-full h-[50%] mt-[2em] relative flex items-start justify-center"
          th:style="'background-image:url(\'' + ${event.eventPhoto != null and event.eventPhoto != '' ? event.eventPhoto : '/img/event-img.jpg'} + '\'); background-size:cover; background-position:center;'">
-        <div class="absolute top-[50px] left-2 bg-white w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-gray-200 hover:cursor-pointer"
-             onclick="window.history.back()"><i class="ri-arrow-left-line font-[40px]"></i></div>
+        <div class="absolute top-[70px] left-5 bg-white dark:bg-gray-800 w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-500 hover:cursor-pointer"
+             onclick="window.history.back()"><i class="ri-arrow-left-line font-[30px]"></i></div>
 
-        <div class="flex w-[50em] h-[80%] relative rounded-xl bg-white shadow-md" style="transform: translateY(70%);">
-            <div class="absolute top-[-60px] left-[25px] h-[80px] w-[80px] rounded-xl bg-white shadow-lg">
-                <div class="h-1/4 bg-red-600 rounded-t-lg"></div>
+
+        <div class="flex w-[50em] h-[80%] relative rounded-xl bg-white dark:bg-gray-800 shadow-md" style="transform: translateY(70%);">
+            <div class="absolute top-[-60px] left-[25px] h-[80px] w-[80px] border border border-gray-200 dark:border-white rounded-xl bg-white dark:bg-gray-800 shadow-lg">
+                <div class="h-1/4 bg-red-600 dark:bg-white rounded-t-lg"></div>
                 <div class="h-3/4 flex justify-center items-center text-3xl font-bold"><span
                         th:text="${#temporals.format(event.event_DateAndTime, 'dd')}"></span></div>
             </div>
@@ -44,10 +45,10 @@
                     </span>
                     Location
                 </h3>
-                <h3><span th:text="${event.location_name}"></span></h3>
-                <h3><span th:text="${event.location_address}"></span></h3>
+                <h3><span class="dark:text-gray-400" th:text="${event.location_name}"></span></h3>
+                <h3><span class="dark:text-gray-400" th:text="${event.location_address}"></span></h3>
                 <h3 class="text mt-5 font-bold">Description</h3>
-                <p th:text="${event.description}"></p>
+                <p class="dark:text-gray-400" th:text="${event.description}"></p>
             </div>
 
             <div class="w-2/5 p-6 border-l-2">
@@ -126,10 +127,11 @@
 
                 <div class="flex items-center">
                     <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">
-                    <button id="color-toggle" type="submit"
-                            class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'bg-blue-600 text-white  hover:bg-blue-700': 'bg-white text-black border-gray-200 border hover:bg-gray-200' }">
-                        <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Participating' : 'Participate'}"></span>
-                    </button>
+                        <button id="color-toggle" type="submit"
+                                class="w-[150px] duration-75 h-[45px] font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
+                                th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'bg-[#2a86ff] text-white dark:text-white hover:bg-blue-800 border border-white': 'bg-white dark:bg-[#26272d] text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 border border-white' }">
+                            <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Attending' : 'Join'}"></span>
+                        </button>
                     </form>
                 </div>
             </div>

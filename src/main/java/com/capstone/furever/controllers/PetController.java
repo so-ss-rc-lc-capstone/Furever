@@ -65,10 +65,14 @@ public class PetController {
 
     @GetMapping("/pets/{id}")
     public String findPetById(@PathVariable long id, Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User userData = userDao.findById(currentUser.getId());
+
         Pet petData = petsDao.findById(id).get();
         if (petData.getId() == 0) {
             return "users/profile";
         }
+        model.addAttribute("user", userData);
         model.addAttribute("pet", petData);
 
         return "pets/pet-show";
