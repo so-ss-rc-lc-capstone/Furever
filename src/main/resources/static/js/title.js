@@ -12,14 +12,14 @@ if (currentPageUrl.includes("profile")) {
     document.querySelector("h1").textContent = "Event Details";
 } else if (currentPageUrl.includes("posts")) {
     // Change the h1 header to "Posts Page"
-    document.querySelector("h1").textContent = "Posts";
+    document.querySelector("h1").textContent = "Feed";
 } else if (currentPageUrl.includes("/show?event=")) {
     // Change the h1 header to "View Posts Page"
     document.querySelector("h1").textContent = "View Posts Page";
 } else if (currentPageUrl.includes("events")) {
     // Change the h1 header to "View Posts Page"
     document.querySelector("h1").textContent = "Events";
-} else if (currentPageUrl.includes("/user/")) {
+} else if (currentPageUrl.includes("profile/edit?")) {
     // Change the h1 header to "Event Details Page"
-    document.querySelector("h1").textContent = "Profile";
+    document.querySelector("h1").textContent = "Edit Profile";
 }

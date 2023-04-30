@@ -14,7 +14,7 @@
 <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
 <!--<nav th:replace="partials/navbar :: navbar-mobile"></nav>-->
-<aside th:replace="partials/Aside :: aside-user-show"></aside>
+
 
 
 <div th:fragment="participation-modal" id="defaultModal" tabindex="-1" aria-hidden="true"
@@ -22,9 +22,9 @@
      onclick="hideModal()">
     <div id="backdrop" class="absolute h-screen inset-0 opacity-50 flex justify-center items-center"
          onclick="hideModal()"></div>
-    <div class="relative w-full max-w-2xl max-h-full bg-white rounded-lg shadow dark:bg-gray-700 items-center">
+    <div class="relative w-full max-w-2xl max-h-full bg-white rounded-lg shadow dark:bg-[#26272d] items-center">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="relative bg-white rounded-lg shadow dark:bg-[#26272d]">
             <!-- Modal header -->
             <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
@@ -49,7 +49,13 @@
     </div>
 </div>
 
+
+
 <section class="w-full flex justify-end">
+
+    <section class="aside-container hidden md:w-[17em] md:flex w-full h-screen relative">
+        <aside th:replace="partials/Aside :: aside-user-show"></aside>
+    </section>
 
     <div class="w-full mt-[5em] md:w-[85%] h-screen">
         <div class="h-2/5 relative"
@@ -58,10 +64,11 @@
         </div>
         <div class="flex justify-center">
 
+
             <div class="w-full md:w-4/5 flex flex-col justify-between bg-white dark:text-white dark:bg-[#17181c]">
                 <div class="h-[20px] w-full flex justify-center md:justify-start " style="transform: translateY(-700%)">
                     <div class="w-[17em] h-[17em] flex flex-col justify-center rounded-full items-center md:items-start">
-                        <div class="w-[200px] h-[200px] relative flex justify-center items-center bg-white rounded-full">
+                        <div class="w-[200px] h-[200px] relative flex justify-center items-center bg-white dark:bg-[#17181c] rounded-full">
 
                             <img class="w-[190px] h-[190px] rounded-full shadow-lg"
                                  th:if="${not #strings.isEmpty(selectedUser.profilePhoto)}"
@@ -86,6 +93,7 @@
                         </div>
 
                     </div>
+
 
                 </div>
                 <!--Bio-->
@@ -121,8 +129,8 @@
                                         <button id="color-toggle" type="submit"
                                                 class="w-[150px] duration-75 h-[45px] font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
                                                 th:classappend="${selectedUser.isFollowing(#authentication.principal.id) ?
-                                                'bg-[#2a86ff] text-white dark:text-white dark:bg-blue-600 hover:bg-blue-800 border border-white':
-                                                'border border-[#2a86ff] bg-white dark:bg-[#26272d] text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 border border-white' }">
+                                                'bg-[#2a86ff] text-white dark:text-white dark:bg-blue-600 hover:bg-blue-800 dark:border-[#292d38]':
+                                                'border dark:border-[#292d38] bg-white dark:bg-[#26272d] text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700' }">
                                             <span th:text="${selectedUser.isFollowing(#authentication.principal.id) ? 'Following' : 'Follow'}"></span>
                                         </button>
                                     </form>
