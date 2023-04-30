@@ -64,7 +64,8 @@
         </div>
         <div class="flex justify-center">
 
-            <div class="w-full md:w-4/5 flex flex-col justify-between dark:text-white">
+
+            <div class="w-full md:w-4/5 flex flex-col justify-between bg-white dark:text-white dark:bg-[#17181c]">
                 <div class="h-[20px] w-full flex justify-center md:justify-start " style="transform: translateY(-700%)">
                     <div class="w-[17em] h-[17em] flex flex-col justify-center rounded-full items-center md:items-start">
                         <div class="w-[200px] h-[200px] relative flex justify-center items-center bg-white dark:bg-[#17181c] rounded-full">
@@ -210,14 +211,12 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
 
                         <!--Events-->
 
-                        <div class="flex flex-col w-full h-screen mt-5  justify-center">
+                        <div class="flex flex-col w-full h-screen mt-5 justify-center dark:text-white">
                             <div class=" w-full">
                                 <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
                                     <li class="w-full">
@@ -238,8 +237,8 @@
                             <!--Render Posts-->
                             <div class="w-full h-screen grid grid-cols-1" id="posts-container" style="overflow: auto;">
                                 <div th:each="post : ${posts}"
-                                     class="bg-white dark:bg-gray-800 rounded-t-lg mt-2">
-                                    <div class="w-full rounded-t-lg dark:bg-gray-800 dark:border-gray-700">
+                                     class="rounded-t-lg mt-2 dark:bg-[#1e1f24] mb-3 border dark:border-[#292d38]">
+                                    <div class="w-full rounded-t-lg dark:border-gray-700">
 
                                         <div class="flex">
                                             <div class="flex justify-center">

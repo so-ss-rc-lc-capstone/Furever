@@ -38,7 +38,13 @@ public class EventController {
     //    When the below url entered, navigates to create-event.html
     @GetMapping("/events/create")
     public String eventForm(Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUserData = usersDao.findById(currentUser.getId());
+        model.addAttribute("user", currentUserData);
+
+
         model.addAttribute("event", new Event());
+
         return "event/create-event";
     }
 
