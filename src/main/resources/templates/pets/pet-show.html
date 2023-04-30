@@ -15,9 +15,9 @@
 
 <div class="w-full md:ml-[3em] mt-[3em] mb-[13em] flex flex-col justify-center items-center h-screen">
 
-    <div class="w-2/3 h-1/2 mt-[9em] flex md:justify-start justify-center">
+    <div class="w-2/3 h-1/2 md:mt-[9em] flex md:justify-start justify-center">
 
-        <div class="w-1/2 h-full flex flex-col md:justify-end items-center md:items-start p-5">
+        <div class="w-full h-full flex flex-col md:justify-end items-center md:items-start p-5">
 
             <section class="aside-container hidden md:w-[18em] md:flex w-full h-screen relative">
                 <aside th:replace="partials/Aside :: aside-nav"></aside>
@@ -39,15 +39,6 @@
                      th:unless="${not #strings.isEmpty(pet.image)}"
                      th:src="@{/img/pet-profile.jpg}"
                      alt="Default pet image"/>
-
-                <div th:if="${user.id} == ${#authentication.principal.id}" class="absolute bottom-0 right-1 ">
-
-                    <form th:action="@{/profile/edit}" method="get">
-                        <button type="submit"
-                                class="absolute flex items-center bg-blue-400 hover:bg-blue-500 hover:mouse-pointer justify-center h-[40px] w-[40px] rounded-full right-0 bottom-5">
-                            <i class="bi bi-pencil text-white"></i></button>
-                    </form>
-                </div>
 
             </div>
 
@@ -108,5 +99,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 <script src="/js/event-feed.js"></script>
+<script src="/js/title.js"></script>
+
 </body>
 </html>

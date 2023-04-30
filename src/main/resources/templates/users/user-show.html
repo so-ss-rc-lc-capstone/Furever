@@ -107,17 +107,17 @@
 
                                 <div class="text-[20px] flex mb-2 mt-1 text-center md:text-end"
                                      th:if="${not #strings.isEmpty(selectedUser.address)}">
-                                    <svg fill="none" class="h-[18px] " stroke="currentColor" stroke-width="1.5"
+                                    <svg fill="none" class="h-[18px] text-gray-400" stroke="currentColor" stroke-width="1.5"
                                          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                               d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                               d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
                                     </svg>
-                                    <span class="text-gray-500 text-[15px]" th:text="${selectedUser.address}"></span>
+                                    <span class="text-gray-400 text-[15px]" th:text="${selectedUser.address}"></span>
                                 </div>
 
-                                <h2 class="text-gray-800 dark:text-gray-400 text-[15px] mb-2"> @<span class="text-black dark:text-gray-400"
+                                <h2 class="text-gray-800 dark:text-gray-500 text-[15px] mb-2"> @<span class="text-black dark:text-gray-500"
                                                                                                       th:text="${selectedUser.username}"></span> <span
                                         class="text-[15px] font-bold text-gray-500 dark:text-gray-200">﹒</span> <span
                                         th:text="${selectedUser.email}"></span></h2>

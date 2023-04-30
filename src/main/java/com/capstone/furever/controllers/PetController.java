@@ -84,10 +84,11 @@ public class PetController {
     public String showPetEdit(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Pet petData = petsDao.findById(id).get(); // Getting data from the database first
+        User userData = userDao.findById(user.getId());
 
         List<Breed> breedNames = breedsDao.findAll();
         model.addAttribute("breeds", breedNames);
-
+        model.addAttribute("user", userData);
         if (user.getId() == petData.getUser().getId()) {
             model.addAttribute("pet", petData);
             return "pets/pet-edit";

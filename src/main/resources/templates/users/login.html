@@ -24,12 +24,12 @@
                 </div>
                 <div class="login__box flex items-center dark:bg-gray-700">
                     <i class="ri-user-fill text-gray-500 text-[25px]"></i>
-                    <input type="text" name="username" id="username" placeholder="Username" class="login__input text-black dark:text-gray-300 rounded-xl dark:bg-gray-700">
+                    <input type="text" name="username" id="username" placeholder="Username" class="login__input w-full text-black dark:text-gray-300 rounded-xl dark:bg-gray-700">
                 </div>
                 <div th:text="${usernameTaken}"></div>
                 <div class="login__box dark:bg-gray-700">
                     <i class="ri-lock-fill text-gray-500 text-[25px]"></i>
-                    <input type="password" name="password" id="password"  placeholder="Password" class="login__input text-black dark:text-gray-300 rounded-xl dark:bg-gray-700">
+                    <input type="password" name="password" id="password"  placeholder="Password" class="login__input w-full text-black dark:text-gray-300 rounded-xl dark:bg-gray-700">
                 </div>
 
                 <div class="w-full flex justify-center items-center">
@@ -48,13 +48,13 @@
 
                 <div class="login__box dark:bg-gray-700" >
                     <i class="ri-user-fill text-gray-500 text-[25px]"></i>
-                    <input type="text" name="username" id="website-admin" placeholder="Username" class="login__input dark:bg-gray-700 text-gray-300 rounded-xl" required >
+                    <input type="text" name="username" id="website-admin" placeholder="Username" class="login__input w-full dark:bg-gray-700 text-gray-300 rounded-xl" required >
                 </div>
 
                 <div th:text="${usernameTaken}"></div>
                 <div class="login__box dark:bg-gray-700">
                     <i class="ri-mail-fill text-gray-500 text-[25px]"></i>
-                    <input type="text" name="email"  id="input-group-1" placeholder="Email" class="login__input dark:bg-gray-700 text-gray-300 rounded-xl" required>
+                    <input type="text" name="email"  id="input-group-1" placeholder="Email" class="login__input w-full dark:bg-gray-700 text-gray-300 rounded-xl" required>
                 </div>
 
                 <div class="login__box dark:bg-gray-700">
