@@ -16,3 +16,11 @@ Events: Organize events such as meetups, adoption drives, and pet fairs. These e
 Connect: Connect with other pet owners and their pets with built in messaging and chat features.
 
 We hope that you find our website useful and enjoyable. If you have any questions or feedback, please don't hesitate to contact us. Thank you for visiting Furever.Space!
+
+Our LinkedIn Profiles:
+[Luke](https://www.linkedin.com/in/lukecal10/)
+[Randy](https://www.linkedin.com/in/randy-chu-ab624566/)
+[Said](https://www.linkedin.com/in/said-shah-66a7b2163/)
+[Songju]()
+
+
