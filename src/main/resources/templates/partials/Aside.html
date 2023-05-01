@@ -412,9 +412,8 @@
         </div>
 
         <div id="myTabContent">
-
-          <div class="hidden rounded-lg" id="profile" role="tabpanel"
-               aria-labelledby="profile-tab" style="overflow: auto">
+          <div class="hidden rounded-lg h-[20em] overflow-y-scroll" id="profile" role="tabpanel"
+               aria-labelledby="profile-tab">
             <ul role="list">
               <div th:each="user : ${followedUsers}">
 
@@ -493,7 +492,8 @@
               </div>
             </ul>
           </div>
-          <div class="hidden rounded-lg" id="dashboard" role="tabpanel" style="overflow: auto;"
+
+          <div class="hidden rounded-lg h-[20em] overflow-y-scroll" id="dashboard" role="tabpanel"
                aria-labelledby="dashboard-tab">
             <ul role="list">
               <!--          <div th:each="user : ${users}">-->
@@ -565,7 +565,6 @@
               </div>
             </ul>
           </div>
-
         </div>
       </div>
     </div>
