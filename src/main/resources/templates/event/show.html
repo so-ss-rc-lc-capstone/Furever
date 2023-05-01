@@ -11,7 +11,7 @@
 
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:include="event/participants-modal"></nav>
-<nav th:replace="partials/navbar :: navbar-mobile"></nav>
+<nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
 
 <div class="flex w-full justify-end">
@@ -26,7 +26,7 @@
              onclick="window.history.back()"><i class="ri-arrow-left-line font-[30px]"></i></div>
 
 
-        <div class="flex w-[50em] relative rounded-xl bg-white dark:bg-[#1e1f24] shadow-md" style="transform: translateY(60%);">
+        <div class="flex w-[50em] relative rounded-xl bg-white dark:bg-[#1e1f24] shadow-md" style="transform: translateY(60%);z-index: 2">
             <div class="absolute top-[-60px] left-[25px] h-[80px] w-[80px] dark:border-white rounded-xl bg-white shadow-lg">
                 <div class="h-1/4 bg-red-600 rounded-t-lg"></div>
                 <div class="h-3/4 flex text-black justify-center items-center text-3xl font-bold"><span
@@ -57,10 +57,10 @@
                 <div class="w-full h-full flex mt-5 justify-start">
                     <div class="h-full">
                         <div class="w-full flex  md:justify-between">
-                            <a href="#" id="view-participants-btn" class="view-participants-btn hover:cursor-pointer"
+                            <a href="#" id="view-participants-btn" class="flex items-center view-participants-btn hover:cursor-pointer"
                                data-modal-target="defaultModal"
                                data-modal-toggle="defaultModal" th:data-event-id="${event.id}">
-                                <h2 class="text-xl p-4 pl-0 font-bold">Participants <span class="text-gray-400 text-[17px]"
+                                <h2 class="text-[15px] md:text-xl mr-2 font-bold">Participants <span class="text-gray-400 text-[12px] md:text-[17px]"
                                                                                      th:text="${event.participations.size}"></span>
                                 </h2>
                             </a>
@@ -68,7 +68,7 @@
                             <div class="flex items-center">
                                 <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">
                                     <button id="color-toggle" type="submit"
-                                            class="w-[70px] md:w-[100px] duration-75 md:ml-3 ml-1 h-[45px] flex justify-center items-center font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
+                                            class="w-[70px] md:w-[100px] duration-75 md:ml-3 ml-2 h-[45px] flex justify-center items-center font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
                                             th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'bg-[#2a86ff] text-white dark:text-white hover:bg-blue-800': 'bg-white dark:bg-[#26272d] text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700' }">
                                         <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Attending' : 'Join'}"></span>
                                     </button>
@@ -76,17 +76,17 @@
                             </div>
                         </div>
                         <!--Avatars-->
-                        <div class=" w-full flex h-[60px]">
-                            <div th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 4}">
-                                <img class="w-[50px] h-[50px] rounded-full mr-3"
+                        <div class=" w-full flex h-[60px] mt-3">
+                            <a th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 4}">
+                                <img class="w-[50px] h-[50px] border-2 border-white rounded-full dark:border-gray-800"
                                      th:if="${not #strings.isEmpty(participation.user.profilePhoto)}"
-                                     th:src="${participation.user.profilePhoto}"
-                                     alt="Profile image"/>
-                                <img class="w-[50px] h-[50px] rounded-full mr-3"
-                                     th:if="${#strings.isEmpty(participation.user.profilePhoto)}"
-                                     th:src="@{/img/profile.jpeg}"
-                                     alt="Default profile image"/>
-                            </div>
+                                     th:src="${participation.user.profilePhoto}" alt="Profile image"/>
+                                <img class="w-[50px] h-[50px] border-2 border-white rounded-full dark:border-gray-800"
+                                     th:unless="${not #strings.isEmpty(participation.user.profilePhoto)}"
+                                     th:src="@{/img/profile.jpeg}" alt="Default profile image"/>
+                            </a>
+                            <a class="flex view-participants-btn items-center justify-center w-[50px] h-[50px] text-xs font-medium text-white bg-gray-700 rounded-full hover:bg-gray-600 "
+                               href="#"><span th:text="${event.participations.size}"></span></a>
                         </div>
                         <!--Map box-->
                         <div>
@@ -98,11 +98,11 @@
 
             <div class="w-2/5 p-6 border-l-2 dark:border-[#292d38]">
                 <div class="flex md:flex-row flex-col justify-between">
-                    <img class="w-[40px] h-[40px] md:w-[70px] md:h-[70px] rounded-full mr-1 md:mr-3"
+                    <img class="w-[50px] h-[50px] md:w-[70px] ml-1 md:ml-0 md:h-[70px] mb-1 rounded-full mr-1 md:mr-3"
                          th:if="${not #strings.isEmpty(event.user.profilePhoto)}"
                          th:src="${event.user.profilePhoto}"
                          alt="Profile image"/>
-                    <img class="w-[40px] h-[40px] md:w-[70px] md:h-[70px] rounded-full mr-1 md:mr-3"
+                    <img class="w-[50px] h-[50px] md:w-[70px] ml-1 md:ml-0 md:h-[70px] mb-1 rounded-full mr-1 md:mr-3"
                          th:if="${#strings.isEmpty(event.user.profilePhoto)}"
                          th:src="@{/img/profile.jpeg}"
                          alt="Default profile image"/>
@@ -118,7 +118,7 @@
                     <!--Edit-->
                     <div th:if="${event.user.id == #authentication.principal.id}">
                         <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-                                class="text-gray-600 ml-2 w-[35px] h-[35px] flex items-center justify-center font-medium rounded-full text-2xl text-center inline-flex items-center dark:bg-white dark:hover:bg-gray-100 dark:focus:ring-blue-800"
+                                class="text-gray-600 ml-2 w-[35px] h-[35px] mt-1 md:mt-0 flex items-center justify-center font-medium rounded-full text-2xl text-center inline-flex items-center dark:bg-white dark:hover:bg-gray-100 dark:focus:ring-blue-800"
                                 type="button"><i class="ri-edit-box-line"></i></button>
                         <!-- Dropdown menu -->
                         <div id="dropdown"
