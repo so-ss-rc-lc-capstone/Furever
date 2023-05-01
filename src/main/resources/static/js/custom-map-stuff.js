@@ -1,6 +1,6 @@
 //Function to get all the event locations
 
-function allEvents() {
+async function allEvents() {
     fetch(`${window.location.protocol}//${window.location.host}/api/allevents`, {
         method: "GET",
         headers: {
@@ -35,6 +35,7 @@ function allEvents() {
                 let userPosition = [position.coords.longitude, position.coords.latitude];
                 map.setCenter(userPosition);
                 map.setZoom(3);
+
                 try {
                     event.forEach(function (event) {
                         geocode(event.address, keys.mapbox).then(function (result) {
@@ -60,7 +61,6 @@ function allEvents() {
                                         </div>
                                      
                                         </div>`)
-
                             marker.setPopup(eventPopup);
                         });
                     });
@@ -75,6 +75,7 @@ function allEvents() {
         })
         .catch(error => console.error("allEvents error:", error)); //log to see if there's any error
 }
+
 
 // ==========> Events within 50 miles radius <=================
 let localLocations = async function () {
@@ -104,7 +105,7 @@ let localLocations = async function () {
             zoom: 10,
             center: [-98.4916, 29.4252]
         });
-
+        liveLocation(map);
         // Get the user's current position
         let userPosition = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(position => {
@@ -154,6 +155,7 @@ let localLocations = async function () {
 };
 
 
+
 function getDistance(coord1, coord2) {
     const R = 3958.8; // Earth's radius in miles
     const lat1 = deg2rad(coord1[1]);
@@ -173,6 +175,7 @@ function getDistance(coord1, coord2) {
 function deg2rad(deg) {
     return deg * (Math.PI / 180)
 }
+
 
 //Comparing the Ids of the events within 50 miles radius.
 async function localIdComparison() {
@@ -258,4 +261,14 @@ mapButton.addEventListener("click", function () {
 });
 
 
+let liveLocation = function (map){
+    map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true,
+            showUserHeading: true
+        }));
+}
 
