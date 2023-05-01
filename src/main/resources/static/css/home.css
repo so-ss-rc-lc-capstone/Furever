@@ -15,14 +15,25 @@ body {
     border-radius: 50%;
     animation: rotate 20s infinite;
     z-index: -1; /* set to a lower value */
+    filter: blur(100px);
+
 }
 
-#blur{
+
+/*#blur{*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    position: absolute;*/
+/*    z-index: -1; !* set to a lower value *!*/
+/*    backdrop-filter: blur(120px);*/
+/*}*/
+
+#blur {
     height: 100%;
     width: 100%;
     position: absolute;
     z-index: -1; /* set to a lower value */
-    backdrop-filter: blur(120px);
+    filter: blur(100px);
 }
 
 /* Initially hide the button */
