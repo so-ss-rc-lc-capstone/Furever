@@ -2,13 +2,13 @@
 
 <nav id="navbar" th:fragment="navbar-home" class="fixed w-full z-20 top-0 left-0 dark:border-0 dark:border-gray-600">
         <div class="flex flex-wrap items-center justify-between p-4">
-            <a class="flex items-center">
+            <a href="www.furever.com" class="flex items-center">
                 <img th:src="@{/img/Furever-Logo.png}" class="h-[30px] mr-3" alt="Furever-logo">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Furever</span>
             </a>
             <ul class="flex hidden dark:text-gray-300 lg:flex p-4 md:p-0 mt-4 font-medium md:flex-row md:space-x-8 md:mt-0 md:border-0">
                 <li class="hidden lg:flex">
-                    <a href="/home"
+                    <a href="/"
                        class="block dark:text-gray-300 dark:hover:text-white transition-all duration-100 py-2 pl-3 pr-4 text-gray-900 hover:text-gray-400 ">
                         Home</a>
                 </li>
@@ -281,7 +281,7 @@
             </svg>
         </a>
 
-        <a href="/events/create" style ="z-index: 999"
+        <a href="/events/create"
            class="nav__link absolute top-[-50px] h-full w-[70px] bg-[#2a86ff]
                 justify-center text-white items-center rounded-full active-link transition duration-500 transform hover:-translate-y-1 hover:scale-110">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-calendar-plus" viewBox="0 0 16 16">

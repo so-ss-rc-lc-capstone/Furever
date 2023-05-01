@@ -17,14 +17,14 @@
 <div class="flex w-full justify-end">
     <aside th:replace="partials/Aside :: aside-nav"></aside>
 
-    <div id="event-container" class="w-full md:w-[80%] h-screen">
+    <div id="event-container" class="w-full md:w-[84%] h-screen">
     <div class="w-full h-[50%] mt-[2em] relative flex items-start justify-center"
          th:style="'background-image:url(\'' + ${event.eventPhoto != null and event.eventPhoto != '' ? event.eventPhoto : '/img/event-img.jpg'} + '\'); background-size:cover; background-position:center;'">
         <div class="absolute top-[70px] left-8 bg-white dark:bg-[#1e1f24] w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-500 hover:cursor-pointer"
              onclick="window.history.back()"><i class="ri-arrow-left-line font-[30px]"></i></div>
 
 
-        <div class="flex w-[50em] h-[80%] relative rounded-xl bg-white dark:bg-[#1e1f24] shadow-md" style="transform: translateY(70%);">
+        <div class="flex w-[50em] relative rounded-xl bg-white dark:bg-[#1e1f24] shadow-md" style="transform: translateY(150%);">
             <div class="absolute top-[-60px] left-[25px] h-[80px] w-[80px] dark:border-white rounded-xl bg-white shadow-lg">
                 <div class="h-1/4 bg-red-600 rounded-t-lg"></div>
                 <div class="h-3/4 flex text-black justify-center items-center text-3xl font-bold"><span
