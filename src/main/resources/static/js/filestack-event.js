@@ -8,6 +8,7 @@ $(document).ready(function () {
     const inputEditVal = $('#photo-edit');
     let eventInputValue = $('.input-edit-photo').val();
     const thumbnailEditEventPage = $('#thumbnail-eventEdit');
+    const expand = $('#create-event');
 
     //thumbnail function
     function showThumbnail(url) {
@@ -41,6 +42,7 @@ $(document).ready(function () {
                 thumbnail.attr('src', url);
                 showThumbnail(url);
                 thumbnail.removeClass('hidden');
+                expand.addClass('mt-[13em]');
             }
         }).open();
     });
