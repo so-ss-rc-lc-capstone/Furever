@@ -28,7 +28,7 @@
               </ul>
             </div>
           </div>
-          <a th:href="@{|/pets/${pet.id}|}" class="flex flex-col items-center pb-10">
+          <a th:href="@{|/pets/${pet.id}|}" class="flex flex-col items-center pb-5">
 
             <img th:href="@{|/pets/${pet.id}|}" class="w-24 h-24 mb-3 rounded-full shadow-lg"
                  th:if="${not #strings.isEmpty(pet.image)}"

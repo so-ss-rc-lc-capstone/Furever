@@ -152,17 +152,13 @@
                             <h2 class="font-bold text-2xl mb-2 md:ml-0">Pets</h2>
                         </div>
 
-                        <div class="w-full flex mb-[1em] mt-[1em] justify-center items-center md:justify-start md:items-center">
+                        <div class="w-full flex mb-[1em] mt-[1em] justify-center items-center md:justify-start md:items-center w-full overflow-x-scroll">
                             <div class="flex justify-center" th:fragment="petList" >
 
                                 <div class="flex flex-row justify-center">
-
-
                                     <div class="flex">
                                         <div th:each="pet : ${pets}">
-
                                             <div th:if="${pet.user.id} == ${selectedUser.id}">
-
                                                 <div class=" max-w-sm mr-3 w-48 bg-white border border-gray-200 rounded-lg shadow dark:bg-[#1e1f24] dark:border-[#292d38]">
                                                     <div class="flex justify-end px-4 pt-4">
                                                         <!-- Dropdown menu -->
@@ -280,7 +276,6 @@
                                                         <div class="w-full flex justify-center items-center mb-5"><span><img
                                                                 th:src="${post.image}"
                                                                 class=" w-[40em] mt-2 h-[20em]"></span></div>
-
                                                     </div>
                                                 </div>
                                             </div>
