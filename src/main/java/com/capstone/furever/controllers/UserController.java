@@ -52,6 +52,14 @@ public class UserController {
         List<Post> posts = postDao.findAll();
         List<Event> events = eventDao.findAll(); // or however you fetch the events
 
+        List<Post> createdPosts = new ArrayList<>();
+        for(int i =0; i< posts.size(); i++){
+            if(posts.get(i).getUser() == userData){
+                createdPosts.add(posts.get(i));
+            }
+        }
+
+
         List<Event> participatingEvents = new ArrayList<>();
 
         for(int i =0; i< events.size(); i++){
@@ -68,7 +76,7 @@ public class UserController {
         model.addAttribute("user", userData);
         model.addAttribute("users", users);
         model.addAttribute("pets", pets);
-        model.addAttribute("posts", posts);
+        model.addAttribute("posts", createdPosts);
         return "users/profile";
     }
 
