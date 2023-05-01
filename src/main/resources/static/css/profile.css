@@ -11,8 +11,10 @@
     #chat-width{
         width: 100% !important;
     }
+}
 
-
+*::-webkit-scrollbar {
+    width: 5px;
 }
 
 
