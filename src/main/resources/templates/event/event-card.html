@@ -102,10 +102,10 @@
                     </div>
                     <div class="flex h-1/3 pl-3 -space-x-4 mr-1">
                         <a th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 3}">
-                            <img class="w-9 h-9 border-2 border-white rounded-full dark:border-gray-800"
+                            <img class="w-9 h-9 border-2 border-white rounded-full dark:border-[#292d38]"
                                  th:if="${not #strings.isEmpty(participation.user.profilePhoto)}"
                                  th:src="${participation.user.profilePhoto}" alt="Profile image"/>
-                            <img class="w-9 h-9 border-2 border-white rounded-full dark:border-gray-800"
+                            <img class="w-9 h-9 border-2 border-white rounded-full dark:border-[#292d38]"
                                  th:unless="${not #strings.isEmpty(participation.user.profilePhoto)}"
                                  th:src="@{/img/profile.jpeg}" alt="Default profile image"/>
                         </a>

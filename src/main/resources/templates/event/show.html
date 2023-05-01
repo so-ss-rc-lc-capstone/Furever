@@ -68,7 +68,7 @@
                             <div class="flex items-center">
                                 <form th:action="@{'/events/' + ${event.id} + '/participate'}" method="post">
                                     <button id="color-toggle" type="submit"
-                                            class="w-[70px] md:w-[100px] duration-75 md:ml-3 ml-2 h-[45px] flex justify-center items-center font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
+                                            class="w-[80px] md:w-[100px] duration-75 p-1 ml-6 h-[45px] flex justify-center items-center font-medium rounded-lg text-sm px-5 py-2.5 text-center shadow-lg"
                                             th:classappend="${event.hasParticipated(#authentication.principal.id) ? 'bg-[#2a86ff] text-white dark:text-white hover:bg-blue-800': 'bg-white dark:bg-[#26272d] text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700' }">
                                         <span th:text="${event.hasParticipated(#authentication.principal.id) ? 'Attending' : 'Join'}"></span>
                                     </button>
@@ -78,14 +78,14 @@
                         <!--Avatars-->
                         <div class=" w-full flex h-[60px] mt-3">
                             <a th:each="participation, i : ${event.participations}" th:if="${i.index &lt; 4}">
-                                <img class="w-[50px] h-[50px] border-2 border-white rounded-full dark:border-gray-800"
+                                <img class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] rounded-full "
                                      th:if="${not #strings.isEmpty(participation.user.profilePhoto)}"
                                      th:src="${participation.user.profilePhoto}" alt="Profile image"/>
-                                <img class="w-[50px] h-[50px] border-2 border-white rounded-full dark:border-gray-800"
+                                <img class="w-[45px] h-[45px] md:w-[55px] md:h-[55px] rounded-full "
                                      th:unless="${not #strings.isEmpty(participation.user.profilePhoto)}"
                                      th:src="@{/img/profile.jpeg}" alt="Default profile image"/>
                             </a>
-                            <a class="flex view-participants-btn items-center justify-center w-[50px] h-[50px] text-xs font-medium text-white bg-gray-700 rounded-full hover:bg-gray-600 "
+                            <a class="flex view-participants-btn items-center justify-center w-[45px] h-[45px] md:w-[55px] md:h-[55px] text-xs font-medium text-white bg-gray-700 rounded-full hover:bg-gray-600 "
                                href="#"><span th:text="${event.participations.size}"></span></a>
                         </div>
                         <!--Map box-->
