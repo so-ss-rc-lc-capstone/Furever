@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="partials/header :: head">
+
     <meta charset="UTF-8"/>
     <title th:text="'Ooops, ' + ${error}"></title>
+
 </head>
 <body class="dark:bg-[#17181c]">
 
