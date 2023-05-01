@@ -21,6 +21,6 @@ Our LinkedIn Profiles:
 [Luke](https://www.linkedin.com/in/lukecal10/),
 [Randy](https://www.linkedin.com/in/randy-chu-ab624566/),
 [Said](https://www.linkedin.com/in/said-shah-66a7b2163/),
-[Songju]()
+[Songju](https://www.linkedin.com/in/songju-oh/)
 
 
