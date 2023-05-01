@@ -5,20 +5,20 @@
 </head>
 <link rel="stylesheet" href="/css/profile.css"/>
 
-<body class="dark:text-white dark:bg-[#1e1f24]">
+<body class="dark:text-white  dark:bg-[#1e1f24]">
 
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:replace="partials/Aside :: aside-nav"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
-<section class="w-full flex justify-end mt-[3em] relative">
+<section class="w-full flex  justify-end mt-[3em] relative">
     <div class="absolute top-[30px] left-2 w-[50px] h-[50px] rounded-full flex items-center justify-center hover:cursor-pointer"
          onclick="window.history.back()"><i class="ri-arrow-left-line text-[#2a86ff] text-[30px]"></i></div>
 
     <div class="aside-container mt-[2em] md:flex md:w-[20em]"></div>
 <div class="flex flex-col w-full h-screen ">
-    <div class="flex w-full justify-start mb-16 md:mt-[5em] pt-5 items-center">
-    <div class="flex flex-col w-full h-full bg-gray rounded-lg">
+    <div class="flex w-full  justify-start mb-16 md:mt-[5em] pt-5 items-center">
+    <div class="flex flex-col w-full h-full bg-gray mb-[10em] rounded-lg">
 
         <div id="name-body" class = "mt-[55px]">
             <div class="w-full flex justify-start md:justify-center md:items-center">
@@ -51,9 +51,9 @@
         </div>
 
 
-        <div class="w-full h-[60px] pb-3 border-b border-gray-300 dark:border-[#292d38] flex flex-row justify-around items-center ">
+        <div class="w-full h-[60px] pb-3 border-b dark:border-[#292d38] flex flex-row justify-around items-center ">
 
-            <div class="flex flex-row justify-center  h-[50px] w-[12em] rounded-md items-center hover:text-blue-500 hover:cursor-pointer transition-all">
+            <div class="flex flex-row justify-center h-[50px] w-[12em] rounded-md items-center hover:text-blue-500 hover:cursor-pointer transition-all">
                 <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 01-.923 1.785A5.969 5.969 0 006 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337z"></path>
                 </svg>
@@ -107,7 +107,7 @@
 
         </div>
 
-        <div th:each="comment : ${post.comments}"  class="w-full flex border-b-2 bg-white dark:bg-[#1e1f24] dark:border-gray-700">
+        <div th:each="comment : ${post.comments}"  class="w-full flex border-b bg-white dark:bg-[#1e1f24] dark:border-[#292d38]">
             <div class="flex ml-[5px] justify-center">
 
                 <img class="w-[55px] h-[55px] mt-[26px] ml-4 md:ml-[85px] rounded-full shadow-md"
