@@ -9,7 +9,7 @@
 
     <body class="bg-white dark:dark:bg-[#17181c] relative">
 
-    <a href="/login" class="start-button fixed bottom-0 left-[5em] inline-flex px-5 py-3 ml-5 mt-5 text-base font-medium bg-[#2a86ff] transition-all hover:bg-blue-700 text-center text-white rounded-full shadow-xl" style="z-index: 2;">
+    <a href="/login" class="start-button fixed bottom-0 md:left-[5em] inline-flex px-5 py-3 ml-5 mt-5 text-base font-medium bg-[#2a86ff] transition-all hover:bg-blue-700 text-center text-white rounded-full shadow-xl" style="z-index: 2;">
         Get Started
         <svg class="w-5 h-5 ml-2 mt-[2px] -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
     </a>
@@ -63,10 +63,10 @@
                 <div class=" lg:py-16 mt-[10em] mx-auto w-full px-4">
                     <h2 class="mb-2 hidden-up lg:mb-8 text-1xl font-bold tracking-tight leading-tight text-center text-gray-900 dark:text-white md:text-1xl">Furever is behind the world's biggest pet friendly companies</h2>
                     <div class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 lg:grid-cols-4 dark:text-gray-400">
-                        <a class="sponsor hiddens flex items-center" href="https://cdnlogo.com/logo/petsmart_37639.html"><img class="w-[15em] h-[13em]" src="https://cdn.cdnlogo.com/logos/p/47/petsmart.svg"></a>
-                        <a class="sponsor hiddens flex items-center" href="https://cdnlogo.com/logo/petco_30633.html"><img class="w-[15em] h-[13em]" src="https://cdn.cdnlogo.com/logos/p/95/petco.svg"></a>
-                        <a class="sponsor hiddens flex items-center" href="https://cdnlogo.com/logo/pedigree_43823.html"><img class="w-[15em] h-[5em]" src="https://cdn.cdnlogo.com/logos/p/89/pedigree.svg"></a>
-                        <a class="sponsor hiddens flex items-center" href="https://cdnlogo.com/logo/dogbuddy_1301.html"><img class="w-[15em] h-[5em]" src="https://cdn.cdnlogo.com/logos/d/8/dogbuddy.svg"></a>
+                        <a class="sponsor hiddens flex items-center" href="www.petsmart.com"><img class="w-[15em] h-[13em]" src="https://cdn.cdnlogo.com/logos/p/47/petsmart.svg"></a>
+                        <a class="sponsor hiddens flex items-center" href="www.petco.com"><img class="w-[15em] h-[13em]" src="https://cdn.cdnlogo.com/logos/p/95/petco.svg"></a>
+                        <a class="sponsor hiddens flex items-center" href="www.pedigree.com"><img class="w-[15em] h-[5em]" src="https://cdn.cdnlogo.com/logos/p/89/pedigree.svg"></a>
+                        <a class="sponsor hiddens flex items-center" href="www.dogbuddy.com"><img class="w-[15em] h-[5em]" src="https://cdn.cdnlogo.com/logos/d/8/dogbuddy.svg"></a>
 
                     </div>
                 </div>
@@ -413,7 +413,7 @@
             <form th:action="@{/sendEmail}"  th:method="post" class="space-y-8">
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your Email</label>
-                    <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-700 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="name@flowbite.com" required>
+                    <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-700 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="name@email.com" required>
                 </div>
 
                 <div>
