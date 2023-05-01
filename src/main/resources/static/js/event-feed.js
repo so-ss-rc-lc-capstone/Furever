@@ -186,11 +186,12 @@ function getAllParticipants(data){
                    
                     <div class="flex w-1/3 items-center justify-evenly mr-3"> 
                    
-                   <a class="hover:cursor-pointer"> <div class="flex justify-center items-center w-[40px]">
+                   <a href="/friends" class="hover:cursor-pointer"> <div class="flex justify-center items-center w-[40px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-fill transition duration-300 text-gray-300 hover:text-gray-500"  viewBox="0 0 16 16">
                       <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
                     </svg>
-                    </div></a>
+                    </div>
+                    </a>
                     
                     <a class="hover:cursor-pointer" href="/user/${viewParticipants[i].id}">
                     <div class="flex justify-center items-center w-[40px]">
