@@ -42,7 +42,7 @@
     </section>
 
     <!--- Feed -->
-    <div class="w-screen relative h-screen">
+    <div class="w-screen relative mb-[4em]  h-screen">
         <div class="mt-[5.5em] md:mt-[6em] mb-[5.5em] md:mb-[6em]">
 
             <div class="w-full">
@@ -73,7 +73,7 @@
                         </ul>
 
 
-                        <div class="w-full h-full mb-[5em]">
+                        <div class="w-full h-full mb-[5em]" style="overflow: auto;">
                             <ul id="loggedUser" role="list" th:title="${#authentication.principal.id}"
                                 class="flex flex-col">
 
@@ -176,8 +176,7 @@
                                     </div>
                                 </div>
                             </ul>
-
-                            <ul id="not-follow" class="hidden flex flex-col" role="list"
+                            <ul id="not-follow" class="hidden mt-2 flex flex-col" role="list"
                                 th:title="${#authentication.principal.id}">
 
                                 <div class="pr-2 mb-4" th:each="user : ${usersNotFollowing}">
