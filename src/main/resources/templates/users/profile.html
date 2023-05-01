@@ -103,12 +103,11 @@
                     </div>
 
 
-                    <a href="/events">
                     <!--Calendar-->
-                    <div class="flex w-[20em] justify-center items-center mr-[5em] md:mr-0 md:mt-0 md:justify-end">
+                    <div class="flex w-[20em] justify-center translate-x-10 md:translate-x-0 items-center mr-[5em] md:mr-0 md:mt-0 md:justify-end">
 
                             <!--calendar section-->
-                        <div class="calendar-container ml-[50px] w-[50em] h-[30em]" style="z-index: 10;">
+                        <div class="calendar-container w-[50em] h-[30em]" style="z-index: 10;">
                             <div class="wrapper w-full bg-[#fff] dark:bg-gray-700">
                                 <header>
                                     <p class="current-date"></p>
@@ -117,22 +116,23 @@
                                         <span id="next" class="material-symbols-rounded">></span>
                                     </div>
                                 </header>
-                                <div class="calendar">
-                                    <ul class="weeks text-[#333] dark:text-gray-200">
-                                        <li>Sun</li>
-                                        <li>Mon</li>
-                                        <li>Tue</li>
-                                        <li>Wed</li>
-                                        <li>Thu</li>
-                                        <li>Fri</li>
-                                        <li>Sat</li>
-                                    </ul>
-                                    <ul class="days"></ul>
-                                </div>
+                                <a href="/events">
+                                    <div class="calendar">
+                                        <ul class="weeks text-[#333] dark:text-gray-200">
+                                            <li>Sun</li>
+                                            <li>Mon</li>
+                                            <li>Tue</li>
+                                            <li>Wed</li>
+                                            <li>Thu</li>
+                                            <li>Fri</li>
+                                            <li>Sat</li>
+                                        </ul>
+                                        <ul class="days"></ul>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    </a>
                 </div>
 
 
@@ -149,7 +149,7 @@
                         </form>
                     </div>
 
-                    <div class="w-full flex mb-[1em] mt-[1em] justify-center items-center md:justify-start md:items-center w-full overflow-x-scroll">
+                    <div class="transition-all duration-500 ease-in-out scale-75 md:scale-100 w-full flex mb-[1em] mt-[1em]  justify-center justify-items-center md:justify-start md:items-center overflow-x-scroll">
                         <div class="mt-2" th:include="pets/pet-card :: petList">
                         </div>
                     </div>
