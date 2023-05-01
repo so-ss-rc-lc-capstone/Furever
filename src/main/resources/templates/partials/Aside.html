@@ -398,7 +398,7 @@
             <li class="w-1/2 mr-2" role="presentation">
               <button class="inline-block p-4 border-b-2 text-[#2a86ff] rounded-t-lg" id="profile-tab"
                       data-tabs-target="#profile" type="button" role="tab" aria-controls="profile"
-                      aria-selected="false"><span class="text-[#2a86ff]">Followers</span>
+                      aria-selected="false"><span class="text-[#2a86ff]">Following</span>
               </button>
             </li>
             <li class="w-1/2 mr-2" role="presentation">
@@ -412,7 +412,7 @@
         </div>
 
         <div id="myTabContent">
-          <div class="hidden rounded-lg h-[20em]" id="profile" role="tabpanel"
+          <div class="hidden rounded-lg h-[20em] overflow-y-scroll" id="profile" role="tabpanel"
                aria-labelledby="profile-tab">
             <ul role="list">
               <div th:each="user : ${followedUsers}">
@@ -537,10 +537,6 @@
                                 <a th:href="@{|/user/${user.id}|}"
                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
                                   Profile</a>
-                              </li>
-                              <li>
-                                <a href="#"
-                                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Message</a>
                               </li>
                             </ul>
                           </div>
