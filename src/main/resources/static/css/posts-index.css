@@ -21,6 +21,9 @@ body {
     #event-container{
         width: 100% !important;
     }
+    .aside-container{
+        display: none !important;
+    }
 
 }
 
