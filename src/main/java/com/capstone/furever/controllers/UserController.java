@@ -99,13 +99,13 @@ public class UserController {
             System.out.println(usernameTaken);
             if (usernameTaken || user.getUsername().isEmpty()) {
                 // Add message to model
-                model.addAttribute("usernameTaken", "Username already taken or empty :( Sign-up again!");
+                model.addAttribute("usernameTaken", "Username already taken or empty");
                 return "users/login";
             }else{
                 String hashedPw = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
                 user.setPassword(hashedPw);
                 userDao.save(user);
-                model.addAttribute("success", "Successfully Signed-Up! :)");
+                model.addAttribute("success", "Successfully Signed-Up!");
                 return "users/login";
             }
         }catch (Exception e) {
