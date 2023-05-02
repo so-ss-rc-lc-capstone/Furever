@@ -34,7 +34,7 @@ public class HomeController {
     public String returnHomePage(Model model){
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);
-        return "home";
+        return "test";
     }
 
 
