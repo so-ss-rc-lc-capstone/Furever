@@ -178,10 +178,9 @@
                             <div th:each="post : ${posts}"
                                  class="rounded-t-lg mt-2 dark:bg-[#1e1f24] mb-3 border dark:border-[#292d38]">
                                 <div class="w-full border-2 rounded-t-lg shadow bg-white dark:bg-[#1e1f24] dark:border-[#292d38]" >
-
-                                    <div>
+                                    <div class="relative">
                                         <!--Name Date body-->
-                                        <div id="name-body" class = "mt-[20px]">
+                                        <div id="name-body" class = "">
                                             <div class="w-full ml-1">
                                                 <div class="flex w-[90%]">
                                                     <a th:href="@{/user/{id}(id=${post.user.id})}">
