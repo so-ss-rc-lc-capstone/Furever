@@ -178,10 +178,9 @@
                             <div th:each="post : ${posts}"
                                  class="rounded-t-lg mt-2 dark:bg-[#1e1f24] mb-3 border dark:border-[#292d38]">
                                 <div class="w-full border-2 rounded-t-lg shadow bg-white dark:bg-[#1e1f24] dark:border-[#292d38]" >
-
-                                    <div>
+                                    <div class="relative">
                                         <!--Name Date body-->
-                                        <div id="name-body" class = "mt-[20px]">
+                                        <div id="name-body" class = "">
                                             <div class="w-full ml-1">
                                                 <div class="flex w-[90%]">
                                                     <a th:href="@{/user/{id}(id=${post.user.id})}">
@@ -202,15 +201,14 @@
                                                         <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
                                                         <div class="w-full pb-5 pt-[5px] ml-[2px] pr-[10px] text-[16px]" th:text="${post.body}"></div>
                                                     </div>
-
                                                 </div>
-
                                             </div>
                                             <div class="w-full flex justify-center items-center">
                                                 <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
                                                 <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full flex  mb-5">
-            <span class = "w-full flex justify-center items-center md:justify-evenly">
-              <img th:src="${post.image}" class="w-full md:w-[70%] mt-[5px] md:rounded-lg"></span>
+                                                    <span class = "w-full flex justify-center items-center md:justify-evenly">
+                                                      <img th:src="${post.image}" class="w-full md:w-[70%] mt-[5px] md:rounded-lg">
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -256,7 +254,6 @@
                                                 </div>
                                             </button>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
@@ -273,7 +270,6 @@
             </div>
         </div>
     </div>
-
 </div>
 </div>
 </section>
@@ -282,8 +278,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 <script src="/js/event-feed.js"></script>
 <script src="/js/users/profile.js"></script>
-<script src="/js/users/user-show.js"></script>
-<script src="/js/event/event-delete.js"></script>
 <script src="/js/users/calendar2.js"></script>
 <script src="/js/darktoggle.js"></script>
 <script src="/js/title.js"></script>

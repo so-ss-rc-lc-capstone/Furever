@@ -1,5 +1,3 @@
-
-
 (
     async function () {
         const response = await fetch(`${window.location.protocol}//${window.location.host}/api/alluser`, {
@@ -9,12 +7,6 @@
             }
         });
         const data = await response.json();
-// console.log(data);
-        for (let i = 0; i < data.length; i++) {
-            console.log("data:")
-            console.log(data[i].id);
-        }
-
 
         function findUser(userId) {
 
@@ -175,15 +167,10 @@
             button.addEventListener("click", function () {
                 talkjsDiv.style.display = 'block';
                 let loggedUserId = document.getElementById("loggedUser").title;
-                console.log("logged in user: " + loggedUserId)
                 const buttonId = button.getAttribute("id");
-                console.log(buttonId);
 
                 let loggedUser = findUser(loggedUserId);
                 let selectedUser = findUser(buttonId);
-
-                console.log(loggedUser.username);
-                console.log(selectedUser.username);
 
                 Talk.ready.then(function () {
                     let defaultPhotoUrl = '/img/profile.jpeg';

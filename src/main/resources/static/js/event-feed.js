@@ -2,13 +2,12 @@
 
 // Get the current page URL
 
-
-(
-    async function () {
+//
+// (
+//     async function () {
 
 
 //Search Bar Toggle
-
 const checkbox = document.getElementById('toggle-checkbox');
 const text = document.getElementById('toggle-text');
 
@@ -105,9 +104,7 @@ const toggleSearch = (search, button) => {
                 console.error(error);
             });
     });
-
 };
-
 toggleSearch('search', 'search-button');
 
 
@@ -139,10 +136,8 @@ let eventButtons = document.querySelectorAll(".view-participants-btn");
 eventButtons.forEach(button => {
     button.addEventListener("click", function() {
         participantsList.innerHTML = "";
-        console.log("clicked")
         // Get the event ID from the "data-event-id" attribute of the button
         let eventId = button.getAttribute("data-event-id");
-        console.log(eventId);
 
         // Fetch participants for the selected event
         fetch(`${window.location.protocol}//${window.location.host}/events/${eventId}/participants`, {
@@ -158,7 +153,6 @@ eventButtons.forEach(button => {
                 return res.json();
             })
             .then(data => {
-                console.log(data);
                 let viewParticipants = JSON.stringify(data);
                 getAllParticipants(viewParticipants);
             })
@@ -216,7 +210,29 @@ function getAllParticipants(data){
     }
     participantsList.innerHTML = html;
 }
-    })();
+//delete
+function confirmDelete() {
+    if (confirm("Are you sure you want to delete this event?")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function confirmCommentDelete() {
+    if (confirm("Are you sure you want to delete this comment?")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function confirmUserDelete() {
+    if (confirm("Are you sure you want to delete your profile?")) {
+        document.getElementById("deleteForm").submit();
+    }
+}
+    // })();
 
 
 

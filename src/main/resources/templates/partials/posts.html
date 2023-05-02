@@ -7,16 +7,16 @@
         <div class="w-full ml-1">
           <div class="flex w-[90%]">
             <a th:href="@{/user/{id}(id=${post.user.id})}">
-            <img class="w-[60px] h-[60px] mt-[26px] ml-[25px] rounded-full shadow-md"
+              <img class="w-[60px] h-[60px] mt-[26px] ml-[25px] rounded-full shadow-md"
                  th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
                  th:src="${post.user.profilePhoto}" alt="Profile image"/>
             </a>
             <a th:href="@{/user/{id}(id=${post.user.id})}">
-            <img class="w-[60px] h-[60px] mt-[26px] ml-[25px] rounded-full shadow-md"
+              <img class="w-[60px] h-[60px] mt-[26px] ml-[25px] rounded-full shadow-md"
                  th:if="${#strings.isEmpty(post.user.profilePhoto)}"
                  th:src="@{/img/profile.jpeg}"
                  alt="Default profile image"/>
-              </a>
+            </a>
 
             <div class = "flex flex-col w-full mt-[1.5em] ml-[40px]">
               <h1 class="font-bold text-[18px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
@@ -24,7 +24,6 @@
               <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
               <div class="w-full pb-5 pt-[5px] ml-[2px] pr-[10px] text-[16px]" th:text="${post.body}"></div>
             </div>
-
           </div>
 
         </div>
@@ -50,7 +49,7 @@
       </div>
     </div>
 
-    <div class="w-full h-[30px] pb-3 mt-5 border-b border-gray-300 dark:border-gray-700 flex flex-row justify-around ">
+    <div class="w-full h-[30px] pb-3 mt-5 border-b border-gray-300 dark:border-gray-700 flex flex-row justify-around relative">
 
       <div class="flex flex-row justify-center items-center hover:text-blue-500 hover:cursor-pointer transition-all">
         <svg fill="none" class="h-[20px] w-[20px] flex justify-center" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -115,7 +114,7 @@
     </div>
   </div>
   <!--Comment reply body-->
-  <div th:each="comment, i : ${post.comments}" th:if="${i.index < 3}" class="w-full h-full flex bg-white border-l-2 border-r-2 border-b-2 shadow dark:bg-[#1e1f24] dark:border-[#292d38]">
+  <div th:each="comment, i : ${post.comments}" th:if="${i.index < 3}" class="w-full h-full flex bg-white border-l-2 border-r-2 border-b-2 shadow dark:bg-[#1e1f24] dark:border-[#292d38] relative">
     <div class="flex ml-[5px] justify-center">
       <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
            th:if="${not #strings.isEmpty(comment.user.profilePhoto)}"
@@ -124,10 +123,10 @@
       <img class="w-[55px] h-[55px] mt-[26px] ml-7 rounded-full shadow-md"
            th:if="${#strings.isEmpty(comment.user.profilePhoto)}"
            th:src="@{/img/profile.jpeg}"
-           alt="Default profile image"/></div>
+           alt="Default profile image"/>
+    </div>
     <div id="comment-body" class="mt-[20px] pl-[1.2em] w-3/4">
       <div class="pt-2 pb-4 pr-3">
-
         <div>
           <div class="flex flex-col">
             <h1 class="font-bold text-[16px]"><span th:text="${comment.user.first_name}"></span> <span th:text="${comment.user.last_name}"></span></h1>
@@ -136,10 +135,20 @@
             <h3 class="mt-1 text-[9px] text-gray-400"><span th:text="${#temporals.format(comment.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(comment.created_at, 'MMMM dd, yyyy')}"></span></h3>
           </div>
         </div>
-
         <div class="w-full pt-2 h-auto text-[14px] mb-3 pr-[15px]" th:text="${comment.content}"></div>
-
       </div>
+    </div>
+<!--    Comment delete-->
+    <div class="absolute right-0 top-0 scale-90" th:if="${comment.user.id} == ${#authentication.principal.id}">
+      <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" method="post" onsubmit="return confirmCommentDelete();">
+        <button type="submit">
+          <div class="p-3 flex flex-row justify-center items-center text-gray-500 dark:text-gray-200 hover:text-red-500 hover:cursor-pointer transition-all justify-self-end">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+            </svg>
+          </div>
+        </button>
+      </form>
     </div>
   </div>
 </div>

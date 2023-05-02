@@ -5,6 +5,7 @@ import com.capstone.furever.repositories.CommentRepository;
 import com.capstone.furever.repositories.PostRepository;
 import com.capstone.furever.repositories.UserRepository;
 import com.capstone.furever.services.EmailService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,7 +73,6 @@ public class PostController {
         User userData = usersDao.findById(user.getId());
         Post post = postDao.findById(id).get();
 
-
         List<Comments> comments = post.getComments();
         Collections.reverse(comments);
 
@@ -124,6 +124,21 @@ public class PostController {
         return "redirect:/posts/{id}/show";
     }
 
+    @PostMapping("/comment/{n}/delete")
+    public String deleteComment(@PathVariable long n, HttpServletRequest request) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUserDb = usersDao.findById(currentUser.getId());
+
+        List<Comments> comments = commentDao.findAll();
+        Comments commentDB = commentDao.findById(n).get();
+
+        if(currentUserDb.getId() == commentDB.getUser().getId()){
+            commentDao.deleteById(n);
+        }
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
+    }
+
 
 
     //Form Model Binding
@@ -165,12 +180,13 @@ public class PostController {
         postData.setBody(post.getBody());
         postDao.save(postData);
         model.addAttribute("posts", postData);
-        return "redirect:/posts/{id}"; // go to controller
+
+        return "redirect:/posts";
     }
 
 
     @PostMapping("/posts/{n}/delete")
-    public String deletePost(@PathVariable long n) {
+    public String deletePost(@PathVariable long n, HttpServletRequest request) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findById(n).get();
         if(user.getId() == post.getUser().getId()){
@@ -178,8 +194,8 @@ public class PostController {
         }
         System.out.println(user.getId());
         System.out.println(post.getUser().getId());
-        return "redirect:/posts";
-    }
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;     }
 
     @GetMapping("/posts/{id}")
     public String findPostById(@PathVariable long id, Model model) {
@@ -195,7 +211,7 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/like")
-    public String likePost(@PathVariable Long id, Principal principal) {
+    public String likePost(@PathVariable Long id, Principal principal, HttpServletRequest request) {
         User user = usersDao.findByUsername(principal.getName());
         Post post = postDao.findById(id).get();
 
@@ -204,11 +220,11 @@ public class PostController {
         } else {
             postService.incrementLikes(id, user);
         }
-        return "redirect:/posts";
-    }
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;     }
 
     @PostMapping("/posts/{id}/profile-like")
-    public String likePostProfile(@PathVariable Long id, Principal principal) {
+    public String likePostProfile(@PathVariable Long id, Principal principal, HttpServletRequest request) {
         User user = usersDao.findByUsername(principal.getName());
         Post post = postDao.findById(id).get();
 
@@ -217,8 +233,8 @@ public class PostController {
         } else {
             postService.incrementLikes(id, user);
         }
-        return "redirect:/profile";
-    }
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;     }
 }
 
 

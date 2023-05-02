@@ -47,10 +47,8 @@ async function generateUserPost(choosenMood, WrittenDescription) {
         });
         const data = await response.json();
         const responseData = JSON.stringify(data);
-        console.log('here =>', responseData);
         return responseData;
     } catch (error) {
-        console.error(error);
     }
 }
 
@@ -65,6 +63,14 @@ generatePost.on('click', async () => {
     postAIModal.fadeOut(500);
 });
 
+
+function confirmCommentDelete() {
+    if (confirm("Are you sure you want to delete this comment?")) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 
