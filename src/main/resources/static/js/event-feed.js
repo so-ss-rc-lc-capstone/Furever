@@ -2,13 +2,12 @@
 
 // Get the current page URL
 
-
-(
-    async function () {
+//
+// (
+//     async function () {
 
 
 //Search Bar Toggle
-
 const checkbox = document.getElementById('toggle-checkbox');
 const text = document.getElementById('toggle-text');
 
@@ -105,9 +104,7 @@ const toggleSearch = (search, button) => {
                 console.error(error);
             });
     });
-
 };
-
 toggleSearch('search', 'search-button');
 
 
@@ -216,7 +213,21 @@ function getAllParticipants(data){
     }
     participantsList.innerHTML = html;
 }
-    })();
+//delete
+function confirmDelete() {
+    if (confirm("Are you sure you want to delete this event?")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function confirmUserDelete() {
+    if (confirm("Are you sure you want to delete your profile?")) {
+        document.getElementById("deleteForm").submit();
+    }
+}
+    // })();
 
 
 
