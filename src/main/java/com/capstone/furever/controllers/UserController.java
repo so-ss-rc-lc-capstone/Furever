@@ -155,13 +155,13 @@ public class UserController {
         userData.setProfilePhoto(user.getProfilePhoto());
         userDao.save(userData);
         model.addAttribute("user", userData);
-        return "redirect:/profile";
 
+        return "redirect:/profile";
     }
 
 
     @PostMapping("/profile/{id}/delete")
-    public String deleteUser(@PathVariable Long id) {
+    public String deleteUser(@PathVariable Long id, HttpServletRequest request) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userData = userDao.findById(currentUser.getId());
         try{
@@ -171,9 +171,9 @@ public class UserController {
                 return "error/500";
             }
         }catch(Exception e){
-
         }
-        return "users/login";
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
 
 

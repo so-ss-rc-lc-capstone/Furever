@@ -44,7 +44,6 @@ public class EventController {
 
 
         model.addAttribute("event", new Event());
-
         return "event/create-event";
     }
 
@@ -119,7 +118,6 @@ public class EventController {
         } else {
             return "redirect:/events";
         }
-
     }
 
     //Edit event post method
@@ -134,6 +132,7 @@ public class EventController {
         eventEdited.setCreated_at(LocalDateTime.now());
         eventEdited.setEventPhoto(event.getEventPhoto());
         eventsDao.save(eventEdited);
+
         return "redirect:/events";
     }
 
@@ -155,7 +154,7 @@ public class EventController {
     }
 
     @GetMapping("events/{id}/delete")
-    public String deleteEvent(@PathVariable long id) {
+    public String deleteEvent(@PathVariable long id, HttpServletRequest request) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         long currentUserId = currentUser.getId();
 
@@ -167,8 +166,8 @@ public class EventController {
         } else {
             System.out.println("IDs do not match.");
         }
-        return "redirect:/events";
-    }
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;     }
 
     @GetMapping("events/{id}/delete-profile-event")
     public String deleteProfileEvent(@PathVariable long id) {
@@ -202,7 +201,7 @@ public class EventController {
 
     //Event Likes below
     @PostMapping("/events/{id}/like")
-    public String likeEvent(@PathVariable Long id, Principal principal) {
+    public String likeEvent(@PathVariable Long id, Principal principal, HttpServletRequest request) {
 
         User user = usersDao.findByUsername(principal.getName());
         Event event = eventsDao.findById(id).get();
@@ -212,7 +211,7 @@ public class EventController {
         } else {
             eventService.incrementEventLikes(id, user);
         }
-        return "redirect:/events";
-    }
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;     }
 }
 

@@ -219,6 +219,14 @@ function confirmDelete() {
     }
 }
 
+function confirmCommentDelete() {
+    if (confirm("Are you sure you want to delete this comment?")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function confirmUserDelete() {
     if (confirm("Are you sure you want to delete your profile?")) {
         document.getElementById("deleteForm").submit();
