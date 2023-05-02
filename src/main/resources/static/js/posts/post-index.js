@@ -47,10 +47,8 @@ async function generateUserPost(choosenMood, WrittenDescription) {
         });
         const data = await response.json();
         const responseData = JSON.stringify(data);
-        console.log('here =>', responseData);
         return responseData;
     } catch (error) {
-        console.error(error);
     }
 }
 

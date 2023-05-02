@@ -155,9 +155,6 @@ hiddenElementsRight.forEach(element => {
 });
 
 
-
-
-
 const loginLink = document.getElementById('login-link');
 loginLink.addEventListener('click', () => {
     const url = loginLink.dataset.url;
@@ -170,18 +167,5 @@ logoutLink.addEventListener('click', () => {
     window.location.href = url;
 });
 
-
-// const anchors = document.querySelectorAll('a');
-//
-// anchors.forEach(anchor => {
-//     anchor.addEventListener('click', (event) => {
-//         event.preventDefault();
-//         anchors.forEach(a => a.classList.remove('text-blue-700'));
-//         anchor.classList.add('text-blue-700');
-//         const id = anchor.getAttribute('href').substring(1);
-//         const element = document.getElementById(id);
-//         element.scrollIntoView({ behavior: 'smooth' });
-//     });
-// });
 
 

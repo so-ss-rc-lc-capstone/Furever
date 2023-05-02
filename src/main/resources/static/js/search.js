@@ -16,22 +16,6 @@ searchInput.addEventListener("input", e => {
     })
 })
 
-// fetch("https://jsonplaceholder.typicode.com/users")
-// // fetch("https://localhost:8080/api/users")
-//     .then(res => res.json())
-//     .then(data => {
-//         users = data.map(user => {
-//             console.log(data);
-//             const card = userCardTemplate.content.cloneNode(true).children[0]
-//             const header = card.querySelector("[data-header]")
-//             const body = card.querySelector("[data-body]")
-//             header.textContent = user.name
-//             body.textContent = user.email
-//             userCardContainer.append(card)
-//             console.log(user);
-//             return { name: user.name, email: user.email, element: card }
-//         })
-//     })
 
 fetch(`${window.location.protocol}//${window.location.host}/api/alluser`, {
     method: "GET",

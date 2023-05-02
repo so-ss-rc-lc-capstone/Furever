@@ -496,7 +496,6 @@
           <div class="hidden rounded-lg h-[20em] overflow-y-scroll" id="dashboard" role="tabpanel"
                aria-labelledby="dashboard-tab">
             <ul role="list">
-              <!--          <div th:each="user : ${users}">-->
               <div th:each="user : ${usersNotFollowing}">
 
                 <div th:if="${user.id} != ${#authentication.principal.id}">
@@ -557,7 +556,6 @@
                             </button>
                           </form>
                         </a>
-
                       </div>
                     </div>
                   </li>

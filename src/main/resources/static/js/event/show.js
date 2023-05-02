@@ -15,10 +15,8 @@ eventButtons.forEach(function(eventButton) {
         event.preventDefault(); // prevent the default behavior of the link
 
         participantsList.innerHTML = "";
-        console.log("clicked");
         // Get the event ID from the "data-event-id" attribute of the button
         let eventId = eventButton.getAttribute("data-event-id");
-        console.log(eventId);
 
         // Fetch participants for the selected event
         fetch(`${window.location.protocol}//${window.location.host}/events/${eventId}/participants`, {
@@ -34,7 +32,6 @@ eventButtons.forEach(function(eventButton) {
                 return res.json();
             })
             .then(data => {
-                console.log(data);
                 let viewParticipants = JSON.stringify(data);
                 getAllParticipants(viewParticipants);
             })

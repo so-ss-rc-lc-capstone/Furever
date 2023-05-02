@@ -7,102 +7,99 @@
 </head>
 <link rel="stylesheet" href="/css/event-index.css"/>
 
-<body class="dark:bg-[#17181c]
-">
-<nav th:replace="partials/navbar :: navbar-search-events"></nav>
-<nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
+<body class="dark:bg-[#17181c]">
+  <nav th:replace="partials/navbar :: navbar-search-events"></nav>
+  <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
 
-<div class="w-full flex justify-center mt-[6em] mb-[10em] md:mb-[4em]">
-  <section class="aside-container hidden md:w-[17em] md:flex w-full h-screen relative">
-    <aside th:replace="partials/Aside :: aside-nav"></aside>
-  </section>
+  <div class="w-full flex justify-center mt-[6em] mb-[10em] md:mb-[4em]">
+    <section class="aside-container hidden md:w-[17em] md:flex w-full h-screen relative">
+      <aside th:replace="partials/Aside :: aside-nav"></aside>
+    </section>
 
-  <div class="w-full h-screen flex justify-center items-center">
-    <div class="w-[80%] sm:mb-[14em] dark:bg-[#1e1f24] rounded-xl p-8">
-      <div class="row w-full d-flex justify-content-center">
-        <h1 class="text-3xl text-gray-900 dark:text-white mb-6">Edit Pet Info</h1>
+    <div class="w-full h-screen flex justify-center items-center">
+      <div class="w-[80%] sm:mb-[14em] dark:bg-[#1e1f24] rounded-xl p-8">
+        <div class="row w-full d-flex justify-content-center">
+          <h1 class="text-3xl text-gray-900 dark:text-white mb-6">Edit Pet Info</h1>
 
 
-        <form th:method="POST" th:action="@{/pets/{id}/edit(id=${pet.id})}" th:object="${pet}" class="d-flex justify-content-center">
+          <form th:method="POST" th:action="@{/pets/{id}/edit(id=${pet.id})}" th:object="${pet}" class="d-flex justify-content-center">
 
-          <div class="grid gap-6 mb-6 grid-cols-2">
-            <div>
-              <h2 class="dark:text-gray-500 mb-2">Pet Name</h2>
-              <input th:field="*{petname}" type="text" name="petname" id="petname" placeholder="Enter name of your pet" class="bg-gray-50 border-2 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-2 dark:border-[#292d38]  dark:placeholder-gray-400 dark:bg-[#26272d] dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <div class="grid gap-6 mb-6 grid-cols-2">
+              <div>
+                <h2 class="dark:text-gray-500 mb-2">Pet Name</h2>
+                <input th:field="*{petname}" type="text" name="petname" id="petname" placeholder="Enter name of your pet" class="bg-gray-50 border-2 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 border-2 dark:border-[#292d38]  dark:placeholder-gray-400 dark:bg-[#26272d] dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+              <div >
+                <h2 class="dark:text-gray-500 mb-2">Date Of Birth</h2>
+                <input th:field="*{dateOfBirth}" type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Enter Date of Birth" class="bg-gray-50 border-2 dark:text-white text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 border-2 dark:border-[#292d38] dark:placeholder-gray-400 dark:bg-[#26272d] dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              </div>
+
             </div>
-            <div >
-              <h2 class="dark:text-gray-500 mb-2">Date Of Birth</h2>
-              <input th:field="*{dateOfBirth}" type="date" name="dateOfBirth" id="dateOfBirth" placeholder="Enter Date of Birth" class="bg-gray-50 border-2 dark:text-white text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 border-2 dark:border-[#292d38] dark:placeholder-gray-400 dark:bg-[#26272d] dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            </div>
+            <h2 class="dark:text-gray-500 mb-2">Gender</h2>
+            <div class="grid gap-6 mb-6 grid-cols-2">
 
-          </div>
-          <h2 class="dark:text-gray-500 mb-2">Gender</h2>
-          <div class="grid gap-6 mb-6 grid-cols-2">
-
-            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
-              <input th:field="*{gender}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" name="gender" id="male" value="M" >
-              <label class="w-full py-4 ml-2 text-sm font-medium dark:text-gray-500 text-gray-900 dark:text-gray-300" for="male">
-                M
-              </label>
-            </div>
-            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
-              <input th:field="*{gender}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" name="gender" id="female" value="F">
-              <label class="w-full py-4 ml-2 text-sm font-medium dark:text-gray-500 text-gray-900 dark:text-gray-300" for="female">
-                F
-              </label>
-            </div>
-          </div>
-
-          <div class="mt-4">
-            <label for="breed_name" class="block text-gray-700 dark:text-gray-500 mb-2">Breed Name</label>
-            <input th:field="*{breed.id}" type="hidden" />
-            <input th:field="*{breed.breed_name}" type="text" name="breed_name" id="breed_name" class="form-input bg-gray-50 border-2 dark:border-[#292d38]  dark:placeholder-gray-400  dark:bg-[#26272d] rounded-md mt-1 block w-[50%]" list="breeds" placeholder="Choose A Breed" th:onchange="'javascript:document.getElementById(\'breed_id\').value=this.selectedOptions[0].getAttribute(\'data-id\');'">
-            <input th:field="*{breed.id}" type="hidden" name="breed_id" id="breed_id"/>
-            <datalist id="breeds" class="dark:text-white">
-              <th:block th:each="breed : ${breeds}" class="dark:text-white">
-                <option th:data-id="${breed.id}" th:value="${breed.breed_name}" th:text="${breed.breed_name}" class="dark:text-white"></option>
-              </th:block>
-            </datalist>
-          </div>
-
-
-
-          <div class="mb-6 mt-5 ">
-            <div class="flex items-center">
-              <label class="block text-gray-700 dark:text-gray-500 mr-5">Pet Image</label>
-              <div id="pet-upload"
-                   class="flex items-center justify-center w-[140px] h-[35px] rounded-lg border border-gray-300 dark:border-gray-500 p-1 cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
-                <button type="button"
-                        class="flex items-center justify-center text-[20px] w-[40px] h-[40px] justify-center text-gray-400 dark:text-gray-400">
-                  <i class="ri-image-2-fill w-[40px]"></i>
-                </button>
-                <input th:field="*{image}" type="text" name="image" id="pet-image-input"  class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-                <h3 class="text-gray-400 text-[13px]">Upload Image</h3>
+              <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                <input th:field="*{gender}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" name="gender" id="male" value="M" >
+                <label class="w-full py-4 ml-2 text-sm font-medium dark:text-gray-500 text-gray-900 dark:text-gray-300" for="male">
+                  M
+                </label>
+              </div>
+              <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                <input th:field="*{gender}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" name="gender" id="female" value="F">
+                <label class="w-full py-4 ml-2 text-sm font-medium dark:text-gray-500 text-gray-900 dark:text-gray-300" for="female">
+                  F
+                </label>
               </div>
             </div>
 
+            <div class="mt-4">
+              <label for="breed_name" class="block text-gray-700 dark:text-gray-500 mb-2">Breed Name</label>
+              <input th:field="*{breed.id}" type="hidden" />
+              <input th:field="*{breed.breed_name}" type="text" name="breed_name" id="breed_name" class="form-input bg-gray-50 border-2 dark:border-[#292d38]  dark:placeholder-gray-400  dark:bg-[#26272d] rounded-md mt-1 block w-[50%]" list="breeds" placeholder="Choose A Breed" th:onchange="'javascript:document.getElementById(\'breed_id\').value=this.selectedOptions[0].getAttribute(\'data-id\');'">
+              <input th:field="*{breed.id}" type="hidden" name="breed_id" id="breed_id"/>
+              <datalist id="breeds" class="dark:text-white">
+                <th:block th:each="breed : ${breeds}" class="dark:text-white">
+                  <option th:data-id="${breed.id}" th:value="${breed.breed_name}" th:text="${breed.breed_name}" class="dark:text-white"></option>
+                </th:block>
+              </datalist>
+            </div>
 
-          </div>
-
-          <span><img id="pet-thumbnail" alt="thumbnail" class="hidden h-[300px] w-[300px]"></span>
 
 
-          <div class="flex justify-between mt-[2em]">
-            <h3 class="text-blue-600 flex justify-center"><a href="/profile" class="mt-2">Go Back</a></h3>
+            <div class="mb-6 mt-5 ">
+              <div class="flex items-center">
+                <label class="block text-gray-700 dark:text-gray-500 mr-5">Pet Image</label>
+                <div id="pet-upload"
+                     class="flex items-center justify-center w-[140px] h-[35px] rounded-lg border border-gray-300 dark:border-gray-500 p-1 cursor-pointer hover:text-gray-900 hover:bg-gray-100 ">
+                  <button type="button"
+                          class="flex items-center justify-center text-[20px] w-[40px] h-[40px] justify-center text-gray-400 dark:text-gray-400">
+                    <i class="ri-image-2-fill w-[40px]"></i>
+                  </button>
+                  <input th:field="*{image}" type="text" name="image" id="pet-image-input"  class="hidden bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
-            <button type="submit" class="flex justify-center items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-[100px] sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:text-gray-500 dark:text-white dark:focus:ring-blue-800">Submit</button>
+                  <h3 class="text-gray-400 text-[13px]">Upload Image</h3>
+                </div>
+              </div>
 
 
-          </div>
-        </form>
+            </div>
+
+            <span><img id="pet-thumbnail" alt="thumbnail" class="hidden h-[300px] w-[300px]"></span>
+
+
+            <div class="flex justify-between mt-[2em]">
+              <h3 class="text-blue-600 flex justify-center"><a href="/profile" class="mt-2">Go Back</a></h3>
+
+              <button type="submit" class="flex justify-center items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-[100px] sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:text-gray-500 dark:text-white dark:focus:ring-blue-800">Submit</button>
+
+
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
-  <!--keys-->
-  <!--<script src="/js/keys.js "></script>-->
   <script th:src="@{/js/filestack-pet.js}"></script>
 </body>
 </html>

@@ -202,15 +202,14 @@
                                                         <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
                                                         <div class="w-full pb-5 pt-[5px] ml-[2px] pr-[10px] text-[16px]" th:text="${post.body}"></div>
                                                     </div>
-
                                                 </div>
-
                                             </div>
                                             <div class="w-full flex justify-center items-center">
                                                 <div th:if="${post.image == null or post.image == ''}" style="display: hidden;"></div>
                                                 <div th:if="${post.image != null and post.image != ''}" style="display: block;" class="w-full flex  mb-5">
-            <span class = "w-full flex justify-center items-center md:justify-evenly">
-              <img th:src="${post.image}" class="w-full md:w-[70%] mt-[5px] md:rounded-lg"></span>
+                                                    <span class = "w-full flex justify-center items-center md:justify-evenly">
+                                                      <img th:src="${post.image}" class="w-full md:w-[70%] mt-[5px] md:rounded-lg">
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -280,8 +279,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 <script src="/js/event-feed.js"></script>
 <script src="/js/users/profile.js"></script>
-<!--<script src="/js/users/user-show.js"></script>-->
-<!--<script src="/js/event/event-delete.js"></script>-->
 <script src="/js/users/calendar2.js"></script>
 <script src="/js/darktoggle.js"></script>
 <script src="/js/title.js"></script>
