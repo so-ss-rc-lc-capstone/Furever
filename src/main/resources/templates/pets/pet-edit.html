@@ -56,7 +56,7 @@
             <div class="mt-4">
               <label for="breed_name" class="block text-gray-700 dark:text-gray-500 mb-2">Breed Name</label>
               <input th:field="*{breed.id}" type="hidden" />
-              <input th:field="*{breed.breed_name}" type="text" name="breed_name" id="breed_name" class="form-input bg-gray-50 border-2 dark:border-[#292d38]  dark:placeholder-gray-400  dark:bg-[#26272d] rounded-md mt-1 block w-[50%]" list="breeds" placeholder="Choose A Breed" th:onchange="'javascript:document.getElementById(\'breed_id\').value=this.selectedOptions[0].getAttribute(\'data-id\');'">
+              <input th:field="*{breed.breed_name}" type="text" name="breed_name" id="breed_name" class="form-input w-full text-black dark:text-white bg-gray-50 border-2 dark:border-[#292d38]  dark:placeholder-gray-400  dark:bg-[#26272d] rounded-md mt-1 block md:w-[50%]" list="breeds" placeholder="Choose A Breed" th:onchange="'javascript:document.getElementById(\'breed_id\').value=this.selectedOptions[0].getAttribute(\'data-id\');'">
               <input th:field="*{breed.id}" type="hidden" name="breed_id" id="breed_id"/>
               <datalist id="breeds" class="dark:text-white">
                 <th:block th:each="breed : ${breeds}" class="dark:text-white">
