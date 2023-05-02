@@ -64,5 +64,13 @@ generatePost.on('click', async () => {
 });
 
 
+function confirmCommentDelete() {
+    if (confirm("Are you sure you want to delete this comment?")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 

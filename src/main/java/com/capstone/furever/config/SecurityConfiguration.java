@@ -125,6 +125,7 @@ public class SecurityConfiguration {
                         "/posts/{id}/show",
                         "/comment/{id}/create",
                         "/comment/{id}/create-show",
+                        "/comment/{n}/delete",
 
                         "/events",
                         "/events/{id}",
