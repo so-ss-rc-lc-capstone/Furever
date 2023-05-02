@@ -5,26 +5,20 @@
 </head>
 <link rel="stylesheet" href="/css/profile.css"/>
 
-<body class="dark:text-white dark:bg-[#17181c]
-">
+<body class="dark:text-white dark:bg-[#17181c]">
 <nav th:replace="partials/navbar :: navbar-search-events"></nav>
 <nav th:replace="partials/navbar :: navbar-mobile-events"></nav>
 
 <div>
-<!---->
 <form th:method="POST" th:action="@{/profile/edit}" th:object="${user}">
     <div class="w-full h-screen flex justify-center items-center">
-
         <div class="w-full md:w-2/3 h-full mt-[1em] flex justify-center">
-            <div class="flex items-center justify-center w-full md:w-4/5 flex p-3 flex-col bg-white dark:bg-[#17181c]
-">
+            <div class="flex items-center justify-center w-full md:w-4/5 flex p-3 flex-col bg-white dark:bg-[#17181c]">
                 <div class="w-full font-extrabold ml-2 md:ml-0 text-3xl mb-5">Edit Profile</div>
                 <div class="h-3/4 w-full">
-
                     <div class="h-1/4 flex p-1">
                         <div class="w-1/4 ml-3 h-full flex items-center">
-                            <div class="md:w-[140px] md:h-[140px] w-[110px] h-[110px] relative flex justify-center items-center shadow-lg dark:bg-[#17181c]
- rounded-full">
+                            <div class="md:w-[140px] md:h-[140px] w-[110px] h-[110px] relative flex justify-center items-center shadow-lg dark:bg-[#17181c] rounded-full">
                                 <span><img id="user-thumbnail"
                                            class="md:w-[130px] md:h-[130px] w-[100px] h-[100px] absolute top-[5px] left-[4px] right-0 bottom-0 rounded-full"></span>
                                 <img class="md:w-[130px] md:h-[130px] w-[90px] h-[90px] rounded-full shadow-xl"
@@ -39,8 +33,7 @@
                                         class="absolute flex items-center bg-blue-400 hover:bg-blue-500 hover:mouse-pointer justify-center h-[30px] w-[30px] rounded-full right-0 bottom-5">
                                     <i class="bi bi-pencil text-white"></i></button>
                                 <input th:field="*{profilePhoto}"
-                                       class="hidden user-image block w-1/2 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-[#26272d]
- dark:border-gray-600 dark:placeholder-gray-400"
+                                       class="hidden user-image block w-1/2 text-sm text-gray-900 border border-gray-300 cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-[#26272d] dark:border-gray-600 dark:placeholder-gray-400"
                                        id="user-input" name="profilePhoto" type="text">
                             </div>
                         </div>
@@ -70,9 +63,7 @@
 
                         <div class="input-group flex flex-col mb-3">
                             <label for="username" class="text-gray-500  dark:text-gray-400 mb-2">Username</label>
-                            <input th:field="*{username}" class="h-[40px] text-center form-control border rounded-lg dark:border-[#292d38]
- dark:bg-[#26272d]
-"
+                            <input th:field="*{username}" class="h-[40px] text-center form-control border rounded-lg dark:border-[#292d38] dark:bg-[#26272d]"
                                    type="text" name="username" id="username" placeholder="Enter username" required>
                         </div>
                         <div class="input-group flex flex-col mb-3">
@@ -85,40 +76,30 @@
 
                         <div class="input-group flex flex-col mb-3">
                             <label for="first_name" class="text-gray-500 dark:text-gray-400 mb-2">First Name</label>
-                            <input th:field="*{first_name}" class=" h-[40px] text-center form-control border rounded-lg dark:border-[#292d38]
- dark:bg-[#26272d]
-"
+                            <input th:field="*{first_name}" class=" h-[40px] text-center form-control border rounded-lg dark:border-[#292d38] dark:bg-[#26272d]"
                                    type="text" name="first_name" id="first_name" placeholder="Enter first Name"
                                    required>
                         </div>
 
                         <div class="input-group flex flex-col mb-3">
                             <label for="last_name" class="text-gray-500 dark:text-gray-400 mb-2">Last Name</label>
-                            <input th:field="*{last_name}" class="h-[40px] text-center form-control border dark:border-[#292d38]
- rounded-lg dark:bg-[#26272d]
-"
+                            <input th:field="*{last_name}" class="h-[40px] text-center form-control border dark:border-[#292d38] rounded-lg dark:bg-[#26272d]"
                                    type="text" name="last_name" id="last_name" placeholder="Enter last Name" required>
                         </div>
 
                         <div class="input-group flex flex-col mb-3">
                             <label for="address" class="text-gray-500 dark:text-gray-400 mb-2">Location</label>
-                            <input th:field="*{address}" class="h-[40px] text-center form-control dark:border-[#292d38]
- border rounded-lg dark:bg-[#26272d]
-"
+                            <input th:field="*{address}" class="h-[40px] text-center form-control dark:border-[#292d38] border rounded-lg dark:bg-[#26272d]"
                                    type="text" name="address" id="address" placeholder="Eg. San Antonio, Texas">
                         </div>
                         <div class="input-group flex flex-col mb-3">
                             <label for="email" class="text-gray-500 dark:text-gray-400 mb-2">Email</label>
-                            <input th:field="*{email}" class="h-[40px] text-center form-control border rounded-lg dark:border-[#292d38]
- dark:bg-[#26272d]
-"
+                            <input th:field="*{email}" class="h-[40px] text-center form-control border rounded-lg dark:border-[#292d38] dark:bg-[#26272d]"
                                    type="email" name="email" id="email" placeholder="Enter email">
                         </div>
                         <div class="input-group flex flex-col mb-3">
                             <label for="initialPassword" class="text-gray-500 dark:text-gray-400 mb-2">Password</label>
-                            <input th:field="*{password}" class="h-[40px] text-center form-control border dark:border-[#292d38]
- rounded-lg dark:bg-[#26272d]
-"
+                            <input th:field="*{password}" class="h-[40px] text-center form-control border dark:border-[#292d38] rounded-lg dark:bg-[#26272d]"
                                    type="password" name="initialPassword" id="initialPassword"
                                    placeholder="Enter password">
                         </div>
@@ -141,17 +122,14 @@
                             <div class="w-full flex flex-col">
                                 <label for="bio" class="text-gray-500 dark:text-gray-400 mb-2">Enter Your Bio</label>
                                 <textarea th:field="*{bio}" type="text" name="bio" id="bio"
-                                          class=" w-full h-[80px] p-1 rounded-lg resize-none border dark:border-[#292d38]
- w-2/3 dark:bg-[#26272d]
-"
-                                          placeholder="Write a short biography about yourself"></textarea>
+                                          class=" w-full h-[80px] p-1 rounded-lg resize-none border dark:border-[#292d38] w-2/3 dark:bg-[#26272d]"
+                                          placeholder="Write a short biography about yourself">
+                                </textarea>
                             </div>
                             <div class="flex justify-between mt-5">
                                 <a href="/profile" class="text-[#2a86ff]">Go back</a>
                                 <button type="submit"
-                                        class="py-2.5 mb-[10em] px-5 mr-2 mb-2 text-sm shadow-lg font-medium text-white focus:outline-none bg-blue-500 rounded-lg border dark:border-[#292d38]
- hover:bg-blue-400 focus:z-10 dark:focus:ring-gray-700 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:bg-[#26272d]
-">
+                                        class="py-2.5 mb-[10em] px-5 mr-2 mb-2 text-sm shadow-lg font-medium text-white focus:outline-none bg-blue-500 rounded-lg border dark:border-[#292d38] hover:bg-blue-400 focus:z-10 dark:focus:ring-gray-700 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:bg-[#26272d]">
                                     Submit Changes
                                 </button>
                             </div>
@@ -174,10 +152,8 @@
         <aside th:replace="partials/Aside :: aside-nav"></aside>
     </section>
 </div>
-<!---->
-<!--keys-->
 
-<!--<script src="/js/keys.js" type="text/javascript"></script>-->
+
 <script src="/js/title.js"></script>
 <script src="/js/users/user-delete.js"></script>
 <script th:src="@{/js/filestack-user.js}" type="module"></script>

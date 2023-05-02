@@ -14,18 +14,12 @@
 
 
 <div class="w-full md:ml-[3em] mt-[3em] mb-[13em] flex flex-col justify-center items-center h-screen">
-
     <div class="w-2/3 h-1/2 md:mt-[4em] flex md:justify-start justify-center">
-
         <div class="w-full h-full flex flex-col md:justify-end items-center md:items-start p-5">
-
             <section class="aside-container hidden md:w-[18em] md:flex w-full h-screen relative">
                 <aside th:replace="partials/Aside :: aside-nav"></aside>
             </section>
-
-
             <div class="md:ml-[5em] w-1/2 h-full flex flex-col md:justify-end items-center md:items-start p-5">
-
             <div class="w-[200px] h-[200px] mb-[3em] mt-[4em] relative flex justify-center items-center bg-white dark:bg-[#17181c] rounded-full">
 
                 <img th:href="@{|/pets/${pet.id}|}"
@@ -39,39 +33,35 @@
                      th:unless="${not #strings.isEmpty(pet.image)}"
                      th:src="@{/img/pet-profile.jpg}"
                      alt="Default pet image"/>
-
             </div>
+                <div class="w-full">
+                    <div class="flex flex-col">
+                        <h5 class="md:text-start text-center text-xl"><span th:text="${pet.petname}"
+                                                                    th:href="@{|/pets/${pet.id}|}"></span></h5>
+                        <span class="text-sm text-gray-500 dark:text-gray-400 md:text-start text-center">Owner: <span
+                                th:text="${pet.user.first_name}"></span></span>
+                    </div>
+                    <div th:if="${pet.user.id} == ${#authentication.principal.id}"
+                         class="flex justify-center md:justify-start mt-5 ">
+                        <div class="w-full flex justify-evenly md:justify-start">
+                            <form th:action="@{/pets/{id}/edit(id=${pet.id})}" th:method="get">
+                                <input type="hidden" name="edit_id" th:value="${pet.id}"/>
+                                <button type="submit"
+                                        class="inline-flex items-center md:mr-5 px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 dark:focus:ring-blue-800">
+                                    Edit
+                                </button>
+                            </form>
 
-
-            <div class="w-full">
-                <div class="flex flex-col">
-                    <h5 class="md:text-start text-center text-xl"><span th:text="${pet.petname}"
-                                                                th:href="@{|/pets/${pet.id}|}"></span></h5>
-                    <span class="text-sm text-gray-500 dark:text-gray-400 md:text-start text-center">Owner: <span
-                            th:text="${pet.user.first_name}"></span></span>
-                </div>
-
-                <div th:if="${pet.user.id} == ${#authentication.principal.id}"
-                     class="flex justify-center md:justify-start mt-5 ">
-                    <div class="w-full flex justify-evenly md:justify-start">
-                        <form th:action="@{/pets/{id}/edit(id=${pet.id})}" th:method="get">
-                            <input type="hidden" name="edit_id" th:value="${pet.id}"/>
-                            <button type="submit"
-                                    class="inline-flex items-center md:mr-5 px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 dark:focus:ring-blue-800">
-                                Edit
-                            </button>
-                        </form>
-
-                        <form th:action="@{/pets/{id}/delete(id=${pet.id})}" th:method="get">
-                            <input type="hidden" name="delete_id" th:value="${pet.id}"/>
-                            <button type="submit"
-                                    class="inline-flex ml-2 items-center px-4 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 ">
-                                Delete
-                            </button>
-                        </form>
+                            <form th:action="@{/pets/{id}/delete(id=${pet.id})}" th:method="get">
+                                <input type="hidden" name="delete_id" th:value="${pet.id}"/>
+                                <button type="submit"
+                                        class="inline-flex ml-2 items-center px-4 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-800 ">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
@@ -89,9 +79,7 @@
             <h2 class="text-xl font-bold">Breed</h2>
             <span class="text-sm text-gray-500 dark:text-gray-400"><span
                     th:text="${pet.breed.breed_name}"></span></span>
-
         </div>
-
         <nav th:replace="partials/navbar :: navbar-mobile"></nav>
     </div>
 </div>

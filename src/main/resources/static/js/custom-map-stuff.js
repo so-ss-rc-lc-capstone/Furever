@@ -17,9 +17,6 @@ async function allEvents() {
                 name: event.location_name,
                 address: event.location_address
             }));
-
-            console.log(event)
-
             mapboxgl.accessToken = keys.mapbox;
             let map = new mapboxgl.Map({
                 container: 'map',
@@ -180,7 +177,6 @@ function deg2rad(deg) {
 //Comparing the Ids of the events within 50 miles radius.
 async function localIdComparison() {
     let eventIds = await localLocations();
-    console.log(typeof eventIds)
     let eventCards = document.querySelectorAll(".card-div");
     eventCards.forEach(function (card) {
         if (!eventIds.includes(parseInt(card.title))) {

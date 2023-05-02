@@ -9,11 +9,6 @@
         }
     });
     const data = await response.json();
-    // console.log(data);
-    for(let i = 0; i < data.length; i++){
-        console.log("data:")
-        console.log(data[i].id);
-    }
 
     let eventDates = [];
     let eventMonths = [];
@@ -31,8 +26,6 @@
 
         let eventYear = eventDate.getDate();
         eventYears.push(eventYear)
-
-        console.log(eventDates);
     }
 
     const daysTag = document.querySelector(".days"),
@@ -116,63 +109,6 @@
 
 
 
-
-
-
-//         /*! -------- calendar -------- */
-//         const buttons = document.querySelectorAll(".all-users");
-//         buttons.forEach(function (button) {
-//             button.addEventListener("click", function () {
-//                 let loggedUserId = document.getElementById("loggedUser").title;
-//                 console.log("logged in user: " + loggedUserId)
-//                 const buttonId = button.getAttribute("id");
-//                 console.log(buttonId);
-//
-//                 let loggedUser = findUser(loggedUserId);
-//                 let selectedUser = findUser(buttonId);
-//
-//                 console.log(loggedUser.username);
-//                 console.log(selectedUser.username);
-//
-//
-//
-//                 Talk.ready.then(function () {
-//                     var me = new Talk.User({
-//                         id: loggedUser.id,
-//                         name: loggedUser.username,
-//                         email: loggedUser.email,
-// // photoUrl: loggedUser.profilePhoto,
-//                     });
-//                     window.talkSession = new Talk.Session({
-//                         appId: 'tp21z3C9',
-//                         me: me,
-//                     });
-//                     var other = new Talk.User({
-//                         id: selectedUser.id,
-//                         name: selectedUser.username,
-//                         email: selectedUser.email,
-// // photoUrl: selectedUser.profilePhoto,
-//                     });
-//
-//                     var conversation = talkSession.getOrCreateConversation(
-//                         Talk.oneOnOneId(me, other)
-//                     );
-//                     conversation.setParticipant(me);
-//                     conversation.setParticipant(other);
-//                     var inbox = talkSession.createInbox({ selected: conversation });
-//                     inbox.mount(document.getElementById('talkjs-container'));
-//                 });
-//
-//
-//             });
-//         });
-//
-//
-//         (function(t,a,l,k,j,s){
-//             s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s);
-//             k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
-//                         .push([f])},catch:function(){return k&&new k()},c:l}}
-//         })(window,document,[]);
 
 
 

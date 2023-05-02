@@ -11,11 +11,8 @@
 
 <div class="login justify-center items-center mt-[4em] flex">
     <div th:text="${message}" class="dark:text-white" style="position: absolute; top: 17%; left: 42%; transform: translateX(-50%);"></div>
-
     <div class="login__content container ">
-        <div class="login__img items-center hidden lg:flex border border-gray-100 rounded-xl dark:border-[#292d38] dark:bg-gray-800 shadow-2xl">
-        </div>
-
+        <div class="login__img items-center hidden lg:flex border border-gray-100 rounded-xl dark:border-[#292d38] dark:bg-gray-800 shadow-2xl"></div>
         <div class="login__forms border-gray-100">
             <form th:action="@{/login}"  th:method="POST" class="login__registre  dark:bg-[#1e1f24] border dark:border-[#292d38] dark:shadow-xl" id="login-in">
                 <h1 class="login__title dark:text-white">Sign In</h1>
@@ -73,7 +70,6 @@
                     <span class="login__account dark:text-white">Already Have An Account ?</span>
                     <span class="login__signup" id="sign-in">Sign In</span>
                 </div>
-
             </form>
         </div>
     </div>

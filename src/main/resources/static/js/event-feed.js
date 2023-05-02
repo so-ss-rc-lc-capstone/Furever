@@ -136,10 +136,8 @@ let eventButtons = document.querySelectorAll(".view-participants-btn");
 eventButtons.forEach(button => {
     button.addEventListener("click", function() {
         participantsList.innerHTML = "";
-        console.log("clicked")
         // Get the event ID from the "data-event-id" attribute of the button
         let eventId = button.getAttribute("data-event-id");
-        console.log(eventId);
 
         // Fetch participants for the selected event
         fetch(`${window.location.protocol}//${window.location.host}/events/${eventId}/participants`, {
@@ -155,7 +153,6 @@ eventButtons.forEach(button => {
                 return res.json();
             })
             .then(data => {
-                console.log(data);
                 let viewParticipants = JSON.stringify(data);
                 getAllParticipants(viewParticipants);
             })
