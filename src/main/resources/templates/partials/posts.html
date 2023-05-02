@@ -7,16 +7,16 @@
         <div class="w-full ml-1">
           <div class="flex w-[90%]">
             <a th:href="@{/user/{id}(id=${post.user.id})}">
-            <img class="w-[60px] h-[60px] mt-[26px] ml-[25px] rounded-full shadow-md"
+              <img class="w-[60px] h-[60px] mt-[26px] ml-[25px] rounded-full shadow-md"
                  th:if="${not #strings.isEmpty(post.user.profilePhoto)}"
                  th:src="${post.user.profilePhoto}" alt="Profile image"/>
             </a>
             <a th:href="@{/user/{id}(id=${post.user.id})}">
-            <img class="w-[60px] h-[60px] mt-[26px] ml-[25px] rounded-full shadow-md"
+              <img class="w-[60px] h-[60px] mt-[26px] ml-[25px] rounded-full shadow-md"
                  th:if="${#strings.isEmpty(post.user.profilePhoto)}"
                  th:src="@{/img/profile.jpeg}"
                  alt="Default profile image"/>
-              </a>
+            </a>
 
             <div class = "flex flex-col w-full mt-[1.5em] ml-[40px]">
               <h1 class="font-bold text-[18px] mt-1"> <span th:text="${post.user.first_name}"></span> <span th:text="${post.user.last_name}"></span></h1>
@@ -24,7 +24,6 @@
               <h3 class="text-[10px] text-gray-400 mt-1"><span th:text="${#temporals.format(post.created_at, 'h:mm a')}"></span> ﹒ <span th:text="${#temporals.format(post.created_at, 'MMMM dd, yyyy')}"></span></h3>
               <div class="w-full pb-5 pt-[5px] ml-[2px] pr-[10px] text-[16px]" th:text="${post.body}"></div>
             </div>
-
           </div>
 
         </div>
@@ -139,6 +138,7 @@
         <div class="w-full pt-2 h-auto text-[14px] mb-3 pr-[15px]" th:text="${comment.content}"></div>
       </div>
     </div>
+<!--    Comment delete-->
     <div class="absolute right-0 top-0 scale-90" th:if="${comment.user.id} == ${#authentication.principal.id}">
       <form th:action="@{'/comment/' + ${comment.id} + '/delete'}" method="post" onsubmit="return confirmCommentDelete();">
         <button type="submit">
