@@ -50,7 +50,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][furever.png]](https://example.com)
 
 
 Furever.Space is a website dedicated to pet lovers and owners all over the world. Our goal is to create a community where pet owners can connect, share their experiences, and learn from each other.<p>&nbsp;</p>
