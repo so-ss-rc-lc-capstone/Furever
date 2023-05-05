@@ -60,6 +60,8 @@ Furever.Space is a website dedicated to pet lovers and owners all over the world
 
 * User Profiles: You can create a profile for your pet and share their pictures, stories, and information. You can also browse through other users to find new friends for your furry companion. <p>&nbsp;</p>
 
+* AI Assistance: Our AI assistance feature uses the ChatGPT API in order to auto generate posts and event descriptions, allowing users to focus on putting out content. <p>&nbsp;</p>
+
 
 * Feed: Our feed is a great way to stay up-to-date with the latest news and events in the pet world. You can also share your own stories and pictures with other users.<p>&nbsp;</p>
 
