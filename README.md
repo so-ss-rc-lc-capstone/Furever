@@ -65,7 +65,7 @@ Furever.Space is a website dedicated to pet lovers and owners all over the world
 
 
 * AI Assistance: Our AI assistance feature uses the ChatGPT API in order to auto generate posts and event descriptions, allowing users to focus on putting out content. <p>&nbsp;</p>
-
+![alt text](src/main/resources/static/img/post-gif.gif)
 
 * Feed: Our feed is a great way to stay up-to-date with the latest news and events in the pet world. You can also share your own stories and pictures with other users as well as like and comment on other posts.<p>&nbsp;</p>
 
