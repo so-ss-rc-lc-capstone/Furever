@@ -66,7 +66,7 @@ Furever.Space is a website dedicated to pet lovers and owners all over the world
 * Feed: Our feed is a great way to stay up-to-date with the latest news and events in the pet world. You can also share your own stories and pictures with other users as well as like and comment on other posts.<p>&nbsp;</p>
 
 
-* Events: Using the mapbox API, we are able to track a users location and allow them to organize and search for events such as meetups, adoption drives, and pet fairs within their local proximity or even worldwide. These events are a great opportunity to meet other pet owners and their pets, learn new things, and have fun.<p>&nbsp;</p>
+* Events: Using the mapbox API, we are able to display a users location and allow them to organize and search for events such as meetups, adoption drives, and pet fairs within their local proximity or even worldwide. These events are a great opportunity to meet other pet owners and their pets, learn new things, and have fun.<p>&nbsp;</p>
 
 
 * Connect: Connect with other pet owners and their pets with our built in messaging and chat features using the TalkJS API.<p>&nbsp;</p>
