@@ -58,18 +58,18 @@ Furever.Space is a website dedicated to pet lovers and owners all over the world
 
 ## Features:
 
-* User Profiles: You can create a profile for your pet and share their pictures, stories, and information. You can also browse through other users to find new friends for your furry companion. <p>&nbsp;</p>
+* User Profiles: You can create a profile for your pet and share their pictures, stories, and information. We use the Filestack API in order for users to upload their photos and customize their profile page to their liking. You can also browse through other users to find new friends for your furry companion. <p>&nbsp;</p>
 
 * AI Assistance: Our AI assistance feature uses the ChatGPT API in order to auto generate posts and event descriptions, allowing users to focus on putting out content. <p>&nbsp;</p>
 
 
-* Feed: Our feed is a great way to stay up-to-date with the latest news and events in the pet world. You can also share your own stories and pictures with other users.<p>&nbsp;</p>
+* Feed: Our feed is a great way to stay up-to-date with the latest news and events in the pet world. You can also share your own stories and pictures with other users as well as like and comment on other posts.<p>&nbsp;</p>
 
 
-* Events: With our live-location, organize events such as meetups, adoption drives, and pet fairs. These events are a great opportunity to meet other pet owners and their pets, learn new things, and have fun.<p>&nbsp;</p>
+* Events: Using the mapbox API, we are able to track a users location and allow them to organize and search for events such as meetups, adoption drives, and pet fairs within their local proximity or even worldwide. These events are a great opportunity to meet other pet owners and their pets, learn new things, and have fun.<p>&nbsp;</p>
 
 
-* Connect: Connect with other pet owners and their pets with built in messaging and chat features.<p>&nbsp;</p>
+* Connect: Connect with other pet owners and their pets with our built in messaging and chat features using the TalkJS API.<p>&nbsp;</p>
 
 
 
