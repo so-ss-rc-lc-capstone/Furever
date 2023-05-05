@@ -56,7 +56,7 @@
 Furever.Space is a website dedicated to pet lovers and owners all over the world. Our goal is to create a community where pet owners can connect, share their experiences, and learn from each other.<p>&nbsp;</p>
 
 
-## Features:
+<h1 align="center">Features</h1>
 
 ## User Profiles
 * You can create a profile for your pet and share their pictures, stories, and information. We use the Filestack API in order for users to upload their photos and customize their profile page to their liking. You can also browse through other users to find new friends for your furry companion. <p>&nbsp;</p>
