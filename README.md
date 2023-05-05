@@ -60,6 +60,10 @@ Furever.Space is a website dedicated to pet lovers and owners all over the world
 
 * User Profiles: You can create a profile for your pet and share their pictures, stories, and information. We use the Filestack API in order for users to upload their photos and customize their profile page to their liking. You can also browse through other users to find new friends for your furry companion. <p>&nbsp;</p>
 
+![alt text](src/main/resources/static/img/profile-gif-high.gif)
+
+
+
 * AI Assistance: Our AI assistance feature uses the ChatGPT API in order to auto generate posts and event descriptions, allowing users to focus on putting out content. <p>&nbsp;</p>
 
 
