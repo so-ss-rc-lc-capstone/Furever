@@ -10,6 +10,7 @@
 <h1 align="center">Furever</h1>
 
   <p align="center">
+    
     Connect with fellow pet-owners and share your furry friend's 
 <br/> adventures on our social media platform!
     <br />
