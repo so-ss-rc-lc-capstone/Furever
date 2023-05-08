@@ -21,6 +21,7 @@ public class SecurityConfiguration {
         this.usersLoader = usersLoader;
     }
 
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
