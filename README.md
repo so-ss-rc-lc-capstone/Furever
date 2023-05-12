@@ -2,6 +2,7 @@
 <p>&nbsp;</p><p>&nbsp;</p>
 
 <!-- PROJECT LOGO -->
+
 <br />
 <div align="center">
   <a href="https://github.com/so-ss-rc-lc-capstone/project-pet/blob/main/README.md">
