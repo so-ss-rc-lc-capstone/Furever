@@ -63,7 +63,7 @@ We initally also wanted to add some other utilities to our web application but t
 
 Randy Chu was the one who created the FIGMA file and planned out the whole frontend and back end.
 
-View Figma file:
+View initial Figma file, alot of changes were made to the design later:
 https://www.figma.com/file/yUrW2LN3gUTo9t8qbwbACi/Capstone-Project?type=design&node-id=0%3A1&t=
 nW48e58lm2kjm8NR-1
 
