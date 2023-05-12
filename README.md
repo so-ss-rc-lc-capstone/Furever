@@ -56,7 +56,7 @@
 
 Furever.Space is a website dedicated to pet lovers and owners all over the world. Our goal is to create a community where pet owners can connect, share their experiences, and learn from each other.<p>&nbsp;</p>
 
-<h1 align="center">Planning></h1>
+<h1 align="center">Planning</h1>
 The inital idea for our project was to create a social media website that is fully functional, we decided to go with a social media platform that caters to dog owners, instead of focusing on people we choose to focus on our pets in order to stand out.
 
 We initally also wanted to add some other utilities to our web application but there was not enough time to do so:
