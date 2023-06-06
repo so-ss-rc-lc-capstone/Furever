@@ -5,14 +5,12 @@
     <title>Furever</title>
   </head>
 <link rel="stylesheet" href="/css/home.css"/>
-    <link rel="stylesheet" href="/css/darkmode.css"/>
     <body class="bg-white dark:dark:bg-[#17181c] relative">
 
     <a href="/login" class="start-button fixed bottom-0 md:left-[5em] inline-flex px-5 py-3 ml-5 mt-5 text-base font-medium bg-[#2a86ff] transition-all hover:bg-blue-700 text-center text-white rounded-full shadow-xl" style="z-index: 2;">
         Get Started
         <svg class="w-5 h-5 ml-2 mt-[2px] -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
     </a>
-
 
 
     <nav th:replace="partials/navbar :: navbar-home"></nav>
@@ -95,6 +93,8 @@
 
     </section>
 
+
+
     <!--Features-->
     <section class="hidden-up mt-[9em] w-full">
         <div class="py-8 flex justify-center items-center px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
@@ -150,7 +150,7 @@
             </div>
 
             <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
-                <div class="about hiddens items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
+                <div class="about hiddens items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-[#1e1f24] dark:border-gray-700">
                     <div class="w-full" style="object-fit: cover;">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg w-fit h-[400px] md:w-[300px] md:h-[400px]" style="object-fit: cover" th:src="@{/img/rchu.jpeg}" alt="Sofia Avatar">
                     </div>
@@ -180,7 +180,7 @@
                     </div>
                 </div>
 
-                <div class="about hidden-right items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
+                <div class="about hidden-right items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-[#1e1f24] dark:border-gray-700">
                     <div class="w-full" style="object-fit: cover;">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg w-fit h-[400px] md:w-[300px] md:h-[400px]" style="object-fit: cover" th:src="@{/img/shah.JPG}" alt="Said-Shah" >
                     </div>
@@ -209,7 +209,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="about hiddens items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
+                <div class="about hiddens items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-[#1e1f24] dark:border-gray-700">
                     <div class="w-full" style="object-fit: cover;">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg w-fit h-[400px] md:w-[300px] md:h-[400px]" th:src="@{/img/songju1.jpeg}" style="object-fit: cover">
                     </div>
@@ -238,7 +238,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="about hidden-right items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
+                <div class="about hidden-right items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-[#1e1f24] dark:border-gray-700">
                     <div class="w-full" style="object-fit: cover;">
                         <img class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg w-fit h-[400px] md:w-[300px] md:h-[400px]" style=" object-fit: cover" th:src="@{/img/luke-cal.jpg}" alt="Sofia Avatar" >
                     </div>
@@ -279,7 +279,7 @@
                 <p class="mb-8 font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-200">See for yourself how Furever has simplified the management of pets, enhanced socialization, and provided an all-in-one solution for all your pet-related needs.</p>
             </div>
             <div class="grid mb-8 lg:mb-12 lg:grid-cols-2">
-                <figure class="flex flex-col justify-center items-center p-8 text-center border-b border-gray-200 md:p-12 lg:border-r dark:bg-gray-800 dark:border-gray-700">
+                <figure class="flex flex-col justify-center items-center p-8 text-center border-b border-gray-200 md:p-12 lg:border-r dark:bg-[#1e1f24] dark:border-gray-700">
                     <blockquote class="mx-auto mb-8 max-w-2xl text-gray-500 dark:text-gray-400">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Connecting Pet Lovers Around The World</h3>
                         <p class="my-4">"I've been using this app for a few months now and I'm blown away by how it has connected me with pet lovers from all over the world. I've met fellow dog owners who live nearby, shared pictures of my cat with people across the country, and even had conversations with pet owners from other continents.
@@ -294,7 +294,7 @@
                         </div>
                     </figcaption>
                 </figure>
-                <figure class="flex flex-col justify-center items-center p-8 text-center border-b border-gray-200 md:p-12 dark:bg-gray-800 dark:border-gray-700">
+                <figure class="flex flex-col justify-center items-center p-8 text-center border-b border-gray-200 md:p-12 dark:bg-[#1e1f24] dark:border-gray-700">
                     <blockquote class="mx-auto mb-8 max-w-2xl text-gray-500 dark:text-gray-400">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Love Connecting With Other Pet Owners!</h3>
                         <p class="my-4">"As a new pet owner, I was feeling overwhelmed and isolated. But thanks to this app, I've been able to connect with other pet owners in my area and get valuable advice and support. It's been amazing to see how much this community cares about each other and our furry friends.</p>
@@ -306,7 +306,7 @@
                         </div>
                     </figcaption>
                 </figure>
-                <figure class="flex flex-col justify-center items-center p-8 text-center border-b border-gray-200 lg:border-b-0 md:p-12 lg:border-r dark:bg-gray-800 dark:border-gray-700">
+                <figure class="flex flex-col justify-center items-center p-8 text-center border-b border-gray-200 lg:border-b-0 md:p-12 lg:border-r dark:bg-[#1e1f24] dark:border-gray-700">
                     <blockquote class="mx-auto mb-8 max-w-2xl text-gray-500 dark:text-gray-400">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">A Fun Way To Make New Friends</h3>
                         <p class="my-4">"I never realized how many other pet owners there were in my neighborhood until I joined this app! I've been able to meet so many amazing people and their pets, and we've even started organizing regular playdates and walks together. </p>
@@ -320,7 +320,7 @@
                         </div>
                     </figcaption>
                 </figure>
-                <figure class="flex flex-col justify-center items-center p-8 text-center border-gray-200 md:p-12 dark:bg-gray-800 dark:border-gray-700">
+                <figure class="flex flex-col justify-center items-center p-8 text-center border-gray-200 md:p-12 dark:bg-[#1e1f24] dark:border-gray-700">
                     <blockquote class="mx-auto mb-8 max-w-2xl text-gray-500 dark:text-gray-400">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Building A Strong Community</h3>
                         <p class="my-4">"I've been using this app for a while now, and it's been incredible to see how much the community has grown and evolved. </p>
@@ -404,31 +404,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!--Contact info-->
-    <section id="contact" class="hiddens">
-        <div  class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contact Us</h2>
-            <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-200 sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Let us know.</p>
-            <form th:action="@{/sendEmail}"  th:method="post" class="space-y-8">
-                <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your Email</label>
-                    <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-700 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="name@email.com" required>
-                </div>
-
-                <div>
-                    <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subject</label>
-                    <input type="text" id="subject" name="subject" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-700 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Let us know how we can help you" required>
-                </div>
-                <div class="sm:col-span-2">
-                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your Message</label>
-                    <textarea id="message" rows="6" name="message" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-700 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
-                </div>
-                <button type="submit" class="py-3 px-5 text-sm font-medium text-center bg-[#2a86ff] text-white rounded-full bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-[#2a86ff] dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:text-white {{ $theme == 'light' ? 'bg-blue-600 hover:bg-blue-700' : '' }}">
-                    Send message
-                </button>
-            </form>
         </div>
     </section>
 
